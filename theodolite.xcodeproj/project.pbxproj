@@ -17,6 +17,8 @@
 		B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB31F8D69DC001EE264 /* Utilities.swift */; };
 		B136BEB71F8D69E8001EE264 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB51F8D69E8001EE264 /* View.swift */; };
 		B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB61F8D69E8001EE264 /* ViewPool.swift */; };
+		B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB91F8D6C8D001EE264 /* ActionTests.swift */; };
+		B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBB1F8D6DD2001EE264 /* Action.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		B136BEB31F8D69DC001EE264 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		B136BEB51F8D69E8001EE264 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B136BEB61F8D69E8001EE264 /* ViewPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPool.swift; sourceTree = "<group>"; };
+		B136BEB91F8D6C8D001EE264 /* ActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
+		B136BEBB1F8D6DD2001EE264 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 			children = (
 				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
 				B136BE581F8D5741001EE264 /* Info.plist */,
+				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
 			);
 			path = TheodoliteTests;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 		B136BEA81F8D6727001EE264 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B136BEBB1F8D6DD2001EE264 /* Action.swift */,
 				B136BEAB1F8D69C9001EE264 /* Component.swift */,
 				B136BEAC1F8D69C9001EE264 /* Layout.swift */,
 				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
@@ -249,6 +255,7 @@
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
 				B136BEB71F8D69E8001EE264 /* View.swift in Sources */,
 				B136BEB11F8D69C9001EE264 /* Scope.swift in Sources */,
+				B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
 				B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */,
 			);
@@ -259,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
+				B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
