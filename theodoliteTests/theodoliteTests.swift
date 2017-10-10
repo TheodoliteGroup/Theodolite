@@ -1,15 +1,15 @@
 //
-//  theodoliteTests.swift
-//  theodoliteTests
+//  TheodoliteTests.swift
+//  TheodoliteTests
 //
 //  Created by Oliver Rickard on 10/10/17.
 //  Copyright © 2017 Oliver Rickard. All rights reserved.
 //
 
 import XCTest
-@testable import theodolite
+@testable import Theodolite
 
-class theodoliteTests: XCTestCase {
+class TheodoliteTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

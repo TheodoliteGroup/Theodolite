@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B136BE521F8D5741001EE264 /* theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* theodolite.framework */; };
-		B136BE571F8D5741001EE264 /* theodoliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BE561F8D5741001EE264 /* theodoliteTests.swift */; };
-		B136BE591F8D5741001EE264 /* theodolite.h in Headers */ = {isa = PBXBuildFile; fileRef = B136BE4B1F8D5741001EE264 /* theodolite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
+		B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BE561F8D5741001EE264 /* TheodoliteTests.swift */; };
+		B136BE591F8D5741001EE264 /* Theodolite.h in Headers */ = {isa = PBXBuildFile; fileRef = B136BE4B1F8D5741001EE264 /* Theodolite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B136BEA21F8D5D73001EE264 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE731F8D5D62001EE264 /* Nimble.framework */; };
+		B136BEA31F8D5D7A001EE264 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE931F8D5D68001EE264 /* Quick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -18,17 +20,145 @@
 			containerPortal = B136BE3F1F8D5741001EE264 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B136BE471F8D5741001EE264;
-			remoteInfo = theodolite;
+			remoteInfo = Theodolite;
+		};
+		B136BE6E1F8D5D62001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F925EAD195C0D6300ED456B;
+			remoteInfo = "Nimble-macOS";
+		};
+		B136BE701F8D5D62001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F925EB7195C0D6300ED456B;
+			remoteInfo = "Nimble-macOSTests";
+		};
+		B136BE721F8D5D62001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F1A74291940169200FFFC47;
+			remoteInfo = "Nimble-iOS";
+		};
+		B136BE741F8D5D62001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F1A74341940169200FFFC47;
+			remoteInfo = "Nimble-iOSTests";
+		};
+		B136BE761F8D5D62001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F5DF1551BDCA0CE00C3A531;
+			remoteInfo = "Nimble-tvOS";
+		};
+		B136BE781F8D5D62001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F5DF15E1BDCA0CE00C3A531;
+			remoteInfo = "Nimble-tvOSTests";
+		};
+		B136BE8A1F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B8E1943873100289F44;
+			remoteInfo = "Quick-macOS";
+		};
+		B136BE8C1F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DAEB6B991943873100289F44;
+			remoteInfo = "Quick - macOSTests";
+		};
+		B136BE8E1F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA5663E81A4C8D8500193C88;
+			remoteInfo = "QuickFocused - macOSTests";
+		};
+		B136BE901F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64076CF51D6D7C2000E2B499;
+			remoteInfo = "QuickAfterSuite - macOSTests";
+		};
+		B136BE921F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D117C19473F2100F6D13D;
+			remoteInfo = "Quick-iOS";
+		};
+		B136BE941F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A5D118619473F2100F6D13D;
+			remoteInfo = "Quick - iOSTests";
+		};
+		B136BE961F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA9876B21A4C70EB0004AA17;
+			remoteInfo = "QuickFocused - iOSTests";
+		};
+		B136BE981F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64076D081D6D7CD600E2B499;
+			remoteInfo = "QuickAfterSuite - iOSTests";
+		};
+		B136BE9A1F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F118CD51BDCA4AB005013A2;
+			remoteInfo = "Quick-tvOS";
+		};
+		B136BE9C1F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F118CDE1BDCA4AB005013A2;
+			remoteInfo = "Quick - tvOSTests";
+		};
+		B136BE9E1F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1F118CF01BDCA4BB005013A2;
+			remoteInfo = "QuickFocused - tvOSTests";
+		};
+		B136BEA01F8D5D68001EE264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64076D1A1D6D7CEA00E2B499;
+			remoteInfo = "QuickAfterSuite - tvOSTests";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B136BE481F8D5741001EE264 /* theodolite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = theodolite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B136BE4B1F8D5741001EE264 /* theodolite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = theodolite.h; sourceTree = "<group>"; };
+		B136BE481F8D5741001EE264 /* Theodolite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Theodolite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B136BE4B1F8D5741001EE264 /* Theodolite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theodolite.h; sourceTree = "<group>"; };
 		B136BE4C1F8D5741001EE264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B136BE511F8D5741001EE264 /* theodoliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = theodoliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B136BE561F8D5741001EE264 /* theodoliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = theodoliteTests.swift; sourceTree = "<group>"; };
+		B136BE511F8D5741001EE264 /* TheodoliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheodoliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B136BE561F8D5741001EE264 /* TheodoliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheodoliteTests.swift; sourceTree = "<group>"; };
 		B136BE581F8D5741001EE264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Carthage/Checkouts/Nimble/Nimble.xcodeproj; sourceTree = "<group>"; };
+		B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Carthage/Checkouts/Quick/Quick.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +173,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B136BE521F8D5741001EE264 /* theodolite.framework in Frameworks */,
+				B136BEA31F8D5D7A001EE264 /* Quick.framework in Frameworks */,
+				B136BEA21F8D5D73001EE264 /* Nimble.framework in Frameworks */,
+				B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +185,9 @@
 		B136BE3E1F8D5741001EE264 = {
 			isa = PBXGroup;
 			children = (
-				B136BE4A1F8D5741001EE264 /* theodolite */,
-				B136BE551F8D5741001EE264 /* theodoliteTests */,
+				B136BE4A1F8D5741001EE264 /* Theodolite */,
+				B136BE551F8D5741001EE264 /* TheodoliteTests */,
+				B136BE631F8D5D46001EE264 /* Vendor */,
 				B136BE491F8D5741001EE264 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,28 +195,69 @@
 		B136BE491F8D5741001EE264 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B136BE481F8D5741001EE264 /* theodolite.framework */,
-				B136BE511F8D5741001EE264 /* theodoliteTests.xctest */,
+				B136BE481F8D5741001EE264 /* Theodolite.framework */,
+				B136BE511F8D5741001EE264 /* TheodoliteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B136BE4A1F8D5741001EE264 /* theodolite */ = {
+		B136BE4A1F8D5741001EE264 /* Theodolite */ = {
 			isa = PBXGroup;
 			children = (
-				B136BE4B1F8D5741001EE264 /* theodolite.h */,
+				B136BE4B1F8D5741001EE264 /* Theodolite.h */,
 				B136BE4C1F8D5741001EE264 /* Info.plist */,
 			);
-			path = theodolite;
+			path = Theodolite;
 			sourceTree = "<group>";
 		};
-		B136BE551F8D5741001EE264 /* theodoliteTests */ = {
+		B136BE551F8D5741001EE264 /* TheodoliteTests */ = {
 			isa = PBXGroup;
 			children = (
-				B136BE561F8D5741001EE264 /* theodoliteTests.swift */,
+				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
 				B136BE581F8D5741001EE264 /* Info.plist */,
 			);
-			path = theodoliteTests;
+			path = TheodoliteTests;
+			sourceTree = "<group>";
+		};
+		B136BE631F8D5D46001EE264 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */,
+				B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		B136BE651F8D5D61001EE264 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B136BE6F1F8D5D62001EE264 /* Nimble.framework */,
+				B136BE711F8D5D62001EE264 /* NimbleTests.xctest */,
+				B136BE731F8D5D62001EE264 /* Nimble.framework */,
+				B136BE751F8D5D62001EE264 /* NimbleTests.xctest */,
+				B136BE771F8D5D62001EE264 /* Nimble.framework */,
+				B136BE791F8D5D62001EE264 /* NimbleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B136BE7B1F8D5D68001EE264 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B136BE8B1F8D5D68001EE264 /* Quick.framework */,
+				B136BE8D1F8D5D68001EE264 /* Quick - macOSTests.xctest */,
+				B136BE8F1F8D5D68001EE264 /* QuickFocused - macOSTests.xctest */,
+				B136BE911F8D5D68001EE264 /* QuickAfterSuite - macOSTests.xctest */,
+				B136BE931F8D5D68001EE264 /* Quick.framework */,
+				B136BE951F8D5D68001EE264 /* Quick - iOSTests.xctest */,
+				B136BE971F8D5D68001EE264 /* QuickFocused - iOSTests.xctest */,
+				B136BE991F8D5D68001EE264 /* QuickAfterSuite - iOSTests.xctest */,
+				B136BE9B1F8D5D68001EE264 /* Quick.framework */,
+				B136BE9D1F8D5D68001EE264 /* Quick - tvOSTests.xctest */,
+				B136BE9F1F8D5D68001EE264 /* QuickFocused - tvOSTests.xctest */,
+				B136BEA11F8D5D68001EE264 /* QuickAfterSuite - tvOSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,16 +267,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B136BE591F8D5741001EE264 /* theodolite.h in Headers */,
+				B136BE591F8D5741001EE264 /* Theodolite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B136BE471F8D5741001EE264 /* theodolite */ = {
+		B136BE471F8D5741001EE264 /* Theodolite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B136BE5C1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "theodolite" */;
+			buildConfigurationList = B136BE5C1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "Theodolite" */;
 			buildPhases = (
 				B136BE431F8D5741001EE264 /* Sources */,
 				B136BE441F8D5741001EE264 /* Frameworks */,
@@ -113,14 +287,14 @@
 			);
 			dependencies = (
 			);
-			name = theodolite;
-			productName = theodolite;
-			productReference = B136BE481F8D5741001EE264 /* theodolite.framework */;
+			name = Theodolite;
+			productName = Theodolite;
+			productReference = B136BE481F8D5741001EE264 /* Theodolite.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B136BE501F8D5741001EE264 /* theodoliteTests */ = {
+		B136BE501F8D5741001EE264 /* TheodoliteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B136BE5F1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "theodoliteTests" */;
+			buildConfigurationList = B136BE5F1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "TheodoliteTests" */;
 			buildPhases = (
 				B136BE4D1F8D5741001EE264 /* Sources */,
 				B136BE4E1F8D5741001EE264 /* Frameworks */,
@@ -131,9 +305,9 @@
 			dependencies = (
 				B136BE541F8D5741001EE264 /* PBXTargetDependency */,
 			);
-			name = theodoliteTests;
-			productName = theodoliteTests;
-			productReference = B136BE511F8D5741001EE264 /* theodoliteTests.xctest */;
+			name = TheodoliteTests;
+			productName = TheodoliteTests;
+			productReference = B136BE511F8D5741001EE264 /* TheodoliteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -158,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B136BE421F8D5741001EE264 /* Build configuration list for PBXProject "theodolite" */;
+			buildConfigurationList = B136BE421F8D5741001EE264 /* Build configuration list for PBXProject "Theodolite" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -168,13 +342,152 @@
 			mainGroup = B136BE3E1F8D5741001EE264;
 			productRefGroup = B136BE491F8D5741001EE264 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B136BE651F8D5D61001EE264 /* Products */;
+					ProjectRef = B136BE641F8D5D61001EE264 /* Nimble.xcodeproj */;
+				},
+				{
+					ProductGroup = B136BE7B1F8D5D68001EE264 /* Products */;
+					ProjectRef = B136BE7A1F8D5D68001EE264 /* Quick.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				B136BE471F8D5741001EE264 /* theodolite */,
-				B136BE501F8D5741001EE264 /* theodoliteTests */,
+				B136BE471F8D5741001EE264 /* Theodolite */,
+				B136BE501F8D5741001EE264 /* TheodoliteTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B136BE6F1F8D5D62001EE264 /* Nimble.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = B136BE6E1F8D5D62001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE711F8D5D62001EE264 /* NimbleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbleTests.xctest;
+			remoteRef = B136BE701F8D5D62001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE731F8D5D62001EE264 /* Nimble.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = B136BE721F8D5D62001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE751F8D5D62001EE264 /* NimbleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbleTests.xctest;
+			remoteRef = B136BE741F8D5D62001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE771F8D5D62001EE264 /* Nimble.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Nimble.framework;
+			remoteRef = B136BE761F8D5D62001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE791F8D5D62001EE264 /* NimbleTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = NimbleTests.xctest;
+			remoteRef = B136BE781F8D5D62001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE8B1F8D5D68001EE264 /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = B136BE8A1F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE8D1F8D5D68001EE264 /* Quick - macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick - macOSTests.xctest";
+			remoteRef = B136BE8C1F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE8F1F8D5D68001EE264 /* QuickFocused - macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused - macOSTests.xctest";
+			remoteRef = B136BE8E1F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE911F8D5D68001EE264 /* QuickAfterSuite - macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickAfterSuite - macOSTests.xctest";
+			remoteRef = B136BE901F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE931F8D5D68001EE264 /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = B136BE921F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE951F8D5D68001EE264 /* Quick - iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick - iOSTests.xctest";
+			remoteRef = B136BE941F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE971F8D5D68001EE264 /* QuickFocused - iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused - iOSTests.xctest";
+			remoteRef = B136BE961F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE991F8D5D68001EE264 /* QuickAfterSuite - iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickAfterSuite - iOSTests.xctest";
+			remoteRef = B136BE981F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE9B1F8D5D68001EE264 /* Quick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Quick.framework;
+			remoteRef = B136BE9A1F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE9D1F8D5D68001EE264 /* Quick - tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Quick - tvOSTests.xctest";
+			remoteRef = B136BE9C1F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BE9F1F8D5D68001EE264 /* QuickFocused - tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickFocused - tvOSTests.xctest";
+			remoteRef = B136BE9E1F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B136BEA11F8D5D68001EE264 /* QuickAfterSuite - tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "QuickAfterSuite - tvOSTests.xctest";
+			remoteRef = B136BEA01F8D5D68001EE264 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B136BE461F8D5741001EE264 /* Resources */ = {
@@ -205,7 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B136BE571F8D5741001EE264 /* theodoliteTests.swift in Sources */,
+				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +527,7 @@
 /* Begin PBXTargetDependency section */
 		B136BE541F8D5741001EE264 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B136BE471F8D5741001EE264 /* theodolite */;
+			target = B136BE471F8D5741001EE264 /* Theodolite */;
 			targetProxy = B136BE531F8D5741001EE264 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -330,10 +643,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = theodolite/Info.plist;
+				INFOPLIST_FILE = Theodolite/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.theodolite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.Theodolite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -349,10 +662,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = theodolite/Info.plist;
+				INFOPLIST_FILE = Theodolite/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.theodolite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.Theodolite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -363,9 +676,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
-				INFOPLIST_FILE = theodoliteTests/Info.plist;
+				INFOPLIST_FILE = TheodoliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.theodoliteTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.TheodoliteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -375,9 +688,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
-				INFOPLIST_FILE = theodoliteTests/Info.plist;
+				INFOPLIST_FILE = TheodoliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.theodoliteTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.TheodoliteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -386,7 +699,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B136BE421F8D5741001EE264 /* Build configuration list for PBXProject "theodolite" */ = {
+		B136BE421F8D5741001EE264 /* Build configuration list for PBXProject "Theodolite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B136BE5A1F8D5741001EE264 /* Debug */,
@@ -395,21 +708,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B136BE5C1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "theodolite" */ = {
+		B136BE5C1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "Theodolite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B136BE5D1F8D5741001EE264 /* Debug */,
 				B136BE5E1F8D5741001EE264 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		B136BE5F1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "theodoliteTests" */ = {
+		B136BE5F1F8D5741001EE264 /* Build configuration list for PBXNativeTarget "TheodoliteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B136BE601F8D5741001EE264 /* Debug */,
 				B136BE611F8D5741001EE264 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

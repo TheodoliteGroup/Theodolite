@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B136BE471F8D5741001EE264"
-               BuildableName = "theodolite.framework"
-               BlueprintName = "theodolite"
-               ReferencedContainer = "container:theodolite.xcodeproj">
+               BuildableName = "Theodolite.framework"
+               BlueprintName = "Theodolite"
+               ReferencedContainer = "container:Theodolite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B136BE501F8D5741001EE264"
-               BuildableName = "theodoliteTests.xctest"
-               BlueprintName = "theodoliteTests"
-               ReferencedContainer = "container:theodolite.xcodeproj">
+               BuildableName = "TheodoliteTests.xctest"
+               BlueprintName = "TheodoliteTests"
+               ReferencedContainer = "container:Theodolite.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B136BE471F8D5741001EE264"
-            BuildableName = "theodolite.framework"
-            BlueprintName = "theodolite"
-            ReferencedContainer = "container:theodolite.xcodeproj">
+            BuildableName = "Theodolite.framework"
+            BlueprintName = "Theodolite"
+            ReferencedContainer = "container:Theodolite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B136BE471F8D5741001EE264"
-            BuildableName = "theodolite.framework"
-            BlueprintName = "theodolite"
-            ReferencedContainer = "container:theodolite.xcodeproj">
+            BuildableName = "Theodolite.framework"
+            BlueprintName = "Theodolite"
+            ReferencedContainer = "container:Theodolite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B136BE471F8D5741001EE264"
-            BuildableName = "theodolite.framework"
-            BlueprintName = "theodolite"
-            ReferencedContainer = "container:theodolite.xcodeproj">
+            BuildableName = "Theodolite.framework"
+            BlueprintName = "Theodolite"
+            ReferencedContainer = "container:Theodolite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

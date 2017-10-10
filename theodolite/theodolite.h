@@ -1,6 +1,6 @@
 //
-//  theodolite.h
-//  theodolite
+//  Theodolite.h
+//  Theodolite
 //
 //  Created by Oliver Rickard on 10/10/17.
 //  Copyright © 2017 Oliver Rickard. All rights reserved.
@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for theodolite.
-FOUNDATION_EXPORT double theodoliteVersionNumber;
+//! Project version number for Theodolite.
+FOUNDATION_EXPORT double TheodoliteVersionNumber;
 
-//! Project version string for theodolite.
-FOUNDATION_EXPORT const unsigned char theodoliteVersionString[];
+//! Project version string for Theodolite.
+FOUNDATION_EXPORT const unsigned char TheodoliteVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <theodolite/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <Theodolite/PublicHeader.h>
 
 

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:theodolite.xcodeproj">
+      location = "self:Theodolite.xcodeproj">
    </FileRef>
 </Workspace>
