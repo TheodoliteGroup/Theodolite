@@ -10,6 +10,13 @@
 		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
 		B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BE561F8D5741001EE264 /* TheodoliteTests.swift */; };
 		B136BE591F8D5741001EE264 /* Theodolite.h in Headers */ = {isa = PBXBuildFile; fileRef = B136BE4B1F8D5741001EE264 /* Theodolite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEAB1F8D69C9001EE264 /* Component.swift */; };
+		B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEAC1F8D69C9001EE264 /* Layout.swift */; };
+		B136BEB11F8D69C9001EE264 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEAD1F8D69C9001EE264 /* Scope.swift */; };
+		B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */; };
+		B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB31F8D69DC001EE264 /* Utilities.swift */; };
+		B136BEB71F8D69E8001EE264 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB51F8D69E8001EE264 /* View.swift */; };
+		B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB61F8D69E8001EE264 /* ViewPool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +36,13 @@
 		B136BE511F8D5741001EE264 /* TheodoliteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheodoliteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B136BE561F8D5741001EE264 /* TheodoliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheodoliteTests.swift; sourceTree = "<group>"; };
 		B136BE581F8D5741001EE264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B136BEAB1F8D69C9001EE264 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		B136BEAC1F8D69C9001EE264 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		B136BEAD1F8D69C9001EE264 /* Scope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
+		B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedComponent.swift; sourceTree = "<group>"; };
+		B136BEB31F8D69DC001EE264 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B136BEB51F8D69E8001EE264 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B136BEB61F8D69E8001EE264 /* ViewPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPool.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +85,9 @@
 		B136BE4A1F8D5741001EE264 /* Theodolite */ = {
 			isa = PBXGroup;
 			children = (
+				B136BEA81F8D6727001EE264 /* Core */,
+				B136BEAA1F8D673E001EE264 /* Utility */,
+				B136BEA91F8D6734001EE264 /* View */,
 				B136BE4B1F8D5741001EE264 /* Theodolite.h */,
 				B136BE4C1F8D5741001EE264 /* Info.plist */,
 			);
@@ -84,6 +101,34 @@
 				B136BE581F8D5741001EE264 /* Info.plist */,
 			);
 			path = TheodoliteTests;
+			sourceTree = "<group>";
+		};
+		B136BEA81F8D6727001EE264 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEAB1F8D69C9001EE264 /* Component.swift */,
+				B136BEAC1F8D69C9001EE264 /* Layout.swift */,
+				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
+				B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B136BEA91F8D6734001EE264 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEB51F8D69E8001EE264 /* View.swift */,
+				B136BEB61F8D69E8001EE264 /* ViewPool.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B136BEAA1F8D673E001EE264 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEB31F8D69DC001EE264 /* Utilities.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +194,7 @@
 					B136BE471F8D5741001EE264 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = SXXM3YCVSK;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B136BE501F8D5741001EE264 = {
@@ -198,6 +244,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */,
+				B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */,
+				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
+				B136BEB71F8D69E8001EE264 /* View.swift in Sources */,
+				B136BEB11F8D69C9001EE264 /* Scope.swift in Sources */,
+				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
+				B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +377,7 @@
 		B136BE5D1F8D5741001EE264 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
@@ -336,6 +390,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.Theodolite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,6 +398,7 @@
 		B136BE5E1F8D5741001EE264 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
@@ -362,6 +418,7 @@
 		B136BE601F8D5741001EE264 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
 				INFOPLIST_FILE = TheodoliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +431,7 @@
 		B136BE611F8D5741001EE264 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
 				INFOPLIST_FILE = TheodoliteTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
