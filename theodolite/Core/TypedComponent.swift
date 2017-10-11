@@ -23,6 +23,7 @@ protocol TypedComponent: InternalTypedComponent {
 }
 
 var kPropsKey: Void?;
+var kKeyKey: Void?
 
 extension TypedComponent {
   public init(_ props: PropType, key: AnyHashable? = nil) {
@@ -30,24 +31,30 @@ extension TypedComponent {
     setAssociatedObject(object: self,
                         value: props,
                         associativeKey: &kPropsKey);
+    if let unwrappedKey = key {
+      setAssociatedObject(object: self,
+                          value: unwrappedKey,
+                          associativeKey: &kKeyKey);
+    }
   }
   
   func props() -> PropType {
-    return objc_getAssociatedObject(self, &kPropsKey) as! PropType;
+    return getAssociatedObject(object: self, associativeKey: &kPropsKey)!;
   }
   
   func state() -> StateType? {
     if let handle = getScopeHandle(component: self) {
-      return handle.state as! StateType?;
+      return handle.state as? StateType ?? nil;
     }
-    assert(false, "Updating state before handle set on component. This state update will no-op");
+    assert(false, "Accessing state before handle set on component. This state update will no-op");
     return nil;
   }
 
   func initialState() -> StateType? {
     return nil;
   }
-  
+
+  /** TODO: Kill this. */
   internal func initialUntypedState() -> Any? {
     return initialState();
   }
@@ -59,13 +66,13 @@ extension TypedComponent {
       assert(false, "Updating state before handle set on component. This state update will no-op");
     }
   }
+  
+  func key() -> AnyHashable? {
+    return getAssociatedObject(object: self, associativeKey: &kKeyKey);
+  }
 }
 
 /* Used by infrastructure to allow polymorphism on prop/state types. */
-protocol InternalTypedComponent: Component {}
-
-extension InternalTypedComponent {
-  internal func initialUntypedState() -> Any? {
-    return nil;
-  }
+protocol InternalTypedComponent: Component {
+  func initialUntypedState() -> Any?;
 }

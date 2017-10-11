@@ -19,6 +19,7 @@
 		B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB61F8D69E8001EE264 /* ViewPool.swift */; };
 		B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB91F8D6C8D001EE264 /* ActionTests.swift */; };
 		B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBB1F8D6DD2001EE264 /* Action.swift */; };
+		B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B136BEB61F8D69E8001EE264 /* ViewPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPool.swift; sourceTree = "<group>"; };
 		B136BEB91F8D6C8D001EE264 /* ActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		B136BEBB1F8D6DD2001EE264 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
 				B136BE581F8D5741001EE264 /* Info.plist */,
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
+				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 			);
 			path = TheodoliteTests;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
 				B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */,
 			);

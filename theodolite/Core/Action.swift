@@ -22,7 +22,7 @@ class Handler<Target: AnyObject, Arg>: Action<Arg> {
   weak var target: Target?
   let handler: (Target) -> (Arg) -> ()
   
-  init(target: Target?, handler: @escaping (Target) -> (Arg) -> ()) {
+  init(target: Target, handler: @escaping (Target) -> (Arg) -> ()) {
     self.target = target
     self.handler = handler
   }

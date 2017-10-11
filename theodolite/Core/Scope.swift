@@ -16,11 +16,19 @@ public class ScopeRoot {
   let root: Scope;
   weak var listener: StateUpdateListener?;
   
-  init(previousRoot: ScopeRoot?, listener: StateUpdateListener, stateUpdateMap: [Int32: Any?], factory: () -> Component) {
+  init(previousRoot: ScopeRoot?, listener: StateUpdateListener?, stateUpdateMap: [Int32: Any?], factory: () -> Component) {
     self.listener = listener;
+    let component = factory();
+    var previousScope: Scope? = nil;
+    if let unwrappedPrevious = previousRoot {
+      previousScope = areComponentsEquivalent(
+        c1: component,
+        c2: unwrappedPrevious.root.component)
+        ? unwrappedPrevious.root : nil;
+    }
     self.root = Scope(listener: listener,
-                      component: factory(),
-                      previousScope: previousRoot?.root,
+                      component: component,
+                      previousScope: previousScope,
                       stateUpdateMap: stateUpdateMap);
   }
 }
@@ -61,8 +69,10 @@ public class Scope {
       self.handle = ScopeHandle(
         identifier: prev.handle.identifier,
         state: stateUpdateMap[prev.handle.identifier]
-          ?? prev.handle.state) { [weak listener] (identifier: Int32, value: Any?) in
-            listener?.receivedStateUpdate(identifier: identifier, update: value);
+          ?? prev.handle.state) {
+            [weak listener] (identifier: Int32, value: Any?) in
+            listener?.receivedStateUpdate(identifier: identifier,
+                                          update: value);
       }
     } else {
       let typed = component as? InternalTypedComponent;
@@ -78,8 +88,7 @@ public class Scope {
       // Note this is inefficient if there are a large number of children. We're assuming the number of children is
       // small to begin with, and can convert to a hash map if we add more.
       let prev = previousScope?.children.first(where: { (s: Scope) -> Bool in
-        return type(of: child) == type(of: s.component)
-          && child.key() == s.component.key();
+        return areComponentsEquivalent(c1: child, c2: s.component);
       })
       return Scope(listener: listener,
                    component: child,
@@ -108,4 +117,9 @@ internal func setScopeHandle(component: Component, handle: ScopeHandle) {
 
 internal func getScopeHandle(component: Component) -> ScopeHandle? {
   return getAssociatedObject(object: component, associativeKey: &kScopeHandleKey);
+}
+
+internal func areComponentsEquivalent(c1: Component, c2: Component) -> Bool {
+  return type(of: c1) == type(of: c2)
+    && c1.key() == c2.key();
 }
