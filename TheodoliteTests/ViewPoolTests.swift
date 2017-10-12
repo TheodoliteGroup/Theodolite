@@ -144,4 +144,25 @@ class ViewPoolTests: XCTestCase {
     
     XCTAssertEqual(retrievedView2?.backgroundColor, UIColor.blue);
   }
+  
+  func test_retrievingView_performance() {
+    var pool = ViewPool();
+    
+    let parent = UIView();
+    
+    let config = ViewConfiguration(
+      view: UILabel.self,
+      attributes: [
+        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+          view.backgroundColor = val;
+        }
+      ]);
+    
+    self.measure {
+      for _ in 1...10000 {
+        let _ = pool.retrieveView(parent: parent, config: config);
+        pool.reset();
+      }
+    }
+  }
 }
