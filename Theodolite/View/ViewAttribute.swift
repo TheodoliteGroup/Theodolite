@@ -8,23 +8,27 @@
 
 import UIKit
 
-class Attr<ViewType: UIView, ValueType: AnyObject>: Attribute {
+class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
   convenience init(value: ValueType,
-                   applicator: @escaping (ViewType) -> (ValueType?) -> ()) {
-    self.init();
-    self.identifier = "\(applicator)";
-    self.value = value;
-    self.applicator = applicator as? (UIView) -> (AnyObject?) -> ();
-  }
-  
-  convenience init(value: ValueType,
-                   applicator: @escaping (ViewType, ValueType?) -> ()) {
+                   applicator: @escaping (ViewType) -> (ValueType) -> ()) {
     self.init();
     self.identifier = "\(applicator)";
     self.value = value;
     self.applicator = { (view: UIView) in
-      return {(obj: AnyObject?) in
-        applicator(view as! ViewType, obj as! ValueType?);
+      return {(obj: Any?) in
+        applicator(view as! ViewType)(obj as! ValueType);
+      }
+    }
+  }
+  
+  convenience init(value: ValueType,
+                   applicator: @escaping (ViewType, ValueType) -> ()) {
+    self.init();
+    self.identifier = "\(applicator)";
+    self.value = value;
+    self.applicator = { (view: UIView) in
+      return {(obj: Any?) in
+        applicator(view as! ViewType, obj as! ValueType);
       }
     }
   }
@@ -32,8 +36,8 @@ class Attr<ViewType: UIView, ValueType: AnyObject>: Attribute {
 
 class Attribute: Equatable, Hashable {
   internal var identifier: String;
-  internal var value: AnyObject?;
-  internal var applicator: ((UIView) -> (AnyObject?) -> ())?;
+  internal var value: AnyHashable?;
+  internal var applicator: ((UIView) -> (Any) -> ())?;
   
   public var hashValue: Int {
     return self.identifier.hashValue;
@@ -55,5 +59,5 @@ class Attribute: Equatable, Hashable {
 
 func ==(lhs: Attribute, rhs: Attribute) -> Bool {
   return lhs.identifier == rhs.identifier
-    && lhs.value === rhs.value;
+    && lhs.value == rhs.value;
 }
