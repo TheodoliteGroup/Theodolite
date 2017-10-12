@@ -1,5 +1,5 @@
 //
-//  ViewPoolTests.swift
+//  ViewAttributeTests.swift
 //  Theodolite
 //
 //  Created by Oliver Rickard on 10/11/17.
@@ -9,6 +9,6 @@
 import XCTest
 @testable import Theodolite
 
-class ViewPoolTests: XCTestCase {
+class ViewAttributeTests: XCTestCase {
   
 }
