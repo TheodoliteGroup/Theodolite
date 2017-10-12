@@ -13,6 +13,20 @@ public class Scope {
   let handle: ScopeHandle;
   let children: [Scope];
   
+  /** 
+   This is arguably the most complex part of Theodolite. Scopes are an implementation detail of the infrastructure,
+   and you should never really have to interact with Scopes if you're working on a Theodolite Component tree.
+   
+   The core role of scopes is to call render() on each component recursively, and record the children for each
+   component. As part of this process of building the component hierarchies, scopes are responsible for matching each
+   component with its previous generation, and attaching any prior state, and applying any state updates before calling
+   render().
+   
+   Scopes also keep a reference to the state update listener, and when components call self.updateState(...), they
+   actually call through the scope handle to the listener.
+   
+   One scope is built for each component in the hierarchy.
+  */
   init(listener: StateUpdateListener?,
        component: Component,
        previousScope: Scope?,
@@ -49,17 +63,6 @@ public class Scope {
                    component: child,
                    previousScope: prev,
                    stateUpdateMap: stateUpdateMap);
-    }
-  }
-  
-  func iterate(iterator: (Component, inout Bool) -> Void) {
-    var stop = false;
-    iterator(self.component, &stop)
-    if stop {
-      return;
-    }
-    for childScope in self.children {
-      childScope.iterate(iterator: iterator);
     }
   }
 }
