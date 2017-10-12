@@ -8,51 +8,6 @@
 
 import Foundation
 
-protocol StateUpdateListener: class {
-  func receivedStateUpdate(identifier: Int32, update: Any?);
-}
-
-public class ScopeRoot {
-  let root: Scope;
-  weak var listener: StateUpdateListener?;
-  
-  init(previousRoot: ScopeRoot?, listener: StateUpdateListener?, stateUpdateMap: [Int32: Any?], factory: () -> Component) {
-    self.listener = listener;
-    let component = factory();
-    var previousScope: Scope? = nil;
-    if let unwrappedPrevious = previousRoot {
-      previousScope = areComponentsEquivalent(
-        c1: component,
-        c2: unwrappedPrevious.root.component)
-        ? unwrappedPrevious.root : nil;
-    }
-    self.root = Scope(listener: listener,
-                      component: component,
-                      previousScope: previousScope,
-                      stateUpdateMap: stateUpdateMap);
-  }
-}
-
-var __currentIdentifier: Atomic<Int32> = Atomic<Int32>(0);
-
-public class ScopeHandle {
-  let identifier: Int32;
-  let state: Any?;
-  let stateUpdater: (Int32, Any?) -> ();
-  
-  convenience init(state: Any?, stateUpdater: @escaping (Int32, Any?) -> ()) {
-    self.init(identifier: __currentIdentifier.update({ (val: Int32) -> Int32 in
-      return val + 1;
-    }), state: state, stateUpdater: stateUpdater);
-  }
-  
-  init(identifier: Int32, state: Any?, stateUpdater: @escaping (Int32, Any?) -> ()) {
-    self.identifier = identifier;
-    self.state = state;
-    self.stateUpdater = stateUpdater;
-  }
-}
-
 public class Scope {
   let component: Component;
   let handle: ScopeHandle;
@@ -107,16 +62,6 @@ public class Scope {
       childScope.iterate(iterator: iterator);
     }
   }
-}
-
-var kScopeHandleKey: Void?;
-
-internal func setScopeHandle(component: Component, handle: ScopeHandle) {
-  setAssociatedObject(object: component, value: handle, associativeKey: &kScopeHandleKey);
-}
-
-internal func getScopeHandle(component: Component) -> ScopeHandle? {
-  return getAssociatedObject(object: component, associativeKey: &kScopeHandleKey);
 }
 
 internal func areComponentsEquivalent(c1: Component, c2: Component) -> Bool {
