@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol StateUpdateListener: class {
-  func receivedStateUpdate(identifier: Int32, update: Any?);
-}
-
 public class ScopeRoot {
   let root: Scope;
   weak var listener: StateUpdateListener?;

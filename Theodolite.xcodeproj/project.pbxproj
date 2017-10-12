@@ -24,6 +24,7 @@
 		B136BEC21F8EF96B001EE264 /* ScopeRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */; };
 		B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC31F8EF989001EE264 /* ScopeHandle.swift */; };
 		B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */; };
+		B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeRoot.swift; sourceTree = "<group>"; };
 		B136BEC31F8EF989001EE264 /* ScopeHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeHandle.swift; sourceTree = "<group>"; };
 		B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPoolTests.swift; sourceTree = "<group>"; };
+		B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateUpdateListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
 				B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */,
 				B136BEC31F8EF989001EE264 /* ScopeHandle.swift */,
+				B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */,
 				B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */,
 				B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */,
 			);
@@ -275,6 +278,7 @@
 				B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */,
 				B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
+				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
 				B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
