@@ -13,7 +13,7 @@ class ViewConfigurationTests: XCTestCase {
   func test_whenBuildingViewConfiguration_withViewType_andNoAttributes_buildView_returnsViewType() {
     let config = ViewConfiguration(view: UILabel.self, attributes: []);
     let view = config.buildView();
-    XCTAssert(type(of: view) == UILabel.self);
+    XCTAssert(view.isKind(of: UILabel.self));
   }
   
   func test_viewConfigurationWithSingleAttributes_buildView_appliesAttribute() {
