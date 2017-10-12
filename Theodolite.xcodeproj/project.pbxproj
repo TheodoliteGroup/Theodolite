@@ -23,6 +23,7 @@
 		B136BEC01F8EF7CC001EE264 /* InternalTypedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */; };
 		B136BEC21F8EF96B001EE264 /* ScopeRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */; };
 		B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC31F8EF989001EE264 /* ScopeHandle.swift */; };
+		B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalTypedComponent.swift; sourceTree = "<group>"; };
 		B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeRoot.swift; sourceTree = "<group>"; };
 		B136BEC31F8EF989001EE264 /* ScopeHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScopeHandle.swift; sourceTree = "<group>"; };
+		B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPoolTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				B136BE581F8D5741001EE264 /* Info.plist */,
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
+				B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */,
 			);
 			path = TheodoliteTests;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
+				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,
 				B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
