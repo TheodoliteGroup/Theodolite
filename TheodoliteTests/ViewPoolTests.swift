@@ -11,7 +11,7 @@ import XCTest
 
 class ViewPoolTests: XCTestCase {
   func test_retrievingViewWithViewConfiguration_returnsViewWithCorrectClass() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -25,7 +25,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingViewWithViewConfiguration_afterReset_returnsSameView() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -43,7 +43,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingViewWithViewConfiguration_withoutReset_returnsDifferentView() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -59,7 +59,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingViewWithViewConfiguration_andCallingReset_doesNotHideView() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -75,7 +75,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingViewWithViewConfiguration_twice_andCallingReset_hidesUnRetrievedView() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -98,7 +98,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingViewWithViewConfiguration_appliesAttributes() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -116,7 +116,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingViewWithViewConfiguration_thenRetrievingItAgain_updatesAppliedValues() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
@@ -146,7 +146,7 @@ class ViewPoolTests: XCTestCase {
   }
   
   func test_retrievingView_performance() {
-    var pool = ViewPool();
+    let pool = ViewPool();
     
     let parent = UIView();
     
