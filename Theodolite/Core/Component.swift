@@ -15,7 +15,7 @@ public protocol Component: class {
   func render() -> [Component];
   func mount(parentView: UIView, layout: Layout, position: CGPoint);
   func unmount();
-  func size() -> CGSize;
+  func size(constraint: CGSize) -> CGSize;
   func layout(constraint: CGSize, tree: ComponentTree) -> Layout;
   
   /** Lifecycle methods */
@@ -54,14 +54,14 @@ extension Component {
     self.componentWillUnmount();
   }
   
-  public func size() -> CGSize {
+  public func size(constraint: CGSize) -> CGSize {
     return CGSize(width: 0, height: 0);
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
     return Layout(
       component: self,
-      size: self.size(),
+      size: self.size(constraint: constraint),
       children:
       tree.children().map { (childTree: ComponentTree) -> LayoutChild in
         return LayoutChild(

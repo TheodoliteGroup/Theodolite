@@ -19,7 +19,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestViewComponent: TypedComponent {
       typealias PropType = Void?
       
-      func size() -> CGSize {
+      func size(constraint: CGSize) -> CGSize {
         return CGSize(width: 50, height: 50);
       }
     }
@@ -47,7 +47,7 @@ class ViewMountTests: FBSnapshotTestCase {
         ];
       }
       
-      func size() -> CGSize {
+      func size(constraint: CGSize) -> CGSize {
         return CGSize(width: 50, height: 50);
       }
     }
@@ -55,7 +55,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestChildComponent: TypedComponent {
       typealias PropType = Void?
       
-      func size() -> CGSize {
+      func size(constraint: CGSize) -> CGSize {
         return CGSize(width: 25, height: 25);
       }
     }
@@ -69,8 +69,41 @@ class ViewMountTests: FBSnapshotTestCase {
     }
   }
   
+  func test_complex_layout() {
+    final class TestLabelComponent: TypedComponent {
+      typealias PropType = String
+      
+      convenience init(_ props: PropType, key: AnyHashable? = nil) {
+        self.init(props,
+                  view: ViewConfiguration(
+                    view: UILabel.self,
+                    attributes: [
+                      Attr(value: props, applicator: {(view, str) in
+                        let label = view as! UILabel;
+                        label.text = str;
+                        label.font = UIFont.systemFont(ofSize: 12);
+                      })
+                    ]),
+                  key:key);
+      }
+      
+      func size(constraint: CGSize) -> CGSize {
+        let str = self.props() as NSString;
+        let size = str.boundingRect(with: constraint,
+                                    options: NSStringDrawingOptions(),
+                                    attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12)],
+                                    context: nil).size;
+        return CGSize(width: ceil(size.width), height: ceil(size.height));
+      }
+    }
+    
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return TestLabelComponent("Hello World");
+    }
+  }
+  
   private func snapshotTestComponent(_ size: CGSize, _ identifier: String, factory: () -> Component) {
-    let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100));
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height));
     let scopeRoot = ScopeRoot(previousRoot: nil, listener: nil, stateUpdateMap: [:], factory: factory);
     
     let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root);
