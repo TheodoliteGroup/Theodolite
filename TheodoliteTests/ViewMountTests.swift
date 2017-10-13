@@ -10,5 +10,15 @@ import FBSnapshotTestCase
 @testable import Theodolite
 
 class ViewMountTests: FBSnapshotTestCase {
-
+  override func setUp() {
+    super.setUp()
+    recordMode = false
+  }
+  
+  func testBlank() {
+    let view = UIView();
+    view.frame = CGRect(x: 0, y: 0, width: 50, height: 50);
+    view.backgroundColor = UIColor.red;
+    FBSnapshotVerifyView(view)
+  }
 }
