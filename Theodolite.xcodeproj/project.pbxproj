@@ -125,15 +125,15 @@
 		B136BE551F8D5741001EE264 /* TheodoliteTests */ = {
 			isa = PBXGroup;
 			children = (
-				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
 				B136BE581F8D5741001EE264 /* Info.plist */,
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
+				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
+				B15612941F904F4F00AA21ED /* UtilitiesTests.swift */,
 				B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */,
 				B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */,
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
 				B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */,
-				B15612941F904F4F00AA21ED /* UtilitiesTests.swift */,
 			);
 			path = TheodoliteTests;
 			sourceTree = "<group>";
@@ -143,13 +143,13 @@
 			children = (
 				B136BEBB1F8D6DD2001EE264 /* Action.swift */,
 				B136BEAB1F8D69C9001EE264 /* Component.swift */,
+				B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */,
 				B136BEAC1F8D69C9001EE264 /* Layout.swift */,
 				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
 				B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */,
 				B136BEC31F8EF989001EE264 /* ScopeHandle.swift */,
 				B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */,
 				B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */,
-				B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -157,8 +157,8 @@
 		B136BEA91F8D6734001EE264 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B136BEB51F8D69E8001EE264 /* ViewConfiguration.swift */,
 				B136BECB1F8EFD17001EE264 /* ViewAttribute.swift */,
+				B136BEB51F8D69E8001EE264 /* ViewConfiguration.swift */,
 				B136BEB61F8D69E8001EE264 /* ViewPool.swift */,
 				B136BEC91F8EFCED001EE264 /* ViewPoolMap.swift */,
 			);
