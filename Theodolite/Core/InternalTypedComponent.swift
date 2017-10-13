@@ -15,20 +15,16 @@ protocol InternalTypedComponent {
 
 internal struct InternalPropertyWrapper<PropType> {
   let props: PropType;
-  let view: ViewConfiguration?;
   let key: AnyHashable?;
 }
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 extension TypedComponent {
   public init(_ props: PropType,
-              view: ViewConfiguration? = nil,
               key: AnyHashable? = nil) {
     self.init();
     setAssociatedObject(object: self,
-                        value: InternalPropertyWrapper(props: props,
-                                                       view: view,
-                                                       key: key),
+                        value: InternalPropertyWrapper(props: props, key: key),
                         associativeKey: &kWrapperKey);
   }
   
@@ -98,14 +94,11 @@ extension TypedComponent {
     self.componentDidMount();
   }
   
-  /* Implementation detail, ignore this */
-  internal func view() -> ViewConfiguration? {
-    let wrapper: InternalPropertyWrapper<PropType>? =
-      getAssociatedObject(object: self,
-                          associativeKey: &kWrapperKey);
-    return wrapper?.view;
+  func view() -> ViewConfiguration? {
+    return nil;
   }
   
+  /* Implementation detail, ignore this */
   internal func initialUntypedState() -> Any? {
     return initialState();
   }

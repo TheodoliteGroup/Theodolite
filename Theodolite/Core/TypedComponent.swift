@@ -19,7 +19,8 @@ protocol TypedComponent: Component, InternalTypedComponent {
   
   func updateState(state: StateType?);
   
+  func view() -> ViewConfiguration?;
+  
   init(_ props: PropType,
-       view: ViewConfiguration?,
        key: AnyHashable?);
 }

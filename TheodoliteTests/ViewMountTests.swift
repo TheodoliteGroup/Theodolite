@@ -17,7 +17,11 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_basic_rectangle() {
     final class TestViewComponent: TypedComponent {
-      typealias PropType = Void?
+      typealias PropType = ViewConfiguration;
+      
+      func view() -> ViewConfiguration? {
+        return self.props();
+      }
       
       func size(constraint: CGSize) -> CGSize {
         return CGSize(width: 50, height: 50);
@@ -25,7 +29,7 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     snapshotTestComponent(CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent(nil, view: ViewConfiguration(
+      return TestViewComponent(ViewConfiguration(
         view: UIView.self,
         attributes: [
           Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
@@ -34,17 +38,21 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_component_withChild() {
-    final class TestViewComponent: TypedComponent {
+    final class TestParentComponent: TypedComponent {
       typealias PropType = Void?
       
       func render() -> [Component] {
         return [
-          TestChildComponent(nil, view: ViewConfiguration(
-            view: UIView.self,
-            attributes: [
-              Attr(value: UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
-            ]))
+          TestChildComponent()
         ];
+      }
+      
+      func view() -> ViewConfiguration? {
+        return ViewConfiguration(
+          view: UIView.self,
+          attributes: [
+            Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
+          ]);
       }
       
       func size(constraint: CGSize) -> CGSize {
@@ -58,14 +66,18 @@ class ViewMountTests: FBSnapshotTestCase {
       func size(constraint: CGSize) -> CGSize {
         return CGSize(width: 25, height: 25);
       }
+      
+      func view() -> ViewConfiguration? {
+        return ViewConfiguration(
+          view: UIView.self,
+          attributes: [
+            Attr(value: UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
+          ]);
+      }
     }
     
     snapshotTestComponent(CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent(nil, view: ViewConfiguration(
-        view: UIView.self,
-        attributes: [
-          Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
-        ]));
+      return TestParentComponent();
     }
   }
   
@@ -73,18 +85,16 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestLabelComponent: TypedComponent {
       typealias PropType = String
       
-      convenience init(_ props: PropType, key: AnyHashable? = nil) {
-        self.init(props,
-                  view: ViewConfiguration(
-                    view: UILabel.self,
-                    attributes: [
-                      Attr(value: props, applicator: {(view, str) in
-                        let label = view as! UILabel;
-                        label.text = str;
-                        label.font = UIFont.systemFont(ofSize: 12);
-                      })
-                    ]),
-                  key:key);
+      func view() -> ViewConfiguration? {
+        return ViewConfiguration(
+          view: UILabel.self,
+          attributes: [
+            Attr(value: self.props(), applicator: {(view, str) in
+              let label = view as! UILabel;
+              label.text = str;
+              label.font = UIFont.systemFont(ofSize: 12);
+            })
+          ]);
       }
       
       func size(constraint: CGSize) -> CGSize {
