@@ -19,7 +19,7 @@ public class ScopeRoot {
     if let unwrappedPrevious = previousRoot {
       previousScope = areComponentsEquivalent(
         c1: component,
-        c2: unwrappedPrevious.root.component)
+        c2: unwrappedPrevious.root.component())
         ? unwrappedPrevious.root : nil;
     }
     self.root = Scope(listener: listener,

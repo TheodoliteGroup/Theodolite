@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class Scope {
-  let component: Component;
-  let handle: ScopeHandle;
-  let children: [Scope];
+public class Scope: ComponentTree {
+  internal let _component: Component;
+  internal let _handle: ScopeHandle;
+  internal let _children: [Scope];
   
   /** 
    This is arguably the most complex part of Theodolite. Scopes are an implementation detail of the infrastructure,
@@ -31,39 +31,47 @@ public class Scope {
        component: Component,
        previousScope: Scope?,
        stateUpdateMap: [Int32: Any?]) {
-    self.component = component;
+    _component = component;
     // First we have to set up our scope handle before calling render so that the state and state updater are
     // available to the component in render().
     if let prev = previousScope {
-      self.handle = ScopeHandle(
-        identifier: prev.handle.identifier,
-        state: stateUpdateMap[prev.handle.identifier]
-          ?? prev.handle.state) {
+      _handle = ScopeHandle(
+        identifier: prev._handle.identifier,
+        state: stateUpdateMap[prev._handle.identifier]
+          ?? prev._handle.state) {
             [weak listener] (identifier: Int32, value: Any?) in
             listener?.receivedStateUpdate(identifier: identifier,
                                           update: value);
       }
     } else {
       let typed = component as? InternalTypedComponent;
-      self.handle = ScopeHandle(state:typed?.initialUntypedState()) {
+      _handle = ScopeHandle(state:typed?.initialUntypedState()) {
         [weak listener](identifier: Int32, state: Any?) -> () in
         listener?.receivedStateUpdate(identifier: identifier, update: state);
       }
     }
-    setScopeHandle(component: component, handle: self.handle);
+    setScopeHandle(component: component, handle: _handle);
     
     // We're now able to call render, since we've finished setting up the scope handle and state update listener.
-    self.children = (component.render() ?? []).map { (child) -> Scope in
+    _children = component.render().map { (child) -> Scope in
       // Note this is inefficient if there are a large number of children. We're assuming the number of children is
       // small to begin with, and can convert to a hash map if we add more.
-      let prev = previousScope?.children.first(where: { (s: Scope) -> Bool in
-        return areComponentsEquivalent(c1: child, c2: s.component);
+      let prev = previousScope?._children.first(where: { (s: Scope) -> Bool in
+        return areComponentsEquivalent(c1: child, c2: s.component());
       })
       return Scope(listener: listener,
                    component: child,
                    previousScope: prev,
                    stateUpdateMap: stateUpdateMap);
     }
+  }
+  
+  public func children() -> [ComponentTree] {
+    return _children;
+  }
+  
+  public func component() -> Component {
+    return _component;
   }
 }
 

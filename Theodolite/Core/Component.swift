@@ -12,10 +12,10 @@ public protocol Component: class {
   init();
   
   /** Core methods */
-  func render() -> [Component]?;
+  func render() -> [Component];
   func mount(parentView: UIView, layout: Layout, position: CGPoint);
   func unmount();
-  func layout(constraint: CGSize) -> Layout;
+  func layout(constraint: CGSize, tree: ComponentTree) -> Layout;
   
   /** Lifecycle methods */
   
@@ -34,9 +34,10 @@ public protocol Component: class {
 }
 
 extension Component {
-  public func render() -> [Component]? {
-    return nil;
+  public func render() -> [Component] {
+    return [];
   }
+  
   public func mount(parentView: UIView, layout: Layout, position: CGPoint) {
     self.componentWillMount();
     for childLayout in layout.children {
@@ -47,13 +48,24 @@ extension Component {
     }
     self.componentDidMount();
   }
+  
   public func unmount() {
     self.componentWillUnmount();
   }
-  public func layout(constraint: CGSize) -> Layout {
-    return Layout(component: self,
-                  size: CGSize(width: 0, height:0),
-                  children: []);
+  
+  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+    return Layout(
+      component: self,
+      size: CGSize(width: 0, height:0),
+      children:
+      tree.children().map { (childTree: ComponentTree) -> LayoutChild in
+        return LayoutChild(
+          layout:childTree
+            .component()
+            .layout(constraint: constraint,
+                    tree: childTree),
+          position: CGPoint(x: 0, y: 0));
+    });
   }
   
   public func componentDidFinalize(layout: Layout) {}
