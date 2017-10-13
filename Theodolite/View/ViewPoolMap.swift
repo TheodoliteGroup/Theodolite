@@ -10,7 +10,7 @@ import Foundation
 
 var kViewPoolMapKey: Void?;
 
-struct ViewPoolMap {
+class ViewPoolMap {
   var hashMap: [ViewConfiguration:ViewPool] = [:];
   
   static func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
@@ -19,11 +19,11 @@ struct ViewPoolMap {
         object: view,
         associativeKey: &kViewPoolMapKey)
     
-    var unwrapped = map ?? ViewPoolMap();
+    let unwrapped = map ?? ViewPoolMap();
     
     if map == nil {
       setAssociatedObject(object: view,
-                          value: map,
+                          value: unwrapped,
                           associativeKey: &kViewPoolMapKey);
     }
     
@@ -41,7 +41,7 @@ struct ViewPoolMap {
       getAssociatedObject(
         object: view,
         associativeKey: &kViewPoolMapKey){
-      for (_, var pool) in map.hashMap {
+      for (_, pool) in map.hashMap {
         pool.reset();
       }
     }

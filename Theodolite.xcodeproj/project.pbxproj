@@ -30,6 +30,7 @@
 		B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */; };
 		B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */; };
 		B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */; };
+		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConfigurationTests.swift; sourceTree = "<group>"; };
 		B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAttributeTests.swift; sourceTree = "<group>"; };
 		B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPoolMapTests.swift; sourceTree = "<group>"; };
+		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */,
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
 				B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */,
+				B15612941F904F4F00AA21ED /* UtilitiesTests.swift */,
 			);
 			path = TheodoliteTests;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,
 				B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */,
 				B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */,
+				B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */,
 				B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

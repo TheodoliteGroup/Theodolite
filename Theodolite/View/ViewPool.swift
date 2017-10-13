@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ViewPool {
+class ViewPool {
   var views: [UIView] = [];
   var iterator: Array<UIView>.Iterator;
   
@@ -16,7 +16,7 @@ struct ViewPool {
     self.iterator = views.makeIterator();
   }
   
-  mutating func reset() {
+  func reset() {
     for view in self.iterator {
       if !view.isHidden {
         view.isHidden = true;
@@ -25,7 +25,7 @@ struct ViewPool {
     self.iterator = self.views.makeIterator();
   }
   
-  mutating func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
+  func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
     if let view = self.iterator.next() {
       if view.isHidden {
         view.isHidden = false;
