@@ -77,7 +77,8 @@ extension TypedComponent {
                             y: insets.top,
                             width: layout.size.width,
                             height: layout.size.height);
-        // If you have child components, you must call ViewPoolMap.reset(view: view) after they mount.
+        // If you have child components, you must call ViewPoolMap.reset(view: view) after they mount. This
+        // implementation has no children, so it's not necessary.
       }
     }
     self.componentDidMount();
