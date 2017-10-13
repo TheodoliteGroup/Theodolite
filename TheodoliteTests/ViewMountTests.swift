@@ -6,4 +6,9 @@
 //  Copyright © 2017 Oliver Rickard. All rights reserved.
 //
 
-import Foundation
+import FBSnapshotTestCase
+@testable import Theodolite
+
+class ViewMountTests: FBSnapshotTestCase {
+
+}
