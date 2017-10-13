@@ -19,8 +19,8 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestViewComponent: TypedComponent {
       typealias PropType = Void?
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-        return Layout(component: self, size: CGSize(width: 50, height: 50), children: []);
+      func size() -> CGSize {
+        return CGSize(width: 50, height: 50);
       }
     }
     
@@ -47,30 +47,16 @@ class ViewMountTests: FBSnapshotTestCase {
         ];
       }
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-        return Layout(
-          component: self,
-          size: CGSize(width: 50, height:50),
-          children:
-          tree.children().map { (childTree: ComponentTree) -> LayoutChild in
-            return LayoutChild(
-              layout:childTree
-                .component()
-                .layout(constraint: constraint,
-                        tree: childTree),
-              position: CGPoint(x: 0, y: 0));
-        });
+      func size() -> CGSize {
+        return CGSize(width: 50, height: 50);
       }
     }
     
     final class TestChildComponent: TypedComponent {
       typealias PropType = Void?
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-        return Layout(component: self,
-                      size: CGSize(width: 25,
-                                   height: 25),
-                      children: []);
+      func size() -> CGSize {
+        return CGSize(width: 25, height: 25);
       }
     }
     
