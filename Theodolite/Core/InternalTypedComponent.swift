@@ -65,7 +65,32 @@ extension TypedComponent {
     return wrapper?.key;
   }
   
+  /* View handling */
+  func mount(parentView: UIView, layout: Layout, insets: UIEdgeInsets) {
+    self.componentWillMount();
+    if let config = self.view() {
+      if let view =
+        ViewPoolMap
+          .getViewPool(view: parentView, config: config)
+          .retrieveView(parent: parentView, config: config) {
+        view.frame = CGRect(x: insets.left,
+                            y: insets.top,
+                            width: layout.size.width,
+                            height: layout.size.height);
+        // If you have child components, you must call ViewPoolMap.reset(view: view) after they mount.
+      }
+    }
+    self.componentDidMount();
+  }
+  
   /* Implementation detail, ignore this */
+  internal func view() -> ViewConfiguration? {
+    let wrapper: InternalPropertyWrapper<PropType>? =
+      getAssociatedObject(object: self,
+                          associativeKey: &kWrapperKey);
+    return wrapper?.view;
+  }
+  
   internal func initialUntypedState() -> Any? {
     return initialState();
   }
