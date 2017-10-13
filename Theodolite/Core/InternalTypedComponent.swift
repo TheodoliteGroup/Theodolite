@@ -13,22 +13,29 @@ protocol InternalTypedComponent {
   func initialUntypedState() -> Any?;
 }
 
+internal struct InternalPropertyWrapper<PropType> {
+  let props: PropType;
+  let view: ViewConfiguration?;
+  let key: AnyHashable?;
+}
+
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 extension TypedComponent {
-  public init(_ props: PropType, key: AnyHashable? = nil) {
+  public init(_ props: PropType,
+              view: ViewConfiguration? = nil,
+              key: AnyHashable? = nil) {
     self.init();
     setAssociatedObject(object: self,
-                        value: props,
-                        associativeKey: &kPropsKey);
-    if let unwrappedKey = key {
-      setAssociatedObject(object: self,
-                          value: unwrappedKey,
-                          associativeKey: &kKeyKey);
-    }
+                        value: InternalPropertyWrapper(props: props,
+                                                       view: view,
+                                                       key: key),
+                        associativeKey: &kWrapperKey);
   }
   
   func props() -> PropType {
-    return getAssociatedObject(object: self, associativeKey: &kPropsKey)!;
+    let wrapper: InternalPropertyWrapper<PropType>? = getAssociatedObject(object: self,
+                                                                         associativeKey: &kWrapperKey);
+    return wrapper!.props;
   }
   
   func state() -> StateType? {
@@ -52,7 +59,10 @@ extension TypedComponent {
   }
   
   internal func key() -> AnyHashable? {
-    return getAssociatedObject(object: self, associativeKey: &kKeyKey);
+    let wrapper: InternalPropertyWrapper<PropType>? =
+      getAssociatedObject(object: self,
+                          associativeKey: &kWrapperKey);
+    return wrapper?.key;
   }
   
   /* Implementation detail, ignore this */
@@ -61,5 +71,4 @@ extension TypedComponent {
   }
 }
 
-var kPropsKey: Void?;
-var kKeyKey: Void?
+var kWrapperKey: Void?;
