@@ -31,6 +31,8 @@
 		B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */; };
 		B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */; };
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
+		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
+		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = B136BE471F8D5741001EE264;
 			remoteInfo = Theodolite;
+		};
+		B19BBD221F9061D100116386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B31987F01AB782D000B0A900;
+			remoteInfo = "FBSnapshotTestCase iOS";
+		};
+		B19BBD241F9061D100116386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B31987FB1AB782D100B0A900;
+			remoteInfo = "FBSnapshotTestCase iOS Tests";
+		};
+		B19BBD261F9061D100116386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8271377A1C63AB6F00354E42;
+			remoteInfo = "FBSnapshotTestCase tvOS";
+		};
+		B19BBD281F9061D100116386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 827137831C63AB7000354E42;
+			remoteInfo = "FBSnapshotTestCase tvOS Tests";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -71,6 +101,8 @@
 		B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAttributeTests.swift; sourceTree = "<group>"; };
 		B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPoolMapTests.swift; sourceTree = "<group>"; };
 		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
+		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
+		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */,
 				B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +130,7 @@
 			children = (
 				B136BE4A1F8D5741001EE264 /* Theodolite */,
 				B136BE551F8D5741001EE264 /* TheodoliteTests */,
+				B19BBD1A1F9061C200116386 /* Vendor */,
 				B136BE491F8D5741001EE264 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -133,6 +167,7 @@
 				B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */,
 				B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */,
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
+				B19BBD2B1F90620E00116386 /* ViewMountTests.swift */,
 				B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */,
 			);
 			path = TheodoliteTests;
@@ -171,6 +206,25 @@
 				B136BEB31F8D69DC001EE264 /* Utilities.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		B19BBD1A1F9061C200116386 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		B19BBD1C1F9061D100116386 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */,
+				B19BBD251F9061D100116386 /* FBSnapshotTestCase iOS Tests.xctest */,
+				B19BBD271F9061D100116386 /* FBSnapshotTestCase.framework */,
+				B19BBD291F9061D100116386 /* FBSnapshotTestCase tvOS Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +310,12 @@
 			mainGroup = B136BE3E1F8D5741001EE264;
 			productRefGroup = B136BE491F8D5741001EE264 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B19BBD1C1F9061D100116386 /* Products */;
+					ProjectRef = B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B136BE471F8D5741001EE264 /* Theodolite */,
@@ -263,6 +323,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSnapshotTestCase.framework;
+			remoteRef = B19BBD221F9061D100116386 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B19BBD251F9061D100116386 /* FBSnapshotTestCase iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "FBSnapshotTestCase iOS Tests.xctest";
+			remoteRef = B19BBD241F9061D100116386 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B19BBD271F9061D100116386 /* FBSnapshotTestCase.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FBSnapshotTestCase.framework;
+			remoteRef = B19BBD261F9061D100116386 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B19BBD291F9061D100116386 /* FBSnapshotTestCase tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "FBSnapshotTestCase tvOS Tests.xctest";
+			remoteRef = B19BBD281F9061D100116386 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B136BE461F8D5741001EE264 /* Resources */ = {
@@ -308,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */,
+				B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */,
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
 				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,
