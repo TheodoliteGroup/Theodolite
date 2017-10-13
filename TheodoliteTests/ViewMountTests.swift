@@ -109,8 +109,8 @@ class ViewMountTests: FBSnapshotTestCase {
     let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root);
     
     scopeRoot.root.component().mount(parentView: view,
-                                   layout: layout,
-                                   position: CGPoint(x: 0, y: 0));
+                                     layout: layout,
+                                     position: CGPoint(x: 0, y: 0));
     
     FBSnapshotVerifyView(view, identifier: identifier);
   }
