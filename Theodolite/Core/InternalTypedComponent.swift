@@ -66,19 +66,33 @@ extension TypedComponent {
   }
   
   /* View handling */
-  func mount(parentView: UIView, layout: Layout, insets: UIEdgeInsets) {
+  func mount(parentView: UIView, layout: Layout, position: CGPoint) {
     self.componentWillMount();
     if let config = self.view() {
       if let view =
         ViewPoolMap
           .getViewPool(view: parentView, config: config)
           .retrieveView(parent: parentView, config: config) {
-        view.frame = CGRect(x: insets.left,
-                            y: insets.top,
+        view.frame = CGRect(x: position.x,
+                            y: position.y,
                             width: layout.size.width,
                             height: layout.size.height);
-        // If you have child components, you must call ViewPoolMap.reset(view: view) after they mount. This
-        // implementation has no children, so it's not necessary.
+        for childLayout in layout.children {
+          childLayout.layout.component.mount(parentView: view,
+                                             layout: childLayout.layout,
+                                             position: childLayout.position);
+        }
+        // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
+        ViewPoolMap.reset(view: view);
+      } else {
+        for childLayout in layout.children {
+          childLayout.layout.component.mount(
+            parentView: parentView,
+            layout: childLayout.layout,
+            position: CGPoint(
+              x: childLayout.position.x + position.x,
+              y: childLayout.position.y + position.y));
+        }
       }
     }
     self.componentDidMount();

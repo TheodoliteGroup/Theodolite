@@ -13,7 +13,7 @@ public protocol Component: class {
   
   /** Core methods */
   func render() -> [Component]?;
-  func mount(parentView: UIView, layout: Layout, insets: UIEdgeInsets);
+  func mount(parentView: UIView, layout: Layout, position: CGPoint);
   func unmount();
   func layout(constraint: CGSize) -> Layout;
   
@@ -37,8 +37,14 @@ extension Component {
   public func render() -> [Component]? {
     return nil;
   }
-  public func mount(parentView: UIView, layout: Layout, insets: UIEdgeInsets) {
+  public func mount(parentView: UIView, layout: Layout, position: CGPoint) {
     self.componentWillMount();
+    for childLayout in layout.children {
+      childLayout.layout.component.mount(parentView: parentView,
+                                         layout: childLayout.layout,
+                                         position: CGPoint(x: childLayout.position.x + position.x,
+                                                           y: childLayout.position.y + position.y));
+    }
     self.componentDidMount();
   }
   public func unmount() {
