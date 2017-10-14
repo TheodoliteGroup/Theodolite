@@ -8,10 +8,10 @@
 
 import Foundation
 
-var kViewPoolMapKey: Void?;
+var kViewPoolMapKey: Void?
 
 public class ViewPoolMap {
-  var hashMap: [ViewConfiguration:ViewPool] = [:];
+  var hashMap: [ViewConfiguration:ViewPool] = [:]
   
   static func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
     let map: ViewPoolMap? =
@@ -19,21 +19,21 @@ public class ViewPoolMap {
         object: view,
         associativeKey: &kViewPoolMapKey)
     
-    let unwrapped = map ?? ViewPoolMap();
+    let unwrapped = map ?? ViewPoolMap()
     
     if map == nil {
       setAssociatedObject(object: view,
                           value: unwrapped,
-                          associativeKey: &kViewPoolMapKey);
+                          associativeKey: &kViewPoolMapKey)
     }
     
     if let pool = unwrapped.hashMap[config] {
-      return pool;
+      return pool
     }
     
-    let pool = ViewPool();
-    unwrapped.hashMap[config] = pool;
-    return pool;
+    let pool = ViewPool()
+    unwrapped.hashMap[config] = pool
+    return pool
   }
   
   static func reset(view: UIView) {
@@ -42,7 +42,7 @@ public class ViewPoolMap {
         object: view,
         associativeKey: &kViewPoolMapKey){
       for (_, pool) in map.hashMap {
-        pool.reset();
+        pool.reset()
       }
     }
   }

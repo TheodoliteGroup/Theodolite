@@ -9,36 +9,36 @@
 import UIKit
 
 public struct ViewConfiguration: Equatable, Hashable {
-  let view: UIView.Type;
-  let attributes: [Attribute];
+  let view: UIView.Type
+  let attributes: [Attribute]
   
   public init(view: UIView.Type, attributes: [Attribute]) {
-    self.view = view;
-    self.attributes = attributes;
+    self.view = view
+    self.attributes = attributes
   }
   
   public var hashValue: Int {
     return self.attributes.reduce(self.view.hash()) {
       (value: Int, attr: Attribute) -> Int in
-      return value ^ attr.hashValue;
-    };
+      return value ^ attr.hashValue
+    }
   }
   
   func applyToView(v: UIView) {
-    assert(type(of: v) == view);
+    assert(type(of: v) == view)
     for attr in self.attributes {
-      attr.apply(view: v);
+      attr.apply(view: v)
     }
   }
   
   func buildView() -> UIView {
-    let v = self.view.init();
-    self.applyToView(v: v);
-    return v;
+    let v = self.view.init()
+    self.applyToView(v: v)
+    return v
   }
 }
 
 public func ==(lhs: ViewConfiguration, rhs: ViewConfiguration) -> Bool {
   return lhs.view === rhs.view
-    && lhs.attributes == rhs.attributes;
+    && lhs.attributes == rhs.attributes
 }

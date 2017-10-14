@@ -11,53 +11,53 @@ import UIKit
 public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
   public convenience init(value: ValueType,
                    applicator: @escaping (ViewType) -> (ValueType) -> ()) {
-    self.init();
-    self.identifier = "\(applicator)";
-    self.value = value;
+    self.init()
+    self.identifier = "\(applicator)"
+    self.value = value
     self.applicator = { (view: UIView) in
       return {(obj: Any?) in
-        applicator(view as! ViewType)(obj as! ValueType);
+        applicator(view as! ViewType)(obj as! ValueType)
       }
     }
   }
   
   public convenience init(value: ValueType,
                    applicator: @escaping (ViewType, ValueType) -> ()) {
-    self.init();
-    self.identifier = "\(applicator)";
-    self.value = value;
+    self.init()
+    self.identifier = "\(applicator)"
+    self.value = value
     self.applicator = { (view: UIView) in
       return {(obj: Any?) in
-        applicator(view as! ViewType, obj as! ValueType);
+        applicator(view as! ViewType, obj as! ValueType)
       }
     }
   }
 }
 
 public class Attribute: Equatable, Hashable {
-  internal var identifier: String;
-  internal var value: AnyHashable?;
-  internal var applicator: ((UIView) -> (Any) -> ())?;
+  internal var identifier: String
+  internal var value: AnyHashable?
+  internal var applicator: ((UIView) -> (Any) -> ())?
   
   public var hashValue: Int {
-    return self.identifier.hashValue;
+    return self.identifier.hashValue
   }
   
   public init() {
-    self.identifier = "";
-    self.value = nil;
-    self.applicator = nil;
+    self.identifier = ""
+    self.value = nil
+    self.applicator = nil
   }
   
   func apply(view: UIView) {
     if let applicator = self.applicator,
       let value = self.value {
-      applicator(view)(value);
+      applicator(view)(value)
     }
   }
 }
 
 public func ==(lhs: Attribute, rhs: Attribute) -> Bool {
   return lhs.identifier == rhs.identifier
-    && lhs.value == rhs.value;
+    && lhs.value == rhs.value
 }

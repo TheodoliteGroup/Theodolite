@@ -29,7 +29,7 @@ class Handler<Target: AnyObject, Arg>: Action<Arg> {
   
   override func send(_ argument: Arg) {
     if let t = target {
-      handler(t)(argument);
+      handler(t)(argument)
     }
   }
 }

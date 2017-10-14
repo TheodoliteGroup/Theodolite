@@ -12,7 +12,7 @@ func setAssociatedObject<T>(object: AnyObject, value: T, associativeKey: UnsafeR
   objc_setAssociatedObject(object,
                            associativeKey,
                            value,
-                           objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                           objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 }
 
 func getAssociatedObject<T>(object: AnyObject, associativeKey: UnsafeRawPointer) -> T? {
@@ -20,25 +20,25 @@ func getAssociatedObject<T>(object: AnyObject, associativeKey: UnsafeRawPointer)
     return v
   }
   
-  return nil;
+  return nil
 }
 
 /* Since apple deprecated OSAtomic methods, we use this little container instead. */
 struct Atomic<T> {
-  var val: T;
-  var queue: DispatchQueue;
+  var val: T
+  var queue: DispatchQueue
   
   init(_ val: T) {
-    self.val = val;
-    self.queue = DispatchQueue(label: "com.components.atomic");
+    self.val = val
+    self.queue = DispatchQueue(label: "com.components.atomic")
   }
   
   mutating func update(_ updater: (T) -> T) -> T {
-    var newVal: T? = nil;
+    var newVal: T? = nil
     queue.sync {
-      newVal = updater(self.val);
-      self.val = newVal!;
+      newVal = updater(self.val)
+      self.val = newVal!
     }
-    return newVal!;
+    return newVal!
   }
 }

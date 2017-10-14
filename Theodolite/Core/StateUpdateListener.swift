@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol StateUpdateListener: class {
-  func receivedStateUpdate(identifier: Int32, update: Any?);
+  func receivedStateUpdate(identifier: Int32, update: Any?)
 }

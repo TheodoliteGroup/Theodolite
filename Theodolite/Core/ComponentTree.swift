@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol ComponentTree: class {
-  func component() -> Component;
-  func children() -> [ComponentTree];
+  func component() -> Component
+  func children() -> [ComponentTree]
 }

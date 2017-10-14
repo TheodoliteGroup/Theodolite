@@ -9,53 +9,53 @@
 import UIKit
 
 public protocol Component: class {
-  init();
+  init()
   
   /** Core methods */
-  func render() -> [Component];
-  func mount(parentView: UIView, layout: Layout, position: CGPoint);
-  func unmount();
-  func size(constraint: CGSize) -> CGSize;
-  func layout(constraint: CGSize, tree: ComponentTree) -> Layout;
+  func render() -> [Component]
+  func mount(parentView: UIView, layout: Layout, position: CGPoint)
+  func unmount()
+  func size(constraint: CGSize) -> CGSize
+  func layout(constraint: CGSize, tree: ComponentTree) -> Layout
   
   /** Lifecycle methods */
   
   /** Finalize: finished layout, and is now available for rendering */
-  func componentDidFinalize(layout: Layout);
+  func componentDidFinalize(layout: Layout)
   
   /** Mount: attaching to a view */
-  func componentWillMount();
-  func componentDidMount();
+  func componentWillMount()
+  func componentDidMount()
 
   /** Unmount: detaching from a view */
-  func componentWillUnmount();
+  func componentWillUnmount()
   
   /** Used to identify the component so it can be associated with its prior state. */
-  func key() -> AnyHashable?;
+  func key() -> AnyHashable?
 }
 
 extension Component {
   public func render() -> [Component] {
-    return [];
+    return []
   }
   
   public func mount(parentView: UIView, layout: Layout, position: CGPoint) {
-    self.componentWillMount();
+    self.componentWillMount()
     for childLayout in layout.children {
       childLayout.layout.component.mount(parentView: parentView,
                                          layout: childLayout.layout,
                                          position: CGPoint(x: childLayout.position.x + position.x,
-                                                           y: childLayout.position.y + position.y));
+                                                           y: childLayout.position.y + position.y))
     }
-    self.componentDidMount();
+    self.componentDidMount()
   }
   
   public func unmount() {
-    self.componentWillUnmount();
+    self.componentWillUnmount()
   }
   
   public func size(constraint: CGSize) -> CGSize {
-    return CGSize(width: 0, height: 0);
+    return CGSize(width: 0, height: 0)
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
@@ -69,8 +69,8 @@ extension Component {
             .component()
             .layout(constraint: constraint,
                     tree: childTree),
-          position: CGPoint(x: 0, y: 0));
-    });
+          position: CGPoint(x: 0, y: 0))
+    })
   }
   
   public func componentDidFinalize(layout: Layout) {}
@@ -81,6 +81,6 @@ extension Component {
   public func componentWillUnmount() {}
   
   public func key() -> AnyHashable? {
-    return nil;
+    return nil
   }
 }

@@ -9,33 +9,33 @@
 import UIKit
 
 public class ViewPool {
-  var views: [UIView] = [];
-  var iterator: Array<UIView>.Iterator;
+  var views: [UIView] = []
+  var iterator: Array<UIView>.Iterator
   
   init() {
-    self.iterator = views.makeIterator();
+    self.iterator = views.makeIterator()
   }
   
   func reset() {
     for view in self.iterator {
       if !view.isHidden {
-        view.isHidden = true;
+        view.isHidden = true
       }
     }
-    self.iterator = self.views.makeIterator();
+    self.iterator = self.views.makeIterator()
   }
   
   func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
     if let view = self.iterator.next() {
       if view.isHidden {
-        view.isHidden = false;
+        view.isHidden = false
       }
-      config.applyToView(v: view);
-      return view;
+      config.applyToView(v: view)
+      return view
     }
-    let newView = config.buildView();
-    self.views.append(newView);
-    parent.addSubview(newView);
-    return newView;
+    let newView = config.buildView()
+    self.views.append(newView)
+    parent.addSubview(newView)
+    return newView
   }
 }

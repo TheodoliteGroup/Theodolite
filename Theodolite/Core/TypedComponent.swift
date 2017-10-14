@@ -9,18 +9,18 @@
 import Foundation
 
 public protocol TypedComponent: Component, InternalTypedComponent {
-  associatedtype PropType;
-  associatedtype StateType = Void?;
+  associatedtype PropType
+  associatedtype StateType = Void?
   
-  func props() -> PropType;
-  func state() -> StateType?;
+  func props() -> PropType
+  func state() -> StateType?
   
-  func initialState() -> StateType?;
+  func initialState() -> StateType?
   
-  func updateState(state: StateType?);
+  func updateState(state: StateType?)
   
-  func view() -> ViewConfiguration?;
+  func view() -> ViewConfiguration?
   
   init(_ props: PropType,
-       key: AnyHashable?);
+       key: AnyHashable?)
 }

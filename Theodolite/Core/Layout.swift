@@ -9,20 +9,20 @@
 import UIKit
 
 public struct LayoutChild {
-  public let layout: Layout;
-  public let position: CGPoint;
+  public let layout: Layout
+  public let position: CGPoint
   
   public init(layout: Layout,
               position: CGPoint) {
-    self.layout = layout;
-    self.position = position;
+    self.layout = layout
+    self.position = position
   }
 }
 
 public struct Layout {
-  public let component: Component;
-  public let size: CGSize;
-  public let children: [LayoutChild];
+  public let component: Component
+  public let size: CGSize
+  public let children: [LayoutChild]
   
   /* 
    Can be used to pass data from layout to mount. Useful if you want to pre-compute something, and then use the
@@ -39,9 +39,9 @@ public struct Layout {
               size: CGSize,
               children: [LayoutChild],
               extra: Any? = nil) {
-    self.component = component;
-    self.size = size;
-    self.children = children;
-    self.extra = extra;
+    self.component = component
+    self.size = size
+    self.children = children
+    self.extra = extra
   }
 }

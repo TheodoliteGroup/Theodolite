@@ -10,60 +10,60 @@ import Foundation
 
 /* Used by infrastructure to allow polymorphism on prop/state types. */
 public protocol InternalTypedComponent {
-  func initialUntypedState() -> Any?;
+  func initialUntypedState() -> Any?
 }
 
 internal struct InternalPropertyWrapper<PropType> {
-  let props: PropType;
-  let key: AnyHashable?;
+  let props: PropType
+  let key: AnyHashable?
 }
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 public extension TypedComponent {
   public init(_ props: PropType,
               key: AnyHashable? = nil) {
-    self.init();
+    self.init()
     setAssociatedObject(object: self,
                         value: InternalPropertyWrapper(props: props, key: key),
-                        associativeKey: &kWrapperKey);
+                        associativeKey: &kWrapperKey)
   }
   
   func props() -> PropType {
     let wrapper: InternalPropertyWrapper<PropType>? = getAssociatedObject(object: self,
-                                                                         associativeKey: &kWrapperKey);
-    return wrapper!.props;
+                                                                         associativeKey: &kWrapperKey)
+    return wrapper!.props
   }
   
   func state() -> StateType? {
     if let handle = getScopeHandle(component: self) {
-      return handle.state as? StateType ?? nil;
+      return handle.state as? StateType ?? nil
     }
-    assert(false, "Accessing state before handle set on component. This state update will no-op");
-    return nil;
+    assert(false, "Accessing state before handle set on component. This state update will no-op")
+    return nil
   }
   
   func initialState() -> StateType? {
-    return nil;
+    return nil
   }
   
   func updateState(state: StateType?) {
     if let handle = getScopeHandle(component: self) {
-      handle.stateUpdater(handle.identifier, state);
+      handle.stateUpdater(handle.identifier, state)
     } else {
-      assert(false, "Updating state before handle set on component. This state update will no-op");
+      assert(false, "Updating state before handle set on component. This state update will no-op")
     }
   }
   
   internal func key() -> AnyHashable? {
     let wrapper: InternalPropertyWrapper<PropType>? =
       getAssociatedObject(object: self,
-                          associativeKey: &kWrapperKey);
-    return wrapper?.key;
+                          associativeKey: &kWrapperKey)
+    return wrapper?.key
   }
   
   /* View handling */
   func mount(parentView: UIView, layout: Layout, position: CGPoint) {
-    self.componentWillMount();
+    self.componentWillMount()
     if let config = self.view() {
       let view =
         ViewPoolMap
@@ -72,14 +72,14 @@ public extension TypedComponent {
       view.frame = CGRect(x: position.x,
                           y: position.y,
                           width: layout.size.width,
-                          height: layout.size.height);
+                          height: layout.size.height)
       for childLayout in layout.children {
         childLayout.layout.component.mount(parentView: view,
                                            layout: childLayout.layout,
-                                           position: childLayout.position);
+                                           position: childLayout.position)
       }
       // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
-      ViewPoolMap.reset(view: view);
+      ViewPoolMap.reset(view: view)
     } else {
       for childLayout in layout.children {
         childLayout.layout.component.mount(
@@ -87,20 +87,20 @@ public extension TypedComponent {
           layout: childLayout.layout,
           position: CGPoint(
             x: childLayout.position.x + position.x,
-            y: childLayout.position.y + position.y));
+            y: childLayout.position.y + position.y))
       }
     }
-    self.componentDidMount();
+    self.componentDidMount()
   }
   
   func view() -> ViewConfiguration? {
-    return nil;
+    return nil
   }
   
   /* Implementation detail, ignore this */
   func initialUntypedState() -> Any? {
-    return initialState();
+    return initialState()
   }
 }
 
-var kWrapperKey: Void?;
+var kWrapperKey: Void?
