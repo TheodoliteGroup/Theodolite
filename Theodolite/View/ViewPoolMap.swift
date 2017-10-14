@@ -10,7 +10,7 @@ import Foundation
 
 var kViewPoolMapKey: Void?;
 
-class ViewPoolMap {
+public class ViewPoolMap {
   var hashMap: [ViewConfiguration:ViewPool] = [:];
   
   static func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {

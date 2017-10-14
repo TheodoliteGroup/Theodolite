@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol StateUpdateListener: class {
+public protocol StateUpdateListener: class {
   func receivedStateUpdate(identifier: Int32, update: Any?);
 }

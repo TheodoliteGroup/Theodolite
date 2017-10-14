@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewPool {
+public class ViewPool {
   var views: [UIView] = [];
   var iterator: Array<UIView>.Iterator;
   

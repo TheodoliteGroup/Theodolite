@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ViewConfiguration: Equatable, Hashable {
+public struct ViewConfiguration: Equatable, Hashable {
   let view: UIView.Type;
   let attributes: [Attribute];
   
@@ -33,7 +33,7 @@ struct ViewConfiguration: Equatable, Hashable {
   }
 }
 
-func ==(lhs: ViewConfiguration, rhs: ViewConfiguration) -> Bool {
+public func ==(lhs: ViewConfiguration, rhs: ViewConfiguration) -> Bool {
   return lhs.view === rhs.view
     && lhs.attributes == rhs.attributes;
 }

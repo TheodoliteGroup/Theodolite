@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TypedComponent: Component, InternalTypedComponent {
+public protocol TypedComponent: Component, InternalTypedComponent {
   associatedtype PropType;
   associatedtype StateType = Void?;
   

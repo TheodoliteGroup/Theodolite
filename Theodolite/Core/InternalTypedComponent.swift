@@ -9,7 +9,7 @@
 import Foundation
 
 /* Used by infrastructure to allow polymorphism on prop/state types. */
-protocol InternalTypedComponent {
+public protocol InternalTypedComponent {
   func initialUntypedState() -> Any?;
 }
 
@@ -19,7 +19,7 @@ internal struct InternalPropertyWrapper<PropType> {
 }
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
-extension TypedComponent {
+public extension TypedComponent {
   public init(_ props: PropType,
               key: AnyHashable? = nil) {
     self.init();
@@ -99,7 +99,7 @@ extension TypedComponent {
   }
   
   /* Implementation detail, ignore this */
-  internal func initialUntypedState() -> Any? {
+  func initialUntypedState() -> Any? {
     return initialState();
   }
 }

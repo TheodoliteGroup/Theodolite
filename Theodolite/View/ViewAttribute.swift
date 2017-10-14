@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
+public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
   convenience init(value: ValueType,
                    applicator: @escaping (ViewType) -> (ValueType) -> ()) {
     self.init();
@@ -34,7 +34,7 @@ class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
   }
 }
 
-class Attribute: Equatable, Hashable {
+public class Attribute: Equatable, Hashable {
   internal var identifier: String;
   internal var value: AnyHashable?;
   internal var applicator: ((UIView) -> (Any) -> ())?;
@@ -57,7 +57,7 @@ class Attribute: Equatable, Hashable {
   }
 }
 
-func ==(lhs: Attribute, rhs: Attribute) -> Bool {
+public func ==(lhs: Attribute, rhs: Attribute) -> Bool {
   return lhs.identifier == rhs.identifier
     && lhs.value == rhs.value;
 }
