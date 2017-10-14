@@ -32,7 +32,7 @@ class ViewMountTests: FBSnapshotTestCase {
       return TestViewComponent(ViewConfiguration(
         view: UIView.self,
         attributes: [
-          Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
+          Attr(UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
         ]))
     }
   }
@@ -51,7 +51,7 @@ class ViewMountTests: FBSnapshotTestCase {
         return ViewConfiguration(
           view: UIView.self,
           attributes: [
-            Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
+            Attr(UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
           ])
       }
       
@@ -71,7 +71,7 @@ class ViewMountTests: FBSnapshotTestCase {
         return ViewConfiguration(
           view: UIView.self,
           attributes: [
-            Attr(value: UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
+            Attr(UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
           ])
       }
     }
@@ -89,7 +89,7 @@ class ViewMountTests: FBSnapshotTestCase {
         return ViewConfiguration(
           view: UILabel.self,
           attributes: [
-            Attr(value: self.props(), applicator: {(view, str) in
+            Attr(self.props(), applicator: {(view, str) in
               let label = view as! UILabel
               label.text = str
               label.font = UIFont.systemFont(ofSize: 12)

@@ -17,7 +17,7 @@ class ViewAttributeTests: XCTestCase {
         self.calledMethod = true
       }
     }
-    let attr = Attr(value: 42, applicator: TestView.applicatorMethod)
+    let attr = Attr(42, applicator: TestView.applicatorMethod)
     let view = TestView()
     
     attr.apply(view: view)
@@ -32,7 +32,7 @@ class ViewAttributeTests: XCTestCase {
         self.valIs42 = val == 42
       }
     }
-    let attr = Attr(value: 42, applicator: TestView.applicatorMethod)
+    let attr = Attr(42, applicator: TestView.applicatorMethod)
     let view = TestView()
     
     attr.apply(view: view)
@@ -47,7 +47,7 @@ class ViewAttributeTests: XCTestCase {
         self.calledMethod = true
       }
     }
-    let attr = Attr<TestView, Int>(value: 42) {(view: TestView, val: Int) in
+    let attr = Attr<TestView, Int>(42) {(view: TestView, val: Int) in
       view.applicatorMethod(val: val)
     }
     let view = TestView()
@@ -64,7 +64,7 @@ class ViewAttributeTests: XCTestCase {
         self.valIs42 = val == 42
       }
     }
-    let attr = Attr<TestView, Int>(value: 42) {(view: TestView, val: Int) in
+    let attr = Attr<TestView, Int>(42) {(view: TestView, val: Int) in
       view.applicatorMethod(val: val)
     }
     let view = TestView()
@@ -72,5 +72,47 @@ class ViewAttributeTests: XCTestCase {
     attr.apply(view: view)
     
     XCTAssert(view.valIs42)
+  }
+  
+  func test_attrWithCurriedForm_andEqualParameters_areEqual() {
+    final class TestView: UIView {
+      var calledMethod = false
+      func applicatorMethod(val: Int) {
+        self.calledMethod = true
+      }
+    }
+    let attr = Attr(42, applicator: TestView.applicatorMethod)
+    let attr2 = Attr(42, applicator: TestView.applicatorMethod)
+    
+    XCTAssertEqual(attr, attr2);
+  }
+  
+  func test_attrWithCurriedForm_andNonEqualParameters_areNotEqual() {
+    final class TestView: UIView {
+      var calledMethod = false
+      func applicatorMethod(val: Int) {
+        self.calledMethod = true
+      }
+    }
+    let attr = Attr(43, applicator: TestView.applicatorMethod)
+    let attr2 = Attr(42, applicator: TestView.applicatorMethod)
+    
+    XCTAssertNotEqual(attr, attr2);
+  }
+  
+  func test_attrWithCurriedForm_andAttrWithoutCurriedForm_areNotEqual() {
+    final class TestView: UIView {
+      var calledMethod = false
+      func applicatorMethod(val: Int) {
+        self.calledMethod = true
+      }
+    }
+    let attr = Attr(42, applicator: TestView.applicatorMethod)
+    let attr2 = Attr<TestView, Int>(42) {(view: TestView, val: Int) in
+      view.backgroundColor = nil;
+      view.applicatorMethod(val: val)
+    }
+    
+    XCTAssertNotEqual(attr, attr2);
   }
 }

@@ -20,7 +20,7 @@ class ViewConfigurationTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -32,7 +32,7 @@ class ViewConfigurationTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -41,7 +41,7 @@ class ViewConfigurationTests: XCTestCase {
     let config2 = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.blue) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.blue) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -54,7 +54,7 @@ class ViewConfigurationTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -62,7 +62,7 @@ class ViewConfigurationTests: XCTestCase {
     let config2 = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -74,7 +74,7 @@ class ViewConfigurationTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -82,7 +82,7 @@ class ViewConfigurationTests: XCTestCase {
     let config2 = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -94,7 +94,7 @@ class ViewConfigurationTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])
@@ -102,7 +102,7 @@ class ViewConfigurationTests: XCTestCase {
     let config2 = ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr<UILabel, UIColor>(value: UIColor.blue) {(view: UILabel, val: UIColor) in
+        Attr<UILabel, UIColor>(UIColor.blue) {(view: UILabel, val: UIColor) in
           view.backgroundColor = val
         }
       ])

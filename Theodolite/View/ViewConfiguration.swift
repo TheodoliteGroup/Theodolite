@@ -15,6 +15,8 @@ public struct ViewConfiguration: Equatable, Hashable {
   public init(view: UIView.Type, attributes: [Attribute]) {
     self.view = view
     self.attributes = attributes
+    assert(findDuplicates(attributes: attributes).count == 0,
+           "Duplicate attributes. You must provide identifiers for: \(findDuplicates(attributes: attributes))")
   }
   
   public var hashValue: Int {
@@ -41,4 +43,17 @@ public struct ViewConfiguration: Equatable, Hashable {
 public func ==(lhs: ViewConfiguration, rhs: ViewConfiguration) -> Bool {
   return lhs.view === rhs.view
     && lhs.attributes == rhs.attributes
+}
+
+private func findDuplicates(attributes: [Attribute]) -> [Attribute] {
+  var set: Set<Attribute> = Set()
+  var duplicates: [Attribute] = []
+  for attr in attributes {
+    if set.contains(attr) {
+      duplicates.append(attr)
+    } else {
+      set.insert(attr);
+    }
+  }
+  return duplicates
 }

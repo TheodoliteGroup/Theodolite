@@ -9,10 +9,19 @@
 import UIKit
 
 public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
-  public convenience init(value: ValueType,
-                   applicator: @escaping (ViewType) -> (ValueType) -> ()) {
+  public convenience init(_ value: ValueType,
+                          applicator: @escaping (ViewType) -> (ValueType) -> ()) {
+    self.init(
+      value,
+      identifier: "\(type(of: applicator))",
+      applicator: applicator)
+  }
+  
+  public convenience init(_ value: ValueType,
+                          identifier: String,
+                          applicator: @escaping (ViewType) -> (ValueType) -> ()) {
     self.init()
-    self.identifier = "\(applicator)"
+    self.identifier = identifier
     self.value = value
     self.applicator = { (view: UIView) in
       return {(obj: Any?) in
@@ -21,10 +30,19 @@ public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
     }
   }
   
-  public convenience init(value: ValueType,
-                   applicator: @escaping (ViewType, ValueType) -> ()) {
+  public convenience init(_ value: ValueType,
+                          applicator: @escaping (ViewType, ValueType) -> ()) {
+    self.init(
+      value,
+      identifier: "\(type(of: applicator))",
+      applicator: applicator)
+  }
+  
+  public convenience init(_ value: ValueType,
+                          identifier: String,
+                          applicator: @escaping (ViewType, ValueType) -> ()) {
     self.init()
-    self.identifier = "\(applicator)"
+    self.identifier = identifier
     self.value = value
     self.applicator = { (view: UIView) in
       return {(obj: Any?) in
