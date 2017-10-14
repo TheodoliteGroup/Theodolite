@@ -9,7 +9,7 @@
 import UIKit
 
 public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
-  convenience init(value: ValueType,
+  public convenience init(value: ValueType,
                    applicator: @escaping (ViewType) -> (ValueType) -> ()) {
     self.init();
     self.identifier = "\(applicator)";
@@ -21,7 +21,7 @@ public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
     }
   }
   
-  convenience init(value: ValueType,
+  public convenience init(value: ValueType,
                    applicator: @escaping (ViewType, ValueType) -> ()) {
     self.init();
     self.identifier = "\(applicator)";
@@ -43,7 +43,7 @@ public class Attribute: Equatable, Hashable {
     return self.identifier.hashValue;
   }
   
-  init() {
+  public init() {
     self.identifier = "";
     self.value = nil;
     self.applicator = nil;

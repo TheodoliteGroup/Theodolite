@@ -12,6 +12,11 @@ public struct ViewConfiguration: Equatable, Hashable {
   let view: UIView.Type;
   let attributes: [Attribute];
   
+  public init(view: UIView.Type, attributes: [Attribute]) {
+    self.view = view;
+    self.attributes = attributes;
+  }
+  
   public var hashValue: Int {
     return self.attributes.reduce(self.view.hash()) {
       (value: Int, attr: Attribute) -> Int in
