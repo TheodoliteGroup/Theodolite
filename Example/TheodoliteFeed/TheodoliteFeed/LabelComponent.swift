@@ -8,6 +8,12 @@
 
 import Theodolite
 
+struct LabelProps {
+  let string: String;
+  let font: UIFont?;
+  let color: UIColor?;
+}
+
 final class LabelComponent: TypedComponent {
   typealias PropType = (
     string: String,
@@ -35,9 +41,10 @@ final class LabelComponent: TypedComponent {
     return ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr(value: self.attributedString(), applicator: {(label: UILabel, str: NSAttributedString) in
+        Attr(value: self.attributedString(), applicator: {
+          (label: UILabel, str: NSAttributedString) in
           label.attributedText = str;
-          label.font = UIFont.systemFont(ofSize: 12);
+          label.numberOfLines = 0;
         })
       ]);
   }
@@ -45,7 +52,7 @@ final class LabelComponent: TypedComponent {
   func size(constraint: CGSize) -> CGSize {
     let size = self.attributedString().boundingRect(
       with: constraint,
-      options: NSStringDrawingOptions(),
+      options: .usesLineFragmentOrigin,
       context: nil);
     return CGSize(width: ceil(size.width),
                   height: ceil(size.height));

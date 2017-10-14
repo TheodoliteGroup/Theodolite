@@ -65,30 +65,29 @@ public extension TypedComponent {
   func mount(parentView: UIView, layout: Layout, position: CGPoint) {
     self.componentWillMount();
     if let config = self.view() {
-      if let view =
+      let view =
         ViewPoolMap
           .getViewPool(view: parentView, config: config)
-          .retrieveView(parent: parentView, config: config) {
-        view.frame = CGRect(x: position.x,
-                            y: position.y,
-                            width: layout.size.width,
-                            height: layout.size.height);
-        for childLayout in layout.children {
-          childLayout.layout.component.mount(parentView: view,
-                                             layout: childLayout.layout,
-                                             position: childLayout.position);
-        }
-        // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
-        ViewPoolMap.reset(view: view);
-      } else {
-        for childLayout in layout.children {
-          childLayout.layout.component.mount(
-            parentView: parentView,
-            layout: childLayout.layout,
-            position: CGPoint(
-              x: childLayout.position.x + position.x,
-              y: childLayout.position.y + position.y));
-        }
+          .retrieveView(parent: parentView, config: config)!
+      view.frame = CGRect(x: position.x,
+                          y: position.y,
+                          width: layout.size.width,
+                          height: layout.size.height);
+      for childLayout in layout.children {
+        childLayout.layout.component.mount(parentView: view,
+                                           layout: childLayout.layout,
+                                           position: childLayout.position);
+      }
+      // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
+      ViewPoolMap.reset(view: view);
+    } else {
+      for childLayout in layout.children {
+        childLayout.layout.component.mount(
+          parentView: parentView,
+          layout: childLayout.layout,
+          position: CGPoint(
+            x: childLayout.position.x + position.x,
+            y: childLayout.position.y + position.y));
       }
     }
     self.componentDidMount();

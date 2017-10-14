@@ -9,10 +9,10 @@
 import Foundation
 
 public class ScopeRoot {
-  let root: Scope;
+  public let root: Scope;
   weak var listener: StateUpdateListener?;
   
-  init(previousRoot: ScopeRoot?, listener: StateUpdateListener?, stateUpdateMap: [Int32: Any?], factory: () -> Component) {
+  public init(previousRoot: ScopeRoot?, listener: StateUpdateListener?, stateUpdateMap: [Int32: Any?], factory: () -> Component) {
     self.listener = listener;
     let component = factory();
     var previousScope: Scope? = nil;
