@@ -17,14 +17,14 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_basic_rectangle() {
     final class TestViewComponent: TypedComponent {
-      typealias PropType = ViewConfiguration;
+      typealias PropType = ViewConfiguration
       
       func view() -> ViewConfiguration? {
-        return self.props();
+        return self.props()
       }
       
       func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 50, height: 50);
+        return CGSize(width: 50, height: 50)
       }
     }
     
@@ -33,7 +33,7 @@ class ViewMountTests: FBSnapshotTestCase {
         view: UIView.self,
         attributes: [
           Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
-        ]));
+        ]))
     }
   }
   
@@ -44,7 +44,7 @@ class ViewMountTests: FBSnapshotTestCase {
       func render() -> [Component] {
         return [
           TestChildComponent()
-        ];
+        ]
       }
       
       func view() -> ViewConfiguration? {
@@ -52,11 +52,11 @@ class ViewMountTests: FBSnapshotTestCase {
           view: UIView.self,
           attributes: [
             Attr(value: UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
-          ]);
+          ])
       }
       
       func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 50, height: 50);
+        return CGSize(width: 50, height: 50)
       }
     }
     
@@ -64,7 +64,7 @@ class ViewMountTests: FBSnapshotTestCase {
       typealias PropType = Void?
       
       func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 25, height: 25);
+        return CGSize(width: 25, height: 25)
       }
       
       func view() -> ViewConfiguration? {
@@ -72,12 +72,12 @@ class ViewMountTests: FBSnapshotTestCase {
           view: UIView.self,
           attributes: [
             Attr(value: UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
-          ]);
+          ])
       }
     }
     
     snapshotTestComponent(CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestParentComponent();
+      return TestParentComponent()
     }
   }
   
@@ -90,38 +90,38 @@ class ViewMountTests: FBSnapshotTestCase {
           view: UILabel.self,
           attributes: [
             Attr(value: self.props(), applicator: {(view, str) in
-              let label = view as! UILabel;
-              label.text = str;
-              label.font = UIFont.systemFont(ofSize: 12);
+              let label = view as! UILabel
+              label.text = str
+              label.font = UIFont.systemFont(ofSize: 12)
             })
-          ]);
+          ])
       }
       
       func size(constraint: CGSize) -> CGSize {
-        let str = self.props() as NSString;
+        let str = self.props() as NSString
         let size = str.boundingRect(with: constraint,
                                     options: NSStringDrawingOptions(),
                                     attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12)],
-                                    context: nil).size;
-        return CGSize(width: ceil(size.width), height: ceil(size.height));
+                                    context: nil).size
+        return CGSize(width: ceil(size.width), height: ceil(size.height))
       }
     }
     
     snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
-      return TestLabelComponent("Hello World");
+      return TestLabelComponent("Hello World")
     }
   }
   
   private func snapshotTestComponent(_ size: CGSize, _ identifier: String, factory: () -> Component) {
-    let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height));
-    let scopeRoot = ScopeRoot(previousRoot: nil, listener: nil, stateUpdateMap: [:], factory: factory);
+    let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+    let scopeRoot = ScopeRoot(previousRoot: nil, listener: nil, stateUpdateMap: [:], factory: factory)
     
-    let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root);
+    let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root)
     
     scopeRoot.root.component().mount(parentView: view,
                                      layout: layout,
-                                     position: CGPoint(x: 0, y: 0));
+                                     position: CGPoint(x: 0, y: 0))
     
-    FBSnapshotVerifyView(view, identifier: identifier);
+    FBSnapshotVerifyView(view, identifier: identifier)
   }
 }

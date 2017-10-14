@@ -13,34 +13,34 @@ final class StackComponent: TypedComponent {
   
   public func render() -> [Component] {
     return self.props().filter({ (component: Component?) -> Bool in
-      return component != nil;
-    }) as! [Component];
+      return component != nil
+    }) as! [Component]
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-    var last = CGPoint(x: 0, y: 0);
-    var size = CGSize(width: 0, height: 0);
+    var last = CGPoint(x: 0, y: 0)
+    var size = CGSize(width: 0, height: 0)
     let children = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
       let childLayout =
         childTree
           .component()
           .layout(constraint: constraint,
-                  tree: childTree);
+                  tree: childTree)
       
-      let position = last;
+      let position = last
       last = CGPoint(x: position.x,
-                     y: position.y + childLayout.size.height);
+                     y: position.y + childLayout.size.height)
       
       size = CGSize(width: max(size.width, childLayout.size.width),
-                    height: size.height + childLayout.size.height);
+                    height: size.height + childLayout.size.height)
       
       return LayoutChild(
         layout:childLayout,
-        position: position);
-    };
+        position: position)
+    }
     return Layout(
       component: self,
       size: size,
-      children: children);
+      children: children)
   }
 }

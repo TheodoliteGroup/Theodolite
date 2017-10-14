@@ -9,9 +9,9 @@
 import Theodolite
 
 struct LabelProps {
-  let string: String;
-  let font: UIFont?;
-  let color: UIColor?;
+  let string: String
+  let font: UIFont?
+  let color: UIColor?
 }
 
 final class LabelComponent: TypedComponent {
@@ -22,19 +22,19 @@ final class LabelComponent: TypedComponent {
   )
   
   func attributes() -> Dictionary<String, Any> {
-    var attr: Dictionary<String, Any> = [:];
+    var attr: Dictionary<String, Any> = [:]
     if let font = self.props().font {
-      attr[NSFontAttributeName] = font;
+      attr[NSFontAttributeName] = font
     }
     if let color = self.props().color {
-      attr[NSForegroundColorAttributeName] = color;
+      attr[NSForegroundColorAttributeName] = color
     }
-    return attr;
+    return attr
   }
   
   func attributedString() -> NSAttributedString {
     return NSAttributedString.init(string: self.props().string,
-                                   attributes: self.attributes());
+                                   attributes: self.attributes())
   }
   
   func view() -> ViewConfiguration? {
@@ -43,18 +43,18 @@ final class LabelComponent: TypedComponent {
       attributes: [
         Attr(value: self.attributedString(), applicator: {
           (label: UILabel, str: NSAttributedString) in
-          label.attributedText = str;
-          label.numberOfLines = 0;
+          label.attributedText = str
+          label.numberOfLines = 0
         })
-      ]);
+      ])
   }
   
   func size(constraint: CGSize) -> CGSize {
     let size = self.attributedString().boundingRect(
       with: constraint,
       options: .usesLineFragmentOrigin,
-      context: nil);
+      context: nil)
     return CGSize(width: ceil(size.width),
-                  height: ceil(size.height));
+                  height: ceil(size.height))
   }
 }

@@ -10,53 +10,53 @@ import XCTest
 @testable import Theodolite
 
 class TestObject {
-  let action: () -> ();
+  let action: () -> ()
   
   func actionMethod() {
-    self.action();
+    self.action()
   }
   
   init(action: @escaping () -> ()) {
-    self.action = action;
+    self.action = action
   }
 }
 
 class TestStringObject {
-  let action: (String) -> ();
+  let action: (String) -> ()
   
   func actionMethod(str: String) {
-    self.action(str);
+    self.action(str)
   }
   
   init(action: @escaping (String) -> ()) {
-    self.action = action;
+    self.action = action
   }
 }
 
 class ActionTests: XCTestCase {
   func test_thatDefaultActions_doNotCrash() {
-    let action: Action<Int32> = Action<Int32>();
-    action.send(0);
+    let action: Action<Int32> = Action<Int32>()
+    action.send(0)
   }
   
   func test_whenUsingSimpleHandlers_functionIsCalled() {
-    var calledFunction = false;
+    var calledFunction = false
     let testObj = TestObject(action: {
-      calledFunction = true;
+      calledFunction = true
     })
-    let handler = Handler(target: testObj, handler: TestObject.actionMethod);
-    handler.send();
-    XCTAssert(calledFunction);
+    let handler = Handler(target: testObj, handler: TestObject.actionMethod)
+    handler.send()
+    XCTAssert(calledFunction)
   }
   
   func test_whenProvidingStringArgumentToAction_handlerReceivesString() {
-    var obj: String? = nil;
+    var obj: String? = nil
     let testObj = TestStringObject(action: { (str: String) in
-      obj = str;
+      obj = str
     })
-    let str = "hello";
-    let handler = Handler(target: testObj, handler: TestStringObject.actionMethod);
-    handler.send(str);
-    XCTAssert(obj == str);
+    let str = "hello"
+    let handler = Handler(target: testObj, handler: TestStringObject.actionMethod)
+    handler.send(str)
+    XCTAssert(obj == str)
   }
 }

@@ -14,7 +14,7 @@ class RootViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    let viewController: DataViewController = DataViewController();
+    let viewController: DataViewController = DataViewController()
 
     self.addChildViewController(viewController)
     self.view.addSubview(viewController.view)

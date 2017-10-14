@@ -11,157 +11,157 @@ import XCTest
 
 class ViewPoolTests: XCTestCase {
   func test_retrievingViewWithViewConfiguration_returnsViewWithCorrectClass() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
-      attributes: []);
+      attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config);
+    let retrievedView = pool.retrieveView(parent: parent, config: config)
     
-    XCTAssert(retrievedView!.isKind(of: UILabel.self));
+    XCTAssert(retrievedView!.isKind(of: UILabel.self))
   }
   
   func test_retrievingViewWithViewConfiguration_afterReset_returnsSameView() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
-      attributes: []);
+      attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config);
+    let retrievedView = pool.retrieveView(parent: parent, config: config)
     
-    pool.reset();
+    pool.reset()
     
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config);
+    let retrievedView2 = pool.retrieveView(parent: parent, config: config)
     
-    XCTAssertEqual(retrievedView, retrievedView2);
+    XCTAssertEqual(retrievedView, retrievedView2)
   }
   
   func test_retrievingViewWithViewConfiguration_withoutReset_returnsDifferentView() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
-      attributes: []);
+      attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config);
+    let retrievedView = pool.retrieveView(parent: parent, config: config)
     
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config);
+    let retrievedView2 = pool.retrieveView(parent: parent, config: config)
     
-    XCTAssertNotEqual(retrievedView, retrievedView2);
+    XCTAssertNotEqual(retrievedView, retrievedView2)
   }
   
   func test_retrievingViewWithViewConfiguration_andCallingReset_doesNotHideView() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
-      attributes: []);
+      attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config);
+    let retrievedView = pool.retrieveView(parent: parent, config: config)
     
-    pool.reset();
+    pool.reset()
     
-    XCTAssert(!(retrievedView?.isHidden)!);
+    XCTAssert(!(retrievedView?.isHidden)!)
   }
   
   func test_retrievingViewWithViewConfiguration_twice_andCallingReset_hidesUnRetrievedView() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
-      attributes: []);
+      attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config);
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config);
+    let retrievedView = pool.retrieveView(parent: parent, config: config)
+    let retrievedView2 = pool.retrieveView(parent: parent, config: config)
     
-    pool.reset();
+    pool.reset()
     
-    let retrievedView3 = pool.retrieveView(parent: parent, config: config);
+    let retrievedView3 = pool.retrieveView(parent: parent, config: config)
     
-    pool.reset();
+    pool.reset()
     
-    XCTAssertEqual(retrievedView, retrievedView3);
-    XCTAssert((retrievedView2?.isHidden)!);
-    XCTAssert(!(retrievedView?.isHidden)!);
+    XCTAssertEqual(retrievedView, retrievedView3)
+    XCTAssert((retrievedView2?.isHidden)!)
+    XCTAssert(!(retrievedView?.isHidden)!)
   }
   
   func test_retrievingViewWithViewConfiguration_appliesAttributes() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
         Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val;
+          view.backgroundColor = val
         }
-      ]);
+      ])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config);
+    let retrievedView = pool.retrieveView(parent: parent, config: config)
     
-    XCTAssertEqual(retrievedView?.backgroundColor, UIColor.red);
+    XCTAssertEqual(retrievedView?.backgroundColor, UIColor.red)
   }
   
   func test_retrievingViewWithViewConfiguration_thenRetrievingItAgain_updatesAppliedValues() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
         Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val;
+          view.backgroundColor = val
         }
-      ]);
+      ])
     
-    let _ = pool.retrieveView(parent: parent, config: config);
+    let _ = pool.retrieveView(parent: parent, config: config)
     
-    pool.reset();
+    pool.reset()
     
     let config2 = ViewConfiguration(
       view: UILabel.self,
       attributes: [
         Attr<UILabel, UIColor>(value: UIColor.blue) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val;
+          view.backgroundColor = val
         }
-      ]);
+      ])
     
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config2);
+    let retrievedView2 = pool.retrieveView(parent: parent, config: config2)
     
-    XCTAssertEqual(retrievedView2?.backgroundColor, UIColor.blue);
+    XCTAssertEqual(retrievedView2?.backgroundColor, UIColor.blue)
   }
   
   func test_retrievingView_performance() {
-    let pool = ViewPool();
+    let pool = ViewPool()
     
-    let parent = UIView();
+    let parent = UIView()
     
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [
         Attr<UILabel, UIColor>(value: UIColor.red) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val;
+          view.backgroundColor = val
         }
-      ]);
+      ])
     
     self.measure {
       for _ in 1...10000 {
-        let _ = pool.retrieveView(parent: parent, config: config);
-        pool.reset();
+        let _ = pool.retrieveView(parent: parent, config: config)
+        pool.reset()
       }
     }
   }

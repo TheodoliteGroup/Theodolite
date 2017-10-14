@@ -9,14 +9,14 @@
 import Theodolite
 
 struct Actor {
-  let name: String;
+  let name: String
 }
 
 struct Item {
-  let actor: Actor;
+  let actor: Actor
   
 }
 
 final class ItemComponent: TypedComponent {
-  typealias PropType = Item;
+  typealias PropType = Item
 }
