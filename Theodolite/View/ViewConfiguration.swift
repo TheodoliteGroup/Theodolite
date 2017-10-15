@@ -10,11 +10,11 @@ import UIKit
 
 public struct ViewConfiguration: Equatable, Hashable {
   let view: UIView.Type
-  let attributes: [Attribute]
+  let attributes: Set<Attribute>
   
   public init(view: UIView.Type, attributes: [Attribute]) {
     self.view = view
-    self.attributes = attributes
+    self.attributes = Set(attributes)
     assert(findDuplicates(attributes: attributes).count == 0,
            "Duplicate attributes. You must provide identifiers for: \(findDuplicates(attributes: attributes))")
   }
@@ -28,9 +28,17 @@ public struct ViewConfiguration: Equatable, Hashable {
   
   func applyToView(v: UIView) {
     assert(type(of: v) == view)
+    let appliedAttributes: ViewConfiguration? = getAssociatedObject(object: v,
+                                                                    associativeKey: &kAppliedAttributesKey)
+    if appliedAttributes == self {
+      return
+    }
     for attr in self.attributes {
       attr.apply(view: v)
     }
+    setAssociatedObject(object: v,
+                        value: self,
+                        associativeKey: &kAppliedAttributesKey)
   }
   
   func buildView() -> UIView {
@@ -57,3 +65,5 @@ private func findDuplicates(attributes: [Attribute]) -> [Attribute] {
   }
   return duplicates
 }
+
+var kAppliedAttributesKey: Void?
