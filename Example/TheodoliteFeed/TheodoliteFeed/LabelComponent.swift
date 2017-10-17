@@ -41,11 +41,13 @@ final class LabelComponent: TypedComponent {
     return ViewConfiguration(
       view: UILabel.self,
       attributes: [
-        Attr(value: self.attributedString(), applicator: {
+        Attr(self.attributedString(), applicator: {
           (label: UILabel, str: NSAttributedString) in
           label.attributedText = str
+        }),
+        Attr(0, identifier: "numberOfLines") { (label: UILabel, val: Int) in
           label.numberOfLines = 0
-        })
+        }
       ])
   }
   

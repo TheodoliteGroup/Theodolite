@@ -27,4 +27,15 @@ public class ScopeRoot {
                       previousScope: previousScope,
                       stateUpdateMap: stateUpdateMap)
   }
+  
+  public func traverse(_ block: (Component) -> ()) {
+    self.recur(scope: self.root, block: block)
+  }
+  
+  private func recur(scope: Scope, block: (Component) -> ()) {
+    block(scope.component());
+    for child in scope._children {
+      self.recur(scope: child, block: block)
+    }
+  }
 }
