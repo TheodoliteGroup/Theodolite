@@ -6,20 +6,24 @@
 //  Copyright © 2017 Oliver Rickard. All rights reserved.
 //
 
-import Theodolite
+import UIKit
 
-struct LabelProps {
+public struct LabelProps {
   let string: String
   let font: UIFont?
   let color: UIColor?
 }
 
-final class LabelComponent: TypedComponent {
-  typealias PropType = (
+public final class LabelComponent: TypedComponent {
+  public typealias PropType = (
     string: String,
     font: UIFont?,
     color: UIColor?
   )
+  
+  public init() {
+    assertionFailure()
+  };
   
   func attributes() -> Dictionary<String, Any> {
     var attr: Dictionary<String, Any> = [:]
@@ -37,7 +41,7 @@ final class LabelComponent: TypedComponent {
                                    attributes: self.attributes())
   }
   
-  func view() -> ViewConfiguration? {
+  public func view() -> ViewConfiguration? {
     return ViewConfiguration(
       view: UILabel.self,
       attributes: [
@@ -51,7 +55,7 @@ final class LabelComponent: TypedComponent {
       ])
   }
   
-  func size(constraint: CGSize) -> CGSize {
+  public func size(constraint: CGSize) -> CGSize {
     let size = self.attributedString().boundingRect(
       with: constraint,
       options: .usesLineFragmentOrigin,

@@ -11,7 +11,7 @@ import Theodolite
 
 class DataViewController: UIViewController {
 
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -25,7 +25,7 @@ class DataViewController: UIViewController {
     hostingView.frame = self.view.bounds
     self.view.addSubview(hostingView)
   }
-
-
+  
+  
 }
 

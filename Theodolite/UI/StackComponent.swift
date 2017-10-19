@@ -6,10 +6,12 @@
 //  Copyright © 2017 Oliver Rickard. All rights reserved.
 //
 
-import Theodolite
+import UIKit
 
-final class StackComponent: TypedComponent {
-  typealias PropType = [Component?]
+public final class StackComponent: TypedComponent {
+  public typealias PropType = [Component?]
+  
+  public init() { assertionFailure() }
   
   public func render() -> [Component] {
     return self.props().filter({ (component: Component?) -> Bool in

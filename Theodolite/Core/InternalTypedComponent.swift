@@ -54,7 +54,7 @@ public extension TypedComponent {
     }
   }
   
-  internal func key() -> AnyHashable? {
+  public func key() -> AnyHashable? {
     let wrapper: InternalPropertyWrapper<PropType>? =
       getAssociatedObject(object: self,
                           associativeKey: &kWrapperKey)

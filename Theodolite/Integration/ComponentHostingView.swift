@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Theodolite
 
-final class ComponentHostingView: UIView, StateUpdateListener {
+public final class ComponentHostingView: UIView, StateUpdateListener {
   struct CachedLayout {
     let constraint: CGSize
     let layout: Layout
@@ -31,7 +30,7 @@ final class ComponentHostingView: UIView, StateUpdateListener {
   var stateUpdateMap: [Int32:Any?]
   var dispatched: Bool
   
-  init(factory: @escaping () -> Component) {
+  public init(factory: @escaping () -> Component) {
     self.factory = factory
     self.stateUpdateMap = [:]
     self.dispatched = false
@@ -42,11 +41,11 @@ final class ComponentHostingView: UIView, StateUpdateListener {
                           factory: self.factory)
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func layoutSubviews() {
+  override public func layoutSubviews() {
     super.layoutSubviews()
     
     // First check if we have a cached layout that is still valid
@@ -109,7 +108,7 @@ final class ComponentHostingView: UIView, StateUpdateListener {
   
   // MARK: StateUpdateListener
   
-  func receivedStateUpdate(identifier: Int32, update: Any?) {
+  public func receivedStateUpdate(identifier: Int32, update: Any?) {
     assert(Thread.isMainThread)
     self.stateUpdateMap[identifier] = update
     self.markNeedsReset()

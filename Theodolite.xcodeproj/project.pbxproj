@@ -34,6 +34,9 @@
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */; };
+		B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FD71F995413005A8CBE /* LabelComponent.swift */; };
+		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
+		B1C14FDD1F995625005A8CBE /* StackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDC1F995625005A8CBE /* StackComponent.swift */; };
 		B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +109,9 @@
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardViewAttributes.swift; sourceTree = "<group>"; };
+		B1C14FD71F995413005A8CBE /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
+		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
+		B1C14FDC1F995625005A8CBE /* StackComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackComponent.swift; sourceTree = "<group>"; };
 		B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				B136BEA81F8D6727001EE264 /* Core */,
+				B1C14FD91F995421005A8CBE /* Integration */,
+				B1C14FD21F9953F0005A8CBE /* UI */,
 				B136BEAA1F8D673E001EE264 /* Utility */,
 				B136BEA91F8D6734001EE264 /* View */,
 				B136BE4B1F8D5741001EE264 /* Theodolite.h */,
@@ -231,6 +239,23 @@
 				B19BBD291F9061D100116386 /* FBSnapshotTestCase tvOS Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B1C14FD21F9953F0005A8CBE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
+				B1C14FDC1F995625005A8CBE /* StackComponent.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B1C14FD91F995421005A8CBE /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */,
+			);
+			path = Integration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */,
+				B1C14FDD1F995625005A8CBE /* StackComponent.swift in Sources */,
 				B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */,
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
 				B136BEB71F8D69E8001EE264 /* ViewConfiguration.swift in Sources */,
@@ -393,6 +419,8 @@
 				B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */,
 				B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */,
 				B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */,
+				B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */,
+				B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,

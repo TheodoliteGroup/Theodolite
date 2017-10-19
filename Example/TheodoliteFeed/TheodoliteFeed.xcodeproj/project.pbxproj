@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		B1BEB8741F9196D6002A049A /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC98451F91968E0086A5D7 /* Theodolite.framework */; };
 		B1BEB8761F9197B4002A049A /* ItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8751F9197B4002A049A /* ItemComponent.swift */; };
-		B1BEB87B1F919D36002A049A /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB87A1F919D36002A049A /* LabelComponent.swift */; };
-		B1BEB87F1F91A482002A049A /* StackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB87E1F91A482002A049A /* StackComponent.swift */; };
-		B1BEB8811F91A9FD002A049A /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8801F91A9FD002A049A /* ComponentHostingView.swift */; };
 		B1EC980D1F91966C0086A5D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC980C1F91966C0086A5D7 /* AppDelegate.swift */; };
 		B1EC980F1F91966C0086A5D7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC980E1F91966C0086A5D7 /* RootViewController.swift */; };
 		B1EC98111F91966C0086A5D7 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC98101F91966C0086A5D7 /* DataViewController.swift */; };
@@ -55,9 +52,6 @@
 
 /* Begin PBXFileReference section */
 		B1BEB8751F9197B4002A049A /* ItemComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemComponent.swift; sourceTree = "<group>"; };
-		B1BEB87A1F919D36002A049A /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
-		B1BEB87E1F91A482002A049A /* StackComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackComponent.swift; sourceTree = "<group>"; };
-		B1BEB8801F91A9FD002A049A /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
 		B1EC98091F91966C0086A5D7 /* TheodoliteFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheodoliteFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1EC980C1F91966C0086A5D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1EC980E1F91966C0086A5D7 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -129,9 +123,6 @@
 				B1EC980E1F91966C0086A5D7 /* RootViewController.swift */,
 				B1EC98101F91966C0086A5D7 /* DataViewController.swift */,
 				B1BEB8751F9197B4002A049A /* ItemComponent.swift */,
-				B1BEB87A1F919D36002A049A /* LabelComponent.swift */,
-				B1BEB87E1F91A482002A049A /* StackComponent.swift */,
-				B1BEB8801F91A9FD002A049A /* ComponentHostingView.swift */,
 				B1EC98141F91966C0086A5D7 /* Main.storyboard */,
 				B1EC98171F91966C0086A5D7 /* Assets.xcassets */,
 				B1EC98191F91966C0086A5D7 /* LaunchScreen.storyboard */,
@@ -337,11 +328,8 @@
 			files = (
 				B1EC980F1F91966C0086A5D7 /* RootViewController.swift in Sources */,
 				B1BEB8761F9197B4002A049A /* ItemComponent.swift in Sources */,
-				B1BEB87F1F91A482002A049A /* StackComponent.swift in Sources */,
-				B1BEB87B1F919D36002A049A /* LabelComponent.swift in Sources */,
 				B1EC98111F91966C0086A5D7 /* DataViewController.swift in Sources */,
 				B1EC980D1F91966C0086A5D7 /* AppDelegate.swift in Sources */,
-				B1BEB8811F91A9FD002A049A /* ComponentHostingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
