@@ -19,7 +19,7 @@ public struct LayoutChild {
   }
 }
 
-public struct Layout {
+public class Layout {
   public let component: Component
   public let size: CGSize
   public let children: [LayoutChild]
