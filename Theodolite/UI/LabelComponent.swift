@@ -21,9 +21,7 @@ public final class LabelComponent: TypedComponent {
     color: UIColor?
   )
   
-  public init() {
-    assertionFailure()
-  };
+  public init() {};
   
   func attributes() -> Dictionary<String, Any> {
     var attr: Dictionary<String, Any> = [:]

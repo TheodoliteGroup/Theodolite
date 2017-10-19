@@ -11,7 +11,7 @@ import UIKit
 public final class StackComponent: TypedComponent {
   public typealias PropType = [Component?]
   
-  public init() { assertionFailure() }
+  public init() {}
   
   public func render() -> [Component] {
     return self.props().filter({ (component: Component?) -> Bool in
