@@ -7,6 +7,7 @@
 //
 
 import FBSnapshotTestCase
+import Flexbox
 @testable import Theodolite
 
 class ViewMountTests: FBSnapshotTestCase {
@@ -113,7 +114,6 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_flexbox() {
-    
     snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent((
         options:FlexOptions(
@@ -138,7 +138,6 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_flexbox_with_nil_child() {
-    
     snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent((
         options:FlexOptions(
@@ -152,6 +151,80 @@ class ViewMountTests: FBSnapshotTestCase {
               color: UIColor.blue
             ))),
           FlexChild(nil),
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            )))
+        ]
+      ))
+    }
+  }
+  
+  func test_flexbox_with_nil_child_and_margin() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .column
+        ),
+        children:[
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            ))),
+          FlexChild(nil, margin: Edges(top: 10)),
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            )))
+        ]
+      ))
+    }
+  }
+  
+  func test_row_flexbox() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .row
+        ),
+        children:[
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            ))),
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            )))
+        ]
+      ))
+    }
+  }
+  
+  func test_row_flexbox_with_flexGrow() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .row
+        ),
+        children:[
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            )),
+            flexGrow: 1.0),
           FlexChild(
             LabelComponent((
               string: "hello world",
