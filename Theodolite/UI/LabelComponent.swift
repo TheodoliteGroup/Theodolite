@@ -8,49 +8,105 @@
 
 import UIKit
 
-public struct LabelProps {
-  let string: String
-  let font: UIFont?
-  let color: UIColor?
-}
+
 
 public final class LabelComponent: TypedComponent {
+  public struct Options {
+    let view: ViewOptions
+    
+    let font: UIFont
+    
+    let textColor: UIColor
+    
+    let shadowColor: UIColor?
+    let shadowOffset: CGSize
+    
+    let textAlignment: NSTextAlignment
+    
+    let isMultiline: Bool
+    
+    public init(
+      view: ViewOptions = ViewOptions(),
+      
+      font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize),
+      
+      textColor: UIColor = UIColor.black,
+      
+      shadowColor: UIColor? = nil,
+      shadowOffset: CGSize = CGSize(width:0, height: -1),
+      
+      textAlignment: NSTextAlignment = .natural,
+      
+      isMultiline: Bool = false) {
+      
+      self.view = view
+      
+      self.font = font
+      
+      self.textColor = textColor
+      
+      self.shadowColor = shadowColor
+      self.shadowOffset = shadowOffset
+      
+      self.textAlignment = textAlignment
+      
+      self.isMultiline = isMultiline
+    }
+  }
+  
   public typealias PropType = (
-    string: String,
-    font: UIFont?,
-    color: UIColor?
+    String,
+    options: Options
   )
   
   public init() {};
   
   func attributes() -> Dictionary<String, Any> {
     var attr: Dictionary<String, Any> = [:]
-    if let font = self.props().font {
-      attr[NSFontAttributeName] = font
-    }
-    if let color = self.props().color {
-      attr[NSForegroundColorAttributeName] = color
-    }
+    attr[NSFontAttributeName] = self.props().options.font
     return attr
   }
   
   func attributedString() -> NSAttributedString {
-    return NSAttributedString.init(string: self.props().string,
+    return NSAttributedString.init(string: self.props().0,
                                    attributes: self.attributes())
   }
   
   public func view() -> ViewConfiguration? {
+    let props = self.props()
+    
+    var attributes: [Attribute] = [
+      Attr(self.attributedString(), applicator: {
+        (label: UILabel, str: NSAttributedString) in
+        label.attributedText = str
+      })
+    ]
+    if let shadowColor = props.options.shadowColor {
+      attributes.append(Attr(shadowColor, identifier: "theodolite-shadowColor")
+      {(label: UILabel, val: UIColor) in
+        label.shadowColor = val
+      })
+      
+      attributes.append(Attr(props.options.shadowOffset, identifier: "theodolite-shadowOffset")
+      {(label: UILabel, val: CGSize) in
+        label.shadowOffset = val
+      })
+    }
+    
+    attributes.append(Attr(props.options.textAlignment, identifier: "theodolite-textAlignment")
+    {(label: UILabel, val: NSTextAlignment) in
+      label.textAlignment = val
+    })
+    
+    attributes.append(Attr(props.options.isMultiline, identifier: "theodolite-isMultiline")
+    {(label: UILabel, isMultiline: Bool) in
+      label.numberOfLines = isMultiline ? 0 : 1
+    })
+      
+    attributes += self.props().options.view.viewAttributes()
     return ViewConfiguration(
       view: UILabel.self,
-      attributes: [
-        Attr(self.attributedString(), applicator: {
-          (label: UILabel, str: NSAttributedString) in
-          label.attributedText = str
-        }),
-        Attr(0, identifier: "numberOfLines") { (label: UILabel, val: Int) in
-          label.numberOfLines = 0
-        }
-      ])
+      attributes: attributes)
   }
   
   public func size(constraint: CGSize) -> CGSize {

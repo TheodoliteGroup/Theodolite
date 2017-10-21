@@ -13,7 +13,7 @@ import Flexbox
 class ViewMountTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = false
+    recordMode = true
   }
   
   func test_basic_rectangle() {
@@ -122,15 +122,13 @@ class ViewMountTests: FBSnapshotTestCase {
         children:[
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             ))),
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             )))
         ]
       ))
@@ -146,16 +144,14 @@ class ViewMountTests: FBSnapshotTestCase {
         children:[
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             ))),
           FlexChild(nil),
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             )))
         ]
       ))
@@ -171,16 +167,14 @@ class ViewMountTests: FBSnapshotTestCase {
         children:[
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             ))),
           FlexChild(nil, margin: Edges(top: 10)),
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             )))
         ]
       ))
@@ -196,15 +190,16 @@ class ViewMountTests: FBSnapshotTestCase {
         children:[
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options(
+                view: ViewOptions(backgroundColor: UIColor.red),
+                textColor: UIColor.blue
+              )
             ))),
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             )))
         ]
       ))
@@ -220,16 +215,17 @@ class ViewMountTests: FBSnapshotTestCase {
         children:[
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options(
+                view: ViewOptions(backgroundColor: UIColor.yellow),
+                textColor: UIColor.blue
+              )
             )),
             flexGrow: 1.0),
           FlexChild(
             LabelComponent((
-              string: "hello world",
-              font: UIFont.systemFont(ofSize: 16),
-              color: UIColor.blue
+              "hello world",
+              options: LabelComponent.Options()
             )))
         ]
       ))

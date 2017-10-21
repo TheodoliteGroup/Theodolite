@@ -55,7 +55,7 @@ public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
 public class Attribute: Equatable, Hashable {
   internal var identifier: String
   internal var value: AnyHashable?
-  internal var applicator: ((UIView) -> (Any) -> ())?
+  internal var applicator: ((UIView) -> (Any?) -> ())?
   
   public var hashValue: Int {
     return self.identifier.hashValue
@@ -68,9 +68,8 @@ public class Attribute: Equatable, Hashable {
   }
   
   func apply(view: UIView) {
-    if let applicator = self.applicator,
-      let value = self.value {
-      applicator(view)(value)
+    if let applicator = self.applicator {
+      applicator(view)(self.value?.base)
     }
   }
 }

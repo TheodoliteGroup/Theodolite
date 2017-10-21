@@ -42,3 +42,7 @@ struct Atomic<T> {
     return newVal!
   }
 }
+
+func hashCombine(_ first: AnyHashable, _ second: AnyHashable) -> Int {
+  return first.hashValue << 32 ^ second.hashValue
+}

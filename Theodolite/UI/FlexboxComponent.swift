@@ -182,8 +182,16 @@ final public class FlexboxComponent: TypedComponent {
         continue
       }
       
-      childLayouts.append(LayoutChild(layout: layoutTable.object(forKey: component)!,
-                                      position: nodeLayout.children[index].frame.origin))
+      let childNodeLayout = nodeLayout.children[index]
+      let computedLayout = layoutTable.object(forKey: component)!
+      
+      childLayouts.append(
+        LayoutChild(
+          layout:
+          Layout(component: computedLayout.component,
+                 size: childNodeLayout.frame.size,
+                 children: computedLayout.children),
+          position: childNodeLayout.frame.origin))
     }
     
     return Layout(component: self,
