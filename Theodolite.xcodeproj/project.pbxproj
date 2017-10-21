@@ -38,7 +38,6 @@
 		B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */; };
 		B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FD71F995413005A8CBE /* LabelComponent.swift */; };
 		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
-		B1C14FDD1F995625005A8CBE /* StackComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDC1F995625005A8CBE /* StackComponent.swift */; };
 		B1CD5BFF1F9BBB0E00F6F183 /* CGSize+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD5BFE1F9BBB0E00F6F183 /* CGSize+Hashable.swift */; };
 		B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */; };
 /* End PBXBuildFile section */
@@ -130,7 +129,6 @@
 		B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardViewAttributes.swift; sourceTree = "<group>"; };
 		B1C14FD71F995413005A8CBE /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
-		B1C14FDC1F995625005A8CBE /* StackComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackComponent.swift; sourceTree = "<group>"; };
 		B1CD5BFE1F9BBB0E00F6F183 /* CGSize+Hashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Hashable.swift"; sourceTree = "<group>"; };
 		B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
-				B1C14FDC1F995625005A8CBE /* StackComponent.swift */,
 				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
 			);
 			path = UI;
@@ -460,7 +457,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */,
-				B1C14FDD1F995625005A8CBE /* StackComponent.swift in Sources */,
 				B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */,
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
 				B136BEB71F8D69E8001EE264 /* ViewConfiguration.swift in Sources */,
