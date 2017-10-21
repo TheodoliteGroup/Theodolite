@@ -20,7 +20,7 @@ public struct LayoutChild {
 }
 
 public class Layout {
-  public let component: Component
+  public let component: Component?
   public let size: CGSize
   public let children: [LayoutChild]
   
@@ -35,7 +35,7 @@ public class Layout {
   */
   let extra: Any?
   
-  public init(component: Component,
+  public init(component: Component?,
               size: CGSize,
               children: [LayoutChild],
               extra: Any? = nil) {

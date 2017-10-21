@@ -32,7 +32,8 @@ public class ScopeRoot {
     self.recur(scope: self.root, block: block)
   }
   
-  private func recur(scope: Scope, block: (Component) -> ()) {
+  private func recur(scope: Scope?, block: (Component) -> ()) {
+    guard let scope = scope else { return }
     block(scope.component());
     for child in scope._children {
       self.recur(scope: child, block: block)

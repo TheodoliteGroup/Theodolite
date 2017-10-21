@@ -31,6 +31,8 @@
 		B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */; };
 		B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */; };
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
+		B1658B5D1F9B6AA3000EC8CC /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
+		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */; };
@@ -47,6 +49,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = B136BE471F8D5741001EE264;
 			remoteInfo = Theodolite;
+		};
+		B1658B591F9B6A8C000EC8CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 48FB18A71DD584520027B8B1;
+			remoteInfo = Flexbox;
+		};
+		B1658B5B1F9B6A8C000EC8CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 48FB18B01DD584520027B8B1;
+			remoteInfo = FlexboxTests;
 		};
 		B19BBD221F9061D100116386 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,6 +122,8 @@
 		B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAttributeTests.swift; sourceTree = "<group>"; };
 		B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPoolMapTests.swift; sourceTree = "<group>"; };
 		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
+		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
+		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardViewAttributes.swift; sourceTree = "<group>"; };
@@ -120,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1658B5D1F9B6AA3000EC8CC /* Flexbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,9 +241,19 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		B1658B511F9B6A8C000EC8CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */,
+				B1658B5C1F9B6A8C000EC8CC /* FlexboxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B19BBD1A1F9061C200116386 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */,
 				B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */,
 			);
 			name = Vendor;
@@ -246,6 +275,7 @@
 			children = (
 				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
 				B1C14FDC1F995625005A8CBE /* StackComponent.swift */,
+				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -346,6 +376,10 @@
 					ProductGroup = B19BBD1C1F9061D100116386 /* Products */;
 					ProjectRef = B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */;
 				},
+				{
+					ProductGroup = B1658B511F9B6A8C000EC8CC /* Products */;
+					ProjectRef = B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -356,6 +390,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Flexbox.framework;
+			remoteRef = B1658B591F9B6A8C000EC8CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1658B5C1F9B6A8C000EC8CC /* FlexboxTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FlexboxTests.xctest;
+			remoteRef = B1658B5B1F9B6A8C000EC8CC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -420,6 +468,7 @@
 				B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */,
 				B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */,
 				B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */,
+				B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */,
 				B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,

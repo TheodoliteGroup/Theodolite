@@ -12,7 +12,7 @@ public protocol Component: class {
   init()
   
   /** Core methods */
-  func render() -> [Component]
+  func render() -> [Component?]
   func mount(parentView: UIView, layout: Layout, position: CGPoint)
   func unmount()
   func size(constraint: CGSize) -> CGSize
@@ -35,17 +35,19 @@ public protocol Component: class {
 }
 
 extension Component {
-  public func render() -> [Component] {
+  public func render() -> [Component?] {
     return []
   }
   
   public func mount(parentView: UIView, layout: Layout, position: CGPoint) {
     self.componentWillMount()
     for childLayout in layout.children {
-      childLayout.layout.component.mount(parentView: parentView,
-                                         layout: childLayout.layout,
-                                         position: CGPoint(x: childLayout.position.x + position.x,
-                                                           y: childLayout.position.y + position.y))
+      if let component = childLayout.layout.component {
+        component.mount(parentView: parentView,
+                        layout: childLayout.layout,
+                        position: CGPoint(x: childLayout.position.x + position.x,
+                                          y: childLayout.position.y + position.y))
+      }
     }
     self.componentDidMount()
   }
@@ -63,12 +65,14 @@ extension Component {
       component: self,
       size: self.size(constraint: constraint),
       children:
-      tree.children().map { (childTree: ComponentTree) -> LayoutChild in
+      tree.children().map { (childTree: ComponentTree?) -> LayoutChild in
         return LayoutChild(
-          layout:childTree
+          layout:childTree?
             .component()
             .layout(constraint: constraint,
-                    tree: childTree),
+                    tree: childTree!) ?? Layout(component: nil,
+                                               size: CGSize(width: 0, height: 0),
+                                               children: []),
           position: CGPoint(x: 0, y: 0))
     })
   }

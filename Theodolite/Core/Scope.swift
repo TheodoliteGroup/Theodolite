@@ -11,7 +11,7 @@ import Foundation
 public class Scope: ComponentTree {
   internal let _component: Component
   internal let _handle: ScopeHandle
-  internal let _children: [Scope]
+  internal let _children: [Scope?]
   
   /** 
    This is arguably the most complex part of Theodolite. Scopes are an implementation detail of the infrastructure,
@@ -53,12 +53,16 @@ public class Scope: ComponentTree {
     setScopeHandle(component: component, handle: _handle)
     
     // We're now able to call render, since we've finished setting up the scope handle and state update listener.
-    _children = component.render().map { (child) -> Scope in
+    _children = component.render().map { (child) -> Scope? in
+      guard let child = child else {
+        return nil
+      }
       // Note this is inefficient if there are a large number of children. We're assuming the number of children is
       // small to begin with, and can convert to a hash map if we add more.
-      let prev = previousScope?._children.first(where: { (s: Scope) -> Bool in
-        return areComponentsEquivalent(c1: child, c2: s.component())
-      })
+      let prev = previousScope?._children.first(where: { (s: Scope?) -> Bool in
+        return areComponentsEquivalent(c1: child, c2: s?.component())
+      }) ?? nil
+      
       return Scope(listener: listener,
                    component: child,
                    previousScope: prev,
@@ -66,7 +70,7 @@ public class Scope: ComponentTree {
     }
   }
   
-  public func children() -> [ComponentTree] {
+  public func children() -> [ComponentTree?] {
     return _children
   }
   
@@ -75,7 +79,7 @@ public class Scope: ComponentTree {
   }
 }
 
-internal func areComponentsEquivalent(c1: Component, c2: Component) -> Bool {
+internal func areComponentsEquivalent(c1: Component?, c2: Component?) -> Bool {
   return type(of: c1) == type(of: c2)
-    && c1.key() == c2.key()
+    && c1?.key() == c2?.key()
 }

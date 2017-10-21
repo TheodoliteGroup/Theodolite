@@ -13,32 +13,39 @@ public final class StackComponent: TypedComponent {
   
   public init() {}
   
-  public func render() -> [Component] {
-    return self.props().filter({ (component: Component?) -> Bool in
-      return component != nil
-    }) as! [Component]
+  public func render() -> [Component?] {
+    return self.props()
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
     var last = CGPoint(x: 0, y: 0)
     var size = CGSize(width: 0, height: 0)
-    let children = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
-      let childLayout =
-        childTree
+    let children = tree.children().map { (childTree: ComponentTree?) -> LayoutChild in
+      if let childLayout =
+        childTree?
           .component()
           .layout(constraint: constraint,
-                  tree: childTree)
-      
-      let position = last
-      last = CGPoint(x: position.x,
-                     y: position.y + childLayout.size.height)
-      
-      size = CGSize(width: max(size.width, childLayout.size.width),
-                    height: size.height + childLayout.size.height)
-      
-      return LayoutChild(
-        layout:childLayout,
-        position: position)
+                  tree: childTree!) {
+        
+        let position = last
+        last = CGPoint(x: position.x,
+                       y: position.y + childLayout.size.height)
+        
+        size = CGSize(width: max(size.width, childLayout.size.width),
+                      height: size.height + childLayout.size.height)
+        
+        return LayoutChild(
+          layout:childLayout,
+          position: position)
+      } else {
+        return LayoutChild(
+          layout:
+          Layout(
+            component: nil,
+            size: CGSize(width: 0, height: 0),
+            children: []),
+          position: last)
+      }
     }
     return Layout(
       component: self,

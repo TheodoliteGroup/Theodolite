@@ -41,7 +41,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestParentComponent: TypedComponent {
       typealias PropType = Void?
       
-      func render() -> [Component] {
+      func render() -> [Component?] {
         return [
           TestChildComponent()
         ]

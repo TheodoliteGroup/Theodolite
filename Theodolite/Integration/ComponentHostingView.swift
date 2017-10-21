@@ -67,9 +67,11 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: Component generation/mounting
   
   func mountLayout(layout: Layout) {
-    layout.component.mount(parentView: self,
-                           layout: layout,
-                           position: CGPoint(x: 0, y: 0))
+    if let component = layout.component {
+      component.mount(parentView: self,
+                      layout: layout,
+                      position: CGPoint(x: 0, y: 0))
+    }
   }
   
   func markNeedsReset() {
