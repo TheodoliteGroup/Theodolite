@@ -137,6 +137,32 @@ class ViewMountTests: FBSnapshotTestCase {
     }
   }
   
+  func test_flexbox_with_nil_child() {
+    
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .column
+        ),
+        children:[
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            ))),
+          FlexChild(nil),
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            )))
+        ]
+      ))
+    }
+  }
+  
   private func snapshotTestComponent(_ size: CGSize, _ identifier: String, factory: () -> Component) {
     let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
     let scopeRoot = ScopeRoot(previousRoot: nil, listener: nil, stateUpdateMap: [:], factory: factory)

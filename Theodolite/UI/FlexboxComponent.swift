@@ -130,7 +130,7 @@ final public class FlexboxComponent: TypedComponent {
     for (index, childTree) in tree.children().enumerated() {
       // Get the flexchild at the same index
       let flexChild = props.children[index]
-      let component = flexChild.component
+      let component = childTree?.component()
       childLayoutNodes
         .append(Node(
           alignSelf: flexChild.alignSelf,
