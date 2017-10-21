@@ -81,6 +81,12 @@ public final class LabelComponent: TypedComponent {
         label.attributedText = str
       })
     ]
+    
+    attributes.append(Attr(props.options.textColor, identifier: "theodolite-textColor")
+    {(label: UILabel, val: UIColor) in
+      label.textColor = val
+    })
+    
     if let shadowColor = props.options.shadowColor {
       attributes.append(Attr(shadowColor, identifier: "theodolite-shadowColor")
       {(label: UILabel, val: UIColor) in
