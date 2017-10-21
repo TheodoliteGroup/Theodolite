@@ -12,7 +12,7 @@ import FBSnapshotTestCase
 class ViewMountTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = false
+    recordMode = true
   }
   
   func test_basic_rectangle() {
@@ -109,6 +109,31 @@ class ViewMountTests: FBSnapshotTestCase {
     
     snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
       return TestLabelComponent("Hello World")
+    }
+  }
+  
+  func test_flexbox() {
+    
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .column
+        ),
+        children:[
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            ))),
+          FlexChild(
+            LabelComponent((
+              string: "hello world",
+              font: UIFont.systemFont(ofSize: 16),
+              color: UIColor.blue
+            )))
+        ]
+      ))
     }
   }
   
