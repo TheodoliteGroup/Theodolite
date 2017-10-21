@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
+public class Attr<ViewType: UIView, ValueType: Equatable>: Attribute {
   public convenience init(_ value: ValueType,
                           applicator: @escaping (ViewType) -> (ValueType) -> ()) {
     self.init(
@@ -22,7 +22,7 @@ public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
                           applicator: @escaping (ViewType) -> (ValueType) -> ()) {
     self.init()
     self.identifier = identifier
-    self.value = value
+    self.value = AttributeValue(value)
     self.applicator = { (view: UIView) in
       return {(obj: Any?) in
         applicator(view as! ViewType)(obj as! ValueType)
@@ -43,7 +43,7 @@ public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
                           applicator: @escaping (ViewType, ValueType) -> ()) {
     self.init()
     self.identifier = identifier
-    self.value = value
+    self.value = AttributeValue(value)
     self.applicator = { (view: UIView) in
       return {(obj: Any?) in
         applicator(view as! ViewType, obj as! ValueType)
@@ -52,9 +52,23 @@ public class Attr<ViewType: UIView, ValueType: Hashable>: Attribute {
   }
 }
 
+public struct AttributeValue: Equatable {
+  internal let value: Any
+  internal let equals: (Any) -> Bool
+  
+  public init<E: Equatable>(_ value: E) {
+    self.value = value
+    self.equals = { $0 as? E == value }
+  }
+}
+
+public func ==(lhs: AttributeValue, rhs: AttributeValue) -> Bool {
+  return lhs.equals(rhs.value)
+}
+
 public class Attribute: Equatable, Hashable {
   internal var identifier: String
-  internal var value: AnyHashable?
+  internal var value: AttributeValue?
   internal var applicator: ((UIView) -> (Any?) -> ())?
   
   public var hashValue: Int {
@@ -69,7 +83,7 @@ public class Attribute: Equatable, Hashable {
   
   func apply(view: UIView) {
     if let applicator = self.applicator {
-      applicator(view)(self.value?.base)
+      applicator(view)(self.value?.value)
     }
   }
 }
