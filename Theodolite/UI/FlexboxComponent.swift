@@ -142,12 +142,12 @@ final public class FlexboxComponent: TypedComponent {
           position: flexChild.position,
           margin: flexChild.margin,
           padding: flexChild.padding,
-          border: flexChild.border) { (constraint: CGSize) -> CGSize in
+          border: flexChild.border) { (childConstraint: CGSize) -> CGSize in
             guard let c = component else {
               return CGSize(width: 0, height: 0)
             }
             let childLayout =
-              c.layout(constraint: constraint, tree: childTree!)
+              c.layout(constraint: childConstraint, tree: childTree!)
             layoutTable.setObject(childLayout, forKey: c)
             return childLayout.size
       })
@@ -169,6 +169,8 @@ final public class FlexboxComponent: TypedComponent {
     
     let nodeLayout = selfNode.layout(maxSize: constraint)
     
+    print("\(nodeLayout)")
+    
     // Layout should be complete now, but we need to unpack the result of the layout operation into a component layout
     
     var childLayouts: [LayoutChild] = []
@@ -183,18 +185,23 @@ final public class FlexboxComponent: TypedComponent {
       }
       
       let childNodeLayout = nodeLayout.children[index]
-      let computedLayout = layoutTable.object(forKey: component)!
+      let computedLayout =
+        layoutTable.object(forKey: component)
+        ?? component.layout(constraint: childNodeLayout.frame.size, tree: childTree!)
       
       childLayouts.append(
         LayoutChild(
-          layout:
-          Layout(component: computedLayout.component,
-                 size: childNodeLayout.frame.size,
-                 children: computedLayout.children),
-          position: childNodeLayout.frame.origin))
+          layout:Layout(component:computedLayout.component,
+                        size: CGSize(width: ceil(childNodeLayout.frame.size.width),
+                                     height: ceil(childNodeLayout.frame.size.height)),
+                        children: computedLayout.children),
+          position: CGPoint(x: floor(childNodeLayout.frame.origin.x),
+                            y: floor(childNodeLayout.frame.origin.y))))
     }
     
-    return Layout(component: self,
-                  size: nodeLayout.frame.size, children: childLayouts)
+    let layout = Layout(component: self,
+                        size: nodeLayout.frame.size, children: childLayouts)
+    print("\(layout)")
+    return layout
   }
 }

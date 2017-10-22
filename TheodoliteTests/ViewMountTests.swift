@@ -10,10 +10,18 @@ import FBSnapshotTestCase
 import Flexbox
 @testable import Theodolite
 
+final class ViewComponent: TypedComponent {
+  typealias PropType = ViewConfiguration
+  
+  public func view() -> ViewConfiguration? {
+    return self.props()
+  }
+}
+
 class ViewMountTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = false
+    recordMode = true
   }
   
   func test_basic_rectangle() {
@@ -227,6 +235,134 @@ class ViewMountTests: FBSnapshotTestCase {
               "hello world",
               options: LabelComponent.Options()
             )))
+        ]
+      ))
+    }
+  }
+  
+  func test_flexbox_inside_flexbox() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .row
+        ),
+        children:[
+          FlexChild(
+            FlexboxComponent((
+              options:FlexOptions(
+                flexDirection: .column
+              ),
+              children:[
+                FlexChild(
+                  LabelComponent((
+                    "hello world",
+                    options: LabelComponent.Options(
+                      view: ViewOptions(backgroundColor: UIColor.red),
+                      textColor: UIColor.blue
+                    )
+                  ))),
+                FlexChild(
+                  LabelComponent((
+                    "hello world",
+                    options: LabelComponent.Options()
+                  )))
+              ]
+            )),
+            flexShrink: 1.0),
+          FlexChild(
+            LabelComponent((
+              "hello world",
+              options: LabelComponent.Options(
+                view: ViewOptions(backgroundColor: UIColor.blue),
+                textColor: UIColor.red
+              )
+            )))
+        ]
+      ))
+    }
+  }
+  
+  // MARK: Simple Flexbox Tests
+  
+  func test_row_5050() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .row
+        ),
+        children:[
+          FlexChild(
+            ViewComponent(
+              ViewConfiguration(
+                view: UIView.self,
+                attributes:
+                ViewOptions(backgroundColor: UIColor.yellow)
+                  .viewAttributes())),
+            flex: 0.5),
+          FlexChild(
+            ViewComponent(
+              ViewConfiguration(
+                view: UIView.self,
+                attributes:
+                ViewOptions(backgroundColor: UIColor.red)
+                  .viewAttributes())),
+            flex: 0.5)
+        ]
+      ))
+    }
+  }
+  
+  func test_row_3030() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .row
+        ),
+        children:[
+          FlexChild(
+            ViewComponent(
+              ViewConfiguration(
+                view: UIView.self,
+                attributes:
+                ViewOptions(backgroundColor: UIColor.yellow)
+                  .viewAttributes())),
+            flex: 0.3),
+          FlexChild(
+            ViewComponent(
+              ViewConfiguration(
+                view: UIView.self,
+                attributes:
+                ViewOptions(backgroundColor: UIColor.red)
+                  .viewAttributes())),
+            flex: 0.3)
+        ]
+      ))
+    }
+  }
+  
+  func test_row_3070() {
+    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+      return FlexboxComponent((
+        options:FlexOptions(
+          flexDirection: .row
+        ),
+        children:[
+          FlexChild(
+            ViewComponent(
+              ViewConfiguration(
+                view: UIView.self,
+                attributes:
+                ViewOptions(backgroundColor: UIColor.yellow)
+                  .viewAttributes())),
+            flex: 0.3),
+          FlexChild(
+            ViewComponent(
+              ViewConfiguration(
+                view: UIView.self,
+                attributes:
+                ViewOptions(backgroundColor: UIColor.red)
+                  .viewAttributes())),
+            flex: 0.7)
         ]
       ))
     }
