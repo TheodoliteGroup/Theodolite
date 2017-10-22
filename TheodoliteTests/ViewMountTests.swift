@@ -21,7 +21,7 @@ final class ViewComponent: TypedComponent {
 class ViewMountTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = true
+    recordMode = false
   }
   
   func test_basic_rectangle() {
