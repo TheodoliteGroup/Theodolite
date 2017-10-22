@@ -21,18 +21,33 @@ public class Context<T> {
     assert(value != nil)
   }
   
+  func pop() {
+    
+  }
+  
   deinit {
     assert(hasCleanedUp)
   }
   
   class Stack {
-    var stack: [[AnyHashable: Any]] = []
+    var stack: [[AnyHashable: [Any]]] = []
     
     static func get(key: AnyHashable) -> Any? {
       if let currentStack = Thread.current.threadDictionary.object(forKey: kStackKey) as? Stack {
         return currentStack.stack.last?[key]
       }
       return nil
+    }
+    
+    static func set(key: AnyHashable, object: Any?) {
+      if let currentStack = Thread.current.threadDictionary.object(forKey: kStackKey) as? Stack {
+        if var map: [AnyHashable: Any] = currentStack.stack.last {
+          // Inefficient, but I'm lazy today
+          map[key] = object
+          currentStack.stack.removeLast()
+          currentStack.stack.append(map)
+        }
+      }
     }
     
     static func push() {
