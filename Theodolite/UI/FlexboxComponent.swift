@@ -169,7 +169,7 @@ final public class FlexboxComponent: TypedComponent {
     
     let nodeLayout = selfNode.layout(maxSize: constraint)
     
-    print("\(nodeLayout)")
+    /** print("\(nodeLayout)") */
     
     // Layout should be complete now, but we need to unpack the result of the layout operation into a component layout
     
@@ -201,7 +201,7 @@ final public class FlexboxComponent: TypedComponent {
     
     let layout = Layout(component: self,
                         size: nodeLayout.frame.size, children: childLayouts)
-    print("\(layout)")
+    /** print("\(layout)") */
     return layout
   }
 }

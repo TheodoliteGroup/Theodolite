@@ -12,8 +12,19 @@ var kViewPoolMapKey: Void?
 
 public class ViewPoolMap {
   var hashMap: [ViewConfiguration:ViewPool] = [:]
+  var vendedViews: [UIView] = []
   
-  static func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
+  static func resetViewPoolMap(view: UIView) {
+    // No need to create one if it doesn't already exist
+    if let map: ViewPoolMap? =
+      getAssociatedObject(
+        object: view,
+        associativeKey: &kViewPoolMapKey) {
+      map?.reset(view: view)
+    }
+  }
+  
+  static func getViewPoolMap(view: UIView) -> ViewPoolMap {
     let map: ViewPoolMap? =
       getAssociatedObject(
         object: view,
@@ -26,24 +37,63 @@ public class ViewPoolMap {
                           value: unwrapped,
                           associativeKey: &kViewPoolMapKey)
     }
-    
-    if let pool = unwrapped.hashMap[config] {
+    return unwrapped
+  }
+  
+  func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
+    guard let view = getViewPool(view: parent, config: config)
+      .retrieveView(parent: parent, config: config) else {
+        return nil
+    }
+    vendedViews.append(view)
+    return view
+  }
+  
+  func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
+    if let pool = hashMap[config] {
       return pool
     }
     
     let pool = ViewPool()
-    unwrapped.hashMap[config] = pool
+    hashMap[config] = pool
     return pool
   }
   
-  static func reset(view: UIView) {
-    if let map: ViewPoolMap =
-      getAssociatedObject(
-        object: view,
-        associativeKey: &kViewPoolMapKey){
-      for (_, pool) in map.hashMap {
-        pool.reset()
-      }
+  func reset(view: UIView) {
+    for (_, pool) in hashMap {
+      pool.reset()
     }
+    
+    // This algorithm is a clone of the one in ViewPoolMap in ComponentKit
+    
+    var subviews = view.subviews
+    var nextVendedViewIt = IteratorWrapper(vendedViews.enumerated().makeIterator())
+    
+    for i in 0 ..< subviews.count {
+      let subview = subviews[i]
+      
+      // We use linear search here. We could create a std::unordered_set of vended views, but given the typical size of
+      // the list of vended views, I guessed a linear search would probably be faster considering constant factors.
+      guard let vendedViewIndex = nextVendedViewIt.find(subview) else {
+        // Ignore subviews not created by components infra, or that were not vended during this pass (they are hidden).
+        continue
+      }
+      
+      if vendedViewIndex != nextVendedViewIt.offset {
+        guard let swapIndex = subviews.index(of: nextVendedViewIt.current!) else {
+          assertionFailure("Expected to find subview \(subview) in \(view)")
+          continue
+        }
+        
+        // This naive algorithm does not do the minimal number of swaps. But it's simple, and swaps should be relatively
+        // rare in any case, so let's go with it.
+        subviews.swapAt(i, swapIndex)
+        view.exchangeSubview(at: i, withSubviewAt: swapIndex)
+      }
+      
+      nextVendedViewIt.advance()
+    }
+    
+    vendedViews.removeAll()
   }
 }

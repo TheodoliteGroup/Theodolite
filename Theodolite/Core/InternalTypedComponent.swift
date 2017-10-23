@@ -65,10 +65,10 @@ public extension TypedComponent {
   func mount(parentView: UIView, layout: Layout, position: CGPoint) {
     self.componentWillMount()
     if let config = self.view() {
-      let view =
-        ViewPoolMap
-          .getViewPool(view: parentView, config: config)
-          .retrieveView(parent: parentView, config: config)!
+      let map = ViewPoolMap.getViewPoolMap(view: parentView)
+      let view = map
+        .getViewPool(view: parentView, config: config)
+        .retrieveView(parent: parentView, config: config)!
       view.frame = CGRect(x: position.x,
                           y: position.y,
                           width: layout.size.width,
@@ -81,7 +81,7 @@ public extension TypedComponent {
         }
       }
       // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
-      ViewPoolMap.reset(view: view)
+      ViewPoolMap.resetViewPoolMap(view: view)
     } else {
       for childLayout in layout.children {
         if let component = childLayout.layout.component {

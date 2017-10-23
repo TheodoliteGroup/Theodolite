@@ -10,23 +10,28 @@ import UIKit
 
 public class ViewPool {
   var views: [UIView] = []
-  var iterator: Array<UIView>.Iterator
-  
-  init() {
-    self.iterator = views.makeIterator()
-  }
+  var index: Int = -1
   
   func reset() {
-    for view in self.iterator {
+    for i in index + 1 ..< views.count {
+      let view = views[i]
       if !view.isHidden {
         view.isHidden = true
       }
     }
-    self.iterator = self.views.makeIterator()
+    index = -1
+  }
+  
+  private func next() -> UIView? {
+    if (index + 1 < views.count) {
+      index += 1
+      return views[index]
+    }
+    return nil
   }
   
   func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
-    if let view = self.iterator.next() {
+    if let view = self.next() {
       if view.isHidden {
         view.isHidden = false
       }
@@ -34,7 +39,9 @@ public class ViewPool {
       return view
     }
     let newView = config.buildView()
-    self.views.append(newView)
+    views.insert(newView, at: index + 1)
+    // Advance the index to account for the offset at the beginning
+    index += 1
     parent.addSubview(newView)
     return newView
   }

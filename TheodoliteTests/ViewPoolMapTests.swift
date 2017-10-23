@@ -13,9 +13,10 @@ class ViewPoolMapTests: XCTestCase {
   func test_getViewPool_twice_returnsSameViewPool() {
     let view = UIView()
     let config = ViewConfiguration(view: UILabel.self, attributes: [])
+    let map = ViewPoolMap.getViewPoolMap(view: view)
     
-    let pool = ViewPoolMap.getViewPool(view: view, config: config)
-    let pool2 = ViewPoolMap.getViewPool(view: view, config: config)
+    let pool = map.getViewPool(view: view, config: config)
+    let pool2 = map.getViewPool(view: view, config: config)
     
     XCTAssert(pool === pool2)
   }
@@ -23,15 +24,16 @@ class ViewPoolMapTests: XCTestCase {
   func test_resetOnViewPoolMap_callsResetOnAllPools() {
     let view = UIView()
     let config = ViewConfiguration(view: UILabel.self, attributes: [])
+    let map = ViewPoolMap.getViewPoolMap(view: view)
     
-    let pool = ViewPoolMap.getViewPool(view: view, config: config)
+    let pool = map.getViewPool(view: view, config: config)
     
     let retrieved = pool.retrieveView(parent: view, config: config)
     
     // Reset twice, since the view was vended for the first reset, it is not hidden.
     // On the second reset, the view should be hidden.
-    ViewPoolMap.reset(view: view)
-    ViewPoolMap.reset(view: view)
+    map.reset(view: view)
+    map.reset(view: view)
     
     XCTAssert(retrieved!.isHidden)
   }
