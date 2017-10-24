@@ -33,7 +33,7 @@ class ScopeTests: XCTestCase {
   /** Scope tests */
   
   func test_buildingScopeWithNoPreviousScope_buildsScopeWithComponent() {
-    let c = TestScopeComponent<Bool, Void?>(true)
+    let c = TestScopeComponent<Bool, Void?> { true }
     let scope = Scope(listener: nil,
                       component: c,
                       previousScope: nil,
@@ -105,7 +105,7 @@ class ScopeTests: XCTestCase {
       calledInitialState = true
     }
     
-    let c1 = TestInitialStateCallComponent(initialStateClosure)
+    let c1 = TestInitialStateCallComponent { initialStateClosure }
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -115,7 +115,7 @@ class ScopeTests: XCTestCase {
     XCTAssert(calledInitialState)
     calledInitialState = false
     
-    let c2 = TestInitialStateCallComponent(initialStateClosure)
+    let c2 = TestInitialStateCallComponent { initialStateClosure }
     
     let _ = Scope(listener: nil,
                   component: c2,
@@ -272,14 +272,14 @@ class ScopeTests: XCTestCase {
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(nil, key: "key1")
+                            return TestScopeComponent<Void?, Void?>(key: "key1") { nil }
     }
     
     let scope2 = ScopeRoot(previousRoot: scope1,
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(nil, key: "key2")
+                            return TestScopeComponent<Void?, Void?>(key: "key2") { nil }
     }
     
     XCTAssertNotEqual(scope1.root._handle.identifier, scope2.root._handle.identifier)

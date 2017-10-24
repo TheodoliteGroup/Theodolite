@@ -20,11 +20,11 @@ internal struct InternalPropertyWrapper<PropType> {
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 public extension TypedComponent {
-  public init(_ props: PropType,
-              key: AnyHashable? = nil) {
+  public init(key: AnyHashable? = nil,
+              _ props: () -> PropType) {
     self.init()
     setAssociatedObject(object: self,
-                        value: InternalPropertyWrapper(props: props, key: key),
+                        value: InternalPropertyWrapper(props: props(), key: key),
                         associativeKey: &kWrapperKey)
   }
   

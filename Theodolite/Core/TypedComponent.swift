@@ -21,6 +21,6 @@ public protocol TypedComponent: Component, InternalTypedComponent {
   
   func view() -> ViewConfiguration?
   
-  init(_ props: PropType,
-       key: AnyHashable?)
+  init(key: AnyHashable?,
+       _ props: () -> PropType)
 }
