@@ -101,7 +101,7 @@ public extension TypedComponent {
     return nil
   }
   
-  /* Implementation detail, ignore this */
+  /* Implementation detail, ignore this. TODO: Remove? */
   func initialUntypedState() -> Any? {
     return initialState()
   }

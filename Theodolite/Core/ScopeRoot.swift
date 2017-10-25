@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ A convenient root container that just contains the root of the real tree, and provides some nice convenience methods.
+ */
 public class ScopeRoot {
   public let root: Scope
   weak var listener: StateUpdateListener?

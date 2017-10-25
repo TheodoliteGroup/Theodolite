@@ -8,8 +8,21 @@
 
 import Foundation
 
+/**
+ When a component is found to be completely new, it is assigned a simple integer which is monotonically increasing.
+ 
+ This lets us centralize the identifier comparison code into a single callsite inside Scope itself, and everyone else
+ can just use an integer for rapid comparisons and lookups by component.
+ 
+ You can think about a scope handle's identifier as the *result* of the identification operation. Note this is global
+ to the entire app.
+ */
 var __currentIdentifier: Atomic<Int32> = Atomic<Int32>(0)
 
+/**
+ Internal bag of data that contains the information that the framework associates with a given logical component
+ through its generations.
+ */
 public class ScopeHandle {
   let identifier: Int32
   let state: Any?

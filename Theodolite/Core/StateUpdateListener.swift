@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+ Protocol for state update listeners.
+ 
+ This protocol is used to announce when any component in a hierarchy has requested a state update. It should be
+ implemented by any hosting infrastructure that renders and re-renders components in response to state updates.
+ */
 public protocol StateUpdateListener: class {
   func receivedStateUpdate(identifier: Int32, update: Any?)
 }
