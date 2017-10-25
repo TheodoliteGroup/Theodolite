@@ -52,8 +52,8 @@
           <div class="title">Asynchronous layout</div>
           <p>
             Theodolite can measure and layout your UI ahead of time without blocking the UI thread.
-            By decoupling its layout system from the traditional Android View system, Theodolite can drop
-            the UI thread constraint imposed by Android.
+            By decoupling its layout system from the traditional UIView system, Theodolite can drop
+            the UI thread constraint imposed by iOS.
           </p>
         </div>
       </div>
@@ -69,7 +69,7 @@
           <div class="title">Flatter view hierarchies</div>
           <p>
             Theodolite uses <a href="https://facebook.github.io/yoga">Yoga</a> for layout and
-            automatically reduces the number of ViewGroups that your UI contains. This, in addition
+            automatically reduces the number of UIViews that your UI contains. This, in addition
             to Theodolite's text optimizations, allows for much smaller view hierarchies and improves
             both memory and scroll performance.
           </p>
