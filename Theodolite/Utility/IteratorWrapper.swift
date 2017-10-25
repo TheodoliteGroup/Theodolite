@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+ Internal iterator struct (probably unnecessary) to make the view reuse algorithm look identical to the C++ version
+ in ComponentKit.
+ 
+ TODO: Remove this, and Swiftify the reuse algorithm now that this is tested.
+ */
 struct IteratorWrapper<T: AnyObject> {
   private var array: Array<T>
   

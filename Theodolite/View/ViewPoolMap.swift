@@ -10,6 +10,15 @@ import Foundation
 
 var kViewPoolMapKey: Void?
 
+/**
+ An internal map that maintains the list of Theodolite-managed views for any given view.
+ 
+ There is one view pool map associated with every Theodolite view when a child mounts into that view. The view pool
+ maps are generated lazily.
+ 
+ View pool maps internally store a hash map of view configurations to view pools. By keying on view configurations,
+ we ensure that if we hit a view pool, all views can be reconfigured for the component that's asking for a view.
+ */
 public class ViewPoolMap {
   var hashMap: [ViewConfiguration:ViewPool] = [:]
   var vendedViews: [UIView] = []

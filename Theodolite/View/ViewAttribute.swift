@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ Generic attribute class. Attrs are the actual objects that you create in your component to pass to a receiver that
+ expects Attributes.
+ */
 public class Attr<ViewType: UIView, ValueType: Equatable>: Attribute {
   public convenience init(_ value: ValueType,
                           applicator: @escaping (ViewType) -> (ValueType) -> ()) {
@@ -52,20 +56,7 @@ public class Attr<ViewType: UIView, ValueType: Equatable>: Attribute {
   }
 }
 
-public struct AttributeValue: Equatable {
-  internal let value: Any
-  internal let equals: (Any) -> Bool
-  
-  public init<E: Equatable>(_ value: E) {
-    self.value = value
-    self.equals = { $0 as? E == value }
-  }
-}
-
-public func ==(lhs: AttributeValue, rhs: AttributeValue) -> Bool {
-  return lhs.equals(rhs.value)
-}
-
+/** Base class for all view attributes. Generally receivers should declare receiving this type. */
 public class Attribute: Equatable, Hashable {
   internal var identifier: String
   internal var value: AttributeValue?
@@ -91,4 +82,20 @@ public class Attribute: Equatable, Hashable {
 public func ==(lhs: Attribute, rhs: Attribute) -> Bool {
   return lhs.identifier == rhs.identifier
     && lhs.value == rhs.value
+}
+
+/** Implementation detail, generic container for an equatable value. */
+public struct AttributeValue: Equatable {
+  internal let value: Any
+  internal let equals: (Any) -> Bool
+  
+  // TODO: Is this efficient?
+  public init<E: Equatable>(_ value: E) {
+    self.value = value
+    self.equals = { $0 as? E == value }
+  }
+}
+
+public func ==(lhs: AttributeValue, rhs: AttributeValue) -> Bool {
+  return lhs.equals(rhs.value)
 }

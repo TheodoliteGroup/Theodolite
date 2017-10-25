@@ -8,8 +8,6 @@
 
 import UIKit
 
-// MARK: Standard UIView Attributes
-
 /**
  A utility struct that can be exposed as props for a component that renders a view
  to provide simple configuration of most common UIView parameters.

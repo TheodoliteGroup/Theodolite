@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ Internal view pool. Holds a list of views that Theodolite has constructed, and is responsible for keeping track
+ of which views are vended out of its list, and is responsible for hiding any views that haven't been vended in
+ any particular mount cycle.
+ */
 public class ViewPool {
   var views: [UIView] = []
   var index: Int = -1
