@@ -24,21 +24,26 @@ func getAssociatedObject<T>(object: AnyObject, associativeKey: UnsafeRawPointer)
 }
 
 /* Since apple deprecated OSAtomic methods, we use this little container instead. */
-struct Atomic<T> {
+class Atomic<T> {
   var val: T
-  var queue: DispatchQueue
+  var lock: os_unfair_lock_t
   
   init(_ val: T) {
     self.val = val
-    self.queue = DispatchQueue(label: "com.components.atomic")
+    self.lock = os_unfair_lock_t.allocate(capacity: 1)
+    self.lock.initialize(to: os_unfair_lock_s(), count: 1)
   }
   
-  mutating func update(_ updater: (T) -> T) -> T {
+  deinit {
+    lock.deinitialize(count: 1)
+    lock.deallocate(capacity: 1)
+  }
+  
+  func update(_ updater: (T) -> T) -> T {
     var newVal: T? = nil
-    queue.sync {
-      newVal = updater(self.val)
-      self.val = newVal!
-    }
+    os_unfair_lock_lock(lock); defer { os_unfair_lock_unlock(lock) }
+    newVal = updater(self.val)
+    self.val = newVal!
     return newVal!
   }
 }
