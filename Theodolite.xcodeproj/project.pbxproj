@@ -40,6 +40,8 @@
 		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
 		B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */; };
 		B1FC9C351F9E1328006249FC /* IteratorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C341F9E1328006249FC /* IteratorWrapper.swift */; };
+		B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */; };
+		B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
 		B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTree.swift; sourceTree = "<group>"; };
 		B1FC9C341F9E1328006249FC /* IteratorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorWrapper.swift; sourceTree = "<group>"; };
+		B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViewAttributesTests.swift; sourceTree = "<group>"; };
+		B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +204,8 @@
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
 				B19BBD2B1F90620E00116386 /* ViewMountTests.swift */,
 				B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */,
+				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
+				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
 			);
 			path = TheodoliteTests;
 			sourceTree = "<group>";
@@ -485,6 +491,8 @@
 			files = (
 				B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */,
 				B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */,
+				B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */,
+				B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */,
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
 				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,

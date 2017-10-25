@@ -10,14 +10,6 @@ import FBSnapshotTestCase
 import Flexbox
 @testable import Theodolite
 
-final class ViewComponent: TypedComponent {
-  typealias PropType = ViewConfiguration
-  
-  public func view() -> ViewConfiguration? {
-    return self.props()
-  }
-}
-
 class ViewMountTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
@@ -37,7 +29,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
     }
     
-    snapshotTestComponent(CGSize(width: 100, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
       return TestViewComponent {
         ViewConfiguration(
           view: UIView.self,
@@ -87,7 +79,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
     }
     
-    snapshotTestComponent(CGSize(width: 100, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
       return TestParentComponent()
     }
   }
@@ -118,13 +110,13 @@ class ViewMountTests: FBSnapshotTestCase {
       }
     }
     
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return TestLabelComponent { "Hello World" }
     }
   }
   
   func test_flexbox() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {
         (options:
           FlexOptions(flexDirection: .column),
@@ -144,7 +136,7 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_flexbox_with_nil_child() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(flexDirection: .column),
         children:[
@@ -164,7 +156,7 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_flexbox_with_nil_child_and_margin() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(flexDirection: .column),
         children:[
@@ -185,7 +177,7 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_row_flexbox() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(flexDirection: .row),
         children:[
@@ -207,7 +199,7 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_row_flexbox_with_flexGrow() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(
           flexDirection: .row
@@ -232,7 +224,7 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_flexbox_inside_flexbox() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(
           flexDirection: .row
@@ -275,7 +267,7 @@ class ViewMountTests: FBSnapshotTestCase {
   // MARK: Simple Flexbox Tests
   
   func test_row_5050() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(
           flexDirection: .row
@@ -303,7 +295,7 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_row_3030() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(
           flexDirection: .row
@@ -331,14 +323,14 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_row_3070() {
-    snapshotTestComponent(CGSize(width: 300, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
       return FlexboxComponent {(
         options:FlexOptions(
           flexDirection: .row
         ),
         children:[
           FlexChild(
-            ViewComponent{
+            ViewComponent {
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
@@ -356,18 +348,5 @@ class ViewMountTests: FBSnapshotTestCase {
         ]
         )}
     }
-  }
-  
-  private func snapshotTestComponent(_ size: CGSize, _ identifier: String, factory: () -> Component) {
-    let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-    let scopeRoot = ScopeRoot(previousRoot: nil, listener: nil, stateUpdateMap: [:], factory: factory)
-    
-    let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root)
-    
-    scopeRoot.root.component().mount(parentView: view,
-                                     layout: layout,
-                                     position: CGPoint(x: 0, y: 0))
-    
-    FBSnapshotVerifyView(view, identifier: identifier)
   }
 }
