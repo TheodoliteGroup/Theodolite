@@ -30,4 +30,4 @@ Theodolite is built to be nearly identical to Facebook's Litho and ComponentKit 
 
 ## Continue exploring
 
-Have a look at our [Tutorial](/docs/tutorial) for a step-by-step guide on using Litho in your app. You can also read the quick start guide on how to [write](/docs/writing-components) and [use](/docs/using-components) your own Theodolite components.
+Have a look at our [Tutorial](/docs/tutorial) for a step-by-step guide on using Theodolite in your app. You can also read the quick start guide on how to [write](/docs/writing-components) and [use](/docs/using-components) your own Theodolite components.
