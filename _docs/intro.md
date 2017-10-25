@@ -9,7 +9,7 @@ Theodolite is a declarative framework for building efficient user interfaces (UI
 
 With Theodolite, you build your UI in terms of *components* instead of interacting directly with traditional UIKit views. A *component* is essentially a function that takes immutable inputs, called *props*, and returns a component hierarchy describing your user interface.
 
-```
+```swift
 final class HelloComponent: TypedComponent {
   typealias PropType = String
 
