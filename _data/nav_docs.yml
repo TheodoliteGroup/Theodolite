@@ -12,6 +12,7 @@
 - title: Reference
   items:
   - id: typed-component
+  - id: props
   - id: state
   - id: layout
 - title: Handling Events
