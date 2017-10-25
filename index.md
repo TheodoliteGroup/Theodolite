@@ -2,7 +2,7 @@
 
 Theodolite allows you to write Components just like React:
 
-```
+```swift
 final class FooComponent: TypedComponent {
   typealias PropType = Int
 
@@ -14,6 +14,6 @@ final class FooComponent: TypedComponent {
 }
 ```
 
-```
+```swift
 FooComponent { 42 }
 ```

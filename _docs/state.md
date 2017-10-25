@@ -17,7 +17,7 @@ You can define State on a Component by using the StateType `typealias` in your `
 
 Defining state elements is enabled on the lifecycle methods of Layout Specs and Mount Specs.
 
-```
+```swift
 final class CheckboxComponent: TypedComponent {
   typealias PropType = Bool
   typealias StateType = Bool?
@@ -46,7 +46,7 @@ NOTE: **`self.updateState()` is not applied synchronously. It is always delayed 
 
 To set an initial value for a state, just implement initialState(), and return the initial state that the component should use. This is only called for the first generation for a logical component.
 
-```
+```swift
 func initialState() -> Bool? { // Return value is StateType?
   // Let's say there's a initiallyChecked value in our props, we can use that
   // value here to force the component into that state on initial render.

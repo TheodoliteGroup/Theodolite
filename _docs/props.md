@@ -13,7 +13,7 @@ Props are the inputs to a `Component`'s constructor, and are accessible to that 
 
 Take the following `Component`, for example:
 
-```
+```swift
 final class MyComponent {
   typealias PropType = String
 
@@ -29,7 +29,7 @@ final class MyComponent {
 
 You may define a tuple as your `PropType` to receive multiple values as inputs to your component:
 
-```
+```swift
 final class MyComponent {
   typealias PropType = (
     string: String,
@@ -48,7 +48,7 @@ In this case, the caller must provide both the string and the integer value, and
 
 You can also use a named value-type for your props:
 
-```
+```swift
 final class MyComponent {
   public struct Props {
     let string: String,
@@ -69,7 +69,7 @@ This is particularly useful when you want to provide **defaults** for optional v
 
 When building a component, we have to provide it the props it expects. Using the first example above, you would construct this component like so:
 
-```
+```swift
 MyComponent {"Hello World!"}
 ```
 
@@ -77,7 +77,7 @@ Note that you're actually providing a lambda that evaluates to the `PropType` he
 
 Here's how you would initialize a component that takes a tuple as its props:
 
-```
+```swift
 MyComponent {(
   string: "Hello World!",
   int: 42
@@ -86,7 +86,7 @@ MyComponent {(
 
 And a struct as props:
 
-```
+```swift
 MyComponent { MyComponent.Props(
   string: "Hello World!",
   int: 42
@@ -99,7 +99,7 @@ For sufficiently complex prop types, it's recommended that you put **required pa
 
 For example, here's a simple `LabelComponent`:
 
-```
+```swift
 final class LabelComponent {
   public struct Options {
     let font: UIFont
@@ -120,7 +120,7 @@ final class LabelComponent {
 
 Then I can use this component like so:
 
-```
+```swift
 LabelComponent {(
   string: "Hello World",
   options: LabelComponent.Options(font: UIFont.systemFontOfSize(42))
@@ -129,7 +129,7 @@ LabelComponent {(
 
 Or, if I just want to use the defaults, I can do this instead:
 
-```
+```swift
 LabelComponent {(
   string: "Hello World",
   options: LabelComponent.Options()
