@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body class="home">
+    <div class="nav">
+      {% for item in site.data.nav %}
+        {% if item.category == "external" %}
+          <a href="{{ item.href }}">{{ item.title }}</a>
+        {% else %}
+          <a href="{{ item.href | relative_url }}">{{ item.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <section class="hero">
+      <div class="content">
+        <img class="logo" src="{{ '/static/logo.png' | relative_url }}">
+        <div class="header">
+          <p>
+            Theodolite: A declarative UI framework in Swift
+          </p>
+          <div class="buttons">
+            <a href="docs/getting-started">GET STARTED</a>
+            <a href="docs/intro">LEARN MORE</a>
+            <a href="docs/tutorial">TUTORIAL</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="content">
+        <div class="column">
+          <img src="{{ '/static/images/home-code.png' | relative_url }}">
+        </div>
+        <div class="column">
+          <div class="title">Declarative</div>
+          <p>
+            Theodolite uses a declarative API to define UI components. You simply describe the layout for
+            your UI based on a set of immutable inputs and the framework takes care of the rest.
+            With code generation, Theodolite can perform optimisations for your UI under the hood,
+            while keeping your code simple and easy to maintain.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="content">
+        <div class="column">
+          <img src="{{ '/static/images/home-async.png' | relative_url }}">
+        </div>
+        <div class="column">
+          <div class="title">Asynchronous layout</div>
+          <p>
+            Theodolite can measure and layout your UI ahead of time without blocking the UI thread.
+            By decoupling its layout system from the traditional Android View system, Theodolite can drop
+            the UI thread constraint imposed by Android.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="content">
+        <div class="column">
+          <img src="{{ '/static/images/not-flat.png' | relative_url }}" style="margin-bottom: 40px;">
+          <img src="{{ '/static/images/flat.png' | relative_url }}">
+        </div>
+        <div class="column">
+          <div class="title">Flatter view hierarchies</div>
+          <p>
+            Theodolite uses <a href="https://facebook.github.io/yoga">Yoga</a> for layout and
+            automatically reduces the number of ViewGroups that your UI contains. This, in addition
+            to Theodolite's text optimizations, allows for much smaller view hierarchies and improves
+            both memory and scroll performance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="content">
+        <div class="column">
+          <img class="home-incremental-sample" src="{{ '/static/images/home-incremental-mount.png' | relative_url }}">
+        </div>
+        <div class="column">
+          <div class="title">Fine-grained recycling</div>
+          <p>
+            With Theodolite, each UI item such as text, image, or video is recycled individually.
+            As soon as an item goes off screen, it can be reused anywhere in the UI and pieced
+            together with other items to create new UI elements. Such recycling reduces the need of
+            having multiple view types and improves memory usage and scroll performance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <a class="last-left-link" href="https://twitter.com/ocrickard" target="_blank">Twitter</a>
+      <a href="https://github.com/{{ site.ghrepo }}" target="_blank">Contribute to this project on GitHub</a>
+    </div>
+
+    <script type="text/javascript" src="/js/jekyll-link-anchors.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '{{ site.gacode }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+  </body>
+</html>
