@@ -9,34 +9,34 @@
 import Foundation
 
 struct IteratorWrapper<T: AnyObject> {
-  private var iterator: EnumeratedIterator<IndexingIterator<Array<T>>>
+  private var array: Array<T>
   
   var current: T? = nil
   var offset: Int = 0
   
-  init(_ it: EnumeratedIterator<IndexingIterator<Array<T>>>,
+  init(_ array: Array<T>,
        initialOffset: Int = 0) {
-    self.iterator = it
-    if let next = iterator.next() {
-      current = next.element
-      offset = next.offset + initialOffset
+    self.array = array
+    offset = initialOffset
+    if initialOffset < array.count {
+      current = array[initialOffset]
     }
   }
   
   func find(_ val: T) -> Int? {
-    let tempIterator = iterator.makeIterator()
-    for (o, v) in tempIterator {
+    for i in offset ..< array.count {
+      let v = array[i]
       if v === val {
-        return o + offset
+        return i
       }
     }
     return nil
   }
   
   mutating func advance() {
-    if let next = iterator.next() {
-      current = next.element
+    if offset + 1 < array.count {
       offset += 1
+      current = array[offset]
     } else {
       current = nil
       offset += 0

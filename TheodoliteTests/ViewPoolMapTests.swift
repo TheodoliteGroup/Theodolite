@@ -37,4 +37,33 @@ class ViewPoolMapTests: XCTestCase {
     
     XCTAssert(retrieved!.isHidden)
   }
+  
+  func test_reorderViews_thatWereFirstVendedInADifferentOrder() {
+    let view = UIView()
+    let labelConfig = ViewConfiguration(view: UILabel.self, attributes: [])
+    let buttonConfig = ViewConfiguration(view: UIButton.self, attributes: [])
+    let map = ViewPoolMap.getViewPoolMap(view: view)
+    
+    let retrievedLabel = map.retrieveView(parent: view, config: labelConfig)!
+    
+    let retrievedButton = map.retrieveView(parent: view, config: buttonConfig)!
+    
+    // OK, so now we should have the 2 views, and retrieved2 should be above retrieved
+    XCTAssert(view.subviews.index(of: retrievedLabel)! < view.subviews.index(of: retrievedButton)!)
+    
+    map.reset(view: view)
+    map.reset(view: view)
+    
+    // Now, we grab them in the opposite order.
+    
+    let buttonAgain = map.retrieveView(parent: view, config: buttonConfig)!
+    
+    let labelAgain = map.retrieveView(parent: view, config: labelConfig)!
+    
+    // Re-ordering subviews occurs on reset
+    map.reset(view: view)
+    
+    // The views should now be swapped in their order so that retrieved should be above retrieved2
+    XCTAssert(view.subviews.index(of: buttonAgain)! < view.subviews.index(of: labelAgain)!)
+  }
 }

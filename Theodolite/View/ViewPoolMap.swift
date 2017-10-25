@@ -67,7 +67,7 @@ public class ViewPoolMap {
     // This algorithm is a clone of the one in ViewPoolMap in ComponentKit
     
     var subviews = view.subviews
-    var nextVendedViewIt = IteratorWrapper(vendedViews.enumerated().makeIterator())
+    var nextVendedViewIt = IteratorWrapper(vendedViews)
     
     for i in 0 ..< subviews.count {
       let subview = subviews[i]
