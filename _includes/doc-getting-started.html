@@ -4,11 +4,11 @@
   </header>
   <article class="post-content">
     <div class="toggler">
-      <a href="javascript:void(0);" class="button-gradle" onclick="display('configuration', 'gradle')">Gradle</a>
-      <a href="javascript:void(0);" class="button-buck" onclick="display('configuration', 'buck')">Buck</a>
+      <a href="javascript:void(0);" class="button-cocoapods" onclick="display('configuration', 'cocoapods')">cocoapods</a>
+      <a href="javascript:void(0);" class="button-carthage" onclick="display('configuration', 'carthage')">carthage</a>
     </div>
     {{ content }}
-    <block class="gradle buck" />
+    <block class="cocoapods carthage" />
     <p><a class="edit-page-link" href="https://github.com/{{ site.ghrepo }}/tree/master/docs/{{ page.path }}" target="_blank">Edit on GitHub</a></p>
   </article>
   {% include doc_paging.html %}
@@ -51,10 +51,10 @@ if (window.location.hash !== '' && window.location.hash !== 'content') { // cont
           var config = null;
 
           // Configuration
-          if (parent.className.indexOf('gradle') > -1) {
-            config = 'gradle';
-          } else if (parent.className.indexOf('buck') > -1) {
-            config = 'buck';
+          if (parent.className.indexOf('cocoapods') > -1) {
+            config = 'cocoapods';
+          } else if (parent.className.indexOf('carthage') > -1) {
+            config = 'carthage';
           } else {
             break; // assume we don't have anything.
           }
@@ -71,7 +71,7 @@ if (window.location.hash !== '' && window.location.hash !== 'content') { // cont
 
 // Do the default if there is no matching hash
 if (!foundHash) {
-  display('configuration', 'gradle');
+  display('configuration', 'cocoapods');
 }
 
 </script>
