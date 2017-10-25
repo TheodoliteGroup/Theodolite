@@ -8,6 +8,17 @@
 
 import UIKit
 
+/**
+ A UIView that can host a Theodolite Component hierarchy. This is intended to be a bridge view into UIKit-land. There
+ should really only be one of these at the root of the view hierarchy, directly owned by the view controller.
+ 
+ The hosting view's initial render has to be synchronous, however it does attempt a best-effort async layout pass
+ in response to state updates. This should generally allow minimal main-thread impact from re-generating the component
+ after a user action.
+ 
+ The hosting view itself (and the Theodolite infra) doesn't break up huge component hierarchies for you, so large
+ scrolling list views should be rendered inside the hosting view using specific components that handle this.
+ */
 public final class ComponentHostingView: UIView, StateUpdateListener {
   struct CachedLayout {
     let constraint: CGSize
