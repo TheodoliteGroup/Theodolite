@@ -19,7 +19,7 @@ If your adapter has more than a few view types, you'll have to think about more 
 
 You can minimise the number of view types by recycling the same view instances for multiple variations within cells in *UICollectionView* but this usually results in a solution that will get increasingly more prone to bugs as you add more features to your product.
 
-### Standard approaches to recycling results in difficult to maintain code
+### Standard approaches to recycling result in difficult to maintain code
 
 If the list items are complex, chances are that you'll have to optimize your layouts. For simpler cases, you can get good performance by simply avoiding some gotchas from UIKit's stock layouts but this is not always the case. A common approach is to implement custom views especially tailored for your use cases. Custom views are great for UI efficiency but tend to slow you down due to the added complexity and higher maintenance cost.
 
