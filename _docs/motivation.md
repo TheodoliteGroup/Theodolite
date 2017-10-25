@@ -5,11 +5,13 @@ layout: docs
 permalink: /docs/motivation
 ---
 
-Building a list interface on iOS is fairly simple. Just create a layout for the items, hook it up to a *UICollectionView* adapter, and you're done. Most apps are a bit more complicated than that, though.
+Theoodlite is built on the same ideas behind [Facebook Litho](http://fblitho.com) and [ComponentKit](http://componentkit.org). The justification for all three frameworks is almost identical... so much so that I was able to just replace RecyclerView with UICollectionView from Litho's motivation:
 
-If your adapter has more than a few view types, you'll have to think about more robust ways to recycle views. If you have too many view types, *UICollectionView* will be constantly inflating new views every time a new type is displayed, which is likely to cause frame drops while scrolling.
+Building a list interface on iOS is fairly simple. Just create a layout for the items, hook it up to a *UICollectionView*, and you're done. Most apps are a bit more complicated than that, though.
 
-You can minimise the number of view types by recycling the same view instances for multiple variations within items in *UICollectionView* but this usually results in a solution that will get increasingly more prone to bugs as you add more features to your product.
+If your adapter has more than a few view types, you'll have to think about more robust ways to recycle views. If you have too many view types, *UICollectionView* will be constantly creating new views every time a new type is displayed, which is likely to cause frame drops while scrolling.
+
+You can minimise the number of view types by recycling the same view instances for multiple variations within cells in *UICollectionView* but this usually results in a solution that will get increasingly more prone to bugs as you add more features to your product.
 
 If the list items are complex, chances are that you'll have to optimize your layouts. For simpler cases, you can get good performance by simply avoiding some gotchas from UIKit's stock layouts but this is not always the case. A common approach is to implement custom views especially tailored for your use cases. Custom views are great for UI efficiency but tend to slow you down due to the added complexity and higher maintenance cost.
 
