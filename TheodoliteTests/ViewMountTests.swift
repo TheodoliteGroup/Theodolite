@@ -42,11 +42,11 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_component_withChild() {
     final class TestParentComponent: TypedComponent {
-      typealias PropType = Void?
+      typealias PropType = () -> ()
       
       func render() -> [Component?] {
         return [
-          TestChildComponent()
+          TestChildComponent {self.props()}
         ]
       }
       
@@ -64,7 +64,7 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     final class TestChildComponent: TypedComponent {
-      typealias PropType = Void?
+      typealias PropType = () -> ()
       
       func size(constraint: CGSize) -> CGSize {
         return CGSize(width: 25, height: 25)
@@ -77,10 +77,71 @@ class ViewMountTests: FBSnapshotTestCase {
             Attr(UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
           ])
       }
+      
+      func componentDidMount() {
+        self.props()()
+      }
+    }
+    
+    var didMountChild = false
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
+      return TestParentComponent {{ didMountChild = true }}
+    }
+    
+    XCTAssert(didMountChild)
+  }
+  
+  func test_component_withNonVisibleChild_doesNotMountThatChild() {
+    final class TestParentComponent: TypedComponent {
+      typealias PropType = () -> ()
+      
+      func render() -> [Component?] {
+        return [
+          TestChildComponent {self.props()}
+        ]
+      }
+      
+      func view() -> ViewConfiguration? {
+        return ViewConfiguration(
+          view: UIView.self,
+          attributes: [
+            Attr(UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
+          ])
+      }
+      
+      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+        let firstChild = tree.children()[0]!
+        return Theodolite.Layout(component: self, size: CGSize(width: 50, height: 50), children: [
+          LayoutChild(layout: firstChild.component().layout(constraint: constraint, tree: firstChild),
+                      position: CGPoint(x: 150, y: 150))
+          ])
+      }
+    }
+    
+    final class TestChildComponent: TypedComponent {
+      typealias PropType = () -> ()
+      
+      func size(constraint: CGSize) -> CGSize {
+        return CGSize(width: 25, height: 25)
+      }
+      
+      func view() -> ViewConfiguration? {
+        return ViewConfiguration(
+          view: UIView.self,
+          attributes: [
+            Attr(UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
+          ])
+      }
+      
+      func componentDidMount() {
+        self.props()()
+      }
     }
     
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestParentComponent()
+      return TestParentComponent {{
+          XCTFail("Should not have mounted child")
+        }}
     }
   }
   
