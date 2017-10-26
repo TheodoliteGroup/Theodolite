@@ -15,39 +15,30 @@ import UIKit
  */
 public class ViewPool {
   var views: [UIView] = []
-  var index: Int = -1
   
   func reset() {
-    for i in index + 1 ..< views.count {
-      let view = views[i]
+    for view in views {
       if !view.isHidden {
         view.isHidden = true
       }
     }
-    index = -1
   }
   
-  private func next() -> UIView? {
-    if (index + 1 < views.count) {
-      index += 1
-      return views[index]
-    }
-    return nil
-  }
-  
-  func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
-    if let view = self.next() {
+  func checkoutView(parent: UIView, config: ViewConfiguration) -> UIView? {
+    if let view = views.first {
       if view.isHidden {
         view.isHidden = false
       }
       config.applyToView(v: view)
+      views.removeFirst()
       return view
     }
     let newView = config.buildView()
-    views.insert(newView, at: index + 1)
-    // Advance the index to account for the offset at the beginning
-    index += 1
     parent.addSubview(newView)
     return newView
+  }
+  
+  func checkinView(view: UIView) {
+    views.append(view)
   }
 }

@@ -19,7 +19,7 @@ class ViewPoolTests: XCTestCase {
       view: UILabel.self,
       attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(parent: parent, config: config)
     
     XCTAssert(retrievedView!.isKind(of: UILabel.self))
   }
@@ -33,11 +33,12 @@ class ViewPoolTests: XCTestCase {
       view: UILabel.self,
       attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(parent: parent, config: config)
+    pool.checkinView(view: retrievedView!)
     
     pool.reset()
     
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config)
+    let retrievedView2 = pool.checkoutView(parent: parent, config: config)
     
     XCTAssertEqual(retrievedView, retrievedView2)
   }
@@ -51,9 +52,9 @@ class ViewPoolTests: XCTestCase {
       view: UILabel.self,
       attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(parent: parent, config: config)
     
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config)
+    let retrievedView2 = pool.checkoutView(parent: parent, config: config)
     
     XCTAssertNotEqual(retrievedView, retrievedView2)
   }
@@ -67,7 +68,7 @@ class ViewPoolTests: XCTestCase {
       view: UILabel.self,
       attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(parent: parent, config: config)
     
     pool.reset()
     
@@ -83,18 +84,21 @@ class ViewPoolTests: XCTestCase {
       view: UILabel.self,
       attributes: [])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config)
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(parent: parent, config: config)
+    let retrievedView2 = pool.checkoutView(parent: parent, config: config)
     
+    pool.checkinView(view: retrievedView!)
+    pool.checkinView(view: retrievedView2!)
     pool.reset()
     
-    let retrievedView3 = pool.retrieveView(parent: parent, config: config)
+    let retrievedView3 = pool.checkoutView(parent: parent, config: config)
     
     pool.reset()
     
     XCTAssertEqual(retrievedView, retrievedView3)
     XCTAssert((retrievedView2?.isHidden)!)
     XCTAssert(!(retrievedView?.isHidden)!)
+    XCTAssert(parent.subviews.count == 2)
   }
   
   func test_retrievingViewWithViewConfiguration_appliesAttributes() {
@@ -110,7 +114,7 @@ class ViewPoolTests: XCTestCase {
         }
       ])
     
-    let retrievedView = pool.retrieveView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(parent: parent, config: config)
     
     XCTAssertEqual(retrievedView?.backgroundColor, UIColor.red)
   }
@@ -128,8 +132,8 @@ class ViewPoolTests: XCTestCase {
         }
       ])
     
-    let _ = pool.retrieveView(parent: parent, config: config)
-    
+    let view = pool.checkoutView(parent: parent, config: config)
+    pool.checkinView(view: view!)
     pool.reset()
     
     let config2 = ViewConfiguration(
@@ -140,7 +144,7 @@ class ViewPoolTests: XCTestCase {
         }
       ])
     
-    let retrievedView2 = pool.retrieveView(parent: parent, config: config2)
+    let retrievedView2 = pool.checkoutView(parent: parent, config: config2)
     
     XCTAssertEqual(retrievedView2?.backgroundColor, UIColor.blue)
   }
@@ -160,7 +164,8 @@ class ViewPoolTests: XCTestCase {
     
     self.measure {
       for _ in 1...10000 {
-        let _ = pool.retrieveView(parent: parent, config: config)
+        let view = pool.checkoutView(parent: parent, config: config)
+        pool.checkinView(view: view!)
         pool.reset()
       }
     }

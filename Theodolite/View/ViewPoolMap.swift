@@ -24,6 +24,7 @@ public class ViewPoolMap {
   var vendedViews: [UIView] = []
   
   static func resetViewPoolMap(view: UIView) {
+    assert(Thread.isMainThread)
     // No need to create one if it doesn't already exist
     if let map: ViewPoolMap? =
       getAssociatedObject(
@@ -34,6 +35,7 @@ public class ViewPoolMap {
   }
   
   static func getViewPoolMap(view: UIView) -> ViewPoolMap {
+    assert(Thread.isMainThread)
     let map: ViewPoolMap? =
       getAssociatedObject(
         object: view,
@@ -49,16 +51,24 @@ public class ViewPoolMap {
     return unwrapped
   }
   
-  func retrieveView(parent: UIView, config: ViewConfiguration) -> UIView? {
+  func checkoutView(parent: UIView, config: ViewConfiguration) -> UIView? {
+    assert(Thread.isMainThread)
     guard let view = getViewPool(view: parent, config: config)
-      .retrieveView(parent: parent, config: config) else {
+      .checkoutView(parent: parent, config: config) else {
         return nil
     }
     vendedViews.append(view)
     return view
   }
   
+  func checkinView(parent: UIView, config: ViewConfiguration, view: UIView) {
+    assert(Thread.isMainThread)
+    let pool = getViewPool(view: parent, config: config)
+    pool.checkinView(view: view)
+  }
+  
   func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
+    assert(Thread.isMainThread)
     if let pool = hashMap[config] {
       return pool
     }
@@ -69,6 +79,7 @@ public class ViewPoolMap {
   }
   
   func reset(view: UIView) {
+    assert(Thread.isMainThread)
     for (_, pool) in hashMap {
       pool.reset()
     }

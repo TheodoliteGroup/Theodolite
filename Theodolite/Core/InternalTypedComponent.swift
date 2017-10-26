@@ -13,9 +13,20 @@ public protocol InternalTypedComponent {
   func initialUntypedState() -> Any?
 }
 
-internal struct InternalPropertyWrapper<PropType> {
-  let props: PropType
+public extension InternalTypedComponent {
+}
+
+internal class InternalPropertyWrapper<PropType> {
+  let props: PropType?
   let key: AnyHashable?
+  
+  var currentView: UIView? = nil
+  
+  init(props: PropType?,
+       key: AnyHashable?) {
+    self.props = props
+    self.key = key
+  }
 }
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
@@ -28,82 +39,26 @@ public extension TypedComponent {
                         associativeKey: &kWrapperKey)
   }
   
-  func props() -> PropType {
-    let wrapper: InternalPropertyWrapper<PropType>? = getAssociatedObject(object: self,
-                                                                         associativeKey: &kWrapperKey)
-    return wrapper!.props
-  }
-  
-  func state() -> StateType? {
-    if let handle = getScopeHandle(component: self) {
-      return handle.state as? StateType ?? nil
-    }
-    assert(false, "Accessing state before handle set on component. This state update will no-op")
-    return nil
-  }
-  
-  func initialState() -> StateType? {
-    return nil
-  }
-  
-  func updateState(state: StateType?) {
-    if let handle = getScopeHandle(component: self) {
-      handle.stateUpdater(handle.identifier, state)
-    } else {
-      assert(false, "Updating state before handle set on component. This state update will no-op")
-    }
-  }
-  
   public func key() -> AnyHashable? {
-    let wrapper: InternalPropertyWrapper<PropType>? =
-      getAssociatedObject(object: self,
-                          associativeKey: &kWrapperKey)
-    return wrapper?.key
-  }
-  
-  /* View handling */
-  func mount(parentView: UIView, layout: Layout, position: CGPoint) {
-    self.componentWillMount()
-    if let config = self.view() {
-      let map = ViewPoolMap.getViewPoolMap(view: parentView)
-      let view = map
-        .getViewPool(view: parentView, config: config)
-        .retrieveView(parent: parentView, config: config)!
-      view.frame = CGRect(x: position.x,
-                          y: position.y,
-                          width: layout.size.width,
-                          height: layout.size.height)
-      for childLayout in layout.children {
-        if let component = childLayout.layout.component {
-          component.mount(parentView: view,
-                          layout: childLayout.layout,
-                          position: childLayout.position)
-        }
-      }
-      // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
-      ViewPoolMap.resetViewPoolMap(view: view)
-    } else {
-      for childLayout in layout.children {
-        if let component = childLayout.layout.component {
-          component.mount(
-            parentView: parentView,
-            layout: childLayout.layout,
-            position: CGPoint(
-              x: childLayout.position.x + position.x,
-              y: childLayout.position.y + position.y))
-        }
-      }
-    }
-    self.componentDidMount()
-  }
-  
-  func view() -> ViewConfiguration? {
-    return nil
+    return wrapper().key
   }
   
   /* Implementation detail, ignore this. TODO: Remove? */
   func initialUntypedState() -> Any? {
     return initialState()
+  }
+  
+  internal func wrapper() -> InternalPropertyWrapper<PropType> {
+    guard let wrapper: InternalPropertyWrapper<PropType> =
+      getAssociatedObject(object: self, associativeKey: &kWrapperKey) else {
+        assert(Thread.isMainThread, "Use the init(props) constructor in order to make the wrapper available off the main thread.")
+        let newWrapper: InternalPropertyWrapper<PropType> = InternalPropertyWrapper(props: nil, key: nil)
+        setAssociatedObject(object: self,
+                            value: newWrapper,
+                            associativeKey: &kWrapperKey)
+        return newWrapper
+    }
+    return wrapper
   }
 }
 

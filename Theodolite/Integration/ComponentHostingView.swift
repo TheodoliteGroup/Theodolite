@@ -38,13 +38,12 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: Private properties
   var root: ScopeRoot?
   var lastLayout: CachedLayout?
-  var stateUpdateMap: [Int32:Any?]
-  var dispatched: Bool
+  var mountedLayout: Layout?
+  var stateUpdateMap: [Int32:Any?] = [:]
+  var dispatched: Bool = false
   
   public init(factory: @escaping () -> Component) {
     self.factory = factory
-    self.stateUpdateMap = [:]
-    self.dispatched = false
     super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     self.root = ScopeRoot(previousRoot: self.root,
                           listener: self,
@@ -78,11 +77,15 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: Component generation/mounting
   
   func mountLayout(layout: Layout) {
+    if let mountedLayout = self.mountedLayout {
+      mountedLayout.component?.unmount(layout: mountedLayout)
+    }
     if let component = layout.component {
       component.mount(parentView: self,
                       layout: layout,
                       position: CGPoint(x: 0, y: 0))
     }
+    self.mountedLayout = layout
   }
   
   func markNeedsReset() {
