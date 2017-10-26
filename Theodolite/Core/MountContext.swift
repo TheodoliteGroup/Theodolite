@@ -97,13 +97,14 @@ internal func MountLayout(view: UIView,
     return
   }
   
+  var needsDidMount = false
   if !incrementalContext.isMounted(layout: layout) {
     component.componentWillMount()
     let context = component.mount(parentView: view,
                                   layout: layout,
                                   position: position)
     GetWrapper(component)?.mountContext = context
-    component.componentDidMount()
+    needsDidMount = true
   }
   
   incrementalContext.markMounted(layout: layout)
@@ -129,5 +130,9 @@ internal func MountLayout(view: UIView,
     } else if incrementalContext.isMounted(layout: childLayout.layout) {
       UnmountLayout(layout: childLayout.layout, incrementalContext: incrementalContext)
     }
+  }
+  
+  if needsDidMount {
+    component.componentDidMount()
   }
 }
