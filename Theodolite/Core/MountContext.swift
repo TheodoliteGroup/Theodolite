@@ -85,11 +85,13 @@ public func UnmountLayout(layout: Layout,
 public func MountRootLayout(view: UIView,
                             layout: Layout,
                             position: CGPoint,
-                            incrementalContext: IncrementalMountContext) {
+                            incrementalContext: IncrementalMountContext,
+                            mountVisibleOnly: Bool = false) {
   MountLayout(view: view,
               layout: layout,
               position: position,
-              incrementalContext: incrementalContext)
+              incrementalContext: incrementalContext,
+              mountVisibleOnly: mountVisibleOnly)
   
   let toBeUnmounted = incrementalContext.unmarkedMounted()
   for unmountingLayout in toBeUnmounted {
@@ -100,9 +102,11 @@ public func MountRootLayout(view: UIView,
 internal func MountLayout(view: UIView,
                           layout: Layout,
                           position: CGPoint,
-                          incrementalContext: IncrementalMountContext) {
+                          incrementalContext: IncrementalMountContext,
+                          mountVisibleOnly: Bool) {
   let component = layout.component
   
+  // If the component itself is not mounted, we do that first.
   var needsDidMount = false
   if !incrementalContext.isMounted(layout: layout) {
     component.componentWillMount()
@@ -112,6 +116,8 @@ internal func MountLayout(view: UIView,
     GetWrapper(component)?.mountContext = context
     needsDidMount = true
   }
+  
+  // If we mounted, we need to notify the component that it finished mounting *after* its children mount.
   defer {
     if needsDidMount {
       component.componentDidMount()
@@ -124,6 +130,7 @@ internal func MountLayout(view: UIView,
     return
   }
   
+  // The component may decide to reject mounting of its children if it wants to do so itself.
   if !context.shouldMountChildren {
     return
   }
@@ -135,14 +142,16 @@ internal func MountLayout(view: UIView,
                             y: context.position.y + childLayout.position.y,
                             width: childLayout.layout.size.width,
                             height: childLayout.layout.size.height)
-    if childFrame.intersects(bounds) {
-      // Recur into this layout's children
+    if !mountVisibleOnly || childFrame.intersects(bounds) {
+      // Recur into this layout's children if that child is visible. It's important that we do this even if the
+      // component is already mounted, since some of their children may have been culled in a prior mounting pass.
       MountLayout(view: context.view,
                   layout: childLayout.layout,
                   position: CGPoint(x: context.position.x + childLayout.position.x,
                                     y: context.position.y + childLayout.position.y),
-                  incrementalContext: incrementalContext)
-    } else if incrementalContext.isMounted(layout: childLayout.layout) {
+                  incrementalContext: incrementalContext,
+                  mountVisibleOnly: mountVisibleOnly)
+    } else if mountVisibleOnly && incrementalContext.isMounted(layout: childLayout.layout) {
       UnmountLayout(layout: childLayout.layout, incrementalContext: incrementalContext)
     }
   }

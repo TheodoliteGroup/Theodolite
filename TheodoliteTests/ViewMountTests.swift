@@ -138,7 +138,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
     }
     
-    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function, mountVisibleOnly: true) {() -> Component in
       return TestParentComponent {{
           XCTFail("Should not have mounted child")
         }}
