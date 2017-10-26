@@ -20,6 +20,10 @@ public struct MountContext {
   let shouldMountChildren: Bool
 }
 
+/**
+ IncrementalMountContext is used for bookkeeping. It records which components are mounted so that we can remember to
+ unmount components when they're no longer in the hierarchy.
+ */
 public class IncrementalMountContext {
   private var mounted: NSHashTable<Layout> =
     NSHashTable(options: NSPointerFunctions.Options.objectPointerPersonality,
