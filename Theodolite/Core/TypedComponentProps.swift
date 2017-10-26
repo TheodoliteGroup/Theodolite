@@ -10,6 +10,6 @@ import Foundation
 
 public extension TypedComponent {
   func props() -> PropType {
-    return wrapper().props!
+    return context().props!
   }
 }

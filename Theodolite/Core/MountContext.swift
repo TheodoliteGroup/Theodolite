@@ -79,7 +79,7 @@ public func UnmountLayout(layout: Layout,
   
   // Only unmount **after** all children are unmounted.
   layout.component.unmount(layout: layout)
-  GetWrapper(layout.component)?.mountContext = nil
+  GetContext(layout.component)?.mountInfo.mountContext = nil
 }
 
 public func MountRootLayout(view: UIView,
@@ -113,7 +113,7 @@ internal func MountLayout(view: UIView,
     let context = component.mount(parentView: view,
                                   layout: layout,
                                   position: position)
-    GetWrapper(component)?.mountContext = context
+    GetContext(component)?.mountInfo.mountContext = context
     needsDidMount = true
   }
   
@@ -126,7 +126,7 @@ internal func MountLayout(view: UIView,
   
   incrementalContext.markMounted(layout: layout)
   
-  guard let context: MountContext = GetWrapper(layout.component)?.mountContext else {
+  guard let context: MountContext = GetContext(layout.component)?.mountInfo.mountContext else {
     return
   }
   

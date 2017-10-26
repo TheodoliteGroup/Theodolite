@@ -20,27 +20,15 @@ public extension TypedComponent {
    In general, you should *never* override these methods. Instead, override the componentWillMount and related methods.
    */
   func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
-    if let config = self.view() {
-      let map = ViewPoolMap.getViewPoolMap(view: parentView)
-      let view = map
-        .checkoutView(parent: parentView, config: config)!
-      wrapper().currentView = view
-      view.frame = CGRect(x: position.x,
-                          y: position.y,
-                          width: layout.size.width,
-                          height: layout.size.height)
-      
-      return MountContext(view: view,
-                          position: CGPoint(x: 0, y: 0),
-                          shouldMountChildren: true)
-    }
-    return MountContext(view: parentView,
-                        position: position,
-                        shouldMountChildren: true)
+    return StandardMountLayout(parentView: parentView,
+                               layout: layout,
+                               position: position,
+                               config: view(),
+                               componentContext: context())
   }
   
   func componentDidMount() {
-    if let view = wrapper().currentView {
+    if let view = context().mountInfo.currentView {
       // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
       ViewPoolMap.resetViewPoolMap(view: view)
     }
@@ -50,12 +38,12 @@ public extension TypedComponent {
     guard let config = self.view() else {
       return
     }
-    let wrapper = self.wrapper()
-    guard let currentView = self.wrapper().currentView else {
+    let context = self.context()
+    guard let currentView = context.mountInfo.currentView else {
       return
     }
     
-    wrapper.currentView = nil;
+    context.mountInfo.currentView = nil;
     
     assert(currentView.superview != nil, "You must not remove a Theoodlite-managed view from the hierarchy")
     let superview = currentView.superview!
@@ -63,4 +51,29 @@ public extension TypedComponent {
     let map = ViewPoolMap.getViewPoolMap(view: superview)
     map.checkinView(parent: superview, config: config, view: currentView)
   }
+}
+
+internal func StandardMountLayout<PropType>(parentView: UIView,
+                                            layout: Layout,
+                                            position: CGPoint,
+                                            config: ViewConfiguration?,
+                                            componentContext: ComponentContext<PropType>) -> MountContext {
+  guard let config = config else {
+    return MountContext(view: parentView,
+                        position: position,
+                        shouldMountChildren: true)
+  }
+  
+  let map = ViewPoolMap.getViewPoolMap(view: parentView)
+  let view = map
+    .checkoutView(parent: parentView, config: config)!
+  componentContext.mountInfo.currentView = view
+  view.frame = CGRect(x: position.x,
+                      y: position.y,
+                      width: layout.size.width,
+                      height: layout.size.height)
+  
+  return MountContext(view: view,
+                      position: CGPoint(x: 0, y: 0),
+                      shouldMountChildren: true)
 }

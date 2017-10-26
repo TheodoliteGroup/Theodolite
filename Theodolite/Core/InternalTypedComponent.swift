@@ -13,25 +13,27 @@ public protocol InternalTypedComponent {
   func initialUntypedState() -> Any?
 }
 
-public extension InternalTypedComponent {
+internal protocol ComponentContextProtocol: class {
+  var mountInfo: MountInfo {get set}
 }
 
-internal protocol InternalPropertyWrapperProtocol: class {
-  var currentView: UIView? {get set}
-  var mountContext: MountContext? {get set}
+internal struct MountInfo {
+  var currentView: UIView? = nil
+  var mountContext: MountContext? = nil
+  var mountedLayout: Layout? = nil
 }
 
-internal class InternalPropertyWrapper<PropType>: InternalPropertyWrapperProtocol {
+internal class ComponentContext<PropType>: ComponentContextProtocol {
   let props: PropType?
   let key: AnyHashable?
   
-  var currentView: UIView? = nil
-  var mountContext: MountContext? = nil
+  var mountInfo: MountInfo
   
   init(props: PropType?,
        key: AnyHashable?) {
     self.props = props
     self.key = key
+    self.mountInfo = MountInfo()
   }
 }
 
@@ -41,12 +43,12 @@ public extension TypedComponent {
               _ props: () -> PropType) {
     self.init()
     setAssociatedObject(object: self,
-                        value: InternalPropertyWrapper(props: props(), key: key),
+                        value: ComponentContext(props: props(), key: key),
                         associativeKey: &kWrapperKey)
   }
   
   public func key() -> AnyHashable? {
-    return wrapper().key
+    return context().key
   }
   
   /* Implementation detail, ignore this. TODO: Remove? */
@@ -54,23 +56,23 @@ public extension TypedComponent {
     return initialState()
   }
   
-  internal func wrapper() -> InternalPropertyWrapper<PropType> {
-    guard let wrapper: InternalPropertyWrapper<PropType> =
+  internal func context() -> ComponentContext<PropType> {
+    guard let context: ComponentContext<PropType> =
       getAssociatedObject(object: self, associativeKey: &kWrapperKey)
       else {
         assert(Thread.isMainThread,
-               "Use the init(props) constructor in order to make the wrapper available off the main thread.")
-        let newWrapper: InternalPropertyWrapper<PropType> = InternalPropertyWrapper(props: nil, key: nil)
+               "Use the init(props) constructor in order to make component context available off the main thread.")
+        let newContext: ComponentContext<PropType> = ComponentContext(props: nil, key: nil)
         setAssociatedObject(object: self,
-                            value: newWrapper,
+                            value: newContext,
                             associativeKey: &kWrapperKey)
-        return newWrapper
+        return newContext
     }
-    return wrapper
+    return context
   }
 }
 
-internal func GetWrapper(_ component: Component?) -> InternalPropertyWrapperProtocol? {
+internal func GetContext(_ component: Component?) -> ComponentContextProtocol? {
   guard let c = component else {
     return nil
   }

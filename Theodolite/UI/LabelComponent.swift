@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 public final class LabelComponent: TypedComponent {
   public struct Options {
     let view: ViewOptions
