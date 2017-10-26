@@ -9,7 +9,7 @@
 import UIKit
 
 public class Layout {
-  public let component: Component?
+  public let component: Component
   public let size: CGSize
   public let children: [LayoutChild]
   
@@ -24,7 +24,7 @@ public class Layout {
   */
   let extra: Any?
   
-  public init(component: Component?,
+  public init(component: Component,
               size: CGSize,
               children: [LayoutChild],
               extra: Any? = nil) {
@@ -34,8 +34,8 @@ public class Layout {
     self.extra = extra
   }
   
-  static func empty() -> Layout {
-    return Layout(component: nil, size: CGSize(width:0, height:0), children: [])
+  static func empty(component: Component) -> Layout {
+    return Layout(component: component, size: CGSize(width:0, height:0), children: [])
   }
 }
 

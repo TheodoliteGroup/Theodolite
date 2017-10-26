@@ -62,7 +62,7 @@ public class IncrementalMountContext {
 public func UnmountLayout(layout: Layout,
                           incrementalContext: IncrementalMountContext) {
   // Call willUnmount before recurring
-  layout.component?.componentWillUnmount()
+  layout.component.componentWillUnmount()
   
   for childLayout in layout.children {
     if (incrementalContext.isMounted(layout: layout)) {
@@ -74,10 +74,8 @@ public func UnmountLayout(layout: Layout,
   incrementalContext.markUnmounted(layout: layout)
   
   // Only unmount **after** all children are unmounted.
-  layout.component?.unmount(layout: layout)
-  if let component = layout.component {
-    GetWrapper(component)?.mountContext = nil
-  }
+  layout.component.unmount(layout: layout)
+  GetWrapper(layout.component)?.mountContext = nil
 }
 
 public func MountRootLayout(view: UIView,
@@ -99,9 +97,7 @@ internal func MountLayout(view: UIView,
                           layout: Layout,
                           position: CGPoint,
                           incrementalContext: IncrementalMountContext) {
-  guard let component = layout.component else {
-    return
-  }
+  let component = layout.component
   
   var needsDidMount = false
   if !incrementalContext.isMounted(layout: layout) {

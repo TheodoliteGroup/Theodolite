@@ -12,7 +12,7 @@ public protocol Component: class {
   init()
   
   /** Core methods */
-  func render() -> [Component?]
+  func render() -> [Component]
   func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext
   func unmount(layout: Layout)
   func size(constraint: CGSize) -> CGSize
@@ -35,7 +35,7 @@ public protocol Component: class {
 }
 
 extension Component {
-  public func render() -> [Component?] {
+  public func render() -> [Component] {
     return []
   }
   
@@ -56,14 +56,12 @@ extension Component {
       component: self,
       size: self.size(constraint: constraint),
       children:
-      tree.children().map { (childTree: ComponentTree?) -> LayoutChild in
+      tree.children().map { (childTree: ComponentTree) -> LayoutChild in
         return LayoutChild(
-          layout:childTree?
+          layout:childTree
             .component()
             .layout(constraint: constraint,
-                    tree: childTree!) ?? Layout(component: nil,
-                                               size: CGSize(width: 0, height: 0),
-                                               children: []),
+                    tree: childTree),
           position: CGPoint(x: 0, y: 0))
     })
   }

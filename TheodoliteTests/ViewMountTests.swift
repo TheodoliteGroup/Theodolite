@@ -44,7 +44,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestParentComponent: TypedComponent {
       typealias PropType = () -> ()
       
-      func render() -> [Component?] {
+      func render() -> [Component] {
         return [
           TestChildComponent {self.props()}
         ]
@@ -95,7 +95,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestParentComponent: TypedComponent {
       typealias PropType = () -> ()
       
-      func render() -> [Component?] {
+      func render() -> [Component] {
         return [
           TestChildComponent {self.props()}
         ]
@@ -110,7 +110,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
       
       func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
-        let firstChild = tree.children()[0]!
+        let firstChild = tree.children()[0]
         return Theodolite.Layout(component: self, size: CGSize(width: 50, height: 50), children: [
           LayoutChild(layout: firstChild.component().layout(constraint: constraint, tree: firstChild),
                       position: CGPoint(x: 150, y: 150))
@@ -193,47 +193,6 @@ class ViewMountTests: FBSnapshotTestCase {
               options: LabelComponent.Options()
               )})
           ])}
-    }
-  }
-  
-  func test_flexbox_with_nil_child() {
-    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
-        options:FlexOptions(flexDirection: .column),
-        children:[
-          FlexChild(
-            LabelComponent {(
-              "hello world",
-              options: LabelComponent.Options()
-              )}),
-          FlexChild(nil),
-          FlexChild(
-            LabelComponent {(
-              "hello world",
-              options: LabelComponent.Options()
-              )})
-        ])}
-    }
-  }
-  
-  func test_flexbox_with_nil_child_and_margin() {
-    snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
-        options:FlexOptions(flexDirection: .column),
-        children:[
-          FlexChild(
-            LabelComponent {(
-              "hello world",
-              options: LabelComponent.Options()
-              )}),
-          FlexChild(nil, margin: Edges(top: 10)),
-          FlexChild(
-            LabelComponent{(
-              "hello world",
-              options: LabelComponent.Options()
-              )})
-        ]
-        )}
     }
   }
   

@@ -187,7 +187,7 @@ class ScopeTests: XCTestCase {
     final class TestParentComponent: TypedComponent {
       typealias PropType = Void?
       
-      func render() -> [Component?] {
+      func render() -> [Component] {
         return [TestChildComponent()]
       }
     }
@@ -199,7 +199,7 @@ class ScopeTests: XCTestCase {
                       previousScope: nil,
                       stateUpdateMap: [:])
     
-    XCTAssert(type(of:scope._children[0]!.component()) == TestChildComponent.self)
+    XCTAssert(type(of:scope._children[0].component()) == TestChildComponent.self)
   }
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_createsChildComponentWithState() {
@@ -215,7 +215,7 @@ class ScopeTests: XCTestCase {
     final class TestParentComponent: TypedComponent {
       typealias PropType = Void?
       
-      func render() -> [Component?] {
+      func render() -> [Component] {
         return [TestChildComponent()]
       }
     }
@@ -227,7 +227,7 @@ class ScopeTests: XCTestCase {
                       previousScope: nil,
                       stateUpdateMap: [:])
     
-    XCTAssertEqual((scope._children[0]?.component() as! TestChildComponent).state(), 42)
+    XCTAssertEqual((scope._children[0].component() as! TestChildComponent).state(), 42)
   }
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_andStateUpdateForChild_createsChildComponentWithUpdatedState() {
@@ -243,7 +243,7 @@ class ScopeTests: XCTestCase {
     final class TestParentComponent: TypedComponent {
       typealias PropType = Void?
       
-      func render() -> [Component?] {
+      func render() -> [Component] {
         return [TestChildComponent()]
       }
     }
@@ -260,9 +260,9 @@ class ScopeTests: XCTestCase {
     let scope2 = Scope(listener: nil,
                        component: c2,
                        previousScope: scope1,
-                       stateUpdateMap: [scope1._children[0]!._handle.identifier: 1000])
+                       stateUpdateMap: [scope1._children[0]._handle.identifier: 1000])
     
-    XCTAssertEqual((scope2._children[0]!.component() as! TestChildComponent).state(), 1000)
+    XCTAssertEqual((scope2._children[0].component() as! TestChildComponent).state(), 1000)
   }
   
   /** Scope root tests */

@@ -53,7 +53,7 @@ public struct FlexOptions {
 }
 
 public struct FlexChild {
-  let component: Component?
+  let component: Component
   let alignSelf: Style.AlignSelf
   
   let flex: CGFloat
@@ -68,7 +68,7 @@ public struct FlexChild {
   let padding: Edges
   let border: Edges
   
-  public init(_ component: Component?,
+  public init(_ component: Component,
               
               alignSelf: Style.AlignSelf = .auto,
               
@@ -110,10 +110,10 @@ final public class FlexboxComponent: TypedComponent {
   
   public init() {}
   
-  public func render() -> [Component?] {
+  public func render() -> [Component] {
     return self.props().children.map({
-      (child: FlexChild) -> Component? in child.component
-    }).filter({ $0 != nil }).map({$0!})
+      (child: FlexChild) -> Component in child.component
+    })
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
@@ -130,7 +130,7 @@ final public class FlexboxComponent: TypedComponent {
     for (index, childTree) in tree.children().enumerated() {
       // Get the flexchild at the same index
       let flexChild = props.children[index]
-      let component = childTree?.component()
+      let component = childTree.component()
       childLayoutNodes
         .append(Node(
           alignSelf: flexChild.alignSelf,
@@ -143,12 +143,9 @@ final public class FlexboxComponent: TypedComponent {
           margin: flexChild.margin,
           padding: flexChild.padding,
           border: flexChild.border) { (childConstraint: CGSize) -> CGSize in
-            guard let c = component else {
-              return CGSize(width: 0, height: 0)
-            }
             let childLayout =
-              c.layout(constraint: childConstraint, tree: childTree!)
-            layoutTable.setObject(childLayout, forKey: c)
+              component.layout(constraint: childConstraint, tree: childTree)
+            layoutTable.setObject(childLayout, forKey: component)
             return childLayout.size
       })
     }
@@ -175,19 +172,12 @@ final public class FlexboxComponent: TypedComponent {
     
     var childLayouts: [LayoutChild] = []
     for (index, childTree) in tree.children().enumerated() {
-      guard let component = childTree?.component() else {
-        childLayouts.append(LayoutChild(
-          layout: Layout(component: nil,
-                         size: CGSize(width: 0, height: 0),
-                         children: []),
-          position: CGPoint(x: 0, y: 0)))
-        continue
-      }
+      let component = childTree.component()
       
       let childNodeLayout = nodeLayout.children[index]
       let computedLayout =
         layoutTable.object(forKey: component)
-        ?? component.layout(constraint: childNodeLayout.frame.size, tree: childTree!)
+        ?? component.layout(constraint: childNodeLayout.frame.size, tree: childTree)
       
       childLayouts.append(
         LayoutChild(

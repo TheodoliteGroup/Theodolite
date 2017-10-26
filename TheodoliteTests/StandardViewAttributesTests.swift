@@ -77,7 +77,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     final class ParentComponent: TypedComponent {
       typealias PropType = Void?
       
-      func render() -> [Component?] {
+      func render() -> [Component] {
         return [ChildComponent()]
       }
       
