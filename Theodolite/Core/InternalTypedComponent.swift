@@ -16,11 +16,17 @@ public protocol InternalTypedComponent {
 public extension InternalTypedComponent {
 }
 
-internal class InternalPropertyWrapper<PropType> {
+internal protocol InternalPropertyWrapperProtocol: class {
+  var currentView: UIView? {get set}
+  var mountContext: MountContext? {get set}
+}
+
+internal class InternalPropertyWrapper<PropType>: InternalPropertyWrapperProtocol {
   let props: PropType?
   let key: AnyHashable?
   
   var currentView: UIView? = nil
+  var mountContext: MountContext? = nil
   
   init(props: PropType?,
        key: AnyHashable?) {
@@ -50,8 +56,10 @@ public extension TypedComponent {
   
   internal func wrapper() -> InternalPropertyWrapper<PropType> {
     guard let wrapper: InternalPropertyWrapper<PropType> =
-      getAssociatedObject(object: self, associativeKey: &kWrapperKey) else {
-        assert(Thread.isMainThread, "Use the init(props) constructor in order to make the wrapper available off the main thread.")
+      getAssociatedObject(object: self, associativeKey: &kWrapperKey)
+      else {
+        assert(Thread.isMainThread,
+               "Use the init(props) constructor in order to make the wrapper available off the main thread.")
         let newWrapper: InternalPropertyWrapper<PropType> = InternalPropertyWrapper(props: nil, key: nil)
         setAssociatedObject(object: self,
                             value: newWrapper,
@@ -60,6 +68,13 @@ public extension TypedComponent {
     }
     return wrapper
   }
+}
+
+internal func GetWrapper(_ component: Component?) -> InternalPropertyWrapperProtocol? {
+  guard let c = component else {
+    return nil
+  }
+  return getAssociatedObject(object: c, associativeKey: &kWrapperKey)
 }
 
 var kWrapperKey: Void?

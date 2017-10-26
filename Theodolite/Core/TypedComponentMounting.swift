@@ -19,8 +19,7 @@ public extension TypedComponent {
    
    In general, you should *never* override these methods. Instead, override the componentWillMount and related methods.
    */
-  func mount(parentView: UIView, layout: Layout, position: CGPoint) {
-    self.componentWillMount()
+  func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
     if let config = self.view() {
       let map = ViewPoolMap.getViewPoolMap(view: parentView)
       let view = map
@@ -30,38 +29,20 @@ public extension TypedComponent {
                           y: position.y,
                           width: layout.size.width,
                           height: layout.size.height)
-      for childLayout in layout.children {
-        if let component = childLayout.layout.component {
-          component.mount(parentView: view,
-                          layout: childLayout.layout,
-                          position: childLayout.position)
-        }
-      }
+      
+      return MountContext(view: view, position: CGPoint(x: 0, y: 0))
+    }
+    return MountContext(view: parentView, position: position)
+  }
+  
+  func componentDidMount() {
+    if let view = wrapper().currentView {
       // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
       ViewPoolMap.resetViewPoolMap(view: view)
-    } else {
-      for childLayout in layout.children {
-        if let component = childLayout.layout.component {
-          component.mount(
-            parentView: parentView,
-            layout: childLayout.layout,
-            position: CGPoint(
-              x: childLayout.position.x + position.x,
-              y: childLayout.position.y + position.y))
-        }
-      }
     }
-    self.componentDidMount()
   }
   
   public func unmount(layout: Layout) {
-    self.componentWillUnmount()
-    for childLayout in layout.children {
-      if let component = childLayout.layout.component {
-        component.unmount(layout: childLayout.layout)
-      }
-    }
-    
     guard let config = self.view() else {
       return
     }

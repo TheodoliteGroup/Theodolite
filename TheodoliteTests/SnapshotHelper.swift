@@ -15,9 +15,10 @@ func snapshotTestComponent(_ testCase: FBSnapshotTestCase, _ size: CGSize, _ ide
   
   let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root)
   
-  scopeRoot.root.component().mount(parentView: view,
-                                   layout: layout,
-                                   position: CGPoint(x: 0, y: 0))
+  MountRootLayout(view: view,
+                  layout: layout,
+                  position: CGPoint(x: 0, y: 0),
+                  incrementalContext: IncrementalMountContext())
   
   testCase.FBSnapshotVerifyView(view, identifier: identifier)
 }

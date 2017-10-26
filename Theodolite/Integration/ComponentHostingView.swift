@@ -38,7 +38,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: Private properties
   var root: ScopeRoot?
   var lastLayout: CachedLayout?
-  var mountedLayout: Layout?
+  var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
   var stateUpdateMap: [Int32:Any?] = [:]
   var dispatched: Bool = false
   
@@ -77,15 +77,10 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: Component generation/mounting
   
   func mountLayout(layout: Layout) {
-    if let mountedLayout = self.mountedLayout {
-      mountedLayout.component?.unmount(layout: mountedLayout)
-    }
-    if let component = layout.component {
-      component.mount(parentView: self,
-                      layout: layout,
-                      position: CGPoint(x: 0, y: 0))
-    }
-    self.mountedLayout = layout
+    MountRootLayout(view: self,
+                    layout: layout,
+                    position: CGPoint(x: 0, y: 0),
+                    incrementalContext: incrementalMountContext)
   }
   
   func markNeedsReset() {

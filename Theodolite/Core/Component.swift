@@ -13,7 +13,7 @@ public protocol Component: class {
   
   /** Core methods */
   func render() -> [Component?]
-  func mount(parentView: UIView, layout: Layout, position: CGPoint)
+  func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext
   func unmount(layout: Layout)
   func size(constraint: CGSize) -> CGSize
   func layout(constraint: CGSize, tree: ComponentTree) -> Layout
@@ -39,27 +39,12 @@ extension Component {
     return []
   }
   
-  public func mount(parentView: UIView, layout: Layout, position: CGPoint) {
-    self.componentWillMount()
-    for childLayout in layout.children {
-      if let component = childLayout.layout.component {
-        component.mount(parentView: parentView,
-                        layout: childLayout.layout,
-                        position: CGPoint(x: childLayout.position.x + position.x,
-                                          y: childLayout.position.y + position.y))
-      }
-    }
-    self.componentDidMount()
+  public func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
+    return MountContext(view: parentView,
+                        position: position)
   }
   
-  public func unmount(layout: Layout) {
-    self.componentWillUnmount()
-    for childLayout in layout.children {
-      if let component = childLayout.layout.component {
-        component.unmount(layout: childLayout.layout)
-      }
-    }
-  }
+  public func unmount(layout: Layout) {}
   
   public func size(constraint: CGSize) -> CGSize {
     return CGSize(width: 0, height: 0)
