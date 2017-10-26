@@ -20,7 +20,7 @@
 		B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEB91F8D6C8D001EE264 /* ActionTests.swift */; };
 		B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBB1F8D6DD2001EE264 /* Action.swift */; };
 		B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */; };
-		B136BEC01F8EF7CC001EE264 /* InternalTypedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */; };
+		B136BEC01F8EF7CC001EE264 /* InternalTypedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */; settings = {COMPILER_FLAGS = "-Wnodeprecated-declarations"; }; };
 		B136BEC21F8EF96B001EE264 /* ScopeRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */; };
 		B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC31F8EF989001EE264 /* ScopeHandle.swift */; };
 		B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BEC51F8EFA04001EE264 /* ViewPoolTests.swift */; };
@@ -30,6 +30,10 @@
 		B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */; };
 		B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */; };
 		B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */; };
+		B137B9E51FA13E86009BE1E3 /* IncrementalMountComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E41FA13E86009BE1E3 /* IncrementalMountComponent.swift */; };
+		B137B9E71FA16D5C009BE1E3 /* TypedComponentMounting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */; };
+		B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */; };
+		B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */; };
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
 		B1658B5D1F9B6AA3000EC8CC /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
@@ -124,6 +128,10 @@
 		B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConfigurationTests.swift; sourceTree = "<group>"; };
 		B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAttributeTests.swift; sourceTree = "<group>"; };
 		B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPoolMapTests.swift; sourceTree = "<group>"; };
+		B137B9E41FA13E86009BE1E3 /* IncrementalMountComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalMountComponent.swift; sourceTree = "<group>"; };
+		B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentMounting.swift; sourceTree = "<group>"; };
+		B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentState.swift; sourceTree = "<group>"; };
+		B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentProps.swift; sourceTree = "<group>"; };
 		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
@@ -226,6 +234,9 @@
 				B136BEC31F8EF989001EE264 /* ScopeHandle.swift */,
 				B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */,
 				B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */,
+				B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */,
+				B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */,
+				B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -285,6 +296,7 @@
 			children = (
 				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
 				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
+				B137B9E41FA13E86009BE1E3 /* IncrementalMountComponent.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -474,8 +486,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */,
+				B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */,
 				B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */,
+				B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */,
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
+				B137B9E71FA16D5C009BE1E3 /* TypedComponentMounting.swift in Sources */,
 				B136BEB71F8D69E8001EE264 /* ViewConfiguration.swift in Sources */,
 				B136BEC21F8EF96B001EE264 /* ScopeRoot.swift in Sources */,
 				B136BEC01F8EF7CC001EE264 /* InternalTypedComponent.swift in Sources */,
@@ -491,6 +506,7 @@
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
 				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
+				B137B9E51FA13E86009BE1E3 /* IncrementalMountComponent.swift in Sources */,
 				B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */,
 				B1FC9C481FA023E2006249FC /* LayoutDebug.swift in Sources */,
 				B1FC9C351F9E1328006249FC /* IteratorWrapper.swift in Sources */,
