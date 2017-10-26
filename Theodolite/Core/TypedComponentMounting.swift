@@ -30,9 +30,13 @@ public extension TypedComponent {
                           width: layout.size.width,
                           height: layout.size.height)
       
-      return MountContext(view: view, position: CGPoint(x: 0, y: 0))
+      return MountContext(view: view,
+                          position: CGPoint(x: 0, y: 0),
+                          shouldMountChildren: true)
     }
-    return MountContext(view: parentView, position: position)
+    return MountContext(view: parentView,
+                        position: position,
+                        shouldMountChildren: true)
   }
   
   func componentDidMount() {

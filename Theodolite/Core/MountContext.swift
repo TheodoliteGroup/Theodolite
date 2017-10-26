@@ -11,7 +11,13 @@ import Foundation
 public struct MountContext {
   /** The view that children should receive as their parent. */
   let view: UIView
+  /** The starting position for all children within the view. */
   let position: CGPoint
+  /**
+   Whether the recursive mount algorithm should mount the children. If you return false, you will have to call
+   MountRootLayout yourself.
+   */
+  let shouldMountChildren: Bool
 }
 
 public class IncrementalMountContext {
@@ -106,10 +112,19 @@ internal func MountLayout(view: UIView,
     GetWrapper(component)?.mountContext = context
     needsDidMount = true
   }
+  defer {
+    if needsDidMount {
+      component.componentDidMount()
+    }
+  }
   
   incrementalContext.markMounted(layout: layout)
   
   guard let context: MountContext = GetWrapper(layout.component)?.mountContext else {
+    return
+  }
+  
+  if !context.shouldMountChildren {
     return
   }
   
@@ -130,9 +145,5 @@ internal func MountLayout(view: UIView,
     } else if incrementalContext.isMounted(layout: childLayout.layout) {
       UnmountLayout(layout: childLayout.layout, incrementalContext: incrementalContext)
     }
-  }
-  
-  if needsDidMount {
-    component.componentDidMount()
   }
 }

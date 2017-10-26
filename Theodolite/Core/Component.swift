@@ -41,7 +41,8 @@ extension Component {
   
   public func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
     return MountContext(view: parentView,
-                        position: position)
+                        position: position,
+                        shouldMountChildren:true)
   }
   
   public func unmount(layout: Layout) {}
