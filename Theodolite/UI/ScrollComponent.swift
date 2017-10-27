@@ -26,6 +26,10 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   
   public init() {}
   
+  public func render() -> [Component] {
+    return [self.props().0]
+  }
+  
   public func view() -> ViewConfiguration? {
     return ViewConfiguration(view: UIScrollView.self,
                              attributes: self.props().attributes)
@@ -47,7 +51,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
         position: CGPoint(x: 0, y: 0))
     }
     
-    let contentSize = children.reduce(
+    let contentRect = children.reduce(
       CGRect(x: 0, y: 0, width: 0, height: 0),
       { (unionRect, layoutChild) -> CGRect in
         return unionRect.union(CGRect(origin: layoutChild.position,
@@ -57,10 +61,10 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     return Layout(
       component: self,
       size: direction == UICollectionViewScrollDirection.vertical
-        ? CGSize(width: contentSize.width, height: constraint.height)
-        : CGSize(width: constraint.width, height: contentSize.height),
+        ? CGSize(width: contentRect.size.width, height: constraint.height)
+        : CGSize(width: constraint.width, height: contentRect.size.height),
       children: children,
-      extra: contentSize)
+      extra: contentRect.size)
   }
   
   public func mount(parentView: UIView,
@@ -81,6 +85,8 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     
     // Now we mount our children
     incrementalMountContext.markMounted(layout: layout)
+    let componentContext = context()
+    componentContext.untypedMountInfo.mountContext = mountContext
     mountChildren()
     
     return MountContext(view: mountContext.view,

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12916031FA2A36D006D269B /* ScrollComponent.swift */; };
+		B12B7DE61FA34F7C004DC3F4 /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
 		B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136BE561F8D5741001EE264 /* TheodoliteTests.swift */; };
 		B136BE591F8D5741001EE264 /* Theodolite.h in Headers */ = {isa = PBXBuildFile; fileRef = B136BE4B1F8D5741001EE264 /* Theodolite.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,8 +36,8 @@
 		B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */; };
 		B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */; };
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
-		B1658B5D1F9B6AA3000EC8CC /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
+		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B511F81FA1793100B854F0 /* MountContext.swift */; };
@@ -136,6 +137,7 @@
 		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
+		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1B511F81FA1793100B854F0 /* MountContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountContext.swift; sourceTree = "<group>"; };
@@ -154,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1658B5D1F9B6AA3000EC8CC /* Flexbox.framework in Frameworks */,
+				B12B7DE61FA34F7C004DC3F4 /* Flexbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +172,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B12B7DE31FA34F7C004DC3F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B136BE3E1F8D5741001EE264 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +186,7 @@
 				B136BE551F8D5741001EE264 /* TheodoliteTests */,
 				B19BBD1A1F9061C200116386 /* Vendor */,
 				B136BE491F8D5741001EE264 /* Products */,
+				B12B7DE31FA34F7C004DC3F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,6 +226,7 @@
 				B136BECD1F8EFD98001EE264 /* ViewConfigurationTests.swift */,
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
 				B19BBD2B1F90620E00116386 /* ViewMountTests.swift */,
+				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
 				B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */,
 				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
 				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
@@ -531,6 +542,7 @@
 				B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */,
 				B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */,
 				B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */,
+				B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */,
 				B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

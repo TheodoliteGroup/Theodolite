@@ -129,6 +129,7 @@ internal func MountLayout(view: UIView,
   incrementalContext.markMounted(layout: layout)
   
   guard let context: MountContext = GetContext(layout.component)?.untypedMountInfo.mountContext else {
+    assertionFailure("Expected a mount context")
     return
   }
   
