@@ -44,8 +44,8 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
           .layout(constraint:
             direction == UICollectionViewScrollDirection.vertical
               ? CGSize(width: constraint.width,
-                       height: CGFloat.greatestFiniteMagnitude)
-              : CGSize(width: CGFloat.greatestFiniteMagnitude,
+                       height: nan("unconstrained"))
+              : CGSize(width: nan("unconstrained"),
                        height: constraint.height),
                   tree: childTree),
         position: CGPoint(x: 0, y: 0))
@@ -86,6 +86,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     // Now we mount our children
     incrementalMountContext.markMounted(layout: layout)
     let componentContext = context()
+    // todo: this is terrible, need to fix it
     componentContext.untypedMountInfo.mountContext = mountContext
     mountChildren()
     

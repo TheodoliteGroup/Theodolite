@@ -5,11 +5,18 @@ import Theodolite
 
 class MyViewController : UIViewController {
   override func loadView() {
+    
     let hostingView = ComponentHostingView { () -> Component in
       return ScrollComponent {
-        (LabelComponent {
-          ("Hello World",
-           LabelComponent.Options())
+        (FlexboxComponent {
+          (options: FlexOptions(),
+           children:[
+            FlexChild(
+              LabelComponent {
+                ("Hello World",
+                 LabelComponent.Options())
+            })
+            ])
           },
          direction: .vertical,
          attributes: [])
@@ -22,3 +29,4 @@ class MyViewController : UIViewController {
 }
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()
+

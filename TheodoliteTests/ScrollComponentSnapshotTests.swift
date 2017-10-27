@@ -28,4 +28,23 @@ class ScrollComponentSnapshotTests: FBSnapshotTestCase {
       }
     }
   }
+  
+  func test_flexbox_insideScrollComponent() {
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
+      return ScrollComponent {
+        (FlexboxComponent {
+          (options: FlexOptions(),
+           children:[
+            FlexChild(
+              LabelComponent {
+                ("Hello World",
+                 LabelComponent.Options())
+            })
+            ])
+          },
+         direction: .vertical,
+         attributes: [])
+      }
+    }
+  }
 }
