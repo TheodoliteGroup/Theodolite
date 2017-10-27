@@ -12,7 +12,7 @@ public protocol ScrollListener: AnyObject {
   func scrollViewDidScroll(scrollView: UIScrollView)
 }
 
-public final class ScrollComponent: TypedComponent {
+public final class ScrollComponent: TypedComponent, ScrollListener {
   public typealias PropType = (
     Component,
     direction: UICollectionViewScrollDirection,
@@ -21,6 +21,8 @@ public final class ScrollComponent: TypedComponent {
   public typealias ViewType = UIScrollView
   
   private var scrollDelegate: InternalScrollDelegate? = nil
+  private var mountedArguments: (parentView: UIView, layout: Layout, position: CGPoint)? = nil
+  private var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
   
   public init() {}
   
@@ -64,6 +66,8 @@ public final class ScrollComponent: TypedComponent {
   public func mount(parentView: UIView,
                     layout: Layout,
                     position: CGPoint) -> MountContext {
+    mountedArguments = (parentView: parentView, layout: layout, position: position)
+    
     let mountContext = StandardMountLayout(parentView: parentView,
                                            layout: layout,
                                            position: position,
@@ -75,12 +79,41 @@ public final class ScrollComponent: TypedComponent {
     scrollView.delegate = scrollDelegate
     scrollView.contentSize = layout.extra as! CGSize
     
-    return mountContext
+    // Now we mount our children
+    incrementalMountContext.markMounted(layout: layout)
+    mountChildren()
+    
+    return MountContext(view: mountContext.view,
+                        position: mountContext.position,
+                        shouldMountChildren: false)
   }
   
   public func componentWillUnmount() {
     let scrollView = context().mountInfo.currentView
     scrollView?.delegate = nil
+    
+    guard let mountedArguments = mountedArguments else {
+      return
+    }
+    UnmountLayout(layout: mountedArguments.layout,
+                  incrementalContext: incrementalMountContext)
+  }
+  
+  private func mountChildren() {
+    guard let mountedArguments = mountedArguments else {
+      return
+    }
+    MountRootLayout(view: mountedArguments.parentView,
+                    layout: mountedArguments.layout,
+                    position: mountedArguments.position,
+                    incrementalContext: incrementalMountContext,
+                    mountVisibleOnly: true)
+  }
+  
+  // MARK: ScrollListener
+  
+  public func scrollViewDidScroll(scrollView: UIScrollView) {
+    mountChildren()
   }
 }
 
