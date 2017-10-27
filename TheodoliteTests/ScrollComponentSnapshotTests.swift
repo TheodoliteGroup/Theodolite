@@ -13,7 +13,7 @@ import Flexbox
 class ScrollComponentSnapshotTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = true
+    recordMode = false
   }
   
   func test_basicScrollComponent() {
