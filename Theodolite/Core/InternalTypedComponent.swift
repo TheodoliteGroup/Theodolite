@@ -13,37 +13,13 @@ public protocol InternalTypedComponent {
   func initialUntypedState() -> Any?
 }
 
-internal protocol ComponentContextProtocol: class {
-  var mountInfo: MountInfo {get set}
-}
-
-internal struct MountInfo {
-  var currentView: UIView? = nil
-  var mountContext: MountContext? = nil
-  var mountedLayout: Layout? = nil
-}
-
-internal class ComponentContext<PropType>: ComponentContextProtocol {
-  let props: PropType?
-  let key: AnyHashable?
-  
-  var mountInfo: MountInfo
-  
-  init(props: PropType?,
-       key: AnyHashable?) {
-    self.props = props
-    self.key = key
-    self.mountInfo = MountInfo()
-  }
-}
-
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 public extension TypedComponent {
   public init(key: AnyHashable? = nil,
               _ props: () -> PropType) {
     self.init()
     setAssociatedObject(object: self,
-                        value: ComponentContext(props: props(), key: key),
+                        value: ComponentContext<PropType, ViewType>(props: props(), key: key),
                         associativeKey: &kWrapperKey)
   }
   
@@ -56,13 +32,13 @@ public extension TypedComponent {
     return initialState()
   }
   
-  internal func context() -> ComponentContext<PropType> {
-    guard let context: ComponentContext<PropType> =
+  internal func context() -> ComponentContext<PropType, ViewType> {
+    guard let context: ComponentContext<PropType, ViewType> =
       getAssociatedObject(object: self, associativeKey: &kWrapperKey)
       else {
         assert(Thread.isMainThread,
                "Use the init(props) constructor in order to make component context available off the main thread.")
-        let newContext: ComponentContext<PropType> = ComponentContext(props: nil, key: nil)
+        let newContext: ComponentContext<PropType, ViewType> = ComponentContext(props: nil, key: nil)
         setAssociatedObject(object: self,
                             value: newContext,
                             associativeKey: &kWrapperKey)
@@ -72,11 +48,49 @@ public extension TypedComponent {
   }
 }
 
-internal func GetContext(_ component: Component?) -> ComponentContextProtocol? {
-  guard let c = component else {
-    return nil
-  }
-  return getAssociatedObject(object: c, associativeKey: &kWrapperKey)
+var kWrapperKey: Void?
+
+internal func GetContext(_ component: Component) -> ComponentContextProtocol? {
+  return getAssociatedObject(object: component, associativeKey: &kWrapperKey)
 }
 
-var kWrapperKey: Void?
+internal protocol MountInfoProtocol {
+  var mountContext: MountContext? {get set}
+  var mountedLayout: Layout? {get set}
+}
+
+internal struct MountInfo<ViewType: UIView>: MountInfoProtocol {
+  var currentView: ViewType? = nil
+  var mountContext: MountContext? = nil
+  var mountedLayout: Layout? = nil
+}
+
+/** To allow use of the component context's mount info outside of Components where the typealiases are defined. */
+internal protocol ComponentContextProtocol {
+  var untypedMountInfo: MountInfoProtocol {get set}
+}
+
+internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextProtocol {
+  var untypedMountInfo: MountInfoProtocol {
+    get {
+      return self.mountInfo
+    }
+    set(newValue) {
+      self.mountInfo = newValue as! MountInfo<ViewType>
+    }
+  }
+  
+  let props: PropType?
+  let key: AnyHashable?
+  
+  var mountInfo: MountInfo<ViewType>
+  
+  
+  
+  init(props: PropType?,
+       key: AnyHashable?) {
+    self.props = props
+    self.key = key
+    self.mountInfo = MountInfo()
+  }
+}

@@ -54,6 +54,7 @@ import Foundation
 public protocol TypedComponent: Component, InternalTypedComponent {
   associatedtype PropType
   associatedtype StateType = Void?
+  associatedtype ViewType: UIView = UIView
   
   func props() -> PropType
   func state() -> StateType?

@@ -53,11 +53,11 @@ public extension TypedComponent {
   }
 }
 
-internal func StandardMountLayout<PropType>(parentView: UIView,
+internal func StandardMountLayout<PropType, ViewType>(parentView: UIView,
                                             layout: Layout,
                                             position: CGPoint,
                                             config: ViewConfiguration?,
-                                            componentContext: ComponentContext<PropType>) -> MountContext {
+                                            componentContext: ComponentContext<PropType, ViewType>) -> MountContext {
   guard let config = config else {
     return MountContext(view: parentView,
                         position: position,
@@ -67,7 +67,7 @@ internal func StandardMountLayout<PropType>(parentView: UIView,
   let map = ViewPoolMap.getViewPoolMap(view: parentView)
   let view = map
     .checkoutView(parent: parentView, config: config)!
-  componentContext.mountInfo.currentView = view
+  componentContext.mountInfo.currentView = view as? ViewType
   view.frame = CGRect(x: position.x,
                       y: position.y,
                       width: layout.size.width,

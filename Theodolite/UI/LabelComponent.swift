@@ -56,6 +56,7 @@ public final class LabelComponent: TypedComponent {
     String,
     options: Options
   )
+  public typealias ViewType = UILabel
   
   public init() {};
   
