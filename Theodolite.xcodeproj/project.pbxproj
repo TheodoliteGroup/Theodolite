@@ -313,10 +313,10 @@
 		B1C14FD21F9953F0005A8CBE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
-				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
-				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
 				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
+				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
+				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
+				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
