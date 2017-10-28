@@ -30,4 +30,8 @@ final class ViewComponent: TypedComponent {
   public func view() -> ViewConfiguration? {
     return self.props()
   }
+  
+  public func size(constraint: CGSize) -> CGSize {
+    return constraint
+  }
 }

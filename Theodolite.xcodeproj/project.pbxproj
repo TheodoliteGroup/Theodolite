@@ -38,6 +38,8 @@
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
 		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
+		B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262251FA4D9F400D41A8A /* InsetComponent.swift */; };
+		B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B511F81FA1793100B854F0 /* MountContext.swift */; };
@@ -138,6 +140,8 @@
 		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
 		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
+		B18262251FA4D9F400D41A8A /* InsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponent.swift; sourceTree = "<group>"; };
+		B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1B511F81FA1793100B854F0 /* MountContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountContext.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
 				B19BBD2B1F90620E00116386 /* ViewMountTests.swift */,
 				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
+				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
 				B136BED11F8EFDAF001EE264 /* ViewPoolMapTests.swift */,
 				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
 				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
@@ -311,6 +316,7 @@
 				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
 				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
 				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
+				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -521,6 +527,7 @@
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
 				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
+				B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */,
 				B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */,
 				B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */,
 				B1FC9C481FA023E2006249FC /* LayoutDebug.swift in Sources */,
@@ -534,6 +541,7 @@
 			files = (
 				B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */,
 				B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */,
+				B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */,
 				B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */,
 				B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */,
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
