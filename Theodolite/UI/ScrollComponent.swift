@@ -84,7 +84,6 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     scrollView.contentSize = layout.extra as! CGSize
     
     // Now we mount our children
-    incrementalMountContext.markMounted(layout: layout)
     let componentContext = context()
     // todo: this is terrible, need to fix it
     componentContext.untypedMountInfo.mountContext = mountContext
@@ -110,9 +109,9 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     guard let mountedArguments = mountedArguments else {
       return
     }
-    MountRootLayout(view: mountedArguments.parentView,
-                    layout: mountedArguments.layout,
-                    position: mountedArguments.position,
+    MountRootLayout(view: context().mountInfo.mountContext!.view,
+                    layout: mountedArguments.layout.children[0].layout,
+                    position: context().mountInfo.mountContext!.position,
                     incrementalContext: incrementalMountContext,
                     mountVisibleOnly: true)
   }
@@ -144,8 +143,6 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     if let listener = layout.component as? ScrollListener {
       closure(listener)
     }
-    layout.children.forEach { (layoutChild: LayoutChild) in
-      announce(layout: layoutChild.layout, closure: closure)
-    }
+    // TODO: see if we should traverse
   }
 }
