@@ -26,8 +26,13 @@ public final class InsetComponent: TypedComponent {
     let childLayout = childTree
       .component()
       .layout(constraint:
-        CGSize(width: max(constraint.width - insets.left - insets.right, 0),
-               height: max(constraint.height - insets.top - insets.bottom, 0)),
+        CGSize(
+          width: constraint.width.isNaN
+            ? CGFloat.nan
+            : max(constraint.width - insets.left - insets.right, 0),
+          height: constraint.height.isNaN
+            ? CGFloat.nan
+            : max(constraint.height - insets.top - insets.bottom, 0)),
               tree: childTree)
     return Layout(
       component: self,
