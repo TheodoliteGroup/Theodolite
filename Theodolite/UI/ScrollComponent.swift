@@ -8,10 +8,6 @@
 
 import UIKit
 
-public protocol ScrollListener: AnyObject {
-  func scrollViewDidScroll(scrollView: UIScrollView)
-}
-
 public final class ScrollComponent: TypedComponent, ScrollListener {
   public typealias PropType = (
     Component,
@@ -121,6 +117,10 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   public func scrollViewDidScroll(scrollView: UIScrollView) {
     mountChildren()
   }
+}
+
+private protocol ScrollListener: AnyObject {
+  func scrollViewDidScroll(scrollView: UIScrollView)
 }
 
 @objc private class InternalScrollDelegate: NSObject, UIScrollViewDelegate {
