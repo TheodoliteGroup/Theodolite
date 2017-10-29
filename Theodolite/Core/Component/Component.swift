@@ -15,7 +15,6 @@ public protocol Component: class {
   func render() -> [Component]
   func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext
   func unmount(layout: Layout)
-  func size(constraint: CGSize) -> CGSize
   func layout(constraint: CGSize, tree: ComponentTree) -> Layout
   
   /** Lifecycle methods */
@@ -47,23 +46,26 @@ extension Component {
   
   public func unmount(layout: Layout) {}
   
-  public func size(constraint: CGSize) -> CGSize {
-    return CGSize(width: 0, height: 0)
-  }
-  
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+    let layoutChildren = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
+      return LayoutChild(
+        layout:childTree
+          .component()
+          .layout(constraint: constraint,
+                  tree: childTree),
+        position: CGPoint(x: 0, y: 0))
+    }
+    let contentRect = layoutChildren.reduce(
+      CGRect(x: 0, y: 0, width: 0, height: 0),
+      { (unionRect, layoutChild) -> CGRect in
+        return unionRect.union(CGRect(origin: layoutChild.position,
+                                      size: layoutChild.layout.size))
+    })
     return Layout(
       component: self,
-      size: self.size(constraint: constraint),
-      children:
-      tree.children().map { (childTree: ComponentTree) -> LayoutChild in
-        return LayoutChild(
-          layout:childTree
-            .component()
-            .layout(constraint: constraint,
-                    tree: childTree),
-          position: CGPoint(x: 0, y: 0))
-    })
+      size: contentRect.size,
+      children: layoutChildren
+      )
   }
   
   public func componentDidFinalize(layout: Layout) {}

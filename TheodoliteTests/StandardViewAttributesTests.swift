@@ -21,8 +21,10 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
       size: CGSize
     )
     
-    public func size(constraint: CGSize) -> CGSize {
-      return self.props().size
+    public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+      return Layout(component: self,
+                    size: self.props().size,
+                    children: [])
     }
     
     public func view() -> ViewConfiguration? {
@@ -61,8 +63,10 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     final class ChildComponent: TypedComponent {
       typealias PropType = Void?
       
-      func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 100, height: 50)
+      func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+        return Layout(component: self,
+                      size: CGSize(width: 100, height: 50),
+                      children: [])
       }
       
       func view() -> ViewConfiguration? {
@@ -81,8 +85,18 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
         return [ChildComponent()]
       }
       
-      func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 50, height: 60)
+      func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+        return Layout(component: self,
+                      size: CGSize(width: 50, height: 60),
+                      children: [
+                        LayoutChild(
+                          layout: tree
+                            .children()[0]
+                            .component()
+                            .layout(constraint: constraint,
+                                    tree: tree.children()[0]),
+                          position: CGPoint(x: 0, y: 0))
+          ])
       }
       
       func view() -> ViewConfiguration? {

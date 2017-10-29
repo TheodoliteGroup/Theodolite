@@ -10,6 +10,71 @@ import UIKit
 
 import Theodolite
 
+struct Item {
+  let string: String
+}
+
+final class TestItemHeader: TypedComponent {
+  typealias PropType = String
+  
+  func render() -> [Component] {
+    return [
+      LabelComponent {
+        (self.props(),
+         LabelComponent.Options(textColor: UIColor.yellow))
+      }
+    ]
+  }
+}
+
+final class TestItemContent: TypedComponent {
+  typealias PropType = String
+  
+  func render() -> [Component] {
+    return [
+      LabelComponent {
+        (self.props(),
+         LabelComponent.Options(textColor: UIColor.blue))
+      }
+    ]
+  }
+}
+
+final class TestItemFooter: TypedComponent {
+  typealias PropType = String
+  
+  func render() -> [Component] {
+    return [
+      InsetComponent {(
+        insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0),
+        component:
+        LabelComponent {
+          (self.props(),
+           LabelComponent.Options(textColor: UIColor.red))
+      })}
+    ]
+  }
+}
+
+final class TestItem: TypedComponent {
+  typealias PropType = String
+  
+  func render() -> [Component] {
+    return [
+      FlexboxComponent {
+        (options: FlexOptions(
+          flexDirection: .column
+          ),
+         children:[
+            FlexChild(TestItemHeader { self.props() }),
+            FlexChild(TestItemContent { self.props() }),
+            FlexChild(TestItemFooter { self.props() })
+          ]
+          )}
+    ]
+  }
+}
+
 final class TestComponent: TypedComponent {
   typealias PropType = Void?
   
@@ -23,13 +88,8 @@ final class TestComponent: TypedComponent {
            children:
             Array(repeating: "Hello World", count: 1000)
               .map {(str: String) -> FlexChild in
-                return FlexChild(
-                  LabelComponent {
-                    (str,
-                     LabelComponent.Options())
-                })
-          })
-          },
+                return FlexChild(TestItem { str })
+          })},
          direction: .vertical,
          attributes: [])
       }

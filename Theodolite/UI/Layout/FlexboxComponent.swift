@@ -190,7 +190,8 @@ final public class FlexboxComponent: TypedComponent {
     }
     
     let layout = Layout(component: self,
-                        size: nodeLayout.frame.size, children: childLayouts)
+                        size: nodeLayout.frame.size,
+                        children: childLayouts)
     /** print("\(layout)") */
     return layout
   }

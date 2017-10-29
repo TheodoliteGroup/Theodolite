@@ -44,7 +44,7 @@ class ActionTests: XCTestCase {
     let testObj = TestObject(action: {
       calledFunction = true
     })
-    let handler = Handler(target: testObj, handler: TestObject.actionMethod)
+    let handler = Handler(testObj, TestObject.actionMethod)
     handler.send()
     XCTAssert(calledFunction)
   }
@@ -55,7 +55,7 @@ class ActionTests: XCTestCase {
       obj = str
     })
     let str = "hello"
-    let handler = Handler(target: testObj, handler: TestStringObject.actionMethod)
+    let handler = Handler(testObj, TestStringObject.actionMethod)
     handler.send(str)
     XCTAssert(obj == str)
   }

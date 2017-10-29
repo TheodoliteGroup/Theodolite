@@ -31,7 +31,9 @@ final class ViewComponent: TypedComponent {
     return self.props()
   }
   
-  public func size(constraint: CGSize) -> CGSize {
-    return constraint
+  func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+    return Layout(component: self,
+                  size: constraint,
+                  children: [])
   }
 }

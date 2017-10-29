@@ -114,12 +114,14 @@ public final class LabelComponent: TypedComponent {
       attributes: attributes)
   }
   
-  public func size(constraint: CGSize) -> CGSize {
+  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
     let size = self.attributedString().boundingRect(
       with: constraint,
       options: .usesLineFragmentOrigin,
       context: nil)
-    return CGSize(width: ceil(size.width),
-                  height: ceil(size.height))
+    return Layout(component: self,
+                  size: CGSize(width: ceil(size.width),
+                               height: ceil(size.height)),
+                  children: [])
   }
 }

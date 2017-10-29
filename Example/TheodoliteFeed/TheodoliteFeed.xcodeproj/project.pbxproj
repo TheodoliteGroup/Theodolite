@@ -14,6 +14,10 @@
 		B182626B1FA5685300D41A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B18262691FA5685300D41A8A /* LaunchScreen.storyboard */; };
 		B18262891FA56A9600D41A8A /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18262851FA56A8B00D41A8A /* Theodolite.framework */; };
 		B182628A1FA56A9A00D41A8A /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; };
+		B18262991FA57D7300D41A8A /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18262851FA56A8B00D41A8A /* Theodolite.framework */; };
+		B182629A1FA57D7300D41A8A /* Theodolite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B18262851FA56A8B00D41A8A /* Theodolite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; };
+		B182629F1FA57D7D00D41A8A /* Flexbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +35,29 @@
 			remoteGlobalIDString = B136BE511F8D5741001EE264;
 			remoteInfo = TheodoliteTests;
 		};
+		B182629B1FA57D7300D41A8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B182627D1FA56A8B00D41A8A /* Theodolite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B136BE471F8D5741001EE264;
+			remoteInfo = Theodolite;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B182629D1FA57D7300D41A8A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B182629A1FA57D7300D41A8A /* Theodolite.framework in Embed Frameworks */,
+				B182629F1FA57D7D00D41A8A /* Flexbox.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B182625D1FA5685300D41A8A /* TheodoliteFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheodoliteFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18262991FA57D7300D41A8A /* Theodolite.framework in Frameworks */,
+				B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */,
 				B182628A1FA56A9A00D41A8A /* Flexbox.framework in Frameworks */,
 				B18262891FA56A9600D41A8A /* Theodolite.framework in Frameworks */,
 			);
@@ -116,10 +144,12 @@
 				B18262591FA5685300D41A8A /* Sources */,
 				B182625A1FA5685300D41A8A /* Frameworks */,
 				B182625B1FA5685300D41A8A /* Resources */,
+				B182629D1FA57D7300D41A8A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B182629C1FA57D7300D41A8A /* PBXTargetDependency */,
 			);
 			name = TheodoliteFeed;
 			productName = TheodoliteFeed;
@@ -207,6 +237,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B182629C1FA57D7300D41A8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Theodolite;
+			targetProxy = B182629B1FA57D7300D41A8A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B18262641FA5685300D41A8A /* Main.storyboard */ = {
@@ -338,6 +376,7 @@
 		B18262701FA5685300D41A8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SXXM3YCVSK;
@@ -353,6 +392,7 @@
 		B18262711FA5685300D41A8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SXXM3YCVSK;

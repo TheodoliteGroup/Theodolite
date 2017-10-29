@@ -24,8 +24,10 @@ class ViewMountTests: FBSnapshotTestCase {
         return self.props()
       }
       
-      func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 50, height: 50)
+      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+        return Layout(component: self,
+                      size: CGSize(width: 50, height: 50),
+                      children: [])
       }
     }
     
@@ -58,16 +60,30 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 50, height: 50)
+      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+        return Theodolite.Layout(
+          component: self,
+          size: CGSize(width: 50, height: 50),
+          children: [
+            LayoutChild(
+              layout:
+              tree
+                .children()[0]
+                .component()
+                .layout(constraint: constraint,
+                        tree: tree.children()[0]),
+              position: CGPoint(x: 0, y: 0))
+          ])
       }
     }
     
     final class TestChildComponent: TypedComponent {
       typealias PropType = () -> ()
       
-      func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 25, height: 25)
+      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+        return Layout(component: self,
+                      size: CGSize(width: 25, height: 25),
+                      children: [])
       }
       
       func view() -> ViewConfiguration? {
@@ -121,8 +137,10 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestChildComponent: TypedComponent {
       typealias PropType = () -> ()
       
-      func size(constraint: CGSize) -> CGSize {
-        return CGSize(width: 25, height: 25)
+      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+        return Layout(component: self,
+                      size: CGSize(width: 25, height: 25),
+                      children: [])
       }
       
       func view() -> ViewConfiguration? {
@@ -161,13 +179,15 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func size(constraint: CGSize) -> CGSize {
+      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
         let str = self.props() as NSString
         let size = str.boundingRect(with: constraint,
                                     options: NSStringDrawingOptions(),
                                     attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12)],
                                     context: nil).size
-        return CGSize(width: ceil(size.width), height: ceil(size.height))
+        return Layout(component: self,
+                      size: CGSize(width: ceil(size.width), height: ceil(size.height)),
+                      children: [])
       }
     }
     
