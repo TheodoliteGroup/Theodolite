@@ -40,6 +40,7 @@
 		B1574DDC1FA6842100E91D09 /* ComponentMounting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DDB1FA6842100E91D09 /* ComponentMounting.swift */; };
 		B1574DDE1FA6848300E91D09 /* ComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DDD1FA6848300E91D09 /* ComponentRender.swift */; };
 		B1574DE01FA684BA00E91D09 /* ComponentInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DDF1FA684BA00E91D09 /* ComponentInternal.swift */; };
+		B1574DE21FA6852600E91D09 /* ComponentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DE11FA6852600E91D09 /* ComponentContext.swift */; };
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
 		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
 		B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262251FA4D9F400D41A8A /* InsetComponent.swift */; };
@@ -147,6 +148,7 @@
 		B1574DDB1FA6842100E91D09 /* ComponentMounting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentMounting.swift; sourceTree = "<group>"; };
 		B1574DDD1FA6848300E91D09 /* ComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentRender.swift; sourceTree = "<group>"; };
 		B1574DDF1FA684BA00E91D09 /* ComponentInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentInternal.swift; sourceTree = "<group>"; };
+		B1574DE11FA6852600E91D09 /* ComponentContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContext.swift; sourceTree = "<group>"; };
 		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
 		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */,
 				B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */,
 				B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */,
+				B1574DE11FA6852600E91D09 /* ComponentContext.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
 				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
+				B1574DE21FA6852600E91D09 /* ComponentContext.swift in Sources */,
 				B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */,
 				B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */,
 				B1574DDC1FA6842100E91D09 /* ComponentMounting.swift in Sources */,
