@@ -76,9 +76,20 @@ internal struct MountInfo<ViewType: UIView>: MountInfoProtocol {
   var mountedLayout: Layout? = nil
 }
 
+internal class LayoutInfo {
+  weak var layout: Layout?
+  let constraint: CGSize
+  
+  init(layout: Layout, constraint: CGSize) {
+    self.layout = layout
+    self.constraint = constraint
+  }
+}
+
 /** To allow use of the component context's mount info outside of Components where the typealiases are defined. */
 internal protocol ComponentContextProtocol {
   var untypedMountInfo: MountInfoProtocol {get set}
+  var layoutInfo: Atomic<LayoutInfo?> {get}
 }
 
 internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextProtocol {
@@ -95,13 +106,13 @@ internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextPro
   let key: AnyHashable?
   
   var mountInfo: MountInfo<ViewType>
-  
-  
+  var layoutInfo: Atomic<LayoutInfo?>
   
   init(props: PropType?,
        key: AnyHashable?) {
     self.props = props
     self.key = key
     self.mountInfo = MountInfo()
+    self.layoutInfo = Atomic(nil)
   }
 }

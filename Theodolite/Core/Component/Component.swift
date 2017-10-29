@@ -49,6 +49,14 @@ extension Component {
   public func unmount(layout: Layout) {}
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+    let componentContext = GetContext(self)
+    if let componentContext = componentContext {
+      if let previousLayoutInfo = componentContext.layoutInfo.get() {
+        if constraint == previousLayoutInfo.constraint, let previousLayout = previousLayoutInfo.layout {
+          return previousLayout
+        }
+      }
+    }
     let layoutChildren = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
       return LayoutChild(
         layout:childTree
@@ -63,11 +71,14 @@ extension Component {
         return unionRect.union(CGRect(origin: layoutChild.position,
                                       size: layoutChild.layout.size))
     })
-    return Layout(
+    let layout = Layout(
       component: self,
       size: contentRect.size,
-      children: layoutChildren
-      )
+      children: layoutChildren)
+    if let componentContext = componentContext {
+      componentContext.layoutInfo.update({ (_) in LayoutInfo(layout: layout, constraint: constraint) })
+    }
+    return layout
   }
   
   public func shouldComponentUpdate(previous: Component) -> Bool { return true }

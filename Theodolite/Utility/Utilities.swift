@@ -39,6 +39,12 @@ class Atomic<T> {
     lock.deallocate(capacity: 1)
   }
   
+  func get() -> T {
+    os_unfair_lock_lock(lock); defer { os_unfair_lock_unlock(lock) }
+    return self.val
+  }
+  
+  @discardableResult
   func update(_ updater: (T) -> T) -> T {
     var newVal: T? = nil
     os_unfair_lock_lock(lock); defer { os_unfair_lock_unlock(lock) }
