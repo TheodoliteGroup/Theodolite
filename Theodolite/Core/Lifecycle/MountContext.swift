@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct MountContext {
+public class MountContext {
   /** The view that children should receive as their parent. */
   let view: UIView
   /** The starting position for all children within the view. */
@@ -18,6 +18,14 @@ public struct MountContext {
    MountRootLayout yourself.
    */
   let shouldMountChildren: Bool
+  
+  init(view: UIView,
+       position: CGPoint,
+       shouldMountChildren: Bool) {
+    self.view = view
+    self.position = position
+    self.shouldMountChildren = shouldMountChildren
+  }
 }
 
 /**
@@ -28,32 +36,49 @@ public class IncrementalMountContext {
   private var mounted: Set<Layout> = Set()
   private var marked: Set<Layout> = Set()
   
-  public func isMounted(layout: Layout) -> Bool {
+  private var componentContextCache: [Layout: ComponentContextProtocol] = [:]
+  
+  internal func isMounted(layout: Layout) -> Bool {
     return mounted.contains(layout)
   }
   
-  public func markMounted(layout: Layout) {
+  internal func markMounted(layout: Layout) {
+    assert(Thread.isMainThread)
     mounted.insert(layout)
     marked.insert(layout)
   }
   
-  public func markUnmounted(layout: Layout) {
+  internal func markUnmounted(layout: Layout) {
+    assert(Thread.isMainThread)
     mounted.remove(layout)
     marked.remove(layout)
+    componentContextCache[layout] = nil
   }
   
-  public func unmarkedMounted() -> [Layout] {
-    if mounted.count == 0 {
+  internal func unmarkedMounted() -> [Layout] {
+    assert(Thread.isMainThread)
+    if mounted.count == 0 || mounted == marked {
       return []
     }
     // todo, this is really slow
     return Array(mounted.subtracting(marked))
   }
   
-  public func enumerate(_ closure: (Layout) -> ()) {
+  internal func enumerate(_ closure: (Layout) -> ()) {
+    assert(Thread.isMainThread)
     for layout in mounted {
       closure(layout)
     }
+  }
+  
+  internal func getCachedContext(layout: Layout) -> ComponentContextProtocol? {
+    assert(Thread.isMainThread)
+    return componentContextCache[layout]
+  }
+  
+  internal func setCachedContext(layout: Layout, componentContext: ComponentContextProtocol) {
+    assert(Thread.isMainThread)
+    componentContextCache[layout] = componentContext
   }
 }
 
@@ -69,12 +94,12 @@ public func UnmountLayout(layout: Layout,
     }
   }
   
-  incrementalContext.markUnmounted(layout: layout)
-  
   // Only unmount **after** all children are unmounted.
   layout.component.unmount(layout: layout)
-  var context = GetContext(layout.component)
-  context?.untypedMountInfo.mountContext = nil
+  let cachedContext = incrementalContext.getCachedContext(layout: layout)
+  var componentContext = cachedContext ?? GetContext(layout.component)
+  incrementalContext.markUnmounted(layout: layout)
+  componentContext?.untypedMountInfo.mountContext = nil
 }
 
 public func MountRootLayout(view: UIView,
@@ -103,12 +128,19 @@ internal func MountLayout(view: UIView,
   
   // If the component itself is not mounted, we do that first.
   var needsDidMount = false
+  
+  // Calling GetContext is really slow since it uses associated objects, so for mounted objects we use a cache
+  let cachedContext = incrementalContext.getCachedContext(layout: layout)
+  var componentContext = cachedContext ?? GetContext(layout.component)
+  if let retrievedContext = componentContext, cachedContext == nil {
+    incrementalContext.setCachedContext(layout: layout, componentContext: retrievedContext)
+  }
+  
   if !incrementalContext.isMounted(layout: layout) {
     component.componentWillMount()
     let context = component.mount(parentView: view,
                                   layout: layout,
                                   position: position)
-    var componentContext = GetContext(layout.component)
     componentContext?.untypedMountInfo.mountContext = context
     needsDidMount = true
   }
@@ -122,30 +154,30 @@ internal func MountLayout(view: UIView,
   
   incrementalContext.markMounted(layout: layout)
   
-  guard let context: MountContext = GetContext(layout.component)?.untypedMountInfo.mountContext else {
+  guard let mountContext: MountContext = componentContext?.untypedMountInfo.mountContext else {
     assertionFailure("Expected a mount context")
     return
   }
   
   // The component may decide to reject mounting of its children if it wants to do so itself.
-  if !context.shouldMountChildren {
+  if !mountContext.shouldMountChildren {
     return
   }
   
-  let bounds = context.view.bounds
+  let bounds = mountContext.view.bounds
   
   for childLayout in layout.children {
-    let childFrame = CGRect(x: context.position.x + childLayout.position.x,
-                            y: context.position.y + childLayout.position.y,
+    let childFrame = CGRect(x: mountContext.position.x + childLayout.position.x,
+                            y: mountContext.position.y + childLayout.position.y,
                             width: childLayout.layout.size.width,
                             height: childLayout.layout.size.height)
     if !mountVisibleOnly || childFrame.intersects(bounds) {
       // Recur into this layout's children if that child is visible. It's important that we do this even if the
       // component is already mounted, since some of their children may have been culled in a prior mounting pass.
-      MountLayout(view: context.view,
+      MountLayout(view: mountContext.view,
                   layout: childLayout.layout,
-                  position: CGPoint(x: context.position.x + childLayout.position.x,
-                                    y: context.position.y + childLayout.position.y),
+                  position: CGPoint(x: mountContext.position.x + childLayout.position.x,
+                                    y: mountContext.position.y + childLayout.position.y),
                   incrementalContext: incrementalContext,
                   mountVisibleOnly: mountVisibleOnly)
     } else if mountVisibleOnly && incrementalContext.isMounted(layout: childLayout.layout) {

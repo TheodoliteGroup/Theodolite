@@ -45,6 +45,15 @@ public class Layout: Hashable, Equatable {
   static public func ==(lhs: Layout, rhs: Layout) -> Bool {
     return lhs === rhs
   }
+  
+  deinit {
+    if Thread.isMainThread {
+      var capturedChildren: [LayoutChild] = children
+      DispatchQueue.global().async {
+        capturedChildren.removeAll()
+      }
+    }
+  }
 }
 
 public struct LayoutChild {

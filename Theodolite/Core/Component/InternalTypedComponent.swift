@@ -18,6 +18,7 @@ public extension TypedComponent {
   public init(key: AnyHashable? = nil,
               _ props: () -> PropType) {
     self.init()
+    
     setAssociatedObject(object: self,
                         value: ComponentContext<PropType, ViewType>(props: props(), key: key),
                         associativeKey: &kWrapperKey)
