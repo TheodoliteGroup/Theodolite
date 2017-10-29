@@ -25,20 +25,16 @@ public struct MountContext {
  unmount components when they're no longer in the hierarchy.
  */
 public class IncrementalMountContext {
-  private var mounted: NSHashTable<Layout> =
-    NSHashTable(options: NSPointerFunctions.Options.objectPointerPersonality,
-                capacity: 4)
-  private var marked: NSHashTable<Layout> =
-    NSHashTable(options: NSPointerFunctions.Options.objectPointerPersonality,
-                capacity: 4)
+  private var mounted: Set<Layout> = Set()
+  private var marked: Set<Layout> = Set()
   
   public func isMounted(layout: Layout) -> Bool {
     return mounted.contains(layout)
   }
   
   public func markMounted(layout: Layout) {
-    mounted.add(layout)
-    marked.add(layout)
+    mounted.insert(layout)
+    marked.insert(layout)
   }
   
   public func markUnmounted(layout: Layout) {
@@ -50,14 +46,12 @@ public class IncrementalMountContext {
     if mounted.count == 0 {
       return []
     }
-    let copiedHashTable: NSHashTable<Layout> = mounted.copy() as! NSHashTable<Layout>
-    copiedHashTable.minus(marked)
-    return copiedHashTable.allObjects
+    // todo, this is really slow
+    return Array(mounted.subtracting(marked))
   }
   
   public func enumerate(_ closure: (Layout) -> ()) {
-    let enumerator = mounted.objectEnumerator()
-    while let layout: Layout = enumerator.nextObject() as? Layout {
+    for layout in mounted {
       closure(layout)
     }
   }

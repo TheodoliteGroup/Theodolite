@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Layout {
+public class Layout: Hashable, Equatable {
   public let component: Component
   public let size: CGSize
   public let children: [LayoutChild]
@@ -22,7 +22,7 @@ public class Layout {
    
    The framework will always leave this value nil. You can fill it with whatever you want.
   */
-  let extra: Any?
+  public let extra: Any?
   
   public init(component: Component,
               size: CGSize,
@@ -36,6 +36,14 @@ public class Layout {
   
   static func empty(component: Component) -> Layout {
     return Layout(component: component, size: CGSize(width:0, height:0), children: [])
+  }
+  
+  public var hashValue: Int {
+    return unsafeBitCast(self, to: Int.self)
+  }
+  
+  static public func ==(lhs: Layout, rhs: Layout) -> Bool {
+    return lhs === rhs
   }
 }
 
