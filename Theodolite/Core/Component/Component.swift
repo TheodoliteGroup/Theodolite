@@ -17,12 +17,13 @@ public protocol Component: class {
   func unmount(layout: Layout)
   func layout(constraint: CGSize, tree: ComponentTree) -> Layout
   
+  /**
+   Implement this if you want to control memoization of your component. By default TypedComponents will memoize if
+   their PropType is Equatable.
+  */
   func shouldComponentUpdate(previous: Component) -> Bool
   
   /** Lifecycle methods */
-  
-  /** Finalize: finished layout, and is now available for rendering */
-  func componentDidFinalize(layout: Layout)
   
   /** Mount: attaching to a view */
   func componentWillMount()
@@ -33,31 +34,4 @@ public protocol Component: class {
   
   /** Used to identify the component so it can be associated with its prior state. */
   func key() -> AnyHashable?
-}
-
-extension Component {
-  public func render() -> [Component] {
-    return []
-  }
-  
-  public func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
-    return MountContext(view: parentView,
-                        position: position,
-                        shouldMountChildren:true)
-  }
-  
-  public func unmount(layout: Layout) {}
-  
-  public func shouldComponentUpdate(previous: Component) -> Bool { return true }
-  
-  public func componentDidFinalize(layout: Layout) {}
-  
-  public func componentWillMount() {}
-  public func componentDidMount() {}
-  
-  public func componentWillUnmount() {}
-  
-  public func key() -> AnyHashable? {
-    return nil
-  }
 }
