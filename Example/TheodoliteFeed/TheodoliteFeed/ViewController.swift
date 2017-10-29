@@ -59,18 +59,26 @@ final class TestItemFooter: TypedComponent {
 final class TestItem: TypedComponent {
   typealias PropType = String
   
+  func handler(gesture: UITapGestureRecognizer) {
+    print("yay! props: \(self.props())")
+  }
+  
   func render() -> [Component] {
     return [
-      FlexboxComponent {
-        (options: FlexOptions(
-          flexDirection: .column
-          ),
-         children:[
+      TapComponent {(
+        action: Handler(self, TestItem.handler),
+        component:
+        FlexboxComponent {
+          (options: FlexOptions(
+            flexDirection: .column
+            ),
+           children:[
             FlexChild(TestItemHeader { self.props() }),
             FlexChild(TestItemContent { self.props() }),
             FlexChild(TestItemFooter { self.props() })
-          ]
+            ]
           )}
+        )}
     ]
   }
 }

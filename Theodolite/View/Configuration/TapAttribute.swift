@@ -37,6 +37,12 @@ public class TapAttribute: Attribute {
       self.gesture = gesture
     }
   }
+  
+  override func unapply(view: UIView) {
+    if let gesture = self.gesture {
+      view.removeGestureRecognizer(gesture)
+    }
+  }
 }
 
 @objc class TapTarget: NSObject {

@@ -56,7 +56,7 @@ extension Component {
         position: CGPoint(x: 0, y: 0))
     }
     let contentRect = layoutChildren.reduce(
-      CGRect(x: 0, y: 0, width: 0, height: 0),
+      CGRect.null,
       { (unionRect, layoutChild) -> CGRect in
         return unionRect.union(CGRect(origin: layoutChild.position,
                                       size: layoutChild.layout.size))
