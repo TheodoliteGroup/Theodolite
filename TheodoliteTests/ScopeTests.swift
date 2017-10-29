@@ -19,15 +19,15 @@ class ScopeTests: XCTestCase {
   /** Scope Handle tests */
   
   func test_whenBuildingTwoScopeHandles_eachGetsAUniqueIdentifier() {
-    let scope1 = ScopeHandle(state: nil) { _,_ in }
-    let scope2 = ScopeHandle(state: nil) { _,_ in }
+    let scope1 = ScopeHandle(parentIdentifier: ScopeIdentifier(path: []), state: nil) { _,_ in }
+    let scope2 = ScopeHandle(parentIdentifier: ScopeIdentifier(path: []), state: nil) { _,_ in }
     
     XCTAssertNotEqual(scope1.identifier, scope2.identifier)
   }
   
   func test_whenBuildingScopeHandleWithIdentifier_thatIdentifierIsSetOnScopeHandle() {
-    let scope = ScopeHandle(identifier: 42, state: nil) { _,_ in }
-    XCTAssertEqual(scope.identifier, 42)
+    let scope = ScopeHandle(identifier: ScopeIdentifier(path: [42]), state: nil) { _,_ in }
+    XCTAssertEqual(scope.identifier, ScopeIdentifier(path: [42]))
   }
   
   /** Scope tests */
@@ -37,6 +37,7 @@ class ScopeTests: XCTestCase {
     let scope = Scope(listener: nil,
                       component: c,
                       previousScope: nil,
+                      parentIdentifier: ScopeIdentifier(path: []),
                       stateUpdateMap: [:])
     XCTAssert(scope.component() === c)
   }
@@ -56,6 +57,7 @@ class ScopeTests: XCTestCase {
     let _ = Scope(listener: nil,
                   component: c,
                   previousScope: nil,
+                  parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [:])
     
     XCTAssertEqual(c.state(), c.initialState())
@@ -76,6 +78,7 @@ class ScopeTests: XCTestCase {
     let scope1 = Scope(listener: nil,
                        component: c1,
                        previousScope: nil,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
     let c2 = TestIntStateComponent()
@@ -83,6 +86,7 @@ class ScopeTests: XCTestCase {
     let scope2 = Scope(listener: nil,
                        component: c2,
                        previousScope: scope1,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
     XCTAssertEqual(scope1._handle.identifier, scope2._handle.identifier)
@@ -110,6 +114,7 @@ class ScopeTests: XCTestCase {
     let scope1 = Scope(listener: nil,
                        component: c1,
                        previousScope: nil,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
     XCTAssert(calledInitialState)
@@ -120,6 +125,7 @@ class ScopeTests: XCTestCase {
     let _ = Scope(listener: nil,
                   component: c2,
                   previousScope: scope1,
+                  parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [:])
     
     XCTAssertFalse(calledInitialState)
@@ -140,6 +146,7 @@ class ScopeTests: XCTestCase {
     let scope1 = Scope(listener: nil,
                        component: c1,
                        previousScope: nil,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
     let c2 = TestStateUpdateComponent()
@@ -147,6 +154,7 @@ class ScopeTests: XCTestCase {
     let _ = Scope(listener: nil,
                   component: c2,
                   previousScope: nil,
+                  parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [scope1._handle.identifier: 1000])
     
     XCTAssertEqual(c2.state(), 42)
@@ -167,6 +175,7 @@ class ScopeTests: XCTestCase {
     let scope1 = Scope(listener: nil,
                        component: c1,
                        previousScope: nil,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
     let c2 = TestStateUpdateComponent()
@@ -174,6 +183,7 @@ class ScopeTests: XCTestCase {
     let _ = Scope(listener: nil,
                   component: c2,
                   previousScope: scope1,
+                  parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [scope1._handle.identifier: 1000])
     
     XCTAssertEqual(c2.state(), 1000)
@@ -197,6 +207,7 @@ class ScopeTests: XCTestCase {
     let scope = Scope(listener: nil,
                       component: c,
                       previousScope: nil,
+                      parentIdentifier: ScopeIdentifier(path: []),
                       stateUpdateMap: [:])
     
     XCTAssert(type(of:scope._children[0].component()) == TestChildComponent.self)
@@ -225,6 +236,7 @@ class ScopeTests: XCTestCase {
     let scope = Scope(listener: nil,
                       component: c,
                       previousScope: nil,
+                      parentIdentifier: ScopeIdentifier(path: []),
                       stateUpdateMap: [:])
     
     XCTAssertEqual((scope._children[0].component() as! TestChildComponent).state(), 42)
@@ -253,6 +265,7 @@ class ScopeTests: XCTestCase {
     let scope1 = Scope(listener: nil,
                        component: c1,
                        previousScope: nil,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
     let c2 = TestParentComponent()
@@ -260,6 +273,7 @@ class ScopeTests: XCTestCase {
     let scope2 = Scope(listener: nil,
                        component: c2,
                        previousScope: scope1,
+                       parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [scope1._children[0]._handle.identifier: 1000])
     
     XCTAssertEqual((scope2._children[0].component() as! TestChildComponent).state(), 1000)

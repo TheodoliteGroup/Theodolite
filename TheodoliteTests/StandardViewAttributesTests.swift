@@ -82,7 +82,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
       typealias PropType = Void?
       
       func render() -> [Component] {
-        return [ChildComponent()]
+        return [ChildComponent {nil}]
       }
       
       func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
@@ -110,7 +110,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     }
     
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return ParentComponent()
+      return ParentComponent {nil}
     }
   }
   
