@@ -40,6 +40,7 @@
 		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
 		B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262251FA4D9F400D41A8A /* InsetComponent.swift */; };
 		B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */; };
+		B18262511FA55F8900D41A8A /* TapAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262501FA55F8900D41A8A /* TapAttribute.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B511F81FA1793100B854F0 /* MountContext.swift */; };
@@ -142,6 +143,7 @@
 		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B18262251FA4D9F400D41A8A /* InsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponent.swift; sourceTree = "<group>"; };
 		B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponentSnapshotTests.swift; sourceTree = "<group>"; };
+		B18262501FA55F8900D41A8A /* TapAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAttribute.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1B511F81FA1793100B854F0 /* MountContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountContext.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		B136BE4A1F8D5741001EE264 /* Theodolite */ = {
 			isa = PBXGroup;
 			children = (
+				B18262421FA55E9D00D41A8A /* Actions */,
 				B1FC9C461FA023C5006249FC /* Debug */,
 				B136BEA81F8D6727001EE264 /* Core */,
 				B1C14FD91F995421005A8CBE /* Integration */,
@@ -242,19 +245,9 @@
 		B136BEA81F8D6727001EE264 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B136BEAB1F8D69C9001EE264 /* Component.swift */,
-				B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */,
-				B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */,
-				B136BEAC1F8D69C9001EE264 /* Layout.swift */,
-				B1B511F81FA1793100B854F0 /* MountContext.swift */,
-				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
-				B136BEC31F8EF989001EE264 /* ScopeHandle.swift */,
-				B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */,
-				B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */,
-				B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */,
-				B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */,
-				B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */,
-				B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */,
+				B182624B1FA55EFD00D41A8A /* Lifecycle */,
+				B182624A1FA55ED900D41A8A /* Scope */,
+				B18262491FA55EBB00D41A8A /* Component */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -262,11 +255,8 @@
 		B136BEA91F8D6734001EE264 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */,
-				B136BECB1F8EFD17001EE264 /* ViewAttribute.swift */,
-				B136BEB51F8D69E8001EE264 /* ViewConfiguration.swift */,
-				B136BEB61F8D69E8001EE264 /* ViewPool.swift */,
-				B136BEC91F8EFCED001EE264 /* ViewPoolMap.swift */,
+				B182624E1FA55F4500D41A8A /* Configuration */,
+				B182624F1FA55F5200D41A8A /* Reuse */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +277,86 @@
 				B1658B5C1F9B6A8C000EC8CC /* FlexboxTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B18262421FA55E9D00D41A8A /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEBB1F8D6DD2001EE264 /* Action.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		B18262491FA55EBB00D41A8A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEAB1F8D69C9001EE264 /* Component.swift */,
+				B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */,
+				B136BEAE1F8D69C9001EE264 /* TypedComponent.swift */,
+				B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */,
+				B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */,
+				B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		B182624A1FA55ED900D41A8A /* Scope */ = {
+			isa = PBXGroup;
+			children = (
+				B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */,
+				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
+				B136BEC31F8EF989001EE264 /* ScopeHandle.swift */,
+				B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */,
+				B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */,
+			);
+			path = Scope;
+			sourceTree = "<group>";
+		};
+		B182624B1FA55EFD00D41A8A /* Lifecycle */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEAC1F8D69C9001EE264 /* Layout.swift */,
+				B1B511F81FA1793100B854F0 /* MountContext.swift */,
+			);
+			path = Lifecycle;
+			sourceTree = "<group>";
+		};
+		B182624C1FA55F0F00D41A8A /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
+				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		B182624D1FA55F2200D41A8A /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
+				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		B182624E1FA55F4500D41A8A /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */,
+				B136BECB1F8EFD17001EE264 /* ViewAttribute.swift */,
+				B136BEB51F8D69E8001EE264 /* ViewConfiguration.swift */,
+				B18262501FA55F8900D41A8A /* TapAttribute.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		B182624F1FA55F5200D41A8A /* Reuse */ = {
+			isa = PBXGroup;
+			children = (
+				B136BEB61F8D69E8001EE264 /* ViewPool.swift */,
+				B136BEC91F8EFCED001EE264 /* ViewPoolMap.swift */,
+			);
+			path = Reuse;
 			sourceTree = "<group>";
 		};
 		B19BBD1A1F9061C200116386 /* Vendor */ = {
@@ -312,10 +382,8 @@
 		B1C14FD21F9953F0005A8CBE /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
-				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
-				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
-				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
+				B182624D1FA55F2200D41A8A /* Content */,
+				B182624C1FA55F0F00D41A8A /* Layout */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -506,6 +574,7 @@
 			files = (
 				B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */,
 				B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */,
+				B18262511FA55F8900D41A8A /* TapAttribute.swift in Sources */,
 				B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */,
 				B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */,
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,

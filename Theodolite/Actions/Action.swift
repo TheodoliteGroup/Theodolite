@@ -33,8 +33,8 @@ import Foundation
    }
  }
  */
-class Action<Arg> {
-  func send(_ argument: Arg) {
+public class Action<Arg> {
+  public func send(_ argument: Arg) {
     // No-op
   }
 }
@@ -56,16 +56,16 @@ class Action<Arg> {
    }
  }
  */
-class Handler<Target: AnyObject, Arg>: Action<Arg> {
+public class Handler<Target: AnyObject, Arg>: Action<Arg> {
   weak var target: Target?
   let handler: (Target) -> (Arg) -> ()
   
-  init(target: Target, handler: @escaping (Target) -> (Arg) -> ()) {
+  public init(target: Target, handler: @escaping (Target) -> (Arg) -> ()) {
     self.target = target
     self.handler = handler
   }
   
-  override func send(_ argument: Arg) {
+  public override func send(_ argument: Arg) {
     if let t = target {
       handler(t)(argument)
     }
