@@ -58,11 +58,19 @@ public final class LabelComponent: TypedComponent {
   )
   public typealias ViewType = UILabel
   
+  private var cachedView: ViewConfiguration? = nil
+  
   public init() {};
   
   func attributes() -> Dictionary<NSAttributedStringKey, Any> {
     var attr: Dictionary<NSAttributedStringKey, Any> = [:]
     attr[NSAttributedStringKey.font] = self.props().options.font
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineBreakMode =
+      self.props().options.isMultiline
+      ? NSLineBreakMode.byWordWrapping
+      : NSLineBreakMode.byTruncatingTail
+    attr[NSAttributedStringKey.paragraphStyle] = paragraphStyle
     return attr
   }
   
@@ -72,6 +80,11 @@ public final class LabelComponent: TypedComponent {
   }
   
   public func view() -> ViewConfiguration? {
+    assert(Thread.isMainThread)
+    if let cachedView = self.cachedView {
+      return cachedView
+    }
+    
     let props = self.props()
     
     var attributes: [Attribute] = [
@@ -109,19 +122,21 @@ public final class LabelComponent: TypedComponent {
     })
       
     attributes += self.props().options.view.viewAttributes()
-    return ViewConfiguration(
+    cachedView = ViewConfiguration(
       view: UILabel.self,
       attributes: attributes)
+    return cachedView
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
     let size = self.attributedString().boundingRect(
       with: constraint,
-      options: .usesLineFragmentOrigin,
+      options: [.usesLineFragmentOrigin, .usesFontLeading],
       context: nil)
     return Layout(component: self,
-                  size: CGSize(width: ceil(size.width),
-                               height: ceil(size.height)),
+                  size: CGSize(
+                    width: ceil(size.width),
+                    height: ceil(size.height)),
                   children: [])
   }
 }

@@ -21,7 +21,8 @@ final class TestItemHeader: TypedComponent {
     return [
       LabelComponent {
         (self.props(),
-         LabelComponent.Options(textColor: UIColor.yellow))
+         LabelComponent.Options(textColor: UIColor.yellow,
+                                isMultiline: true))
       }
     ]
   }
@@ -34,7 +35,8 @@ final class TestItemContent: TypedComponent {
     return [
       LabelComponent {
         (self.props(),
-         LabelComponent.Options(textColor: UIColor.blue))
+         LabelComponent.Options(textColor: UIColor.blue,
+                                isMultiline: true))
       }
     ]
   }
@@ -50,7 +52,8 @@ final class TestItemFooter: TypedComponent {
         component:
         LabelComponent {
           (self.props(),
-           LabelComponent.Options(textColor: UIColor.red))
+           LabelComponent.Options(textColor: UIColor.red,
+                                  isMultiline: true))
       })}
     ]
   }
@@ -94,7 +97,7 @@ final class TestComponent: TypedComponent {
             flexDirection: .column
             ),
            children:
-            Array(repeating: "Hello World", count: 1000)
+            Array(repeating: "Four score and seven years ago, our forefathers did something truly tremendous. It was so bigly big, and I have the biggest hands, many people say it.", count: 1000)
               .map {(str: String) -> FlexChild in
                 return FlexChild(TestItem { str })
           })},

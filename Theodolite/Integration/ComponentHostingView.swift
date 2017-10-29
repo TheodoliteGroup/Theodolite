@@ -39,6 +39,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   var root: ScopeRoot?
   var lastLayout: CachedLayout?
   var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
+  var mountedLayout: Layout?
   var stateUpdateMap: [Int32:Any?] = [:]
   var dispatched: Bool = false
   
@@ -57,6 +58,12 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   
   override public func layoutSubviews() {
     super.layoutSubviews()
+    
+    if let mountedLayout = self.mountedLayout {
+      // If we're being forced to lay out, we need to detach all views before re-attaching
+      UnmountLayout(layout: mountedLayout,
+                    incrementalContext: incrementalMountContext)
+    }
     
     // First check if we have a cached layout that is still valid
     if let cachedLayout = self.lastLayout {
@@ -77,6 +84,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: Component generation/mounting
   
   func mountLayout(layout: Layout) {
+    self.mountedLayout = layout
     MountRootLayout(view: self,
                     layout: layout,
                     position: CGPoint(x: 0, y: 0),

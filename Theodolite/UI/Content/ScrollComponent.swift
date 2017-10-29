@@ -95,14 +95,16 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     scrollView?.delegate = nil
     
     guard let mountedArguments = mountedArguments else {
+      assertionFailure()
       return
     }
-    UnmountLayout(layout: mountedArguments.layout,
+    UnmountLayout(layout: mountedArguments.layout.children[0].layout,
                   incrementalContext: incrementalMountContext)
   }
   
   private func mountChildren() {
     guard let mountedArguments = mountedArguments else {
+      assertionFailure()
       return
     }
     MountRootLayout(view: context().mountInfo.mountContext!.view,

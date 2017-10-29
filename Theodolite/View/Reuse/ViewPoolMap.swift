@@ -20,7 +20,7 @@ var kViewPoolMapKey: Void?
  we ensure that if we hit a view pool, all views can be reconfigured for the component that's asking for a view.
  */
 public class ViewPoolMap {
-  var hashMap: [ViewConfiguration:ViewPool] = [:]
+  var hashMap: [ViewConfiguration.AttributeShape:ViewPool] = [:]
   var vendedViews: [UIView] = []
   
   static func resetViewPoolMap(view: UIView) {
@@ -69,12 +69,12 @@ public class ViewPoolMap {
   
   func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
     assert(Thread.isMainThread)
-    if let pool = hashMap[config] {
+    if let pool = hashMap[ViewConfiguration.AttributeShape(config: config)] {
       return pool
     }
     
     let pool = ViewPool()
-    hashMap[config] = pool
+    hashMap[ViewConfiguration.AttributeShape(config: config)] = pool
     return pool
   }
   

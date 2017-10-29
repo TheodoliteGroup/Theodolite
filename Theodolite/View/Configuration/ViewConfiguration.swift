@@ -10,11 +10,11 @@ import UIKit
 
 public struct ViewConfiguration: Equatable, Hashable {
   let view: UIView.Type
-  let attributes: Set<Attribute>
+  let attributes: [Attribute]
   
   public init(view: UIView.Type, attributes: [Attribute]) {
     self.view = view
-    self.attributes = Set(attributes)
+    self.attributes = attributes
     assert(findDuplicates(attributes: attributes).count == 0,
            "Duplicate attributes. You must provide identifiers for: \(findDuplicates(attributes: attributes))")
   }
@@ -52,6 +52,53 @@ public struct ViewConfiguration: Equatable, Hashable {
     let v = self.view.init()
     self.applyToView(v: v)
     return v
+  }
+  
+  func isEquivalent(other: ViewConfiguration) -> Bool {
+    if view != other.view {
+      return false
+    }
+    
+    if (attributes.count != other.attributes.count) {
+      return false
+    }
+    
+    for (i, attr) in attributes.enumerated() {
+      if (!attr.isEquivalent(other: other.attributes[i])) {
+        return false
+      }
+    }
+    
+    return true
+  }
+  
+  public struct AttributeShape: Equatable, Hashable {
+    let config: ViewConfiguration
+    
+    public var hashValue: Int {
+      return config.hashValue
+    }
+    
+    public static func ==(lhs: AttributeShape, rhs: AttributeShape) -> Bool {
+      if lhs.config.view != rhs.config.view {
+        return false
+      }
+      
+      let lhsAttributes = lhs.config.attributes
+      let rhsAttributes = rhs.config.attributes
+      
+      if (lhsAttributes.count != rhsAttributes.count) {
+        return false
+      }
+      
+      for (i, attr) in lhsAttributes.enumerated() {
+        if (!attr.isEquivalent(other: rhsAttributes[i])) {
+          return false
+        }
+      }
+      
+      return true
+    }
   }
 }
 
