@@ -28,6 +28,15 @@ public extension TypedComponent {
     return context().key
   }
   
+  public func shouldComponentUpdate(previous: Component) -> Bool {
+    if let props = self.props() as? AnyHashable {
+      if let previousProps = (previous as? Self)?.props() as? AnyHashable {
+        return props != previousProps
+      }
+    }
+    return true
+  }
+  
   /* Implementation detail, ignore this. TODO: Remove? */
   func initialUntypedState() -> Any? {
     return initialState()

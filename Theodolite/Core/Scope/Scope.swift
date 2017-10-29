@@ -30,27 +30,40 @@ public class Scope: ComponentTree {
   init(listener: StateUpdateListener?,
        component: Component,
        previousScope: Scope?,
-       stateUpdateMap: [Int32: Any?]) {
-    _component = component
+       parentIdentifier: ScopeIdentifier,
+       stateUpdateMap: [ScopeIdentifier: Any?]) {
     // First we have to set up our scope handle before calling render so that the state and state updater are
     // available to the component in render().
     if let prev = previousScope {
-      _handle = ScopeHandle(
-        identifier: prev._handle.identifier,
-        state: stateUpdateMap[prev._handle.identifier]
-          ?? prev._handle.state) {
-            [weak listener] (identifier: Int32, value: Any?) in
-            listener?.receivedStateUpdate(identifier: identifier,
-                                          update: value)
+      if !findStateUpdatesForChildren(identifier: prev._handle.identifier, stateUpdateMap: stateUpdateMap)
+        && !component.shouldComponentUpdate(previous: prev._component) {
+        // Instead of re-building the component, we can just use the previous tree we built
+        _component = prev._component
+        _handle = prev._handle
+        _children = prev._children
+        return
+      } else {
+        _component = component
+        _handle = ScopeHandle(
+          identifier: prev._handle.identifier,
+          state: stateUpdateMap[prev._handle.identifier]
+            ?? prev._handle.state) {
+              [weak listener] (identifier: ScopeIdentifier, value: Any?) in
+              listener?.receivedStateUpdate(identifier: identifier,
+                                            update: value)
+        }
       }
     } else {
+      _component = component
       let typed = component as? InternalTypedComponent
-      _handle = ScopeHandle(state:typed?.initialUntypedState()) {
-        [weak listener](identifier: Int32, state: Any?) -> () in
+      _handle = ScopeHandle(parentIdentifier: parentIdentifier, state:typed?.initialUntypedState()) {
+        [weak listener](identifier: ScopeIdentifier, state: Any?) -> () in
         listener?.receivedStateUpdate(identifier: identifier, update: state)
       }
     }
     setScopeHandle(component: component, handle: _handle)
+    
+    let identifier = _handle.identifier
     
     // We're now able to call render, since we've finished setting up the scope handle and state update listener.
     _children = component.render().map { (child) -> Scope in
@@ -63,6 +76,7 @@ public class Scope: ComponentTree {
       return Scope(listener: listener,
                    component: child,
                    previousScope: prev,
+                   parentIdentifier: identifier,
                    stateUpdateMap: stateUpdateMap)
     }
     
@@ -78,13 +92,23 @@ public class Scope: ComponentTree {
   }
 }
 
+internal func findStateUpdatesForChildren(identifier: ScopeIdentifier,
+                                          stateUpdateMap: [ScopeIdentifier: Any?]) -> Bool {
+  for (otherIdentifier, _) in stateUpdateMap {
+    if otherIdentifier.path.starts(with: identifier.path) {
+      return true
+    }
+  }
+  return false
+}
+
 internal func findCollidingComponents(siblings: [Scope]) -> Bool {
   let identifiers = siblings.map({ $0._handle.identifier })
   if identifiers.count == siblings.count {
     return true
   }
   
-  var seen: [Int32: Scope] = [:]
+  var seen: [ScopeIdentifier: Scope] = [:]
   var foundDuplicates = false
   for scope in siblings {
     if let duplicate = seen[scope._handle.identifier] {

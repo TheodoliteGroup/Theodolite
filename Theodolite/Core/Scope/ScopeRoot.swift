@@ -15,7 +15,7 @@ public class ScopeRoot {
   public let root: Scope
   weak var listener: StateUpdateListener?
   
-  public init(previousRoot: ScopeRoot?, listener: StateUpdateListener?, stateUpdateMap: [Int32: Any?], factory: () -> Component) {
+  public init(previousRoot: ScopeRoot?, listener: StateUpdateListener?, stateUpdateMap: [ScopeIdentifier: Any?], factory: () -> Component) {
     self.listener = listener
     let component = factory()
     var previousScope: Scope? = nil
@@ -28,6 +28,7 @@ public class ScopeRoot {
     self.root = Scope(listener: listener,
                       component: component,
                       previousScope: previousScope,
+                      parentIdentifier: ScopeIdentifier(path: []),
                       stateUpdateMap: stateUpdateMap)
   }
   

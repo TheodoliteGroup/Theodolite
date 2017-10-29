@@ -40,7 +40,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   var lastLayout: CachedLayout?
   var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
   var mountedLayout: Layout?
-  var stateUpdateMap: [Int32:Any?] = [:]
+  var stateUpdateMap: [ScopeIdentifier:Any?] = [:]
   var dispatched: Bool = false
   
   public init(factory: @escaping () -> Component) {
@@ -127,7 +127,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   
   // MARK: StateUpdateListener
   
-  public func receivedStateUpdate(identifier: Int32, update: Any?) {
+  public func receivedStateUpdate(identifier: ScopeIdentifier, update: Any?) {
     assert(Thread.isMainThread)
     self.stateUpdateMap[identifier] = update
     self.markNeedsReset()

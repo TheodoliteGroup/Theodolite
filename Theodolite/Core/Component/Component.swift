@@ -17,6 +17,8 @@ public protocol Component: class {
   func unmount(layout: Layout)
   func layout(constraint: CGSize, tree: ComponentTree) -> Layout
   
+  func shouldComponentUpdate(previous: Component) -> Bool
+  
   /** Lifecycle methods */
   
   /** Finalize: finished layout, and is now available for rendering */
@@ -67,6 +69,8 @@ extension Component {
       children: layoutChildren
       )
   }
+  
+  public func shouldComponentUpdate(previous: Component) -> Bool { return true }
   
   public func componentDidFinalize(layout: Layout) {}
   
