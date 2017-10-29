@@ -88,6 +88,44 @@ final class TestItem: TypedComponent {
   }
 }
 
+final class TestBatchComponent: TypedComponent {
+  typealias PropType = Void?
+  
+  func render() -> [Component] {
+    return [
+      FlexboxComponent {
+        (options: FlexOptions(
+          flexDirection: .column
+          ),
+         children:
+          (1...10)
+            .map {(num: Int) -> FlexChild in
+              return FlexChild(TestItem(key: num) { "Hello world" })
+        })
+      }
+    ]
+  }
+}
+
+final class TestChunkComponent: TypedComponent {
+  typealias PropType = Void?
+  
+  func render() -> [Component] {
+    return [
+      FlexboxComponent {
+        (options: FlexOptions(
+          flexDirection: .column
+          ),
+         children:
+          (1...10)
+            .map {(num: Int) -> FlexChild in
+              return FlexChild(TestBatchComponent(key: num) { nil })
+        })
+      }
+    ]
+  }
+}
+
 final class TestComponent: TypedComponent {
   typealias PropType = Void?
   
@@ -99,9 +137,9 @@ final class TestComponent: TypedComponent {
             flexDirection: .column
             ),
            children:
-            (1...1000)
+            (1...10)
               .map {(num: Int) -> FlexChild in
-                return FlexChild(TestItem(key: num) { "Hello world" })
+                return FlexChild(TestChunkComponent(key: num) { nil })
           })},
          direction: .vertical,
          attributes: [])
