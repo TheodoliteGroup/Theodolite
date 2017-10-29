@@ -77,6 +77,8 @@ public class Attribute: Equatable, Hashable {
       applicator(view)(self.value?.value)
     }
   }
+  
+  func unapply(view: UIView) { /** Do nothing, for subclasses. */}
 }
 
 public func ==(lhs: Attribute, rhs: Attribute) -> Bool {

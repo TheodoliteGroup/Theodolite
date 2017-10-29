@@ -242,7 +242,6 @@
 		B136BEA81F8D6727001EE264 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B136BEBB1F8D6DD2001EE264 /* Action.swift */,
 				B136BEAB1F8D69C9001EE264 /* Component.swift */,
 				B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */,
 				B136BEBF1F8EF7CC001EE264 /* InternalTypedComponent.swift */,

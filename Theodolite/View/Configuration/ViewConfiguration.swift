@@ -33,6 +33,13 @@ public struct ViewConfiguration: Equatable, Hashable {
     if appliedAttributes == self {
       return
     }
+    
+    if let needsUnapplication = appliedAttributes {
+      for attr in needsUnapplication.attributes {
+        attr.unapply(view: v)
+      }
+    }
+    
     for attr in self.attributes {
       attr.apply(view: v)
     }
