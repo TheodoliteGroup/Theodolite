@@ -60,9 +60,9 @@ public final class LabelComponent: TypedComponent {
   
   public init() {};
   
-  func attributes() -> Dictionary<String, Any> {
-    var attr: Dictionary<String, Any> = [:]
-    attr[NSFontAttributeName] = self.props().options.font
+  func attributes() -> Dictionary<NSAttributedStringKey, Any> {
+    var attr: Dictionary<NSAttributedStringKey, Any> = [:]
+    attr[NSAttributedStringKey.font] = self.props().options.font
     return attr
   }
   

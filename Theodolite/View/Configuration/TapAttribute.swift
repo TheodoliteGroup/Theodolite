@@ -47,7 +47,7 @@ public class TapAttribute: Attribute {
     super.init()
   }
   
-  internal func actionMethod(gesture: UITapGestureRecognizer) {
+  @objc internal func actionMethod(gesture: UITapGestureRecognizer) {
     handler(gesture)
   }
 }

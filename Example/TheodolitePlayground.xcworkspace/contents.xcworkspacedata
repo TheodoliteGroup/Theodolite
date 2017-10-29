@@ -11,4 +11,7 @@
    <FileRef
       location = "group:TheodolitePlayground.playground">
    </FileRef>
+   <FileRef
+      location = "group:TheodoliteAction.playground">
+   </FileRef>
 </Workspace>

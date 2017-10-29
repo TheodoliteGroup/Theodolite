@@ -3,30 +3,36 @@ import PlaygroundSupport
 
 import Theodolite
 
+final class ViewComponent: TypedComponent {
+  typealias PropType = ViewConfiguration
+  
+  public func view() -> ViewConfiguration? {
+    return self.props()
+  }
+  
+  public func size(constraint: CGSize) -> CGSize {
+    return constraint
+  }
+}
+
 final class TestComponent: TypedComponent {
   typealias PropType = Void?
   
   func render() -> [Component] {
     return [
-      ScrollComponent {
-        (FlexboxComponent {
-          (options: FlexOptions(
-            flexDirection: .column
-            ),
-           children:
-            Array(repeating: "Hello World", count: 100)
-              .map {(str: String) -> FlexChild in
-                return FlexChild(
-                  LabelComponent {
-                    (str,
-                     LabelComponent.Options())
-                })
-          })
-          },
-         direction: .vertical,
-         attributes: [])
+      ViewComponent {
+        ViewConfiguration(
+          view: UIView.self,
+          attributes:
+          [
+            TapAttribute(Handler(self, TestComponent.actionMethod))
+          ])
       }
     ]
+  }
+  
+  func actionMethod(gesture: UITapGestureRecognizer) {
+    print("tapped!")
   }
 }
 
@@ -42,4 +48,5 @@ class MyViewController : UIViewController {
 }
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()
+
 

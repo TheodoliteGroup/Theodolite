@@ -1,5 +1,12 @@
+//
+//  ViewController.swift
+//  TheodoliteFeed
+//
+//  Created by Oliver Rickard on 10/28/17.
+//  Copyright © 2017 Oliver Rickard. All rights reserved.
+//
+
 import UIKit
-import PlaygroundSupport
 
 import Theodolite
 
@@ -14,7 +21,7 @@ final class TestComponent: TypedComponent {
             flexDirection: .column
             ),
            children:
-            Array(repeating: "Hello World", count: 100)
+            Array(repeating: "Hello World", count: 1000)
               .map {(str: String) -> FlexChild in
                 return FlexChild(
                   LabelComponent {
@@ -30,7 +37,8 @@ final class TestComponent: TypedComponent {
   }
 }
 
-class MyViewController : UIViewController {
+class ViewController: UIViewController {
+  
   override func loadView() {
     let hostingView = ComponentHostingView { () -> Component in
       return TestComponent {nil}
@@ -39,7 +47,14 @@ class MyViewController : UIViewController {
     
     self.view = hostingView
   }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
 }
-// Present the view controller in the Live View window
-PlaygroundPage.current.liveView = MyViewController()
 
