@@ -48,46 +48,6 @@ extension Component {
   
   public func unmount(layout: Layout) {}
   
-  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-    let componentContext = GetContext(self)
-    if let componentContext = componentContext {
-      if let previousLayoutInfo = componentContext.layoutInfo.get() {
-        if SizesEqual(constraint, previousLayoutInfo.constraint) {
-          return Layout(component: self,
-                        size: previousLayoutInfo.size,
-                        children: previousLayoutInfo.children,
-                        extra: previousLayoutInfo.extra)
-        }
-      }
-    }
-    let layoutChildren = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
-      return LayoutChild(
-        layout:childTree
-          .component()
-          .layout(constraint: constraint,
-                  tree: childTree),
-        position: CGPoint(x: 0, y: 0))
-    }
-    let contentRect = layoutChildren.reduce(
-      CGRect.null,
-      { (unionRect, layoutChild) -> CGRect in
-        return unionRect.union(CGRect(origin: layoutChild.position,
-                                      size: layoutChild.layout.size))
-    })
-    let layout = Layout(
-      component: self,
-      size: contentRect.size,
-      children: layoutChildren)
-    if let componentContext = componentContext {
-      componentContext.layoutInfo.update({ (_) in
-        LayoutInfo(constraint: constraint,
-                   size: layout.size,
-                   children: layout.children,
-                   extra: layout.extra) })
-    }
-    return layout
-  }
-  
   public func shouldComponentUpdate(previous: Component) -> Bool { return true }
   
   public func componentDidFinalize(layout: Layout) {}
