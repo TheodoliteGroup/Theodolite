@@ -65,6 +65,8 @@ public class Scope: ComponentTree {
                    previousScope: prev,
                    stateUpdateMap: stateUpdateMap)
     }
+    
+    assert(findCollidingComponents(siblings: _children))
   }
   
   public func children() -> [ComponentTree] {
@@ -74,6 +76,24 @@ public class Scope: ComponentTree {
   public func component() -> Component {
     return _component
   }
+}
+
+internal func findCollidingComponents(siblings: [Scope]) -> Bool {
+  let identifiers = siblings.map({ $0._handle.identifier })
+  if identifiers.count == siblings.count {
+    return true
+  }
+  
+  var seen: [Int32: Scope] = [:]
+  var foundDuplicates = false
+  for scope in siblings {
+    if let duplicate = seen[scope._handle.identifier] {
+      print("Duplicate scope, add a key: \(duplicate._component), \(scope._component)")
+      foundDuplicates = true
+    }
+    seen[scope._handle.identifier] = scope
+  }
+  return !foundDuplicates
 }
 
 internal func areComponentsEquivalent(c1: Component, c2: Component) -> Bool {

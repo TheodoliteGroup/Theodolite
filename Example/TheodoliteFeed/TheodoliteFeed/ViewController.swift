@@ -61,9 +61,11 @@ final class TestItemFooter: TypedComponent {
 
 final class TestItem: TypedComponent {
   typealias PropType = String
+  typealias StateType = String
   
   func handler(gesture: UITapGestureRecognizer) {
     print("yay! props: \(self.props())")
+    self.updateState(state: self.state() != nil ? nil : "Tapped!!!")
   }
   
   func render() -> [Component] {
@@ -76,9 +78,9 @@ final class TestItem: TypedComponent {
             flexDirection: .column
             ),
            children:[
-            FlexChild(TestItemHeader { self.props() }),
-            FlexChild(TestItemContent { self.props() }),
-            FlexChild(TestItemFooter { self.props() })
+            FlexChild(TestItemHeader { self.state() ?? self.props() }),
+            FlexChild(TestItemContent { self.state() ?? self.props() }),
+            FlexChild(TestItemFooter { self.state() ?? self.props() })
             ]
           )}
         )}
@@ -97,9 +99,9 @@ final class TestComponent: TypedComponent {
             flexDirection: .column
             ),
            children:
-            Array(repeating: "Four score and seven years ago, our forefathers did something truly tremendous. It was so bigly big, and I have the biggest hands, many people say it.", count: 1000)
-              .map {(str: String) -> FlexChild in
-                return FlexChild(TestItem { str })
+            (1...100)
+              .map {(num: Int) -> FlexChild in
+                return FlexChild(TestItem(key: num) { "Hello world" })
           })},
          direction: .vertical,
          attributes: [])
