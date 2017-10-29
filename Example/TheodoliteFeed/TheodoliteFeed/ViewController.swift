@@ -99,7 +99,7 @@ final class TestComponent: TypedComponent {
             flexDirection: .column
             ),
            children:
-            (1...100)
+            (1...1000)
               .map {(num: Int) -> FlexChild in
                 return FlexChild(TestItem(key: num) { "Hello world" })
           })},

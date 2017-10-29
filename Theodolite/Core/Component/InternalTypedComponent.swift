@@ -76,14 +76,12 @@ internal struct MountInfo<ViewType: UIView>: MountInfoProtocol {
   var mountedLayout: Layout? = nil
 }
 
-internal class LayoutInfo {
-  weak var layout: Layout?
+internal struct LayoutInfo {
+  /** We can't store a ref to the Layout directly because that would form a retain cycle. */
   let constraint: CGSize
-  
-  init(layout: Layout, constraint: CGSize) {
-    self.layout = layout
-    self.constraint = constraint
-  }
+  let size: CGSize
+  let children: [LayoutChild]
+  let extra: Any?
 }
 
 /** To allow use of the component context's mount info outside of Components where the typealiases are defined. */

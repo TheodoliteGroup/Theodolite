@@ -52,8 +52,11 @@ extension Component {
     let componentContext = GetContext(self)
     if let componentContext = componentContext {
       if let previousLayoutInfo = componentContext.layoutInfo.get() {
-        if constraint == previousLayoutInfo.constraint, let previousLayout = previousLayoutInfo.layout {
-          return previousLayout
+        if SizesEqual(constraint, previousLayoutInfo.constraint) {
+          return Layout(component: self,
+                        size: previousLayoutInfo.size,
+                        children: previousLayoutInfo.children,
+                        extra: previousLayoutInfo.extra)
         }
       }
     }
@@ -76,7 +79,11 @@ extension Component {
       size: contentRect.size,
       children: layoutChildren)
     if let componentContext = componentContext {
-      componentContext.layoutInfo.update({ (_) in LayoutInfo(layout: layout, constraint: constraint) })
+      componentContext.layoutInfo.update({ (_) in
+        LayoutInfo(constraint: constraint,
+                   size: layout.size,
+                   children: layout.children,
+                   extra: layout.extra) })
     }
     return layout
   }

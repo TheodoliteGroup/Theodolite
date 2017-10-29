@@ -65,3 +65,14 @@ class WeakContainer<T: AnyObject> {
     self.val = val
   }
 }
+
+func SizesEqual(_ size1: CGSize, _ size2: CGSize) -> Bool {
+  return FloatsEqual(size1.width, size2.width) && FloatsEqual(size1.height, size2.height)
+}
+
+func FloatsEqual(_ val1: CGFloat, _ val2: CGFloat) -> Bool {
+  if val1.isNaN && val2.isNaN {
+    return true
+  }
+  return val1 == val2
+}
