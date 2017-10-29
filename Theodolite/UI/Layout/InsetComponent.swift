@@ -17,11 +17,11 @@ public final class InsetComponent: TypedComponent {
   public init () {}
   
   public func render() -> [Component] {
-    return [self.props().component]
+    return [self.props.component]
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-    let insets = self.props().insets
+    let insets = self.props.insets
     let childTree = tree.children()[0]
     let childLayout = childTree
       .component()

@@ -98,7 +98,7 @@ class ScopeTests: XCTestCase {
       typealias StateType = Int
       
       func initialState() -> Int? {
-        self.props()()
+        self.props()
         return 42
       }
     }

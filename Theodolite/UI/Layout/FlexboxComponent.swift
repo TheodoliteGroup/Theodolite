@@ -111,13 +111,13 @@ final public class FlexboxComponent: TypedComponent {
   public init() {}
   
   public func render() -> [Component] {
-    return self.props().children.map({
+    return self.props.children.map({
       (child: FlexChild) -> Component in child.component
     })
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-    let props = self.props()
+    let props = self.props
     
     var childLayoutNodes: [Node] = []
     // Yoga doesn't let us pass data from the measure function out, but we need to get the layout objects that each

@@ -9,7 +9,9 @@
 import Foundation
 
 public extension TypedComponent {
-  func props() -> PropType {
-    return context().props!
+  var props: PropType {
+    get {
+      return context().props!
+    }
   }
 }

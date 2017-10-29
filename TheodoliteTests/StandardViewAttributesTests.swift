@@ -23,12 +23,12 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     
     public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
       return Layout(component: self,
-                    size: self.props().size,
+                    size: self.props.size,
                     children: [])
     }
     
     public func view() -> ViewConfiguration? {
-      return self.props().view
+      return self.props.view
     }
   }
   

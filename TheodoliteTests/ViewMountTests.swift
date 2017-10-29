@@ -21,7 +21,7 @@ class ViewMountTests: FBSnapshotTestCase {
       typealias PropType = ViewConfiguration
       
       func view() -> ViewConfiguration? {
-        return self.props()
+        return self.props
       }
       
       func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
@@ -48,7 +48,7 @@ class ViewMountTests: FBSnapshotTestCase {
       
       func render() -> [Component] {
         return [
-          TestChildComponent {self.props()}
+          TestChildComponent {self.props}
         ]
       }
       
@@ -95,7 +95,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
       
       func componentDidMount() {
-        self.props()()
+        self.props()
       }
     }
     
@@ -113,7 +113,7 @@ class ViewMountTests: FBSnapshotTestCase {
       
       func render() -> [Component] {
         return [
-          TestChildComponent {self.props()}
+          TestChildComponent {self.props}
         ]
       }
       
@@ -152,7 +152,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
       
       func componentDidMount() {
-        self.props()()
+        self.props()
       }
     }
     
@@ -171,7 +171,7 @@ class ViewMountTests: FBSnapshotTestCase {
         return ViewConfiguration(
           view: UILabel.self,
           attributes: [
-            Attr(self.props(), applicator: {(view, str) in
+            Attr(self.props, applicator: {(view, str) in
               let label = view as! UILabel
               label.text = str
               label.font = UIFont.systemFont(ofSize: 12)
@@ -180,7 +180,7 @@ class ViewMountTests: FBSnapshotTestCase {
       }
       
       func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
-        let str = self.props() as NSString
+        let str = self.props as NSString
         let size = str.boundingRect(with: constraint,
                                     options: NSStringDrawingOptions(),
                                     attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12)],

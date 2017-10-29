@@ -8,8 +8,6 @@
 
 import Foundation
 
-var kWrapperKey: Void?
-
 internal func GetContext(_ component: Component) -> ComponentContextProtocol? {
   return getAssociatedObject(object: component, associativeKey: &kWrapperKey)
 }
@@ -39,6 +37,7 @@ internal protocol ComponentContextProtocol {
   var layoutInfo: Atomic<LayoutInfo?> {get}
 }
 
+/** The bag of information needed by the framework to do its work. This is an implementation detail of the framework */
 internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextProtocol {
   var untypedMountInfo: MountInfoProtocol {
     get {
@@ -63,3 +62,5 @@ internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextPro
     self.layoutInfo = Atomic(nil)
   }
 }
+
+internal var kWrapperKey: Void?

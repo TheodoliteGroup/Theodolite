@@ -64,10 +64,10 @@ public final class LabelComponent: TypedComponent {
   
   func attributes() -> Dictionary<NSAttributedStringKey, Any> {
     var attr: Dictionary<NSAttributedStringKey, Any> = [:]
-    attr[NSAttributedStringKey.font] = self.props().options.font
+    attr[NSAttributedStringKey.font] = self.props.options.font
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineBreakMode =
-      self.props().options.isMultiline
+      self.props.options.isMultiline
       ? NSLineBreakMode.byWordWrapping
       : NSLineBreakMode.byTruncatingTail
     attr[NSAttributedStringKey.paragraphStyle] = paragraphStyle
@@ -75,7 +75,7 @@ public final class LabelComponent: TypedComponent {
   }
   
   func attributedString() -> NSAttributedString {
-    return NSAttributedString.init(string: self.props().0,
+    return NSAttributedString.init(string: self.props.0,
                                    attributes: self.attributes())
   }
   
@@ -85,7 +85,7 @@ public final class LabelComponent: TypedComponent {
       return cachedView
     }
     
-    let props = self.props()
+    let props = self.props
     
     var attributes: [Attribute] = [
       Attr(self.attributedString(), applicator: {
@@ -121,7 +121,7 @@ public final class LabelComponent: TypedComponent {
       label.numberOfLines = isMultiline ? 0 : 1
     })
       
-    attributes += self.props().options.view.viewAttributes()
+    attributes += self.props.options.view.viewAttributes()
     cachedView = ViewConfiguration(
       view: UILabel.self,
       attributes: attributes)

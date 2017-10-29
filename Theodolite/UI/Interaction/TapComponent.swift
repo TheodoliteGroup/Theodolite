@@ -17,14 +17,14 @@ public final class TapComponent: TypedComponent {
   public init() {}
   
   public func render() -> [Component] {
-    return [self.props().component]
+    return [self.props.component]
   }
   
   public func view() -> ViewConfiguration? {
     return ViewConfiguration(
       view: UIView.self,
       attributes: [
-        TapAttribute(self.props().action)
+        TapAttribute(self.props.action)
       ])
   }
 }

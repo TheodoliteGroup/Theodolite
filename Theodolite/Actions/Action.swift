@@ -29,7 +29,7 @@ import Foundation
    typealias PropType = Action<UITouch>
  
    func somethingHappened(touch: UITouch) {
-     self.props().send(touch)
+     self.props.send(touch)
    }
  }
  */

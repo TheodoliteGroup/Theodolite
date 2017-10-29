@@ -29,7 +29,7 @@ public extension TypedComponent {
   }
   
   public func shouldComponentUpdate(previous: Component) -> Bool {
-    // Note that we don't use self.props() here, since that force-unwraps props
+    // Note that we don't use self.props here, since that force-unwraps props
     if let props = self.context().props as? AnyHashable {
       if let previousProps = (previous as? Self)?.context().props as? AnyHashable {
         return props != previousProps

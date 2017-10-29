@@ -28,7 +28,7 @@ final class ViewComponent: TypedComponent {
   typealias PropType = ViewConfiguration
   
   public func view() -> ViewConfiguration? {
-    return self.props()
+    return self.props
   }
   
   func layout(constraint: CGSize, tree: ComponentTree) -> Layout {

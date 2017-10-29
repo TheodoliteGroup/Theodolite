@@ -20,7 +20,7 @@ final class TestItemHeader: TypedComponent {
   func render() -> [Component] {
     return [
       LabelComponent {
-        (self.props(),
+        (self.props,
          LabelComponent.Options(textColor: UIColor.yellow,
                                 isMultiline: true))
       }
@@ -34,7 +34,7 @@ final class TestItemContent: TypedComponent {
   func render() -> [Component] {
     return [
       LabelComponent {
-        (self.props(),
+        (self.props,
          LabelComponent.Options(textColor: UIColor.blue,
                                 isMultiline: true))
       }
@@ -51,7 +51,7 @@ final class TestItemFooter: TypedComponent {
         insets: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0),
         component:
         LabelComponent {
-          (self.props(),
+          (self.props,
            LabelComponent.Options(textColor: UIColor.red,
                                   isMultiline: true))
       })}
@@ -64,8 +64,8 @@ final class TestItem: TypedComponent {
   typealias StateType = String
   
   func handler(gesture: UITapGestureRecognizer) {
-    print("yay! props: \(self.props())")
-    self.updateState(state: self.state() != nil ? nil : "Tapped!!!")
+    print("yay! props: \(self.props)")
+    self.updateState(state: self.state != nil ? nil : "Tapped!!!")
   }
   
   func render() -> [Component] {
@@ -78,9 +78,9 @@ final class TestItem: TypedComponent {
             flexDirection: .column
             ),
            children:[
-            FlexChild(TestItemHeader { self.state() ?? self.props() }),
-            FlexChild(TestItemContent { self.state() ?? self.props() }),
-            FlexChild(TestItemFooter { self.state() ?? self.props() })
+            FlexChild(TestItemHeader { self.state ?? self.props }),
+            FlexChild(TestItemContent { self.state ?? self.props }),
+            FlexChild(TestItemFooter { self.state ?? self.props })
             ]
           )}
         )}

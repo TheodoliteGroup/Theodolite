@@ -302,6 +302,7 @@
 		B18262491FA55EBB00D41A8A /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				B1574DE11FA6852600E91D09 /* ComponentContext.swift */,
 				B136BEAB1F8D69C9001EE264 /* Component.swift */,
 				B1574DDF1FA684BA00E91D09 /* ComponentInternal.swift */,
 				B1574DD91FA681E000E91D09 /* ComponentLayout.swift */,
@@ -312,7 +313,6 @@
 				B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */,
 				B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */,
 				B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */,
-				B1574DE11FA6852600E91D09 /* ComponentContext.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";

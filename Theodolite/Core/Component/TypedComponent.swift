@@ -56,8 +56,8 @@ public protocol TypedComponent: Component, InternalTypedComponent {
   associatedtype StateType = Void?
   associatedtype ViewType: UIView = UIView
   
-  func props() -> PropType
-  func state() -> StateType?
+  var props: PropType {get}
+  var state: StateType? {get}
   
   func initialState() -> StateType?
   

@@ -23,16 +23,16 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   public init() {}
   
   public func render() -> [Component] {
-    return [self.props().0]
+    return [self.props.0]
   }
   
   public func view() -> ViewConfiguration? {
     return ViewConfiguration(view: UIScrollView.self,
-                             attributes: self.props().attributes)
+                             attributes: self.props.attributes)
   }
   
   public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
-    let direction = self.props().direction
+    let direction = self.props.direction
     let children = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
       return LayoutChild(
         layout:childTree

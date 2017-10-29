@@ -9,12 +9,14 @@
 import Foundation
 
 public extension TypedComponent {
-  func state() -> StateType? {
-    if let handle = getScopeHandle(component: self) {
-      return handle.state as? StateType ?? nil
+  var state: StateType? {
+    get {
+      if let handle = getScopeHandle(component: self) {
+        return handle.state as? StateType ?? nil
+      }
+      assert(false, "Accessing state before handle set on component. This state update will no-op")
+      return nil
     }
-    assert(false, "Accessing state before handle set on component. This state update will no-op")
-    return nil
   }
   
   func initialState() -> StateType? {
