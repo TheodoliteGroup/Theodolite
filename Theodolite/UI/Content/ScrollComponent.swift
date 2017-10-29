@@ -17,7 +17,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   public typealias ViewType = UIScrollView
   
   private var scrollDelegate: InternalScrollDelegate? = nil
-  private var mountedArguments: (parentView: UIView, layout: Layout, position: CGPoint)? = nil
+  private var mountedArguments: (parentView: UIView, layout: WeakContainer<Layout>, position: CGPoint)? = nil
   private var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
   
   public init() {}
@@ -66,7 +66,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   public func mount(parentView: UIView,
                     layout: Layout,
                     position: CGPoint) -> MountContext {
-    mountedArguments = (parentView: parentView, layout: layout, position: position)
+    mountedArguments = (parentView: parentView, layout: WeakContainer(layout), position: position)
     
     let mountContext = StandardMountLayout(parentView: parentView,
                                            layout: layout,
@@ -98,7 +98,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
       assertionFailure()
       return
     }
-    UnmountLayout(layout: mountedArguments.layout.children[0].layout,
+    UnmountLayout(layout: mountedArguments.layout.val!.children[0].layout,
                   incrementalContext: incrementalMountContext)
   }
   
@@ -108,7 +108,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
       return
     }
     MountRootLayout(view: context().mountInfo.mountContext!.view,
-                    layout: mountedArguments.layout.children[0].layout,
+                    layout: mountedArguments.layout.val!.children[0].layout,
                     position: context().mountInfo.mountContext!.position,
                     incrementalContext: incrementalMountContext,
                     mountVisibleOnly: true)

@@ -51,3 +51,11 @@ class Atomic<T> {
 func hashCombine(_ first: AnyHashable, _ second: AnyHashable) -> Int {
   return first.hashValue << 32 ^ second.hashValue
 }
+
+class WeakContainer<T: AnyObject> {
+  weak var val: T?
+  
+  init(_ val: T) {
+    self.val = val
+  }
+}
