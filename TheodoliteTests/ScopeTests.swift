@@ -60,7 +60,7 @@ class ScopeTests: XCTestCase {
                   parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [:])
     
-    XCTAssertEqual(c.state(), c.initialState())
+    XCTAssertEqual(c.state, c.initialState())
   }
   
   func test_buildingScopeWithPreviousScope_keepsIdentifiersForComponent() {
@@ -157,7 +157,7 @@ class ScopeTests: XCTestCase {
                   parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [scope1._handle.identifier: 1000])
     
-    XCTAssertEqual(c2.state(), 42)
+    XCTAssertEqual(c2.state, 42)
   }
   
   func test_buildingScopeWithStateUpdateMap_andPreviousScope_updatesState() {
@@ -186,7 +186,7 @@ class ScopeTests: XCTestCase {
                   parentIdentifier: ScopeIdentifier(path: []),
                   stateUpdateMap: [scope1._handle.identifier: 1000])
     
-    XCTAssertEqual(c2.state(), 1000)
+    XCTAssertEqual(c2.state, 1000)
   }
   
   func test_buildingScopeForComponent_withChildren_createsChildComponent() {
@@ -239,7 +239,7 @@ class ScopeTests: XCTestCase {
                       parentIdentifier: ScopeIdentifier(path: []),
                       stateUpdateMap: [:])
     
-    XCTAssertEqual((scope._children[0].component() as! TestChildComponent).state(), 42)
+    XCTAssertEqual((scope._children[0].component() as! TestChildComponent).state, 42)
   }
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_andStateUpdateForChild_createsChildComponentWithUpdatedState() {
@@ -276,7 +276,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [scope1._children[0]._handle.identifier: 1000])
     
-    XCTAssertEqual((scope2._children[0].component() as! TestChildComponent).state(), 1000)
+    XCTAssertEqual((scope2._children[0].component() as! TestChildComponent).state, 1000)
   }
   
   /** Scope root tests */
