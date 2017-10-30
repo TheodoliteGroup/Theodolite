@@ -47,12 +47,12 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
       }
     }
 
-    let exp = expectation(description: "Finished remounting after state update")
+    var calledUpdate = false
 
     let view = ComponentHostingView { () -> Component in
       return TestComponent {
         {
-          exp.fulfill()
+          calledUpdate = true
         }
       }
     }
@@ -60,8 +60,22 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
 
     view.layoutSubviews()
 
-    self.wait(for: [exp], timeout: 1)
+    waitUntil(timeout: 2) { () -> Bool in
+      return calledUpdate
+    }
+
+    view.layoutSubviews()
 
     self.FBSnapshotVerifyView(view)
+  }
+}
+
+func waitUntil(timeout: TimeInterval, _ block: () -> Bool) {
+  let target = CFAbsoluteTimeGetCurrent() + timeout
+  while(!block()) {
+    RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 0.02))
+    if CFAbsoluteTimeGetCurrent() > target {
+      break
+    }
   }
 }
