@@ -26,13 +26,20 @@ public final class TextComponent: TypedComponent {
   
   public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let renderer = TextKitRenderer.renderer(attributes: self.props.0,
-                                            constrainedSize: constraint.max)
+                                            constrainedSize: reinterpretSize(size: constraint.max))
     return Layout(component: self,
                   size: constraint.clamp(
                     CGSize(
                       width: ceil(renderer.size.width),
                       height: ceil(renderer.size.height))),
                   children: [])
+  }
+  
+  private func reinterpretSize(size: CGSize) -> CGSize {
+    return CGSize(
+      width: size.width.isNaN ? CGFloat.greatestFiniteMagnitude : size.width,
+      height: size.height.isNaN ? CGFloat.greatestFiniteMagnitude : size.height
+    )
   }
   
   public func view() -> ViewConfiguration? {

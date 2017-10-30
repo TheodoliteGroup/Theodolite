@@ -22,7 +22,8 @@ final class TestItemHeader: TypedComponent {
       LabelComponent {
         (self.props,
          LabelComponent.Options(textColor: UIColor.yellow,
-                                isMultiline: true))
+                                lineBreakMode: NSLineBreakMode.byWordWrapping,
+                                maximumNumberOfLines: 0))
       }
     ]
   }
@@ -36,7 +37,8 @@ final class TestItemContent: TypedComponent {
       LabelComponent {
         (self.props,
          LabelComponent.Options(textColor: UIColor.blue,
-                                isMultiline: true))
+                                lineBreakMode: NSLineBreakMode.byWordWrapping,
+                                maximumNumberOfLines: 0))
       }
     ]
   }
@@ -53,7 +55,8 @@ final class TestItemFooter: TypedComponent {
         LabelComponent {
           (self.props,
            LabelComponent.Options(textColor: UIColor.red,
-                                  isMultiline: true))
+                                  lineBreakMode: NSLineBreakMode.byWordWrapping,
+                                  maximumNumberOfLines: 0))
       })}
     ]
   }
@@ -100,7 +103,7 @@ final class TestBatchComponent: TypedComponent {
          children:
           (1...10)
             .map {(num: Int) -> FlexChild in
-              return FlexChild(TestItem(key: num) { "Hello world" })
+              return FlexChild(TestItem(key: num) { "Lorem ipsum dolor sit amet, ad integre tincidunt consetetur per, error atomorum vel et. Quo ad error dicam iudicabit, sumo facilisi eu his. Duo elitr vidisse theophrastus ut, possit eloquentiam vel ea. Nec no inani erant dissentias, alii reque no has, et nec virtute adversarium. Ad ancillae insolens abhorreant has, has et dictas impedit conceptam. No qui virtute eripuit, vix cu inani repudiare, hinc omittam convenire et pro. Eros quodsi detraxit cum et, has eu quas nonumy admodum, te sint soluta his." })
         })
       }
     ]
