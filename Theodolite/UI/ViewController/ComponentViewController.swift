@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ComponentViewController: UIViewController {
+public final class ComponentViewController: UIViewController {
   private let factory: () -> Component
 
   public init(factory: @escaping () -> Component) {
