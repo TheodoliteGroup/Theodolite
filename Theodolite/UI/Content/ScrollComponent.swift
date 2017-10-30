@@ -68,11 +68,13 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
                     position: CGPoint) -> MountContext {
     mountedArguments = (parentView: parentView, layout: WeakContainer(layout), position: position)
     
+    let componentContext = context()
+    
     let mountContext = StandardMountLayout(parentView: parentView,
                                            layout: layout,
                                            position: position,
                                            config: self.view(),
-                                           componentContext: self.context())
+                                           componentContext: componentContext)
     
     let scrollView = mountContext.view as! UIScrollView
     scrollDelegate = InternalScrollDelegate(layout: layout)
@@ -80,10 +82,9 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     scrollView.contentSize = layout.extra as! CGSize
     
     // Now we mount our children
-    let componentContext = context()
     // todo: this is terrible, need to fix it
     componentContext.untypedMountInfo.mountContext = mountContext
-    mountChildren()
+    mountChildren(componentContext)
     
     return MountContext(view: mountContext.view,
                         position: mountContext.position,
@@ -102,7 +103,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
                   incrementalContext: incrementalMountContext)
   }
   
-  private func mountChildren() {
+  private func mountChildren(_ componentContext: ComponentContextProtocol) {
     guard let mountedArguments = mountedArguments else {
       assertionFailure()
       return
@@ -117,7 +118,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   // MARK: ScrollListener
   
   public func scrollViewDidScroll(scrollView: UIScrollView) {
-    mountChildren()
+    mountChildren(context())
   }
 }
 
