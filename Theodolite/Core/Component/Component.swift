@@ -15,7 +15,7 @@ public protocol Component: class {
   func render() -> [Component]
   func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext
   func unmount(layout: Layout)
-  func layout(constraint: CGSize, tree: ComponentTree) -> Layout
+  func layout(constraint: SizeRange, tree: ComponentTree) -> Layout
   
   /**
    Implement this if you want to control memoization of your component. By default TypedComponents will memoize if

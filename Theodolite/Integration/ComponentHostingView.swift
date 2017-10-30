@@ -74,7 +74,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
     }
     
     if let root = self.root {
-      let layout = root.root.component().layout(constraint: self.bounds.size,
+      let layout = root.root.component().layout(constraint: SizeRange(max: self.bounds.size),
                                                 tree: root.root)
       self.mountLayout(layout: layout)
       self.lastLayout = CachedLayout(constraint: self.bounds.size, layout: layout)
@@ -111,7 +111,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
       // This is a best-effort layout attempt. We can't guarantee that the hosting view won't change its bounds before
       // we apply our update. When that happens in layoutSubviews, we will throw out this layout and will re-compute
       // using the new bounds.
-      let newLayout = newRoot.root.component().layout(constraint: constraint,
+      let newLayout = newRoot.root.component().layout(constraint: SizeRange(max: constraint),
                                                       tree: newRoot.root)
       DispatchQueue.main.async(execute: {
         self.dispatched = false

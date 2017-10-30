@@ -116,7 +116,7 @@ final public class FlexboxComponent: TypedComponent {
     })
   }
   
-  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let props = self.props
     
     var childLayoutNodes: [Node] = []
@@ -144,7 +144,7 @@ final public class FlexboxComponent: TypedComponent {
           padding: flexChild.padding,
           border: flexChild.border) { (childConstraint: CGSize) -> CGSize in
             let childLayout =
-              component.layout(constraint: childConstraint, tree: childTree)
+              component.layout(constraint: SizeRange(max: childConstraint), tree: childTree)
             layoutTable.setObject(childLayout, forKey: component)
             return childLayout.size
       })
@@ -164,7 +164,7 @@ final public class FlexboxComponent: TypedComponent {
                              direction: props.options.direction,
                              overflow: props.options.overflow)
     
-    let nodeLayout = selfNode.layout(maxSize: constraint)
+    let nodeLayout = selfNode.layout(maxSize: constraint.max)
     
     /** print("\(nodeLayout)") */
     
@@ -175,9 +175,17 @@ final public class FlexboxComponent: TypedComponent {
       let component = childTree.component()
       
       let childNodeLayout = nodeLayout.children[index]
-      let computedLayout =
+      var computedLayout =
         layoutTable.object(forKey: component)
-        ?? component.layout(constraint: childNodeLayout.frame.size, tree: childTree)
+          ?? Layout.empty(component: component)
+      
+      if !SizesEqual(computedLayout.size, childNodeLayout.frame.size) {
+        // The component was laid out at a different size, and flexbox decided to change that size. Now we force it
+        // into the size range that flexbox is imposing.
+        computedLayout = component.layout(constraint: SizeRange(min: childNodeLayout.frame.size,
+                                                                max: childNodeLayout.frame.size),
+                                          tree: childTree)
+      }
       
       childLayouts.append(
         LayoutChild(
@@ -190,7 +198,7 @@ final public class FlexboxComponent: TypedComponent {
     }
     
     let layout = Layout(component: self,
-                        size: nodeLayout.frame.size,
+                        size: constraint.clamp(nodeLayout.frame.size),
                         children: childLayouts)
     /** print("\(layout)") */
     return layout

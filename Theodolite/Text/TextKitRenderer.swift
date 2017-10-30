@@ -49,6 +49,9 @@ public final class TextKitRenderer {
       layoutManager.drawBackground(forGlyphRange: glyphRange, at: bounds.origin)
       layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: bounds.origin)
     }
+    
+    UIGraphicsPopContext()
+    graphicsContext.restoreGState()
   }
   
   // MARK: Caching

@@ -13,7 +13,8 @@ func snapshotTestComponent(_ testCase: FBSnapshotTestCase, _ size: CGSize, _ ide
   let view = UIView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
   let scopeRoot = ScopeRoot(previousRoot: nil, listener: nil, stateUpdateMap: [:], factory: factory)
   
-  let layout = scopeRoot.root.component().layout(constraint: view.bounds.size, tree: scopeRoot.root)
+  let layout = scopeRoot.root.component().layout(constraint: SizeRange(max: view.bounds.size),
+                                                 tree: scopeRoot.root)
   
   MountRootLayout(view: view,
                   layout: layout,
@@ -31,9 +32,9 @@ final class ViewComponent: TypedComponent {
     return self.props
   }
   
-  func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+  func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     return Layout(component: self,
-                  size: constraint,
+                  size: constraint.max,
                   children: [])
   }
 }

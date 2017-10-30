@@ -31,18 +31,19 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
                              attributes: self.props.attributes)
   }
   
-  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let direction = self.props.direction
     let children = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
       return LayoutChild(
         layout:childTree
           .component()
           .layout(constraint:
-            direction == UICollectionViewScrollDirection.vertical
-              ? CGSize(width: constraint.width,
-                       height: nan("unconstrained"))
-              : CGSize(width: nan("unconstrained"),
-                       height: constraint.height),
+            SizeRange(max:
+              direction == UICollectionViewScrollDirection.vertical
+                ? CGSize(width: constraint.max.width,
+                         height: nan("unconstrained"))
+                : CGSize(width: nan("unconstrained"),
+                         height: constraint.max.height)),
                   tree: childTree),
         position: CGPoint(x: 0, y: 0))
     }
@@ -57,8 +58,8 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     return Layout(
       component: self,
       size: direction == UICollectionViewScrollDirection.vertical
-        ? CGSize(width: contentRect.size.width, height: constraint.height)
-        : CGSize(width: constraint.width, height: contentRect.size.height),
+        ? CGSize(width: contentRect.size.width, height: constraint.max.height)
+        : CGSize(width: constraint.max.width, height: contentRect.size.height),
       children: children,
       extra: contentRect.size)
   }

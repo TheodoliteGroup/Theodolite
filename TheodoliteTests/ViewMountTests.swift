@@ -24,7 +24,7 @@ class ViewMountTests: FBSnapshotTestCase {
         return self.props
       }
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Layout(component: self,
                       size: CGSize(width: 50, height: 50),
                       children: [])
@@ -60,7 +60,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Theodolite.Layout(
           component: self,
           size: CGSize(width: 50, height: 50),
@@ -80,7 +80,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestChildComponent: TypedComponent {
       typealias PropType = () -> ()
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Layout(component: self,
                       size: CGSize(width: 25, height: 25),
                       children: [])
@@ -125,7 +125,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         let firstChild = tree.children()[0]
         return Theodolite.Layout(component: self, size: CGSize(width: 50, height: 50), children: [
           LayoutChild(layout: firstChild.component().layout(constraint: constraint, tree: firstChild),
@@ -137,7 +137,7 @@ class ViewMountTests: FBSnapshotTestCase {
     final class TestChildComponent: TypedComponent {
       typealias PropType = () -> ()
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Layout(component: self,
                       size: CGSize(width: 25, height: 25),
                       children: [])
@@ -179,9 +179,9 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func layout(constraint: CGSize, tree: ComponentTree) -> Theodolite.Layout {
+      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         let str = self.props as NSString
-        let size = str.boundingRect(with: constraint,
+        let size = str.boundingRect(with: constraint.max,
                                     options: NSStringDrawingOptions(),
                                     attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12)],
                                     context: nil).size

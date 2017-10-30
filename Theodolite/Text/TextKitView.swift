@@ -9,6 +9,15 @@
 import UIKit
 
 public  final class TextKitView: UIView {
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+    self.backgroundColor = UIColor.clear
+  }
+  
+  public required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   var attributes: TextKitAttributes? = nil {
     didSet {
       self.setNeedsDisplay()

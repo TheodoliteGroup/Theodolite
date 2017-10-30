@@ -52,6 +52,7 @@
 		B18750C41FA6B9BA00C4DA47 /* TextKitRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750C31FA6B9BA00C4DA47 /* TextKitRenderer.swift */; };
 		B18750C81FA6C14400C4DA47 /* TextKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750C71FA6C14400C4DA47 /* TextKitView.swift */; };
 		B18750CA1FA6C25600C4DA47 /* TextComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750C91FA6C25600C4DA47 /* TextComponent.swift */; };
+		B18750CC1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B511F81FA1793100B854F0 /* MountContext.swift */; };
@@ -166,6 +167,7 @@
 		B18750C31FA6B9BA00C4DA47 /* TextKitRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextKitRenderer.swift; sourceTree = "<group>"; };
 		B18750C71FA6C14400C4DA47 /* TextKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextKitView.swift; sourceTree = "<group>"; };
 		B18750C91FA6C25600C4DA47 /* TextComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextComponent.swift; sourceTree = "<group>"; };
+		B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1B511F81FA1793100B854F0 /* MountContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountContext.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
+				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
 				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
 				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
 				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
@@ -361,7 +364,6 @@
 		B182624D1FA55F2200D41A8A /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
 				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
 			);
 			path = Content;
@@ -403,6 +405,7 @@
 				B18750C31FA6B9BA00C4DA47 /* TextKitRenderer.swift */,
 				B18750C71FA6C14400C4DA47 /* TextKitView.swift */,
 				B18750C91FA6C25600C4DA47 /* TextComponent.swift */,
+				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 			files = (
 				B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */,
 				B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */,
+				B18750CC1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift in Sources */,
 				B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */,
 				B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */,
 				B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */,

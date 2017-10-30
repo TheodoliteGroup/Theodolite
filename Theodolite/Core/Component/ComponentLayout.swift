@@ -8,10 +8,42 @@
 
 import Foundation
 
+public struct SizeRange: Hashable, Equatable {
+  let min: CGSize
+  let max: CGSize
+  
+  init(min: CGSize = CGSize(width: CGFloat.nan, height: CGFloat.nan),
+       max: CGSize) {
+    self.min = min
+    self.max = max
+  }
+  
+  public func clamp(_ size: CGSize) -> CGSize {
+    return CGSize(
+      width: CGFloat.maximum(CGFloat.minimum(size.width, max.width), min.width),
+      height: CGFloat.maximum(CGFloat.minimum(size.height, max.height), min.height)
+    )
+  }
+  
+  public static func ==(lhs: SizeRange, rhs: SizeRange) -> Bool {
+    return SizesEqual(lhs.min, rhs.min)
+      && SizesEqual(lhs.max, rhs.max)
+  }
+  
+  public var hashValue: Int {
+    return HashArray([
+        min.width,
+        min.height,
+        max.width,
+        max.height
+      ])
+  }
+}
+
 public extension Component {
   
   /** The standard layout algorithm that memoizes by default. */
-  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     // Check if we can memoize our layout. If you're building your own component layout, you can probably skip this.
     // Instead, just add an empty component in the hierarchy that is a parent of your heavy layout components, and
     // they'll memoize for you instead of duplicating this code.
@@ -59,9 +91,9 @@ public extension Component {
 
 internal func MemoizedLayout(component: Component,
                              componentContext: ComponentContextProtocol,
-                             constraint: CGSize) -> Layout? {
+                             constraint: SizeRange) -> Layout? {
   if let previousLayoutInfo = componentContext.layoutInfo.get() {
-    if SizesEqual(constraint, previousLayoutInfo.constraint) {
+    if constraint == previousLayoutInfo.constraint {
       return Layout(component: component,
                     size: previousLayoutInfo.size,
                     children: previousLayoutInfo.children,
@@ -73,7 +105,7 @@ internal func MemoizedLayout(component: Component,
 
 internal func StoreLayout(layout: Layout,
                           componentContext: ComponentContextProtocol,
-                          constraint: CGSize) {
+                          constraint: SizeRange) {
   componentContext.layoutInfo.update({ (_) in
     LayoutInfo(constraint: constraint,
                size: layout.size,

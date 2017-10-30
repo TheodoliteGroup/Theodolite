@@ -25,7 +25,7 @@ internal struct MountInfo<ViewType: UIView>: MountInfoProtocol {
 
 internal struct LayoutInfo {
   /** We can't store a ref to the Layout directly because that would form a retain cycle. */
-  let constraint: CGSize
+  let constraint: SizeRange
   let size: CGSize
   let children: [LayoutChild]
   let extra: Any?
