@@ -41,6 +41,7 @@
 		B1574DDE1FA6848300E91D09 /* ComponentRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DDD1FA6848300E91D09 /* ComponentRender.swift */; };
 		B1574DE01FA684BA00E91D09 /* ComponentInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DDF1FA684BA00E91D09 /* ComponentInternal.swift */; };
 		B1574DE21FA6852600E91D09 /* ComponentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DE11FA6852600E91D09 /* ComponentContext.swift */; };
+		B15966D41FA7C01900FEDC5C /* TextComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15966D31FA7C01900FEDC5C /* TextComponentSnapshotTests.swift */; };
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
 		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
 		B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262251FA4D9F400D41A8A /* InsetComponent.swift */; };
@@ -155,6 +156,7 @@
 		B1574DDD1FA6848300E91D09 /* ComponentRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentRender.swift; sourceTree = "<group>"; };
 		B1574DDF1FA684BA00E91D09 /* ComponentInternal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentInternal.swift; sourceTree = "<group>"; };
 		B1574DE11FA6852600E91D09 /* ComponentContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContext.swift; sourceTree = "<group>"; };
+		B15966D31FA7C01900FEDC5C /* TextComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
 		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
 				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
+				B15966D31FA7C01900FEDC5C /* TextComponentSnapshotTests.swift */,
 				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
 				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
 				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
@@ -677,6 +680,7 @@
 				B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */,
 				B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */,
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
+				B15966D41FA7C01900FEDC5C /* TextComponentSnapshotTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
 				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,
 				B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */,

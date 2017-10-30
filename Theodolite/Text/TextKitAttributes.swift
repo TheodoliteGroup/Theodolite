@@ -25,6 +25,14 @@ public struct TextKitAttributes: Equatable, Hashable {
    The maximum number of lines to draw in the drawable region.  Leave blank or set to 0 to define no maximum.
    */
   let maximumNumberOfLines: Int
+
+  init(attributedString: NSAttributedString,
+       lineBreakMode: NSLineBreakMode = NSLineBreakMode.byTruncatingTail,
+       maximumNumberOfLines: Int = 1) {
+    self.attributedString = attributedString
+    self.lineBreakMode = lineBreakMode
+    self.maximumNumberOfLines = maximumNumberOfLines
+  }
   
   public static func ==(lhs: TextKitAttributes, rhs: TextKitAttributes) -> Bool {
     return lhs.lineBreakMode == rhs.lineBreakMode
