@@ -108,9 +108,9 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
       assertionFailure()
       return
     }
-    MountRootLayout(view: context().mountInfo.mountContext!.view,
+    MountRootLayout(view: componentContext.untypedMountInfo.mountContext!.view,
                     layout: mountedArguments.layout.val!.children[0].layout,
-                    position: context().mountInfo.mountContext!.position,
+                    position: componentContext.untypedMountInfo.mountContext!.position,
                     incrementalContext: incrementalMountContext,
                     mountVisibleOnly: true)
   }
