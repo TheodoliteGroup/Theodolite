@@ -19,7 +19,8 @@ public protocol Component: class {
   
   /**
    Implement this if you want to control memoization of your component. By default TypedComponents will memoize if
-   their PropType is Equatable.
+   their PropType is Equatable. This method will only be called if there are no state updates for this component or
+   any of its descendents.
   */
   func shouldComponentUpdate(previous: Component) -> Bool
   
