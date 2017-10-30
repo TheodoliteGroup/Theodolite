@@ -58,6 +58,12 @@ func HashCombine(_ first: AnyHashable, _ second: AnyHashable) -> Int {
   return first.hashValue << 32 ^ second.hashValue
 }
 
+func HashArray(_ values: [AnyHashable]) -> Int {
+  return values.reduce(0) { (result: Int, val: AnyHashable) -> Int in
+    return HashCombine(result, val.hashValue)
+  }
+}
+
 class WeakContainer<T: AnyObject> {
   weak var val: T?
   
