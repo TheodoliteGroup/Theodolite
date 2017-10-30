@@ -14,7 +14,7 @@ import FBSnapshotTestCase
 class ImageComponentSnapshotTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = true
+    recordMode = false
   }
 
   func test_normalRenderingWithColor() {
