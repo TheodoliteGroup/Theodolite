@@ -11,6 +11,7 @@ import UIKit
 public final class ImageComponent: TypedComponent {
   public typealias PropType = (
     UIImage,
+    size: CGSize,
     options: ViewOptions
   )
 
@@ -27,5 +28,11 @@ public final class ImageComponent: TypedComponent {
       view: UIImageView.self,
       attributes: attributes
     )
+  }
+
+  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+    return Layout(component: self,
+                  size: constraint.clamp(self.props.size),
+                  children: [])
   }
 }
