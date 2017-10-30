@@ -234,7 +234,6 @@
 		B136BE4A1F8D5741001EE264 /* Theodolite */ = {
 			isa = PBXGroup;
 			children = (
-				B18750B81FA6B3F700C4DA47 /* Text */,
 				B18262421FA55E9D00D41A8A /* Actions */,
 				B1FC9C461FA023C5006249FC /* Debug */,
 				B136BEA81F8D6727001EE264 /* Core */,
@@ -436,6 +435,7 @@
 		B1C14FD21F9953F0005A8CBE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B18750B81FA6B3F700C4DA47 /* Text */,
 				B18262A01FA57ECA00D41A8A /* Interaction */,
 				B182624D1FA55F2200D41A8A /* Content */,
 				B182624C1FA55F0F00D41A8A /* Layout */,
