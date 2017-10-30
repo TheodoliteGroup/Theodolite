@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double TheodoliteVersionNumber;
 FOUNDATION_EXPORT const unsigned char TheodoliteVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Theodolite/PublicHeader.h>
-
-
