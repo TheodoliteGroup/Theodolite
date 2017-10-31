@@ -58,22 +58,27 @@ public final class TextKitRenderer {
   
   static func renderer(attributes: TextKitAttributes, constrainedSize: CGSize) -> TextKitRenderer {
     let key = TextKitRendererKey(attributes: attributes, constrainedSize: constrainedSize)
-    if let renderer = gTextKitRendererCache[key] {
+    if let renderer = gTextKitRendererCache.object(forKey: key) {
       return renderer
     }
     
     let renderer = TextKitRenderer(attributes: attributes, constrainedSize: constrainedSize)
-    gTextKitRendererCache[key] = renderer
-    gTextKitRendererCache[TextKitRendererKey(
+    gTextKitRendererCache.setObject(renderer, forKey: key)
+    gTextKitRendererCache.setObject(renderer, forKey: TextKitRendererKey(
       attributes: attributes,
       constrainedSize:
       CGSize(width: ceil(renderer.size.width),
-             height: ceil(renderer.size.height)))] = renderer
+             height: ceil(renderer.size.height))))
     return renderer
   }
 
   /** TODO: Replace this with a cache, but NSCache appears not to call hashValue? */
-  static var gTextKitRendererCache: [TextKitRendererKey: TextKitRenderer] = [:]
+  static var gTextKitRendererCache: TextCache<TextKitRendererKey, TextKitRenderer> = {
+    let cache = TextCache<TextKitRendererKey, TextKitRenderer>()
+    cache.countLimit = 100
+    cache.name = "Theodolite-TextKitRendererCache"
+    return cache
+  }()
 }
 
 internal class TextKitRendererKey: Equatable, Hashable {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B11D5FE71FA933EF002F417B /* TextCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D5FE61FA933EF002F417B /* TextCache.swift */; };
 		B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12916031FA2A36D006D269B /* ScrollComponent.swift */; };
 		B12B7DE61FA34F7C004DC3F4 /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
@@ -129,6 +130,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B11D5FE61FA933EF002F417B /* TextCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCache.swift; sourceTree = "<group>"; };
 		B12916031FA2A36D006D269B /* ScrollComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponent.swift; sourceTree = "<group>"; };
 		B136BE481F8D5741001EE264 /* Theodolite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Theodolite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B136BE4B1F8D5741001EE264 /* Theodolite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theodolite.h; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				B18750C31FA6B9BA00C4DA47 /* TextKitRenderer.swift */,
 				B18750C71FA6C14400C4DA47 /* TextKitView.swift */,
 				B18750C91FA6C25600C4DA47 /* TextComponent.swift */,
+				B11D5FE61FA933EF002F417B /* TextCache.swift */,
 				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
 			);
 			path = Text;
@@ -701,6 +704,7 @@
 				B18750CA1FA6C25600C4DA47 /* TextComponent.swift in Sources */,
 				B18750C41FA6B9BA00C4DA47 /* TextKitRenderer.swift in Sources */,
 				B136BEB01F8D69C9001EE264 /* Layout.swift in Sources */,
+				B11D5FE71FA933EF002F417B /* TextCache.swift in Sources */,
 				B1FC9C481FA023E2006249FC /* LayoutDebug.swift in Sources */,
 				B18750C81FA6C14400C4DA47 /* TextKitView.swift in Sources */,
 				B1FC9C351F9E1328006249FC /* IteratorWrapper.swift in Sources */,
