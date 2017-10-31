@@ -13,23 +13,21 @@ final class NewsItemComponent: TypedComponent {
   typealias PropType = NewsItem
 
   func render() -> [Component] {
-    var children: [FlexChild] = []
     let props = self.props
-    children.append(FlexChild(NewsItemHeaderComponent {
-      (imageURL: props.imageURL,
-       outletName: props.author)
-    }))
-    children.append(FlexChild(NewsItemTitleComponent { props.title }))
-    if let description = props.description {
-      children.append(FlexChild(NewsItemDescriptionComponent { description }))
-    }
     return [
       InsetComponent {(
         insets: UIEdgeInsetsMake(10, 20, 40, 20),
         component:
         FlexboxComponent {
           (options: FlexOptions(flexDirection: .column),
-           children: children)
+           children: [
+            FlexChild(NewsItemHeaderComponent { props.author }),
+            FlexChild(NewsItemTitleComponent { props.title }),
+            FlexChild(NewsItemContentComponent {(
+              imageURL: props.imageURL,
+              description: props.description
+              )})
+            ])
         }
         )}
     ]

@@ -28,6 +28,7 @@
 		B182629A1FA57D7300D41A8A /* Theodolite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B18262851FA56A8B00D41A8A /* Theodolite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; };
 		B182629F1FA57D7D00D41A8A /* Flexbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B1BC1B0D1FA9278F00F01A1A /* NewsItemContentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		B182626C1FA5685300D41A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B182627D1FA56A8B00D41A8A /* Theodolite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Theodolite.xcodeproj; path = ../../Theodolite.xcodeproj; sourceTree = "<group>"; };
 		B182628B1FA56A9A00D41A8A /* Flexbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flexbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemContentComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				B1483B411FA891A300796C58 /* NewsItemHeaderComponent.swift */,
 				B1483B431FA8951100796C58 /* NewsItemImageComponent.swift */,
 				B1483B3B1FA806E100796C58 /* NewsItemDescriptionComponent.swift */,
+				B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */,
 				B1483B3D1FA8070600796C58 /* NewsItemTitleComponent.swift */,
 				B1483B371FA8068A00796C58 /* NewsNetworkSource.swift */,
 				B1483B331FA8064100796C58 /* NewsNetworkSourceComponent.swift */,
@@ -273,6 +276,7 @@
 				B1483B311FA8060E00796C58 /* NewsAggregationComponent.swift in Sources */,
 				B1483B421FA891A300796C58 /* NewsItemHeaderComponent.swift in Sources */,
 				B1483B3A1FA806AC00796C58 /* NewsItemComponent.swift in Sources */,
+				B1BC1B0D1FA9278F00F01A1A /* NewsItemContentComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

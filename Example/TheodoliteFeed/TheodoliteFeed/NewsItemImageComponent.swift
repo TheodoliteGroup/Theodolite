@@ -27,7 +27,6 @@ final class NewsItemImageComponent: TypedComponent {
           let image = UIImage(data: data)
           self.updateState(state: (initiatedFetch: true, failed: false, image: image))
         } catch {
-          print("data retrieval or parsing threw")
           self.updateState(state: (initiatedFetch: true, failed: true, image: nil))
         }
       }
