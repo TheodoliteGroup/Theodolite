@@ -19,10 +19,14 @@ final class NewsItemComponent: TypedComponent {
       children.append(FlexChild(NewsItemDescriptionComponent { description }))
     }
     return [
-      FlexboxComponent {
-        (options: FlexOptions(flexDirection: .column),
-         children: children)
-      }
+      InsetComponent {(
+        insets: UIEdgeInsetsMake(10, 20, 10, 20),
+        component:
+        FlexboxComponent {
+          (options: FlexOptions(flexDirection: .column),
+           children: children)
+        }
+        )}
     ]
   }
 }

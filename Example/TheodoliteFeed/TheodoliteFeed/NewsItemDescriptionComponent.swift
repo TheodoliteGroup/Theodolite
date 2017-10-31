@@ -16,7 +16,8 @@ final class NewsItemDescriptionComponent: TypedComponent {
     return [
       LabelComponent {
         (self.props,
-         LabelComponent.Options(lineBreakMode: NSLineBreakMode.byWordWrapping,
+         LabelComponent.Options(textColor: UIColor(white: 0.3, alpha: 1),
+          lineBreakMode: NSLineBreakMode.byWordWrapping,
                                 maximumNumberOfLines: 0))
       }
     ]

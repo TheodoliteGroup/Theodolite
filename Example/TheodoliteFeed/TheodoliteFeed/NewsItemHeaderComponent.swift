@@ -14,10 +14,16 @@ final class NewsItemHeaderComponent: TypedComponent {
 
   func render() -> [Component] {
     return [
-      LabelComponent {
-        (self.props,
-         LabelComponent.Options(lineBreakMode: NSLineBreakMode.byWordWrapping,
-                                maximumNumberOfLines: 0))
+      InsetComponent {(
+        insets: UIEdgeInsetsMake(0, 0, 10, 0),
+        component:
+        LabelComponent {
+          (self.props,
+           LabelComponent.Options(
+            font: UIFont.boldSystemFont(ofSize: 16),
+            lineBreakMode: NSLineBreakMode.byWordWrapping,
+            maximumNumberOfLines: 0))
+      })
       }
     ]
   }
