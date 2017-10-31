@@ -14,13 +14,18 @@ final class NewsItemComponent: TypedComponent {
 
   func render() -> [Component] {
     var children: [FlexChild] = []
-    children.append(FlexChild(NewsItemHeaderComponent { self.props.title }))
-    if let description = self.props.description {
+    let props = self.props
+    children.append(FlexChild(NewsItemHeaderComponent {
+      (imageURL: props.imageURL,
+       outletName: props.author)
+    }))
+    children.append(FlexChild(NewsItemTitleComponent { props.title }))
+    if let description = props.description {
       children.append(FlexChild(NewsItemDescriptionComponent { description }))
     }
     return [
       InsetComponent {(
-        insets: UIEdgeInsetsMake(10, 20, 10, 20),
+        insets: UIEdgeInsetsMake(10, 20, 40, 20),
         component:
         FlexboxComponent {
           (options: FlexOptions(flexDirection: .column),

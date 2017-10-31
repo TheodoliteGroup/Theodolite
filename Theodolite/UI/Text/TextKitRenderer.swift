@@ -58,42 +58,47 @@ public final class TextKitRenderer {
   
   static func renderer(attributes: TextKitAttributes, constrainedSize: CGSize) -> TextKitRenderer {
     let key = TextKitRendererKey(attributes: attributes, constrainedSize: constrainedSize)
-    if let renderer = gTextKitRendererCache.object(forKey: key) {
+    if let renderer = gTextKitRendererCache[key] {
       return renderer
     }
     
     let renderer = TextKitRenderer(attributes: attributes, constrainedSize: constrainedSize)
-    gTextKitRendererCache.setObject(renderer, forKey: key)
+    gTextKitRendererCache[key] = renderer
+    gTextKitRendererCache[TextKitRendererKey(
+      attributes: attributes,
+      constrainedSize:
+      CGSize(width: ceil(renderer.size.width),
+             height: ceil(renderer.size.height)))] = renderer
     return renderer
   }
-}
 
-var gTextKitRendererCache: NSCache<TextKitRendererKey, TextKitRenderer> = {
-  var cache = NSCache<TextKitRendererKey, TextKitRenderer>()
-  cache.countLimit = 100
-  return cache
-}()
+  /** TODO: Replace this with a cache, but NSCache appears not to call hashValue? */
+  static var gTextKitRendererCache: [TextKitRendererKey: TextKitRenderer] = [:]
+}
 
 internal class TextKitRendererKey: Equatable, Hashable {
   let attributes: TextKitAttributes
   let constrainedSize: CGSize
+
+  private let hash: Int
   
   init(attributes: TextKitAttributes,
        constrainedSize: CGSize) {
     self.attributes = attributes
     self.constrainedSize = constrainedSize
-  }
-  
-  public static func ==(lhs: TextKitRendererKey, rhs: TextKitRendererKey) -> Bool {
-    return lhs.attributes == rhs.attributes
-      && lhs.constrainedSize == rhs.constrainedSize
-  }
-  
-  public var hashValue: Int {
-    return HashArray([
+    hash = HashArray([
       attributes,
       constrainedSize.width,
       constrainedSize.height,
       ])
+  }
+  
+  public static func ==(lhs: TextKitRendererKey, rhs: TextKitRendererKey) -> Bool {
+    return lhs.attributes == rhs.attributes
+      && SizesEqual(lhs.constrainedSize, rhs.constrainedSize)
+  }
+  
+  public var hashValue: Int {
+    return hash
   }
 }

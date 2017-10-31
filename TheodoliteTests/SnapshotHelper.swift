@@ -24,17 +24,3 @@ func snapshotTestComponent(_ testCase: FBSnapshotTestCase, _ size: CGSize, _ ide
   
   testCase.FBSnapshotVerifyView(view, identifier: identifier)
 }
-
-final class ViewComponent: TypedComponent {
-  typealias PropType = ViewConfiguration
-  
-  public func view() -> ViewConfiguration? {
-    return self.props
-  }
-  
-  func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
-    return Layout(component: self,
-                  size: constraint.max,
-                  children: [])
-  }
-}

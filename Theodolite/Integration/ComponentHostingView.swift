@@ -128,8 +128,15 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   // MARK: StateUpdateListener
   
   public func receivedStateUpdate(identifier: ScopeIdentifier, update: Any?) {
-    assert(Thread.isMainThread)
-    self.stateUpdateMap[identifier] = update
-    self.markNeedsReset()
+    let block = {
+      self.stateUpdateMap[identifier] = update
+      self.markNeedsReset()
+    }
+
+    if !Thread.isMainThread {
+      DispatchQueue.main.async(execute: block)
+    } else {
+      block()
+    }
   }
 }

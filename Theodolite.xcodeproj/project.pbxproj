@@ -50,6 +50,8 @@
 		B15967161FA7E85C00FEDC5C /* TapComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15967151FA7E85C00FEDC5C /* TapComponentSnapshotTests.swift */; };
 		B15967181FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15967171FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift */; };
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
+		B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B170C5F01FA89A3300B398DC /* ViewComponent.swift */; };
+		B170C5F91FA89BBA00B398DC /* SizeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B170C5F81FA89BBA00B398DC /* SizeComponent.swift */; };
 		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
 		B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262251FA4D9F400D41A8A /* InsetComponent.swift */; };
 		B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */; };
@@ -173,6 +175,8 @@
 		B15967171FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B1658B501F9B6A8C000EC8CC /* Flexbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Flexbox.xcodeproj; path = Carthage/Checkouts/Flexbox/Flexbox.xcodeproj; sourceTree = "<group>"; };
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
+		B170C5F01FA89A3300B398DC /* ViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
+		B170C5F81FA89BBA00B398DC /* SizeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeComponent.swift; sourceTree = "<group>"; };
 		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B18262251FA4D9F400D41A8A /* InsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponent.swift; sourceTree = "<group>"; };
 		B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponentSnapshotTests.swift; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 			children = (
 				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
 				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
+				B170C5F81FA89BBA00B398DC /* SizeComponent.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 			children = (
 				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
 				B15966E51FA7C41800FEDC5C /* ImageComponent.swift */,
+				B170C5F01FA89A3300B398DC /* ViewComponent.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -682,6 +688,7 @@
 				B18750C01FA6B44300C4DA47 /* TextKitAttributes.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
+				B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */,
 				B18750C21FA6B6F300C4DA47 /* TextKitContext.swift in Sources */,
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
@@ -697,6 +704,7 @@
 				B1FC9C481FA023E2006249FC /* LayoutDebug.swift in Sources */,
 				B18750C81FA6C14400C4DA47 /* TextKitView.swift in Sources */,
 				B1FC9C351F9E1328006249FC /* IteratorWrapper.swift in Sources */,
+				B170C5F91FA89BBA00B398DC /* SizeComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
