@@ -14,7 +14,14 @@ final class SpinnerComponent: TypedComponent {
 
   func view() -> ViewConfiguration? {
     return ViewConfiguration(view: UIActivityIndicatorView.self,
-                             attributes: [])
+                             attributes: [
+                              
+                              Attr(UIActivityIndicatorViewStyle.gray,
+                                   identifier: "theodolite-activityIndicatorStyle")
+                              { (view: UIActivityIndicatorView, value: UIActivityIndicatorViewStyle) -> () in
+                                    view.activityIndicatorViewStyle = value
+                              }
+      ])
   }
 
   func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
@@ -27,7 +34,8 @@ final class SpinnerComponent: TypedComponent {
   }
 
   func componentDidMount() {
-    self.context().mountInfo.currentView?.startAnimating()
+    let spinner = self.context().mountInfo.currentView
+    spinner?.startAnimating()
   }
 
   func componentWillUnmount() {
