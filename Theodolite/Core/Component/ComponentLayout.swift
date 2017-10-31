@@ -9,8 +9,8 @@
 import Foundation
 
 public struct SizeRange: Hashable, Equatable {
-  let min: CGSize
-  let max: CGSize
+  public let min: CGSize
+  public let max: CGSize
   
   init(min: CGSize = CGSize(width: CGFloat.nan, height: CGFloat.nan),
        max: CGSize) {

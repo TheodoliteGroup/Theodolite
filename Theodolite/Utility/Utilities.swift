@@ -24,7 +24,7 @@ func getAssociatedObject<T>(object: AnyObject, associativeKey: UnsafeRawPointer)
 }
 
 /* Since apple deprecated OSAtomic methods, we use this little container instead. */
-class Atomic<T> {
+public class Atomic<T> {
   var val: T
   var lock: os_unfair_lock_t
   

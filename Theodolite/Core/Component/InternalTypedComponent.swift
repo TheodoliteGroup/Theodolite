@@ -43,7 +43,7 @@ public extension TypedComponent {
     return initialState()
   }
   
-  internal func context() -> ComponentContext<PropType, ViewType> {
+  func context() -> ComponentContext<PropType, ViewType> {
     guard let context: ComponentContext<PropType, ViewType> =
       getAssociatedObject(object: self, associativeKey: &kWrapperKey)
       else {

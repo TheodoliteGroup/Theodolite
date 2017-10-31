@@ -12,18 +12,18 @@ internal func GetContext(_ component: Component) -> ComponentContextProtocol? {
   return getAssociatedObject(object: component, associativeKey: &kWrapperKey)
 }
 
-internal protocol MountInfoProtocol {
+public protocol MountInfoProtocol {
   var mountContext: MountContext? {get set}
   var mountedLayout: Layout? {get set}
 }
 
-internal struct MountInfo<ViewType: UIView>: MountInfoProtocol {
-  var currentView: ViewType? = nil
-  var mountContext: MountContext? = nil
-  var mountedLayout: Layout? = nil
+public struct MountInfo<ViewType: UIView>: MountInfoProtocol {
+  public var currentView: ViewType? = nil
+  public var mountContext: MountContext? = nil
+  public var mountedLayout: Layout? = nil
 }
 
-internal struct LayoutInfo {
+public struct LayoutInfo {
   /** We can't store a ref to the Layout directly because that would form a retain cycle. */
   let constraint: SizeRange
   let size: CGSize
@@ -32,14 +32,14 @@ internal struct LayoutInfo {
 }
 
 /** To allow use of the component context's mount info outside of Components where the typealiases are defined. */
-internal protocol ComponentContextProtocol {
+public protocol ComponentContextProtocol {
   var untypedMountInfo: MountInfoProtocol {get set}
   var layoutInfo: Atomic<LayoutInfo?> {get}
 }
 
 /** The bag of information needed by the framework to do its work. This is an implementation detail of the framework */
-internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextProtocol {
-  var untypedMountInfo: MountInfoProtocol {
+public class ComponentContext<PropType, ViewType: UIView>: ComponentContextProtocol {
+  public var untypedMountInfo: MountInfoProtocol {
     get {
       return self.mountInfo
     }
@@ -51,8 +51,8 @@ internal class ComponentContext<PropType, ViewType: UIView>: ComponentContextPro
   let props: PropType?
   let key: AnyHashable?
   
-  var mountInfo: MountInfo<ViewType>
-  var layoutInfo: Atomic<LayoutInfo?>
+  public var mountInfo: MountInfo<ViewType>
+  public var layoutInfo: Atomic<LayoutInfo?>
   
   init(props: PropType?,
        key: AnyHashable?) {
