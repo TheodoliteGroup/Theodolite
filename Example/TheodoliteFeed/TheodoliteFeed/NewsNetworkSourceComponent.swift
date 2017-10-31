@@ -23,6 +23,12 @@ final class NewsNetworkSourceComponent: TypedComponent {
       ]
     }
 
+    if state.newsItems.count == 0 {
+      return [
+        SpinnerComponent { nil }
+      ]
+    }
+
     return [
       FlexboxComponent {
         (options: FlexOptions(flexDirection: .column),
