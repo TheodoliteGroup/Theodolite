@@ -57,7 +57,11 @@ fileprivate class TextCacheKey: NSObject {
 open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
 
   private var _entries = Dictionary<TextCacheKey, TextCacheEntry<KeyType, ObjectType>>()
-  private let _lock = NSLock()
+  private let _lock: os_unfair_lock_t = {
+    let lock = os_unfair_lock_t.allocate(capacity: 1)
+    lock.initialize(to: os_unfair_lock_s(), count: 1)
+    return lock
+  }()
   private var _totalCost = 0
   private var _head: TextCacheEntry<KeyType, ObjectType>?
 
@@ -68,18 +72,21 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
 
   public override init() {}
 
-  open weak var delegate: TextCacheDelegate?
+  deinit {
+    _lock.deinitialize(count: 1)
+    _lock.deallocate(capacity: 1)
+  }
 
   open func object(forKey key: KeyType) -> ObjectType? {
     var object: ObjectType?
 
     let key = TextCacheKey(key)
 
-    _lock.lock()
+    os_unfair_lock_lock(_lock)
     if let entry = _entries[key] {
       object = entry.value
     }
-    _lock.unlock()
+    os_unfair_lock_unlock(_lock)
 
     return object
   }
@@ -138,7 +145,7 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
     let g = max(g, 0)
     let keyRef = TextCacheKey(key)
 
-    _lock.lock()
+    os_unfair_lock_lock(_lock)
 
     let costDiff: Int
 
@@ -165,8 +172,6 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
     var purgeAmount = (totalCostLimit > 0) ? (_totalCost - totalCostLimit) : 0
     while purgeAmount > 0 {
       if let entry = _head {
-        delegate?.cache(unsafeDowncast(self, to:TextCache<AnyObject, AnyObject>.self), willEvictObject: entry.value)
-
         _totalCost -= entry.cost
         purgeAmount -= entry.cost
 
@@ -180,8 +185,6 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
     var purgeCount = (countLimit > 0) ? (_entries.count - countLimit) : 0
     while purgeCount > 0 {
       if let entry = _head {
-        delegate?.cache(unsafeDowncast(self, to:TextCache<AnyObject, AnyObject>.self), willEvictObject: entry.value)
-
         _totalCost -= entry.cost
         purgeCount -= 1
 
@@ -192,22 +195,22 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
       }
     }
 
-    _lock.unlock()
+    os_unfair_lock_unlock(_lock)
   }
 
   open func removeObject(forKey key: KeyType) {
     let keyRef = TextCacheKey(key)
 
-    _lock.lock()
+    os_unfair_lock_lock(_lock)
     if let entry = _entries.removeValue(forKey: keyRef) {
       _totalCost -= entry.cost
       remove(entry)
     }
-    _lock.unlock()
+    os_unfair_lock_unlock(_lock)
   }
 
   open func removeAllObjects() {
-    _lock.lock()
+    os_unfair_lock_lock(_lock)
     _entries.removeAll()
 
     while let currentElement = _head {
@@ -220,16 +223,6 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
     }
 
     _totalCost = 0
-    _lock.unlock()
-  }
-}
-
-public protocol TextCacheDelegate : NSObjectProtocol {
-  func cache(_ cache: TextCache<AnyObject, AnyObject>, willEvictObject obj: Any)
-}
-
-extension TextCacheDelegate {
-  func cache(_ cache: TextCache<AnyObject, AnyObject>, willEvictObject obj: Any) {
-    // Default implementation does nothing
+    os_unfair_lock_unlock(_lock)
   }
 }
