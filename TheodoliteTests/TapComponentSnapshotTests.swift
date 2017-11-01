@@ -7,12 +7,48 @@
 //
 
 import FBSnapshotTestCase
+import XCTest
+import UIKit
 @testable import Theodolite
 
 class TapComponentSnapshotTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
     recordMode = false
+  }
+
+  func test_tapAttribute_notEqual() {
+    class TestClass {
+      func actionMethod(gesture: UITapGestureRecognizer) {}
+    }
+    // Tap targets always have to remove, they don't implement equality.
+    let target = TestClass()
+    let attr1 = TapAttribute(Handler(target, TestClass.actionMethod))
+    let attr2 = TapAttribute(Handler(target, TestClass.actionMethod))
+    XCTAssertNotEqual(attr1, attr2)
+  }
+
+  func test_tapAttribute_applied_addsGesture() {
+    class TestClass {
+      func actionMethod(gesture: UITapGestureRecognizer) {}
+    }
+    let view = UIView()
+    let target = TestClass()
+    let attr = TapAttribute(Handler(target, TestClass.actionMethod))
+    attr.apply(view: view)
+    XCTAssert(view.gestureRecognizers![0].isKind(of: UITapGestureRecognizer.self))
+  }
+
+  func test_tapAttribute_unapplied_removesGesture() {
+    class TestClass {
+      func actionMethod(gesture: UITapGestureRecognizer) {}
+    }
+    let view = UIView()
+    let target = TestClass()
+    let attr = TapAttribute(Handler(target, TestClass.actionMethod))
+    attr.apply(view: view)
+    attr.unapply(view: view)
+    XCTAssert(view.gestureRecognizers?.count ?? 0 == 0)
   }
 
   func test_blankRendering() {
