@@ -15,50 +15,12 @@ final class NewsItemImageComponent: TypedComponent {
 
   func render() -> [Component] {
     return [
-      NetworkDataComponent {
+      NetworkImageComponent {
         (props,
-         { (state: NetworkDataComponent.State) -> Component? in
-          var component: Component? = nil
-          switch state {
-          case .pending:
-            component = SizeComponent {
-              (size: CGSize(width: 60, height: 60),
-               component: ViewComponent {
-                ViewConfiguration(
-                  view: UIView.self,
-                  attributes:
-                  ViewOptions(backgroundColor: UIColor(white: 0.95, alpha: 1))
-                    .viewAttributes())
-              })
-            }
-            break
-          case .data(let data):
-            guard let image = self.state ?? UIImage(data: data) else {
-              break
-            }
-            if self.state == nil {
-              self.updateState(state: image)
-            }
-            component = ImageComponent {
-              (image,
-               size: CGSize(width: 60, height: 60),
-               options: ViewOptions(
-                clipsToBounds: true,
-                contentMode: .scaleAspectFill))
-            }
-            break
-          case .error:
-            break
-          }
-
-          if let component = component {
-            return InsetComponent {
-              (insets: UIEdgeInsetsMake(0, 0, 0, 10),
-               component:component)
-            }
-          }
-          return nil
-        })
+         size: CGSize(width: 60, height: 60),
+         insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10),
+         backgroundColor: UIColor(white: 0.95, alpha: 1),
+         contentMode: .scaleAspectFill)
       }
     ]
   }
