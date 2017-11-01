@@ -84,6 +84,7 @@
 		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
 		B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */; };
 		B1F16E761FA9E7630037CD9B /* GestureTestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */; };
+		B1F16E781FA9EB2D0037CD9B /* ComponentMemoizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E771FA9EB2D0037CD9B /* ComponentMemoizationTests.swift */; };
 		B1FC9C351F9E1328006249FC /* IteratorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C341F9E1328006249FC /* IteratorWrapper.swift */; };
 		B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */; };
 		B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */; };
@@ -224,6 +225,7 @@
 		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
 		B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTree.swift; sourceTree = "<group>"; };
 		B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTestAdditions.swift; sourceTree = "<group>"; };
+		B1F16E771FA9EB2D0037CD9B /* ComponentMemoizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentMemoizationTests.swift; sourceTree = "<group>"; };
 		B1FC9C341F9E1328006249FC /* IteratorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorWrapper.swift; sourceTree = "<group>"; };
 		B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViewAttributesTests.swift; sourceTree = "<group>"; };
 		B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
 				B15967111FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift */,
 				B15967131FA7E1A200FEDC5C /* ComponentKeyTests.swift */,
+				B1F16E771FA9EB2D0037CD9B /* ComponentMemoizationTests.swift */,
 				B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */,
 				B15967171FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift */,
 				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
@@ -797,6 +800,7 @@
 				B15967081FA7DCE900FEDC5C /* TextKitTests.swift in Sources */,
 				B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */,
 				B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */,
+				B1F16E781FA9EB2D0037CD9B /* ComponentMemoizationTests.swift in Sources */,
 				B1F16E761FA9E7630037CD9B /* GestureTestAdditions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
