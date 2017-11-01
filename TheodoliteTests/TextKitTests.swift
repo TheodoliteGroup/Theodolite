@@ -57,4 +57,15 @@ class TextKitTests: XCTestCase {
     let renderer2 = TextKitRenderer.renderer(attributes: attributes, constrainedSize: CGSize(width: 100, height: 100))
     XCTAssert(renderer1 === renderer2)
   }
+
+  func test_textKitLayer_willDisplay_returnsResultOfDidDisplay() {
+    let attributes = TextKitAttributes(
+      attributedString: NSAttributedString(string: "hello"))
+    let layer = TextKitLayer()
+    layer.attributes = attributes
+    let img = ImageFrom(color: UIColor.blue, size: CGSize(width: 100, height: 100))
+    layer.didDisplayAsynchronously(img.cgImage, withDrawParameters: layer.drawParameters())
+    let response = layer.willDisplayAsynchronously(withDrawParameters: layer.drawParameters()) as! CGImage
+    XCTAssert(img.cgImage === response)
+  }
 }
