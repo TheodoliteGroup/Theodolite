@@ -81,13 +81,16 @@ class LabelComponentSnapshotTests: FBSnapshotTestCase {
   }
   
   func test_singleString_withTextAlignment() {
-    ///// TODO: This is broken. Figure out why.
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return LabelComponent {
-        ("hello",
-         LabelComponent.Options(
-          textAlignment: NSTextAlignment.right
-        ))
+      return SizeComponent { // unless forced to consume all the space, the text component won't by default use it all
+        (size: CGSize(width: 100, height: 100),
+         component:
+          LabelComponent {
+            ("hello",
+             LabelComponent.Options(
+              textAlignment: NSTextAlignment.right
+            ))
+        })
       }
     }
   }

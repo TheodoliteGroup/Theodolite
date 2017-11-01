@@ -64,11 +64,6 @@ public final class TextKitRenderer {
     
     let renderer = TextKitRenderer(attributes: attributes, constrainedSize: constrainedSize)
     gTextKitRendererCache.setObject(renderer, forKey: key)
-    gTextKitRendererCache.setObject(renderer, forKey: TextKitRendererKey(
-      attributes: attributes,
-      constrainedSize:
-      CGSize(width: ceil(renderer.size.width),
-             height: ceil(renderer.size.height))))
     return renderer
   }
 
