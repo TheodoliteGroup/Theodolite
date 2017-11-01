@@ -93,8 +93,8 @@ internal class TextKitRendererKey: Equatable, Hashable {
     self.constrainedSize = constrainedSize
     hash = HashArray([
       attributes,
-      constrainedSize.width,
-      constrainedSize.height,
+      ceil(constrainedSize.width),
+      ceil(constrainedSize.height),
       ])
   }
   

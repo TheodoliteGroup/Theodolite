@@ -34,6 +34,7 @@ import Foundation
  }
  */
 public class Action<Arg> {
+  public init() {}
   public func send(_ argument: Arg) {
     // No-op
   }

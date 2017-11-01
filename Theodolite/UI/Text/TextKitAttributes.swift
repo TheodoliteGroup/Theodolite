@@ -41,10 +41,11 @@ public struct TextKitAttributes: Equatable, Hashable {
   }
   
   public var hashValue: Int {
-    return HashArray([
+    let hash = HashArray([
         attributedString,
         lineBreakMode,
         maximumNumberOfLines,
       ])
+    return hash
   }
 };

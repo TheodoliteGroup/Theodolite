@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		B11D5FE71FA933EF002F417B /* TextCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D5FE61FA933EF002F417B /* TextCache.swift */; };
+		B11D60051FA93EC6002F417B /* TheodoliteAsyncLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D5FFA1FA93EC3002F417B /* TheodoliteAsyncLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B11D60061FA93EC6002F417B /* TheodoliteAsyncLayerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D5FFB1FA93EC3002F417B /* TheodoliteAsyncLayerInternal.h */; };
+		B11D60071FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D5FFC1FA93EC4002F417B /* TheodoliteAsyncTransactionGroup.h */; };
+		B11D60081FA93EC6002F417B /* TheodoliteAsyncTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D5FFD1FA93EC4002F417B /* TheodoliteAsyncTransaction.h */; };
+		B11D60091FA93EC6002F417B /* TheodoliteAsyncTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = B11D5FFE1FA93EC4002F417B /* TheodoliteAsyncTransaction.m */; };
+		B11D600A1FA93EC6002F417B /* TheodoliteAsyncTransactionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B11D5FFF1FA93EC5002F417B /* TheodoliteAsyncTransactionContainer.m */; };
+		B11D600B1FA93EC6002F417B /* TheodoliteAsyncTransactionContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D60001FA93EC5002F417B /* TheodoliteAsyncTransactionContainer.h */; };
+		B11D600C1FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B11D60011FA93EC5002F417B /* TheodoliteAsyncTransactionGroup.m */; };
+		B11D600D1FA93EC6002F417B /* TheodoliteAsyncTransactionContainer+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D60021FA93EC5002F417B /* TheodoliteAsyncTransactionContainer+Private.h */; };
+		B11D600E1FA93EC6002F417B /* TheodoliteAsyncLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B11D60031FA93EC5002F417B /* TheodoliteAsyncLayer.mm */; };
+		B11D600F1FA93EC6002F417B /* TheodoliteAsyncLayerSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D60041FA93EC5002F417B /* TheodoliteAsyncLayerSubclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B11D60111FA93EDD002F417B /* TextKitLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D60101FA93EDD002F417B /* TextKitLayer.swift */; };
 		B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12916031FA2A36D006D269B /* ScrollComponent.swift */; };
 		B12B7DE61FA34F7C004DC3F4 /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
@@ -131,6 +143,19 @@
 
 /* Begin PBXFileReference section */
 		B11D5FE61FA933EF002F417B /* TextCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCache.swift; sourceTree = "<group>"; };
+		B11D5FFA1FA93EC3002F417B /* TheodoliteAsyncLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncLayer.h; sourceTree = "<group>"; };
+		B11D5FFB1FA93EC3002F417B /* TheodoliteAsyncLayerInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncLayerInternal.h; sourceTree = "<group>"; };
+		B11D5FFC1FA93EC4002F417B /* TheodoliteAsyncTransactionGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncTransactionGroup.h; sourceTree = "<group>"; };
+		B11D5FFD1FA93EC4002F417B /* TheodoliteAsyncTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncTransaction.h; sourceTree = "<group>"; };
+		B11D5FFE1FA93EC4002F417B /* TheodoliteAsyncTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheodoliteAsyncTransaction.m; sourceTree = "<group>"; };
+		B11D5FFF1FA93EC5002F417B /* TheodoliteAsyncTransactionContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheodoliteAsyncTransactionContainer.m; sourceTree = "<group>"; };
+		B11D60001FA93EC5002F417B /* TheodoliteAsyncTransactionContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncTransactionContainer.h; sourceTree = "<group>"; };
+		B11D60011FA93EC5002F417B /* TheodoliteAsyncTransactionGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheodoliteAsyncTransactionGroup.m; sourceTree = "<group>"; };
+		B11D60021FA93EC5002F417B /* TheodoliteAsyncTransactionContainer+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheodoliteAsyncTransactionContainer+Private.h"; sourceTree = "<group>"; };
+		B11D60031FA93EC5002F417B /* TheodoliteAsyncLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TheodoliteAsyncLayer.mm; sourceTree = "<group>"; };
+		B11D60041FA93EC5002F417B /* TheodoliteAsyncLayerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncLayerSubclass.h; sourceTree = "<group>"; };
+		B11D60101FA93EDD002F417B /* TextKitLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextKitLayer.swift; sourceTree = "<group>"; };
+		B11D60121FA93FA3002F417B /* TheodoliteMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheodoliteMacros.h; sourceTree = "<group>"; };
 		B12916031FA2A36D006D269B /* ScrollComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponent.swift; sourceTree = "<group>"; };
 		B136BE481F8D5741001EE264 /* Theodolite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Theodolite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B136BE4B1F8D5741001EE264 /* Theodolite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theodolite.h; sourceTree = "<group>"; };
@@ -224,6 +249,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B11D5FF31FA93EAE002F417B /* Async */ = {
+			isa = PBXGroup;
+			children = (
+				B11D5FFA1FA93EC3002F417B /* TheodoliteAsyncLayer.h */,
+				B11D60031FA93EC5002F417B /* TheodoliteAsyncLayer.mm */,
+				B11D5FFB1FA93EC3002F417B /* TheodoliteAsyncLayerInternal.h */,
+				B11D60041FA93EC5002F417B /* TheodoliteAsyncLayerSubclass.h */,
+				B11D5FFD1FA93EC4002F417B /* TheodoliteAsyncTransaction.h */,
+				B11D5FFE1FA93EC4002F417B /* TheodoliteAsyncTransaction.m */,
+				B11D60001FA93EC5002F417B /* TheodoliteAsyncTransactionContainer.h */,
+				B11D5FFF1FA93EC5002F417B /* TheodoliteAsyncTransactionContainer.m */,
+				B11D60021FA93EC5002F417B /* TheodoliteAsyncTransactionContainer+Private.h */,
+				B11D5FFC1FA93EC4002F417B /* TheodoliteAsyncTransactionGroup.h */,
+				B11D60011FA93EC5002F417B /* TheodoliteAsyncTransactionGroup.m */,
+				B11D60121FA93FA3002F417B /* TheodoliteMacros.h */,
+			);
+			path = Async;
+			sourceTree = "<group>";
+		};
 		B12B7DE31FA34F7C004DC3F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,10 +482,12 @@
 		B18750B81FA6B3F700C4DA47 /* Text */ = {
 			isa = PBXGroup;
 			children = (
+				B11D5FF31FA93EAE002F417B /* Async */,
 				B18750BF1FA6B44300C4DA47 /* TextKitAttributes.swift */,
 				B18750C11FA6B6F300C4DA47 /* TextKitContext.swift */,
 				B18750C31FA6B9BA00C4DA47 /* TextKitRenderer.swift */,
 				B18750C71FA6C14400C4DA47 /* TextKitView.swift */,
+				B11D60101FA93EDD002F417B /* TextKitLayer.swift */,
 				B18750C91FA6C25600C4DA47 /* TextComponent.swift */,
 				B11D5FE61FA933EF002F417B /* TextCache.swift */,
 				B1C14FD71F995413005A8CBE /* LabelComponent.swift */,
@@ -504,7 +550,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11D60081FA93EC6002F417B /* TheodoliteAsyncTransaction.h in Headers */,
+				B11D60051FA93EC6002F417B /* TheodoliteAsyncLayer.h in Headers */,
 				B136BE591F8D5741001EE264 /* Theodolite.h in Headers */,
+				B11D60061FA93EC6002F417B /* TheodoliteAsyncLayerInternal.h in Headers */,
+				B11D60071FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.h in Headers */,
+				B11D600B1FA93EC6002F417B /* TheodoliteAsyncTransactionContainer.h in Headers */,
+				B11D600F1FA93EC6002F417B /* TheodoliteAsyncLayerSubclass.h in Headers */,
+				B11D600D1FA93EC6002F417B /* TheodoliteAsyncTransactionContainer+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +718,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B11D600E1FA93EC6002F417B /* TheodoliteAsyncLayer.mm in Sources */,
 				B18262A81FA57EDC00D41A8A /* TapComponent.swift in Sources */,
 				B136BEB81F8D69E8001EE264 /* ViewPool.swift in Sources */,
 				B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */,
@@ -676,19 +730,23 @@
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
 				B137B9E71FA16D5C009BE1E3 /* TypedComponentMounting.swift in Sources */,
 				B136BEB71F8D69E8001EE264 /* ViewConfiguration.swift in Sources */,
+				B11D600A1FA93EC6002F417B /* TheodoliteAsyncTransactionContainer.m in Sources */,
 				B136BEC21F8EF96B001EE264 /* ScopeRoot.swift in Sources */,
 				B136BEC01F8EF7CC001EE264 /* InternalTypedComponent.swift in Sources */,
 				B15966E61FA7C41800FEDC5C /* ImageComponent.swift in Sources */,
 				B136BEB11F8D69C9001EE264 /* Scope.swift in Sources */,
 				B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */,
+				B11D600C1FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.m in Sources */,
 				B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */,
 				B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */,
 				B1574DE01FA684BA00E91D09 /* ComponentInternal.swift in Sources */,
 				B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */,
+				B11D60091FA93EC6002F417B /* TheodoliteAsyncTransaction.m in Sources */,
 				B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */,
 				B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */,
 				B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */,
 				B18750C01FA6B44300C4DA47 /* TextKitAttributes.swift in Sources */,
+				B11D60111FA93EDD002F417B /* TextKitLayer.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
 				B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */,
@@ -754,6 +812,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -808,6 +867,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -854,6 +914,7 @@
 		B136BE5D1F8D5741001EE264 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -876,6 +937,7 @@
 		B136BE5E1F8D5741001EE264 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;

@@ -13,7 +13,7 @@ import Flexbox
 class LabelComponentSnapshotTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = false
+    recordMode = true
   }
   
   func test_singleString() {

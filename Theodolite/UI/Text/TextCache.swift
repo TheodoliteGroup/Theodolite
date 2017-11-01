@@ -8,7 +8,10 @@
 
 import Foundation
 
-private class TextCacheEntry<KeyType : AnyObject, ObjectType : AnyObject> {
+private class TextCacheEntry<KeyType, ObjectType> where
+KeyType : Hashable,
+KeyType : Equatable,
+ObjectType : AnyObject {
   var key: KeyType
   var value: ObjectType
   var cost: Int
@@ -21,42 +24,13 @@ private class TextCacheEntry<KeyType : AnyObject, ObjectType : AnyObject> {
   }
 }
 
-fileprivate class TextCacheKey: NSObject {
+open class TextCache<KeyType, ObjectType> where
+  KeyType : Hashable,
+  KeyType : Equatable,
+  ObjectType : AnyObject
+{
 
-  var value: AnyObject
-
-  init(_ value: AnyObject) {
-    self.value = value
-    super.init()
-  }
-
-  override var hashValue: Int {
-    switch self.value {
-    case let nsObject as NSObject:
-      return nsObject.hashValue
-    case let hashable as AnyHashable:
-      return hashable.hashValue
-    default: return 0
-    }
-  }
-
-  override func isEqual(_ object: Any?) -> Bool {
-    guard let other = (object as? TextCacheKey) else { return false }
-
-    if self.value === other.value {
-      return true
-    } else {
-      guard let left = self.value as? NSObject,
-        let right = other.value as? NSObject else { return false }
-
-      return left.isEqual(right)
-    }
-  }
-}
-
-open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
-
-  private var _entries = Dictionary<TextCacheKey, TextCacheEntry<KeyType, ObjectType>>()
+  private var _entries: [KeyType: TextCacheEntry<KeyType, ObjectType>] = [:]
   private let _lock: os_unfair_lock_t = {
     let lock = os_unfair_lock_t.allocate(capacity: 1)
     lock.initialize(to: os_unfair_lock_s(), count: 1)
@@ -70,8 +44,6 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
   open var countLimit: Int = 0 // limits are imprecise/not strict
   open var evictsObjectsWithDiscardedContent: Bool = false
 
-  public override init() {}
-
   deinit {
     _lock.deinitialize(count: 1)
     _lock.deallocate(capacity: 1)
@@ -79,8 +51,6 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
 
   open func object(forKey key: KeyType) -> ObjectType? {
     var object: ObjectType?
-
-    let key = TextCacheKey(key)
 
     os_unfair_lock_lock(_lock)
     if let entry = _entries[key] {
@@ -143,13 +113,12 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
 
   open func setObject(_ obj: ObjectType, forKey key: KeyType, cost g: Int) {
     let g = max(g, 0)
-    let keyRef = TextCacheKey(key)
 
     os_unfair_lock_lock(_lock)
 
     let costDiff: Int
 
-    if let entry = _entries[keyRef] {
+    if let entry = _entries[key] {
       costDiff = g - entry.cost
       entry.cost = g
 
@@ -161,7 +130,7 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
       }
     } else {
       let entry = TextCacheEntry(key: key, value: obj, cost: g)
-      _entries[keyRef] = entry
+      _entries[key] = entry
       insert(entry)
 
       costDiff = g
@@ -176,7 +145,7 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
         purgeAmount -= entry.cost
 
         remove(entry) // _head will be changed to next entry in remove(_:)
-        _entries[TextCacheKey(entry.key)] = nil
+        _entries[entry.key] = nil
       } else {
         break
       }
@@ -189,7 +158,7 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
         purgeCount -= 1
 
         remove(entry) // _head will be changed to next entry in remove(_:)
-        _entries[TextCacheKey(entry.key)] = nil
+        _entries[entry.key] = nil
       } else {
         break
       }
@@ -199,7 +168,7 @@ open class TextCache<KeyType : AnyObject, ObjectType : AnyObject> : NSObject {
   }
 
   open func removeObject(forKey key: KeyType) {
-    let keyRef = TextCacheKey(key)
+    let keyRef = key
 
     os_unfair_lock_lock(_lock)
     if let entry = _entries.removeValue(forKey: keyRef) {

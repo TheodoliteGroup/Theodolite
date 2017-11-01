@@ -12,6 +12,7 @@ public  final class TextKitView: UIView {
   public override init(frame: CGRect) {
     super.init(frame: frame)
     self.backgroundColor = UIColor.clear
+    self.contentScaleFactor = TextKitLayer.gScreenScale;
   }
   
   public required init?(coder aDecoder: NSCoder) {
@@ -20,17 +21,13 @@ public  final class TextKitView: UIView {
   
   var attributes: TextKitAttributes? = nil {
     didSet {
-      self.setNeedsDisplay()
+      if attributes != oldValue {
+        (self.layer as! TextKitLayer).attributes = attributes
+      }
     }
   }
-  
-  public override func draw(_ rect: CGRect) {
-    guard let attributes = self.attributes else {
-      return
-    }
-    let renderer = TextKitRenderer.renderer(attributes: attributes,
-                                            constrainedSize: self.bounds.size)
-    renderer.drawInContext(graphicsContext: UIGraphicsGetCurrentContext()!,
-                           bounds: rect)
+
+  override public class var layerClass: Swift.AnyClass {
+    return TextKitLayer.self
   }
 }

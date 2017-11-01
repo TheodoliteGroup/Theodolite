@@ -55,13 +55,22 @@ public class Atomic<T> {
 }
 
 func HashCombine(_ first: AnyHashable, _ second: AnyHashable) -> Int {
-  return first.hashValue << 32 ^ second.hashValue
+  #if arch(x86_64) || arch(arm64)
+    let magic: UInt = 0x9e3779b97f4a7c15
+  #elseif arch(i386) || arch(arm)
+    let magic: UInt = 0x9e3779b9
+  #endif
+  var lhs = UInt(bitPattern: first.hashValue)
+  let rhs = UInt(bitPattern: second.hashValue)
+  lhs ^= rhs &+ magic &+ (lhs << 6) &+ (lhs >> 2)
+  return Int(bitPattern: lhs)
 }
 
 func HashArray(_ values: [AnyHashable]) -> Int {
-  return values.reduce(0) { (result: Int, val: AnyHashable) -> Int in
+  let value = values.reduce(0) { (result: Int, val: AnyHashable) -> Int in
     return HashCombine(result, val.hashValue)
   }
+  return value
 }
 
 class WeakContainer<T: AnyObject> {

@@ -18,18 +18,22 @@ final class NewsItemComponent: TypedComponent {
       InsetComponent {(
         insets: UIEdgeInsetsMake(10, 20, 40, 20),
         component:
-        FlexboxComponent {
-          (options: FlexOptions(flexDirection: .column),
-           children: [
-            FlexChild(NewsItemHeaderComponent { props.author }),
-            FlexChild(NewsItemTitleComponent { props.title }),
-            FlexChild(NewsItemContentComponent {(
-              imageURL: props.imageURL,
-              description: props.description
-              )})
-            ])
-        }
-        )}
+        TapComponent {
+          (action: Action<UITapGestureRecognizer>(),
+           component:
+            FlexboxComponent {
+              (options: FlexOptions(flexDirection: .column),
+               children: [
+                FlexChild(NewsItemHeaderComponent { props.author }),
+                FlexChild(NewsItemTitleComponent { props.title }),
+                FlexChild(NewsItemContentComponent {(
+                  imageURL: props.imageURL,
+                  description: props.description
+                  )})
+                ])
+          })
+        })
+      }
     ]
   }
 }

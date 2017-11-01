@@ -40,7 +40,7 @@ public extension TypedComponent {
     }
     let context = self.context()
     guard let currentView = context.mountInfo.currentView else {
-      assertionFailure("shouldn't have view config but no view")
+//      assertionFailure("shouldn't have view config but no view")
       return
     }
     

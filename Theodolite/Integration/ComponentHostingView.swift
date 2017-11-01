@@ -58,7 +58,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   
   override public func layoutSubviews() {
     super.layoutSubviews()
-    
+
     if let mountedLayout = self.mountedLayout {
       // If we're being forced to lay out, we need to detach all views before re-attaching
       UnmountLayout(layout: mountedLayout,
