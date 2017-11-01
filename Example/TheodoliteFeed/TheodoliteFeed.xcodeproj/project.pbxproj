@@ -29,6 +29,7 @@
 		B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; };
 		B182629F1FA57D7D00D41A8A /* Flexbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1BC1B0D1FA9278F00F01A1A /* NewsItemContentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */; };
+		B1F16E7D1FA9F0A40037CD9B /* NetworkDataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		B182627D1FA56A8B00D41A8A /* Theodolite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Theodolite.xcodeproj; path = ../../Theodolite.xcodeproj; sourceTree = "<group>"; };
 		B182628B1FA56A9A00D41A8A /* Flexbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flexbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemContentComponent.swift; sourceTree = "<group>"; };
+		B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				B182626C1FA5685300D41A8A /* Info.plist */,
 				B18262601FA5685300D41A8A /* AppDelegate.swift */,
 				B1483B351FA8066200796C58 /* NetworkSource.swift */,
+				B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */,
 				B1483B301FA8060E00796C58 /* NewsAggregationComponent.swift */,
 				B1483B391FA806AC00796C58 /* NewsItemComponent.swift */,
 				B1483B411FA891A300796C58 /* NewsItemHeaderComponent.swift */,
@@ -272,6 +275,7 @@
 				B1483B361FA8066200796C58 /* NetworkSource.swift in Sources */,
 				B18262611FA5685300D41A8A /* AppDelegate.swift in Sources */,
 				B1483B381FA8068A00796C58 /* NewsNetworkSource.swift in Sources */,
+				B1F16E7D1FA9F0A40037CD9B /* NetworkDataComponent.swift in Sources */,
 				B1483B3E1FA8070600796C58 /* NewsItemTitleComponent.swift in Sources */,
 				B1483B311FA8060E00796C58 /* NewsAggregationComponent.swift in Sources */,
 				B1483B421FA891A300796C58 /* NewsItemHeaderComponent.swift in Sources */,
