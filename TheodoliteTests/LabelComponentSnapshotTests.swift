@@ -13,7 +13,7 @@ import Flexbox
 class LabelComponentSnapshotTests: FBSnapshotTestCase {
   override func setUp() {
     super.setUp()
-    recordMode = true
+    recordMode = false
   }
   
   func test_singleString() {
@@ -81,6 +81,7 @@ class LabelComponentSnapshotTests: FBSnapshotTestCase {
   }
   
   func test_singleString_withTextAlignment() {
+    ///// TODO: This is broken. Figure out why.
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
       return LabelComponent {
         ("hello",
@@ -96,7 +97,8 @@ class LabelComponentSnapshotTests: FBSnapshotTestCase {
       return LabelComponent {
         ("hello",
          LabelComponent.Options(
-          view: ViewOptions(backgroundColor: UIColor.blue)
+          view: ViewOptions(backgroundColor: UIColor.blue),
+          textColor: UIColor.white
         ))
       }
     }

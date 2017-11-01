@@ -19,9 +19,27 @@ public final class TextKitLayer: TheodoliteAsyncLayer {
   var attributes: TextKitAttributes? = nil {
     didSet {
       if attributes != oldValue {
-        self.setNeedsAsyncDisplay()
+        self.setNeedsDisplay()
       }
     }
+  }
+
+  public override init() {
+    super.init()
+    #if DEBUG
+      if let _ = NSClassFromString("XCTest") {
+        // While tests are running, we need to ensure we display synchronously
+        self.displayMode = .alwaysSync
+      } else {
+        self.displayMode = .alwaysAsync
+      }
+    #else
+      self.displayMode = .alwaysAsync
+    #endif
+  }
+
+  public required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   public override class func defaultValue(forKey key: String) -> Any? {
@@ -58,7 +76,7 @@ public final class TextKitLayer: TheodoliteAsyncLayer {
     let rect = ctx.boundingBoxOfClipPath
     let renderer = TextKitRenderer.renderer(attributes: params.attributes,
                                             constrainedSize: rect.size)
-    renderer.drawInContext(graphicsContext: UIGraphicsGetCurrentContext()!,
+    renderer.drawInContext(graphicsContext: ctx,
                            bounds: rect)
   }
 
