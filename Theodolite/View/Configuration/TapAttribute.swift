@@ -32,7 +32,7 @@ public class TapAttribute: Attribute {
       gesture.view?.removeGestureRecognizer(gesture)
       view.addGestureRecognizer(gesture)
     } else {
-      let gesture = UITapGestureRecognizer(target: target, action: #selector(TapTarget.actionMethod))
+      let gesture = UITapGestureRecognizer(target: target, action: #selector(TapTarget.actionMethod(sender:)))
       view.addGestureRecognizer(gesture)
       self.gesture = gesture
     }
@@ -53,7 +53,7 @@ public class TapAttribute: Attribute {
     super.init()
   }
   
-  @objc internal func actionMethod(gesture: UITapGestureRecognizer) {
-    handler(gesture)
+  @objc internal func actionMethod(sender: UITapGestureRecognizer) {
+    handler(sender)
   }
 }

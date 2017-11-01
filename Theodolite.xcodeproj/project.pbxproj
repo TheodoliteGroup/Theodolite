@@ -83,6 +83,7 @@
 		B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FD71F995413005A8CBE /* LabelComponent.swift */; };
 		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
 		B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */; };
+		B1F16E761FA9E7630037CD9B /* GestureTestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */; };
 		B1FC9C351F9E1328006249FC /* IteratorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C341F9E1328006249FC /* IteratorWrapper.swift */; };
 		B1FC9C3D1FA00A55006249FC /* StandardViewAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */; };
 		B1FC9C451FA00A83006249FC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */; };
@@ -222,6 +223,7 @@
 		B1C14FD71F995413005A8CBE /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
 		B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTree.swift; sourceTree = "<group>"; };
+		B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureTestAdditions.swift; sourceTree = "<group>"; };
 		B1FC9C341F9E1328006249FC /* IteratorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorWrapper.swift; sourceTree = "<group>"; };
 		B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardViewAttributesTests.swift; sourceTree = "<group>"; };
 		B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
@@ -316,18 +318,19 @@
 			children = (
 				B136BE581F8D5741001EE264 /* Info.plist */,
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
-				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
-				B15967151FA7E85C00FEDC5C /* TapComponentSnapshotTests.swift */,
-				B15967171FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift */,
+				B15967111FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift */,
 				B15967131FA7E1A200FEDC5C /* ComponentKeyTests.swift */,
+				B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */,
+				B15967171FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift */,
+				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
+				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
-				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
-				B15966D31FA7C01900FEDC5C /* TextComponentSnapshotTests.swift */,
-				B15967071FA7DCE900FEDC5C /* TextKitTests.swift */,
-				B15967111FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift */,
 				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
 				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
+				B15967151FA7E85C00FEDC5C /* TapComponentSnapshotTests.swift */,
+				B15966D31FA7C01900FEDC5C /* TextComponentSnapshotTests.swift */,
+				B15967071FA7DCE900FEDC5C /* TextKitTests.swift */,
 				B136BE561F8D5741001EE264 /* TheodoliteTests.swift */,
 				B15612941F904F4F00AA21ED /* UtilitiesTests.swift */,
 				B136BECF1F8EFDA3001EE264 /* ViewAttributeTests.swift */,
@@ -794,6 +797,7 @@
 				B15967081FA7DCE900FEDC5C /* TextKitTests.swift in Sources */,
 				B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */,
 				B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */,
+				B1F16E761FA9E7630037CD9B /* GestureTestAdditions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
