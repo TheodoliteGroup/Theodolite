@@ -298,4 +298,21 @@ class ScopeTests: XCTestCase {
     
     XCTAssertNotEqual(scope1.root._handle.identifier, scope2.root._handle.identifier)
   }
+
+  func test_buildingScopeRootForComponent_traversesThatHierarchy_whenTraverseCalled() {
+    let scope1 = ScopeRoot(previousRoot: nil,
+                           listener: nil,
+                           stateUpdateMap: [:]) {
+                            () -> Component in
+                            return TestScopeComponent<Void?, Void?>(key: "key1") { nil }
+    }
+
+    var traversed: Component? = nil
+    scope1.traverse { (c) in
+      XCTAssertNil(traversed)
+      traversed = c
+    }
+
+    XCTAssert(traversed === scope1.root._component)
+  }
 }
