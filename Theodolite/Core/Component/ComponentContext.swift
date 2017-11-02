@@ -35,6 +35,7 @@ public struct LayoutInfo {
 public class ComponentContext {
   public var props: Any? = nil
   public var key: AnyHashable? = nil
+  public var scopeHandle: ScopeHandle? = nil
   
   public var mountInfo: MountInfo = MountInfo()
   public var layoutInfo: Atomic<LayoutInfo?> = Atomic(nil)
