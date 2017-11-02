@@ -10,6 +10,8 @@
 
 #import <Theodolite/TheodoliteAsyncLayer.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface TheodoliteAsyncLayer (Subclass)
 
 /**
@@ -31,3 +33,5 @@
 - (void)didDisplayAsynchronously:(nullable id)newContents withDrawParameters:(id<NSObject>)drawParameters;
 
 @end
+
+NS_ASSUME_NONNULL_END
