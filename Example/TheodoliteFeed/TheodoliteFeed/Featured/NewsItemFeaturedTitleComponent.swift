@@ -1,15 +1,15 @@
 //
-//  NewsItemHeaderComponent.swift
+//  NewsItemFeaturedTitleComponent.swift
 //  TheodoliteFeed
 //
-//  Created by Oliver Rickard on 10/30/17.
+//  Created by Oliver Rickard on 11/1/17.
 //  Copyright © 2017 Oliver Rickard. All rights reserved.
 //
 
 import Flexbox
 import Theodolite
 
-final class NewsItemTitleComponent: TypedComponent {
+final class NewsItemFeaturedTitleComponent: TypedComponent {
   typealias PropType = String
 
   func render() -> [Component] {
@@ -20,7 +20,7 @@ final class NewsItemTitleComponent: TypedComponent {
         LabelComponent {
           (self.props,
            LabelComponent.Options(
-            font: UIFont.boldSystemFont(ofSize: 16),
+            font: UIFont(name: "Georgia", size: 24)!,
             lineBreakMode: NSLineBreakMode.byWordWrapping,
             maximumNumberOfLines: 0))
       })

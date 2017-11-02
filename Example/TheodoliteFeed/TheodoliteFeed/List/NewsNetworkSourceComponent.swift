@@ -29,14 +29,18 @@ final class NewsNetworkSourceComponent: TypedComponent {
       ]
     }
 
+    var children: [FlexChild] = []
+    let first = state.newsItems.first!
+    children.append(FlexChild(NewsItemFeaturedComponent(key: first.url) { first }))
+    children.append(contentsOf: state.newsItems[1..<state.newsItems.count]
+      .map {(item: NewsItem) -> FlexChild in
+        return FlexChild(NewsItemComponent(key: item.url) { item })
+    })
+
     return [
       FlexboxComponent {
         (options: FlexOptions(flexDirection: .column),
-         children:
-          state.newsItems
-            .map {(item: NewsItem) -> FlexChild in
-              return FlexChild(NewsItemComponent(key: item.url) { item })
-        })
+         children: children)
       }
     ]
   }
