@@ -31,11 +31,11 @@ public struct LayoutInfo {
   let extra: Any?
 }
 
-/** The bag of information needed by the framework to do its work. This is an implementation detail of the framework */
+/** The bag of information needed by the framework to do its work. This is an implementation detail of the framework. */
 public class ComponentContext {
-  public var props: Any? = nil
-  public var key: AnyHashable? = nil
-  public var scopeHandle: ScopeHandle? = nil
+  internal var props: Any? = nil
+  internal var key: AnyHashable? = nil
+  internal var scopeHandle: ScopeHandle? = nil
   
   public var mountInfo: MountInfo = MountInfo()
   public var layoutInfo: Atomic<LayoutInfo?> = Atomic(nil)
