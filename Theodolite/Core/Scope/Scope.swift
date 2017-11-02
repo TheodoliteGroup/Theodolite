@@ -71,7 +71,7 @@ public class Scope: ComponentTree {
       // small to begin with, and can convert to a hash map if we add more.
       let prev = previousScope?._children.first(where: { (s: Scope) -> Bool in
         return areComponentsEquivalent(c1: child, c2: s.component())
-      }) ?? nil
+      })
       
       return Scope(listener: listener,
                    component: child,
