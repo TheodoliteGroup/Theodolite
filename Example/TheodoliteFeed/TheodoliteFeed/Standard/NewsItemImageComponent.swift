@@ -10,6 +10,7 @@ import UIKit
 import Theodolite
 
 final class NewsItemImageComponent: TypedComponent {
+  let context = ComponentContext()
   typealias PropType = URL
   typealias StateType = UIImage
 

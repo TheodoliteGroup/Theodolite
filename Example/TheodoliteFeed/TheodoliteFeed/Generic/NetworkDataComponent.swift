@@ -10,6 +10,7 @@ import UIKit
 import Theodolite
 
 final class NetworkDataComponent: TypedComponent {
+  let context = ComponentContext()
   enum DataError: Error {
     case error(String)
   }

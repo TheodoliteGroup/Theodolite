@@ -10,6 +10,7 @@ import Flexbox
 import Theodolite
 
 final class NewsItemContentComponent: TypedComponent {
+  let context = ComponentContext()
   typealias PropType = (
     imageURL: URL?,
     description: String?

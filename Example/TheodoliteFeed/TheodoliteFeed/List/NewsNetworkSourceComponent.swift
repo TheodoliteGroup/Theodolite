@@ -10,6 +10,7 @@ import Flexbox
 import Theodolite
 
 final class NewsNetworkSourceComponent: TypedComponent {
+  let context = ComponentContext()
   typealias PropType = NewsNetworkSource
   typealias StateType = (
     newsItems: [NewsItem],

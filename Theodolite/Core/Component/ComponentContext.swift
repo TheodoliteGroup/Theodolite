@@ -39,4 +39,6 @@ public class ComponentContext {
   
   public var mountInfo: MountInfo = MountInfo()
   public var layoutInfo: Atomic<LayoutInfo?> = Atomic(nil)
+
+  public init() {}
 }

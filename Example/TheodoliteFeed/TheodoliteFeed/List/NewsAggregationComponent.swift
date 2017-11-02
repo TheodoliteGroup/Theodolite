@@ -10,6 +10,7 @@ import Flexbox
 import Theodolite
 
 final class NewsAggregationComponent: TypedComponent {
+  let context = ComponentContext()
   typealias PropType = [URL]
 
   func render() -> [Component] {

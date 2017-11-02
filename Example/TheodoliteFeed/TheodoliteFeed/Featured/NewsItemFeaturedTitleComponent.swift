@@ -10,6 +10,7 @@ import Flexbox
 import Theodolite
 
 final class NewsItemFeaturedTitleComponent: TypedComponent {
+  let context = ComponentContext()
   typealias PropType = String
 
   func render() -> [Component] {

@@ -10,6 +10,7 @@ import UIKit
 import Theodolite
 
 final class NetworkImageComponent: TypedComponent {
+  let context = ComponentContext()
   typealias PropType = (
     URL,
     size: CGSize,
