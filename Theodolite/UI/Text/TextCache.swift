@@ -10,7 +10,6 @@ import Foundation
 
 private class TextCacheEntry<KeyType, ObjectType> where
 KeyType : Hashable,
-KeyType : Equatable,
 ObjectType : AnyObject {
   var key: KeyType
   var value: ObjectType
@@ -26,7 +25,6 @@ ObjectType : AnyObject {
 
 open class TextCache<KeyType, ObjectType> where
   KeyType : Hashable,
-  KeyType : Equatable,
   ObjectType : AnyObject
 {
 

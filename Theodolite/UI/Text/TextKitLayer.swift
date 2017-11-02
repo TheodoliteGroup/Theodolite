@@ -80,7 +80,7 @@ public final class TextKitLayer: TheodoliteAsyncLayer {
                            bounds: rect)
   }
 
-  public override func didDisplayAsynchronously(_ newContents: Any?, withDrawParameters drawParameters: NSObjectProtocol!) {
+  public override func didDisplayAsynchronously(_ newContents: Any?, withDrawParameters drawParameters: NSObjectProtocol) {
     guard newContents != nil else {
       return
     }
@@ -95,7 +95,7 @@ public final class TextKitLayer: TheodoliteAsyncLayer {
                  cost: bytes)
   }
 
-  public override func willDisplayAsynchronously(withDrawParameters drawParameters: NSObjectProtocol!) -> Any? {
+  public override func willDisplayAsynchronously(withDrawParameters drawParameters: NSObjectProtocol) -> Any? {
     let cached = TextKitLayer
     .gTextKitRenderArtifactCache
       .object(forKey: TextKitRendererKey(
