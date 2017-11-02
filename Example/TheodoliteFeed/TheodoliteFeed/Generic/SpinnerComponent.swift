@@ -10,7 +10,6 @@ import Theodolite
 
 final class SpinnerComponent: TypedComponent {
   typealias PropType = Void?
-  typealias ViewType = UIActivityIndicatorView
 
   func view() -> ViewConfiguration? {
     return ViewConfiguration(view: UIActivityIndicatorView.self,
@@ -34,11 +33,11 @@ final class SpinnerComponent: TypedComponent {
   }
 
   func componentDidMount() {
-    let spinner = self.context().mountInfo.currentView
+    let spinner = self.context().mountInfo.currentView as? UIActivityIndicatorView
     spinner?.startAnimating()
   }
 
   func componentWillUnmount() {
-    self.context().mountInfo.currentView?.stopAnimating()
+    (self.context().mountInfo.currentView as? UIActivityIndicatorView)?.stopAnimating()
   }
 }

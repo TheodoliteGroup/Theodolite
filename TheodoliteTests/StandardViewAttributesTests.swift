@@ -16,6 +16,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
   }
   
   final class TestViewComponent: TypedComponent {
+    public let context = ComponentContext()
     typealias PropType = (
       view: ViewConfiguration,
       size: CGSize
@@ -61,6 +62,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
   
   func test_clipsToBounds_true() {
     final class ChildComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       
       func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
@@ -79,6 +81,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     }
     
     final class ParentComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       
       func render() -> [Component] {

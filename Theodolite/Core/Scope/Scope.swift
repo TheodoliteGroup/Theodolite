@@ -55,7 +55,7 @@ public class Scope: ComponentTree {
       }
     } else {
       _component = component
-      let typed = component as? InternalTypedComponent
+      let typed = component as? UnTypedComponent
       _handle = ScopeHandle(parentIdentifier: parentIdentifier, state:typed?.initialUntypedState()) {
         [weak listener](identifier: ScopeIdentifier, state: Any?) -> () in
         listener?.receivedStateUpdate(identifier: identifier, update: state)

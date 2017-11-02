@@ -8,8 +8,8 @@
 
 import Foundation
 
-internal func GetContext(_ component: Component) -> ComponentContextProtocol? {
-  return getAssociatedObject(object: component, associativeKey: &kWrapperKey)
+internal func GetContext(_ component: Component) -> ComponentContext? {
+  return (component as? UnTypedComponent)?.context
 }
 
 public protocol MountInfoProtocol {
@@ -17,8 +17,8 @@ public protocol MountInfoProtocol {
   var mountedLayout: Layout? {get set}
 }
 
-public struct MountInfo<ViewType: UIView>: MountInfoProtocol {
-  public var currentView: ViewType? = nil
+public struct MountInfo: MountInfoProtocol {
+  public var currentView: UIView? = nil
   public var mountContext: MountContext? = nil
   public var mountedLayout: Layout? = nil
 }
@@ -31,36 +31,11 @@ public struct LayoutInfo {
   let extra: Any?
 }
 
-/** To allow use of the component context's mount info outside of Components where the typealiases are defined. */
-public protocol ComponentContextProtocol {
-  var untypedMountInfo: MountInfoProtocol {get set}
-  var layoutInfo: Atomic<LayoutInfo?> {get}
-}
-
 /** The bag of information needed by the framework to do its work. This is an implementation detail of the framework */
-public class ComponentContext<PropType, ViewType: UIView>: ComponentContextProtocol {
-  public var untypedMountInfo: MountInfoProtocol {
-    get {
-      return self.mountInfo
-    }
-    set(newValue) {
-      self.mountInfo = newValue as! MountInfo<ViewType>
-    }
-  }
+public class ComponentContext {
+  public var props: Any? = nil
+  public var key: AnyHashable? = nil
   
-  let props: PropType?
-  let key: AnyHashable?
-  
-  public var mountInfo: MountInfo<ViewType>
-  public var layoutInfo: Atomic<LayoutInfo?>
-  
-  init(props: PropType?,
-       key: AnyHashable?) {
-    self.props = props
-    self.key = key
-    self.mountInfo = MountInfo()
-    self.layoutInfo = Atomic(nil)
-  }
+  public var mountInfo: MountInfo = MountInfo()
+  public var layoutInfo: Atomic<LayoutInfo?> = Atomic(nil)
 }
-
-internal var kWrapperKey: Void?

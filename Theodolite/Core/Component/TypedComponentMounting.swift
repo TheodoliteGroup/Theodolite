@@ -24,11 +24,11 @@ public extension TypedComponent {
                                layout: layout,
                                position: position,
                                config: view(),
-                               componentContext: context())
+                               componentContext: self.context)
   }
   
   func componentDidMount() {
-    if let view = context().mountInfo.currentView {
+    if let view = self.context.mountInfo.currentView {
       // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
       ViewPoolMap.resetViewPoolMap(view: view)
     }
@@ -38,7 +38,7 @@ public extension TypedComponent {
     guard let config = self.view() else {
       return
     }
-    let context = self.context()
+    let context = self.context
     guard let currentView = context.mountInfo.currentView else {
 //      assertionFailure("shouldn't have view config but no view")
       return
@@ -54,11 +54,11 @@ public extension TypedComponent {
   }
 }
 
-internal func StandardMountLayout<PropType, ViewType>(parentView: UIView,
-                                            layout: Layout,
-                                            position: CGPoint,
-                                            config: ViewConfiguration?,
-                                            componentContext: ComponentContext<PropType, ViewType>) -> MountContext {
+internal func StandardMountLayout(parentView: UIView,
+                                  layout: Layout,
+                                  position: CGPoint,
+                                  config: ViewConfiguration?,
+                                  componentContext: ComponentContext) -> MountContext {
   guard let config = config else {
     return MountContext(view: parentView,
                         position: position,
@@ -68,7 +68,7 @@ internal func StandardMountLayout<PropType, ViewType>(parentView: UIView,
   let map = ViewPoolMap.getViewPoolMap(view: parentView)
   let view = map
     .checkoutView(parent: parentView, config: config)!
-  componentContext.mountInfo.currentView = view as? ViewType
+  componentContext.mountInfo.currentView = view
   view.frame = CGRect(x: position.x,
                       y: position.y,
                       width: layout.size.width,

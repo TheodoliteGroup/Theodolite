@@ -9,12 +9,12 @@
 import UIKit
 
 public final class ScrollComponent: TypedComponent, ScrollListener {
+  public let context = ComponentContext()
   public typealias PropType = (
     Component,
     direction: UICollectionViewScrollDirection,
     attributes: [Attribute]
   )
-  public typealias ViewType = UIScrollView
   
   private var scrollDelegate: InternalScrollDelegate? = nil
   private var mountedArguments: (parentView: UIView, layout: WeakContainer<Layout>, position: CGPoint)? = nil
@@ -69,7 +69,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
                     position: CGPoint) -> MountContext {
     mountedArguments = (parentView: parentView, layout: WeakContainer(layout), position: position)
     
-    let componentContext = context()
+    let componentContext = context
     
     let mountContext = StandardMountLayout(parentView: parentView,
                                            layout: layout,
@@ -84,7 +84,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     
     // Now we mount our children
     // todo: this is terrible, need to fix it
-    componentContext.untypedMountInfo.mountContext = mountContext
+    componentContext.mountInfo.mountContext = mountContext
     mountChildren(componentContext)
     
     return MountContext(view: mountContext.view,
@@ -93,8 +93,8 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   }
   
   public func componentWillUnmount() {
-    let scrollView = context().mountInfo.currentView
-    scrollView?.delegate = nil
+    let scrollView = context.mountInfo.currentView as! UIScrollView
+    scrollView.delegate = nil
     
     guard let mountedArguments = mountedArguments else {
       assertionFailure()
@@ -104,14 +104,14 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
                   incrementalContext: incrementalMountContext)
   }
   
-  private func mountChildren(_ componentContext: ComponentContextProtocol) {
+  private func mountChildren(_ componentContext: ComponentContext) {
     guard let mountedArguments = mountedArguments else {
       assertionFailure()
       return
     }
-    MountRootLayout(view: componentContext.untypedMountInfo.mountContext!.view,
+    MountRootLayout(view: componentContext.mountInfo.mountContext!.view,
                     layout: mountedArguments.layout.val!.children[0].layout,
-                    position: componentContext.untypedMountInfo.mountContext!.position,
+                    position: componentContext.mountInfo.mountContext!.position,
                     incrementalContext: incrementalMountContext,
                     mountVisibleOnly: true)
   }
@@ -119,7 +119,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   // MARK: ScrollListener
   
   public func scrollViewDidScroll(scrollView: UIScrollView) {
-    mountChildren(context())
+    mountChildren(context)
   }
 }
 

@@ -10,6 +10,7 @@ import XCTest
 @testable import Theodolite
 
 final class TestScopeComponent<T, S>: TypedComponent {
+  public let context = ComponentContext()
   typealias PropType = T
   typealias StateType = S
 }
@@ -44,6 +45,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeWithNoPreviousScope_setsInitialStateOnComponent() {
     final class TestIntStateComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -65,6 +67,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeWithPreviousScope_keepsIdentifiersForComponent() {
     final class TestIntStateComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -94,6 +97,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeWithPreviousScope_doesNotCallInitialState() {
     final class TestInitialStateCallComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = () -> ()
       typealias StateType = Int
       
@@ -133,6 +137,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeWithStateUpdateMap_andNilPreviousScope_doesNotUpdateState() {
     final class TestStateUpdateComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -162,6 +167,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeWithStateUpdateMap_andPreviousScope_updatesState() {
     final class TestStateUpdateComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -191,10 +197,12 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeForComponent_withChildren_createsChildComponent() {
     final class TestChildComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
     }
     
     final class TestParentComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       
       func render() -> [Component] {
@@ -215,6 +223,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_createsChildComponentWithState() {
     final class TestChildComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -224,6 +233,7 @@ class ScopeTests: XCTestCase {
     }
     
     final class TestParentComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       
       func render() -> [Component] {
@@ -244,6 +254,7 @@ class ScopeTests: XCTestCase {
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_andStateUpdateForChild_createsChildComponentWithUpdatedState() {
     final class TestChildComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -253,6 +264,7 @@ class ScopeTests: XCTestCase {
     }
     
     final class TestParentComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = Void?
       
       func render() -> [Component] {

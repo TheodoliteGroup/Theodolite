@@ -28,6 +28,7 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
 
   func test_stateUpdateChangesRendering() {
     final class TestComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = () -> ()
       typealias StateType = Bool
 

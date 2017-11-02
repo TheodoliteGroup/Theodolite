@@ -9,6 +9,7 @@
 import UIKit
 
 public final class ViewComponent: TypedComponent {
+  public let context = ComponentContext()
   public typealias PropType = ViewConfiguration
 
   public init() {}

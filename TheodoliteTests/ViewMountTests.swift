@@ -18,6 +18,7 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_basic_rectangle() {
     final class TestViewComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = ViewConfiguration
       
       func view() -> ViewConfiguration? {
@@ -44,6 +45,7 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_component_withChild() {
     final class TestParentComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = () -> ()
       
       func render() -> [Component] {
@@ -78,6 +80,7 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     final class TestChildComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = () -> ()
       
       func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
@@ -109,6 +112,7 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_component_withNonVisibleChild_doesNotMountThatChild() {
     final class TestParentComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = () -> ()
       
       func render() -> [Component] {
@@ -135,6 +139,7 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     final class TestChildComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = () -> ()
       
       func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
@@ -165,6 +170,7 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_complex_layout() {
     final class TestLabelComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = String
       
       func view() -> ViewConfiguration? {

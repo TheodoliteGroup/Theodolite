@@ -9,6 +9,7 @@
 import UIKit
 
 public final class ImageComponent: TypedComponent {
+  public let context = ComponentContext()
   public typealias PropType = (
     UIImage,
     size: CGSize,

@@ -9,6 +9,7 @@
 import Foundation
 
 public final class InsetComponent: TypedComponent {
+  public let context = ComponentContext()
   public typealias PropType = (
     insets: UIEdgeInsets,
     component: Component

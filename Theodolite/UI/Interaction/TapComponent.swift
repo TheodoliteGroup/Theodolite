@@ -9,6 +9,7 @@
 import UIKit
 
 public final class TapComponent: TypedComponent {
+  public let context = ComponentContext()
   public typealias PropType = (
     action: Action<UITapGestureRecognizer>,
     component: Component

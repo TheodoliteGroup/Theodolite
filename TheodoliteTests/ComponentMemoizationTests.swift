@@ -12,6 +12,7 @@ import XCTest
 class ComponentMemoizationTests: XCTestCase {
   func test_returningFalse_from_shouldComponentUpdate_doesNotUpdate() {
     final class TestComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = String
 
       func shouldComponentUpdate(previous: Component) -> Bool {
@@ -42,6 +43,7 @@ class ComponentMemoizationTests: XCTestCase {
 
   func test_notChangingProps_doesNotUpdate() {
     final class TestComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = String
     }
 
@@ -67,6 +69,7 @@ class ComponentMemoizationTests: XCTestCase {
 
   func test_changingProps_updates() {
     final class TestComponent: TypedComponent {
+      public let context = ComponentContext()
       typealias PropType = String
     }
 

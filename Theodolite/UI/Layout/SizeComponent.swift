@@ -9,6 +9,7 @@
 import Foundation
 
 public final class SizeComponent: TypedComponent {
+  public let context = ComponentContext()
   public typealias PropType = (
     size: CGSize,
     component: Component

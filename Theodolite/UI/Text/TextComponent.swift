@@ -9,11 +9,12 @@
 import UIKit
 
 public final class TextComponent: TypedComponent {
+  public let context = ComponentContext()
+
   public typealias PropType = (
     TextKitAttributes,
     options: Options
   )
-  public typealias ViewType = TextKitView
   
   public struct Options {
     let view: ViewOptions

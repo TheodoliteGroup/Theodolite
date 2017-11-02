@@ -90,7 +90,7 @@ public extension Component {
 }
 
 internal func MemoizedLayout(component: Component,
-                             componentContext: ComponentContextProtocol,
+                             componentContext: ComponentContext,
                              constraint: SizeRange) -> Layout? {
   if let previousLayoutInfo = componentContext.layoutInfo.get() {
     if constraint == previousLayoutInfo.constraint {
@@ -104,7 +104,7 @@ internal func MemoizedLayout(component: Component,
 }
 
 internal func StoreLayout(layout: Layout,
-                          componentContext: ComponentContextProtocol,
+                          componentContext: ComponentContext,
                           constraint: SizeRange) {
   componentContext.layoutInfo.update({ (_) in
     LayoutInfo(constraint: constraint,

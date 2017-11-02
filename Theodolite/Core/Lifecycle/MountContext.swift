@@ -36,8 +36,6 @@ public class IncrementalMountContext {
   private var mounted: Set<Layout> = Set()
   private var marked: Set<Layout> = Set()
   
-  private var componentContextCache: [Layout: ComponentContextProtocol] = [:]
-  
   internal func isMounted(layout: Layout) -> Bool {
     return mounted.contains(layout)
   }
@@ -52,7 +50,6 @@ public class IncrementalMountContext {
     assert(Thread.isMainThread)
     mounted.remove(layout)
     marked.remove(layout)
-    componentContextCache[layout] = nil
   }
   
   internal func unmarkedMounted() -> [Layout] {
@@ -70,16 +67,6 @@ public class IncrementalMountContext {
       closure(layout)
     }
   }
-  
-  internal func getCachedContext(layout: Layout) -> ComponentContextProtocol? {
-    assert(Thread.isMainThread)
-    return componentContextCache[layout]
-  }
-  
-  internal func setCachedContext(layout: Layout, componentContext: ComponentContextProtocol) {
-    assert(Thread.isMainThread)
-    componentContextCache[layout] = componentContext
-  }
 }
 
 public func UnmountLayout(layout: Layout,
@@ -96,10 +83,9 @@ public func UnmountLayout(layout: Layout,
   
   // Only unmount **after** all children are unmounted.
   layout.component.unmount(layout: layout)
-  let cachedContext = incrementalContext.getCachedContext(layout: layout)
-  var componentContext = cachedContext ?? GetContext(layout.component)
+  let componentContext = GetContext(layout.component)
   incrementalContext.markUnmounted(layout: layout)
-  componentContext?.untypedMountInfo.mountContext = nil
+  componentContext?.mountInfo.mountContext = nil
 }
 
 public func MountRootLayout(view: UIView,
@@ -128,20 +114,15 @@ internal func MountLayout(view: UIView,
   
   // If the component itself is not mounted, we do that first.
   var needsDidMount = false
-  
-  // Calling GetContext is really slow since it uses associated objects, so for mounted objects we use a cache
-  let cachedContext = incrementalContext.getCachedContext(layout: layout)
-  var componentContext = cachedContext ?? GetContext(layout.component)
-  if let retrievedContext = componentContext, cachedContext == nil {
-    incrementalContext.setCachedContext(layout: layout, componentContext: retrievedContext)
-  }
+
+  let componentContext = GetContext(layout.component)
   
   if !incrementalContext.isMounted(layout: layout) {
     component.componentWillMount()
     let context = component.mount(parentView: view,
                                   layout: layout,
                                   position: position)
-    componentContext?.untypedMountInfo.mountContext = context
+    componentContext?.mountInfo.mountContext = context
     needsDidMount = true
   }
   
@@ -154,7 +135,7 @@ internal func MountLayout(view: UIView,
   
   incrementalContext.markMounted(layout: layout)
   
-  guard let mountContext: MountContext = componentContext?.untypedMountInfo.mountContext else {
+  guard let mountContext: MountContext = componentContext?.mountInfo.mountContext else {
     return
   }
   

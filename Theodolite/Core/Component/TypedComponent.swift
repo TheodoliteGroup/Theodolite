@@ -51,10 +51,9 @@ import Foundation
  
  You may update your state on your component by calling updateState() with a new value.
  */
-public protocol TypedComponent: Component, InternalTypedComponent {
+public protocol TypedComponent: Component, UnTypedComponent {
   associatedtype PropType
   associatedtype StateType = Void?
-  associatedtype ViewType: UIView = UIView
   
   var props: PropType {get}
   var state: StateType? {get}

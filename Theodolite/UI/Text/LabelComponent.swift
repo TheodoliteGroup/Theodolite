@@ -9,6 +9,8 @@
 import UIKit
 
 public final class LabelComponent: TypedComponent {
+  public let context = ComponentContext()
+
   public struct Options {
     let view: ViewOptions
     let font: UIFont
@@ -37,7 +39,6 @@ public final class LabelComponent: TypedComponent {
     String,
     options: Options
   )
-  public typealias ViewType = UILabel
   
   private var cachedView: ViewConfiguration? = nil
   

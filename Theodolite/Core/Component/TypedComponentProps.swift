@@ -11,7 +11,7 @@ import Foundation
 public extension TypedComponent {
   var props: PropType {
     get {
-      return context().props!
+      return context.props as! PropType
     }
   }
 }

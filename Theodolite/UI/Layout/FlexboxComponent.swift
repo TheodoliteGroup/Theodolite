@@ -103,6 +103,8 @@ public struct FlexChild {
 }
 
 final public class FlexboxComponent: TypedComponent {
+  public let context = ComponentContext()
+
   public typealias PropType = (
     options: FlexOptions,
     children: [FlexChild]
