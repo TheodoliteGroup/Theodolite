@@ -18,8 +18,9 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
+    let component = ViewComponent {config}
     
-    let retrievedView = pool.checkoutView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
     XCTAssert(retrievedView!.isKind(of: UILabel.self))
   }
@@ -32,13 +33,14 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
+    let component = ViewComponent {config}
     
-    let retrievedView = pool.checkoutView(parent: parent, config: config)
-    pool.checkinView(view: retrievedView!)
+    let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
+    pool.checkinView(component: component, view: retrievedView!)
     
     pool.reset()
     
-    let retrievedView2 = pool.checkoutView(parent: parent, config: config)
+    let retrievedView2 = pool.checkoutView(component: component, parent: parent, config: config)
     
     XCTAssertEqual(retrievedView, retrievedView2)
   }
@@ -51,10 +53,11 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
+    let component = ViewComponent {config}
     
-    let retrievedView = pool.checkoutView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
-    let retrievedView2 = pool.checkoutView(parent: parent, config: config)
+    let retrievedView2 = pool.checkoutView(component: component, parent: parent, config: config)
     
     XCTAssertNotEqual(retrievedView, retrievedView2)
   }
@@ -67,8 +70,9 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
+    let component = ViewComponent {config}
     
-    let retrievedView = pool.checkoutView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
     pool.reset()
     
@@ -83,15 +87,16 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
+    let component = ViewComponent {config}
     
-    let retrievedView = pool.checkoutView(parent: parent, config: config)
-    let retrievedView2 = pool.checkoutView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
+    let retrievedView2 = pool.checkoutView(component: component, parent: parent, config: config)
     
-    pool.checkinView(view: retrievedView!)
-    pool.checkinView(view: retrievedView2!)
+    pool.checkinView(component: component, view: retrievedView!)
+    pool.checkinView(component: component, view: retrievedView2!)
     pool.reset()
     
-    let retrievedView3 = pool.checkoutView(parent: parent, config: config)
+    let retrievedView3 = pool.checkoutView(component: component, parent: parent, config: config)
     
     pool.reset()
     
@@ -113,8 +118,9 @@ class ViewPoolTests: XCTestCase {
           view.backgroundColor = val
         }
       ])
+    let component = ViewComponent {config}
     
-    let retrievedView = pool.checkoutView(parent: parent, config: config)
+    let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
     XCTAssertEqual(retrievedView?.backgroundColor, UIColor.red)
   }
@@ -131,9 +137,10 @@ class ViewPoolTests: XCTestCase {
           view.backgroundColor = val
         }
       ])
+    let component = ViewComponent {config}
     
-    let view = pool.checkoutView(parent: parent, config: config)
-    pool.checkinView(view: view!)
+    let view = pool.checkoutView(component: component, parent: parent, config: config)
+    pool.checkinView(component: component, view: view!)
     pool.reset()
     
     let config2 = ViewConfiguration(
@@ -144,7 +151,7 @@ class ViewPoolTests: XCTestCase {
         }
       ])
     
-    let retrievedView2 = pool.checkoutView(parent: parent, config: config2)
+    let retrievedView2 = pool.checkoutView(component: component, parent: parent, config: config2)
     
     XCTAssertEqual(retrievedView2?.backgroundColor, UIColor.blue)
   }
@@ -161,11 +168,12 @@ class ViewPoolTests: XCTestCase {
           view.backgroundColor = val
         }
       ])
+    let component = ViewComponent {config}
     
     self.measure {
       for _ in 1...10000 {
-        let view = pool.checkoutView(parent: parent, config: config)
-        pool.checkinView(view: view!)
+        let view = pool.checkoutView(component: component, parent: parent, config: config)
+        pool.checkinView(component: component, view: view!)
         pool.reset()
       }
     }

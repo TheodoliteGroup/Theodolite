@@ -25,10 +25,11 @@ class ViewPoolMapTests: XCTestCase {
     let view = UIView()
     let config = ViewConfiguration(view: UILabel.self, attributes: [])
     let map = ViewPoolMap.getViewPoolMap(view: view)
+    let component = ViewComponent {config}
     
-    let retrieved = map.checkoutView(parent: view, config: config)
+    let retrieved = map.checkoutView(component: component, parent: view, config: config)
     
-    map.checkinView(parent: view, config: config, view: retrieved!)
+    map.checkinView(component: component, parent: view, config: config, view: retrieved!)
     map.reset(view: view)
     
     XCTAssert(retrieved!.isHidden)
@@ -39,23 +40,25 @@ class ViewPoolMapTests: XCTestCase {
     let labelConfig = ViewConfiguration(view: UILabel.self, attributes: [])
     let buttonConfig = ViewConfiguration(view: UIButton.self, attributes: [])
     let map = ViewPoolMap.getViewPoolMap(view: view)
+    let labelComponent = ViewComponent {labelConfig}
+    let buttonComponent = ViewComponent {buttonConfig}
     
-    let retrievedLabel = map.checkoutView(parent: view, config: labelConfig)!
+    let retrievedLabel = map.checkoutView(component: labelComponent, parent: view, config: labelConfig)!
     
-    let retrievedButton = map.checkoutView(parent: view, config: buttonConfig)!
+    let retrievedButton = map.checkoutView(component: buttonComponent, parent: view, config: buttonConfig)!
     
     // OK, so now we should have the 2 views, and retrieved2 should be above retrieved
     XCTAssert(view.subviews.index(of: retrievedLabel)! < view.subviews.index(of: retrievedButton)!)
     
-    map.checkinView(parent: view, config: labelConfig, view: retrievedLabel)
-    map.checkinView(parent: view, config: buttonConfig, view: retrievedButton)
+    map.checkinView(component: labelComponent, parent: view, config: labelConfig, view: retrievedLabel)
+    map.checkinView(component: buttonComponent, parent: view, config: buttonConfig, view: retrievedButton)
     map.reset(view: view)
     
     // Now, we grab them in the opposite order.
     
-    let buttonAgain = map.checkoutView(parent: view, config: buttonConfig)!
+    let buttonAgain = map.checkoutView(component: buttonComponent, parent: view, config: buttonConfig)!
     
-    let labelAgain = map.checkoutView(parent: view, config: labelConfig)!
+    let labelAgain = map.checkoutView(component: labelComponent, parent: view, config: labelConfig)!
     
     // Re-ordering subviews occurs on reset
     map.reset(view: view)

@@ -14,31 +14,57 @@ import UIKit
  any particular mount cycle.
  */
 public class ViewPool {
-  var views: [UIView] = []
+  private class View {
+    let view: UIView
+    weak var component: Component?
+    init(view: UIView, component: Component) {
+      self.view = view
+      self.component = component
+    }
+  }
+
+  private var views: [View] = []
   
   func reset() {
     for view in views {
-      if !view.isHidden {
-        view.isHidden = true
+      if !view.view.isHidden {
+        view.view.isHidden = true
       }
     }
   }
   
-  func checkoutView(parent: UIView, config: ViewConfiguration) -> UIView? {
-    if let view = views.first {
+  func checkoutView(component: Component, parent: UIView, config: ViewConfiguration) -> UIView? {
+    let applyView = { (view: UIView) -> UIView in
       if view.isHidden {
         view.isHidden = false
       }
       config.applyToView(v: view)
-      views.removeFirst()
       return view
+    }
+
+    // First search for a view that exactly matches this component, if we can find one. This is to avoid re-shuffling
+    // views unless we absolutely have to if the component was previously mounted.
+    for i in 0 ..< views.count {
+      let v = views[i]
+      if component === v.component {
+        views.remove(at: i)
+        return applyView(v.view)
+      }
+    }
+
+    if let view = views.first {
+      views.removeFirst()
+      return applyView(view.view)
     }
     let newView = config.buildView()
     parent.addSubview(newView)
     return newView
   }
   
-  func checkinView(view: UIView) {
-    views.append(view)
+  func checkinView(component: Component, view: UIView) {
+    views.append(View(view: view, component: component))
+    if views.count > 100 {
+      print("View pool is too big for the linear algorithms.")
+    }
   }
 }

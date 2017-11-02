@@ -50,7 +50,7 @@ public extension TypedComponent {
     let superview = currentView.superview!
     
     let map = ViewPoolMap.getViewPoolMap(view: superview)
-    map.checkinView(parent: superview, config: config, view: currentView)
+    map.checkinView(component: layout.component, parent: superview, config: config, view: currentView)
   }
 }
 
@@ -67,7 +67,7 @@ internal func StandardMountLayout(parentView: UIView,
   
   let map = ViewPoolMap.getViewPoolMap(view: parentView)
   let view = map
-    .checkoutView(parent: parentView, config: config)!
+    .checkoutView(component: layout.component, parent: parentView, config: config)!
   componentContext.mountInfo.currentView = view
   view.frame = CGRect(x: position.x,
                       y: position.y,

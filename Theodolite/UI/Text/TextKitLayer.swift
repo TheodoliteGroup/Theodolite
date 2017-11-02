@@ -38,6 +38,18 @@ public final class TextKitLayer: TheodoliteAsyncLayer {
     #endif
   }
 
+  public override var needsDisplayOnBoundsChange: Bool {
+    get {
+      return true
+    }
+    set {
+      // Don't allow this property to be disabled.  Unfortunately, UIView will turn this off when setting the
+      // backgroundColor, for reasons that cannot be understood.  Even worse, it doesn't ever set it back, so it will
+      // subsequently stay off.  Just make sure that it never gets overridden, because the text will not be drawn in the
+      // correct way (or even at all) if this is set to NO.
+    }
+  }
+
   public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

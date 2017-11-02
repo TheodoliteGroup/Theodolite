@@ -51,20 +51,20 @@ public class ViewPoolMap {
     return unwrapped
   }
   
-  func checkoutView(parent: UIView, config: ViewConfiguration) -> UIView? {
+  func checkoutView(component: Component, parent: UIView, config: ViewConfiguration) -> UIView? {
     assert(Thread.isMainThread)
     guard let view = getViewPool(view: parent, config: config)
-      .checkoutView(parent: parent, config: config) else {
+      .checkoutView(component: component, parent: parent, config: config) else {
         return nil
     }
     vendedViews.append(view)
     return view
   }
   
-  func checkinView(parent: UIView, config: ViewConfiguration, view: UIView) {
+  func checkinView(component: Component, parent: UIView, config: ViewConfiguration, view: UIView) {
     assert(Thread.isMainThread)
     let pool = getViewPool(view: parent, config: config)
-    pool.checkinView(view: view)
+    pool.checkinView(component: component, view: view)
   }
   
   func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {
