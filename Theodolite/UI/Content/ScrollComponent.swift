@@ -79,13 +79,16 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
     
     let scrollView = mountContext.view as! UIScrollView
     scrollDelegate = InternalScrollDelegate(layout: layout)
-    scrollView.delegate = scrollDelegate
     scrollView.contentSize = layout.extra as! CGSize
     
     // Now we mount our children
     // todo: this is terrible, need to fix it
     componentContext.mountInfo.mountContext = mountContext
     mountChildren(componentContext)
+
+    // Mounting children and setting content size can call into scrollViewDidScroll, which will cause us to mount
+    // Don't set ourselves as the delegate until it's ready.
+    scrollView.delegate = scrollDelegate
     
     return MountContext(view: mountContext.view,
                         position: mountContext.position,
