@@ -40,7 +40,7 @@ public extension TypedComponent {
     }
     let context = self.context
     guard let currentView = context.mountInfo.currentView else {
-      assertionFailure("shouldn't have view config but no view")
+//      assertionFailure("shouldn't have view config but no view")
       return
     }
     
@@ -54,7 +54,7 @@ public extension TypedComponent {
   }
 }
 
-internal func StandardMountLayout(parentView: UIView,
+public  func StandardMountLayout(parentView: UIView,
                                   layout: Layout,
                                   position: CGPoint,
                                   config: ViewConfiguration?,
