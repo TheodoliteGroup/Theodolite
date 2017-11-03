@@ -27,7 +27,7 @@ final class NetworkImageComponent: TypedComponent {
     return [
       NetworkDataComponent {
         (props.0,
-         { (networkState: NetworkDataComponent.State) -> Component? in
+         { [weak self] (networkState: NetworkDataComponent.State) -> Component? in
           var component: Component? = nil
           switch networkState {
           case .pending:
@@ -47,7 +47,7 @@ final class NetworkImageComponent: TypedComponent {
               break
             }
             if state == nil {
-              self.updateState(state: image)
+              self?.updateState(state: image)
             }
             component = ImageComponent {
               (image,
