@@ -8,10 +8,14 @@
 
 import Flexbox
 import Theodolite
+import SafariServices
 
 final class NewsItemComponent: TypedComponent {
   let context = ComponentContext()
-  typealias PropType = NewsItem
+  typealias PropType = (
+    NewsItem,
+    navigationCoordinator: NavigationCoordinator
+  )
 
   func render() -> [Component] {
     let props = self.props
@@ -20,21 +24,26 @@ final class NewsItemComponent: TypedComponent {
         insets: UIEdgeInsetsMake(10, 20, 40, 20),
         component:
         TapComponent {
-          (action: Action<UITapGestureRecognizer>(),
+          (action: Handler(self, NewsItemComponent.tappedItem),
            component:
             FlexboxComponent {
               (options: FlexOptions(flexDirection: .column),
                children: [
-                FlexChild(NewsItemHeaderComponent { props.author }),
-                FlexChild(NewsItemTitleComponent { props.title }),
+                FlexChild(NewsItemHeaderComponent { props.0.author }),
+                FlexChild(NewsItemTitleComponent { props.0.title }),
                 FlexChild(NewsItemContentComponent {(
-                  imageURL: props.imageURL,
-                  description: props.description
+                  imageURL: props.0.imageURL,
+                  description: props.0.description
                   )})
                 ])
           })
         })
       }
     ]
+  }
+
+  func tappedItem(gesture: UITapGestureRecognizer) {
+    let safariVC = SFSafariViewController(url: self.props.0.url)
+    self.props.navigationCoordinator.presentViewController(viewController: safariVC)
   }
 }

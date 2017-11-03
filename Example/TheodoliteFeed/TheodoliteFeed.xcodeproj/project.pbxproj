@@ -22,7 +22,6 @@
 		B1483B441FA8951100796C58 /* NewsItemImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1483B431FA8951100796C58 /* NewsItemImageComponent.swift */; };
 		B18262611FA5685300D41A8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262601FA5685300D41A8A /* AppDelegate.swift */; };
 		B18262631FA5685300D41A8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262621FA5685300D41A8A /* ViewController.swift */; };
-		B18262661FA5685300D41A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B18262641FA5685300D41A8A /* Main.storyboard */; };
 		B18262681FA5685300D41A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B18262671FA5685300D41A8A /* Assets.xcassets */; };
 		B182626B1FA5685300D41A8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B18262691FA5685300D41A8A /* LaunchScreen.storyboard */; };
 		B18262891FA56A9600D41A8A /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18262851FA56A8B00D41A8A /* Theodolite.framework */; };
@@ -33,6 +32,7 @@
 		B182629F1FA57D7D00D41A8A /* Flexbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1BC1B0D1FA9278F00F01A1A /* NewsItemContentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */; };
 		B1E6C60B1FAC9AC70018CE8A /* PullToRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6C60A1FAC9AC70018CE8A /* PullToRefreshComponent.swift */; };
+		B1E6C60F1FAD16F00018CE8A /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */; };
 		B1F16E7D1FA9F0A40037CD9B /* NetworkDataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */; };
 		B1F16E801FA9F79D0037CD9B /* NetworkImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7F1FA9F79D0037CD9B /* NetworkImageComponent.swift */; };
 /* End PBXBuildFile section */
@@ -93,7 +93,6 @@
 		B182625D1FA5685300D41A8A /* TheodoliteFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheodoliteFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18262601FA5685300D41A8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B18262621FA5685300D41A8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B18262651FA5685300D41A8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B18262671FA5685300D41A8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B182626A1FA5685300D41A8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B182626C1FA5685300D41A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +100,7 @@
 		B182628B1FA56A9A00D41A8A /* Flexbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flexbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemContentComponent.swift; sourceTree = "<group>"; };
 		B1E6C60A1FAC9AC70018CE8A /* PullToRefreshComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshComponent.swift; sourceTree = "<group>"; };
+		B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataComponent.swift; sourceTree = "<group>"; };
 		B1F16E7F1FA9F79D0037CD9B /* NetworkImageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,12 +193,12 @@
 		B182625F1FA5685300D41A8A /* TheodoliteFeed */ = {
 			isa = PBXGroup;
 			children = (
-				B12472071FA9FF7F00F9434E /* Featured */,
+				B1E6C60D1FAD16D30018CE8A /* Navigation */,
 				B12472081FA9FF8600F9434E /* Generic */,
 				B18262691FA5685300D41A8A /* LaunchScreen.storyboard */,
 				B124720A1FA9FFBD00F9434E /* List */,
-				B18262641FA5685300D41A8A /* Main.storyboard */,
 				B12472091FA9FFAD00F9434E /* Network */,
+				B12472071FA9FF7F00F9434E /* Featured */,
 				B12472061FA9FF7400F9434E /* Standard */,
 				B182626C1FA5685300D41A8A /* Info.plist */,
 				B18262601FA5685300D41A8A /* AppDelegate.swift */,
@@ -223,6 +223,14 @@
 				B182628B1FA56A9A00D41A8A /* Flexbox.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1E6C60D1FAD16D30018CE8A /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,7 +319,6 @@
 			files = (
 				B182626B1FA5685300D41A8A /* LaunchScreen.storyboard in Resources */,
 				B18262681FA5685300D41A8A /* Assets.xcassets in Resources */,
-				B18262661FA5685300D41A8A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +347,7 @@
 				B1483B421FA891A300796C58 /* NewsItemHeaderComponent.swift in Sources */,
 				B1E6C60B1FAC9AC70018CE8A /* PullToRefreshComponent.swift in Sources */,
 				B1483B3A1FA806AC00796C58 /* NewsItemComponent.swift in Sources */,
+				B1E6C60F1FAD16F00018CE8A /* NavigationCoordinator.swift in Sources */,
 				B1BC1B0D1FA9278F00F01A1A /* NewsItemContentComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,14 +363,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B18262641FA5685300D41A8A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B18262651FA5685300D41A8A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B18262691FA5685300D41A8A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -11,7 +11,10 @@ import Theodolite
 
 final class NewsNetworkSourceComponent: TypedComponent {
   let context = ComponentContext()
-  typealias PropType = NewsNetworkSource
+  typealias PropType = (
+    NewsNetworkSource,
+    navigationCoordinator: NavigationCoordinator
+  )
   typealias StateType = (
     newsItems: [NewsItem],
     didInitiateFetch: Bool
@@ -26,12 +29,14 @@ final class NewsNetworkSourceComponent: TypedComponent {
       return []
     }
 
+    let props = self.props
+
     var children: [FlexChild] = []
     let first = state.newsItems.first!
-    children.append(FlexChild(NewsItemFeaturedComponent(key: first.url) { first }))
+    children.append(FlexChild(NewsItemFeaturedComponent(key: first.url) { (first, navigationCoordinator: props.navigationCoordinator) }))
     children.append(contentsOf: state.newsItems[1..<state.newsItems.count]
       .map {(item: NewsItem) -> FlexChild in
-        return FlexChild(NewsItemComponent(key: item.url) { item })
+        return FlexChild(NewsItemComponent(key: item.url) { (item, navigationCoordinator: props.navigationCoordinator) })
     })
 
     return [
@@ -45,7 +50,7 @@ final class NewsNetworkSourceComponent: TypedComponent {
   func componentDidMount() {
     if !(self.state?.didInitiateFetch ?? false) {
       self.updateState(state: (newsItems: [], didInitiateFetch: true))
-      self.props.fetchItems({ (result) in
+      self.props.0.fetchItems({ (result) in
         switch result {
         case .error(let string):
           print("error: \(string)")

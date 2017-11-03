@@ -11,7 +11,10 @@ import Theodolite
 
 final class NewsAggregationComponent: TypedComponent {
   let context = ComponentContext()
-  typealias PropType = [URL]
+  typealias PropType = (
+    [URL],
+    navigationCoordinator: NavigationCoordinator
+  )
   typealias StateType = Int
 
   func render() -> [Component] {
@@ -22,11 +25,11 @@ final class NewsAggregationComponent: TypedComponent {
           FlexboxComponent {
             (options: FlexOptions(flexDirection: .column),
              children:
-              props
+              props.0
                 .map {(url: URL) -> FlexChild in
                   return FlexChild(
                     NewsNetworkSourceComponent(key: url) {
-                      NewsNetworkSource(url: url)}
+                      (NewsNetworkSource(url: url), navigationCoordinator: props.navigationCoordinator)}
                   )
             })
           }
