@@ -14,13 +14,9 @@ import UIKit
  any particular mount cycle.
  */
 public class ViewPool {
-  private class View {
+  private struct View {
     let view: UIView
-    weak var component: Component?
-    init(view: UIView, component: Component) {
-      self.view = view
-      self.component = component
-    }
+    var identifier: ScopeIdentifier
   }
 
   private var views: [View] = []
@@ -42,11 +38,13 @@ public class ViewPool {
       return view
     }
 
+    let scopeHandleIdentifier = getScopeHandle(component: component)!.identifier
+
     // First search for a view that exactly matches this component, if we can find one. This is to avoid re-shuffling
     // views unless we absolutely have to if the component was previously mounted.
     for i in 0 ..< views.count {
       let v = views[i]
-      if component === v.component {
+      if scopeHandleIdentifier == v.identifier {
         views.remove(at: i)
         return applyView(v.view)
       }
@@ -62,7 +60,7 @@ public class ViewPool {
   }
   
   func checkinView(component: Component, view: UIView) {
-    views.append(View(view: view, component: component))
+    views.append(View(view: view, identifier:getScopeHandle(component: component)!.identifier))
     if views.count > 100 {
       print("View pool is too big for the linear algorithms.")
     }
