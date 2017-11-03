@@ -38,7 +38,7 @@ public class ViewPool {
       return view
     }
 
-    let scopeHandleIdentifier = getScopeHandle(component: component)!.identifier
+    let scopeHandleIdentifier = getIdentifier(component: component)
 
     // First search for a view that exactly matches this component, if we can find one. This is to avoid re-shuffling
     // views unless we absolutely have to if the component was previously mounted.
@@ -60,9 +60,13 @@ public class ViewPool {
   }
   
   func checkinView(component: Component, view: UIView) {
-    views.append(View(view: view, identifier:getScopeHandle(component: component)!.identifier))
+    views.append(View(view: view, identifier: getIdentifier(component: component)))
     if views.count > 100 {
       print("View pool is too big for the linear algorithms.")
     }
+  }
+
+  func getIdentifier(component: Component) -> ScopeIdentifier {
+    return getScopeHandle(component: component)?.identifier ?? ScopeIdentifier(path:[])
   }
 }
