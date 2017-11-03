@@ -19,15 +19,11 @@ final class NewsNetworkSourceComponent: TypedComponent {
 
   func render() -> [Component] {
     guard let state = self.state else {
-      return [
-        SpinnerComponent { nil }
-      ]
+      return []
     }
 
     if state.newsItems.count == 0 {
-      return [
-        SpinnerComponent { nil }
-      ]
+      return []
     }
 
     var children: [FlexChild] = []
