@@ -21,13 +21,15 @@ final class NetworkImageComponent: TypedComponent {
   typealias StateType = UIImage
 
   func render() -> [Component] {
+    // Don't capture self here
     let props = self.props
+    let state = self.state
     return [
       NetworkDataComponent {
         (props.0,
-         { (state: NetworkDataComponent.State) -> Component? in
+         { (networkState: NetworkDataComponent.State) -> Component? in
           var component: Component? = nil
-          switch state {
+          switch networkState {
           case .pending:
             component = SizeComponent {
               (size: props.size,
@@ -41,10 +43,10 @@ final class NetworkImageComponent: TypedComponent {
             }
             break
           case .data(let data):
-            guard let image = self.state ?? UIImage(data: data) else {
+            guard let image = state ?? UIImage(data: data) else {
               break
             }
-            if self.state == nil {
+            if state == nil {
               self.updateState(state: image)
             }
             component = ImageComponent {
