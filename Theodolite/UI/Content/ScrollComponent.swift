@@ -93,6 +93,7 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   }
   
   public override func componentWillUnmount() {
+    super.componentWillUnmount()
     let scrollView = context.mountInfo.currentView as! UIScrollView
     scrollView.delegate = nil
     

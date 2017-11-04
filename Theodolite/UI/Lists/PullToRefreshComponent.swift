@@ -64,6 +64,7 @@ public final class PullToRefreshComponent: Component, TypedComponent {
   }
 
   public override func componentWillUnmount() {
+    super.componentWillUnmount()
     assert(refreshControl != nil)
     guard let refreshControl = self.refreshControl else {
       return

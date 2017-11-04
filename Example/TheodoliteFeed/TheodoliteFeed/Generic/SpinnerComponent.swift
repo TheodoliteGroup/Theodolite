@@ -33,11 +33,13 @@ final class SpinnerComponent: Component, TypedComponent {
   }
 
   override func componentDidMount() {
+    super.componentDidMount()
     let spinner = self.context.mountInfo.currentView as? UIActivityIndicatorView
     spinner?.startAnimating()
   }
 
   override func componentWillUnmount() {
+    super.componentWillUnmount()
     (self.context.mountInfo.currentView as? UIActivityIndicatorView)?.stopAnimating()
   }
 }
