@@ -190,7 +190,8 @@ final public class FlexboxComponent: Component, TypedComponent {
           layout:Layout(component:computedLayout.component,
                         size: CGSize(width: ceil(childNodeLayout.frame.size.width),
                                      height: ceil(childNodeLayout.frame.size.height)),
-                        children: computedLayout.children),
+                        children: computedLayout.children,
+                        extra: computedLayout.extra),
           position: CGPoint(x: floor(childNodeLayout.frame.origin.x),
                             y: floor(childNodeLayout.frame.origin.y))))
     }
