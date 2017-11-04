@@ -9,15 +9,14 @@
 import Flexbox
 import Theodolite
 
-final class NewsAggregationComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsAggregationComponent: Component, TypedComponent {
   typealias PropType = (
     [URL],
     navigationCoordinator: NavigationCoordinator
   )
   typealias StateType = Int
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     return [
       PullToRefreshComponent(key: state) {
         (action: Handler(self, NewsAggregationComponent.didPullToRefresh),

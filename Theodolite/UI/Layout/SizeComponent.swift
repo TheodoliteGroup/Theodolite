@@ -8,20 +8,17 @@
 
 import Foundation
 
-public final class SizeComponent: TypedComponent {
-  public let context = ComponentContext()
+public final class SizeComponent: Component, TypedComponent {
   public typealias PropType = (
     size: CGSize,
     component: Component
   )
 
-  public init () {}
-
-  public func render() -> [Component] {
+  public override func render() -> [Component] {
     return [self.props.component]
   }
 
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let size = self.props.size
     let childTree = tree.children()[0]
     let childLayout = childTree

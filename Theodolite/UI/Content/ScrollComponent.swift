@@ -8,8 +8,7 @@
 
 import UIKit
 
-public final class ScrollComponent: TypedComponent, ScrollListener {
-  public let context = ComponentContext()
+public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   public typealias PropType = (
     Component,
     direction: UICollectionViewScrollDirection,
@@ -20,18 +19,16 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
   private var mountedArguments: (parentView: UIView, layout: WeakContainer<Layout>, position: CGPoint)? = nil
   private var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
   
-  public init() {}
-  
-  public func render() -> [Component] {
+  public override func render() -> [Component] {
     return [self.props.0]
   }
   
-  public func view() -> ViewConfiguration? {
+  public override func view() -> ViewConfiguration? {
     return ViewConfiguration(view: UIScrollView.self,
                              attributes: self.props.attributes)
   }
   
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let direction = self.props.direction
     let children = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
       return LayoutChild(
@@ -64,7 +61,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
       extra: contentRect.size)
   }
   
-  public func mount(parentView: UIView,
+  public override func mount(parentView: UIView,
                     layout: Layout,
                     position: CGPoint) -> MountContext {
     mountedArguments = (parentView: parentView, layout: WeakContainer(layout), position: position)
@@ -95,7 +92,7 @@ public final class ScrollComponent: TypedComponent, ScrollListener {
                         shouldMountChildren: false)
   }
   
-  public func componentWillUnmount() {
+  public override func componentWillUnmount() {
     let scrollView = context.mountInfo.currentView as! UIScrollView
     scrollView.delegate = nil
     

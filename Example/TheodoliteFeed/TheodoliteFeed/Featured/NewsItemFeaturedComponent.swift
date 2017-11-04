@@ -10,14 +10,13 @@ import Flexbox
 import Theodolite
 import SafariServices
 
-final class NewsItemFeaturedComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemFeaturedComponent: Component, TypedComponent {
   typealias PropType = (
     NewsItem,
     navigationCoordinator: NavigationCoordinator
   )
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     let props = self.props
     if props.0.imageURL == nil || props.0.description == nil {
       return [

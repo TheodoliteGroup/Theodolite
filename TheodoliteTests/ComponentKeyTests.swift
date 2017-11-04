@@ -14,6 +14,6 @@ class ComponentKeyTests: XCTestCase {
     let c = ViewComponent(key: "hello")
     { ViewConfiguration(view: UIView.self, attributes: []) }
 
-    XCTAssertEqual(c.key(), "hello")
+    XCTAssertEqual(c.key, "hello")
   }
 }

@@ -8,20 +8,17 @@
 
 import UIKit
 
-public final class TapComponent: TypedComponent {
-  public let context = ComponentContext()
+public final class TapComponent: Component, TypedComponent {
   public typealias PropType = (
     action: Action<UITapGestureRecognizer>,
     component: Component
   )
   
-  public init() {}
-  
-  public func render() -> [Component] {
+  public override func render() -> [Component] {
     return [self.props.component]
   }
   
-  public func view() -> ViewConfiguration? {
+  public override func view() -> ViewConfiguration? {
     return ViewConfiguration(
       view: UIView.self,
       attributes: [

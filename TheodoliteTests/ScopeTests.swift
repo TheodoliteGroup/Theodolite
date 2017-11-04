@@ -9,8 +9,8 @@
 import XCTest
 @testable import Theodolite
 
-final class TestScopeComponent<T, S>: TypedComponent {
-  public let context = ComponentContext()
+final class TestScopeComponent<T, S>: Component, TypedComponent {
+  
   typealias PropType = T
   typealias StateType = S
 }
@@ -44,8 +44,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeWithNoPreviousScope_setsInitialStateOnComponent() {
-    final class TestIntStateComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestIntStateComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -54,7 +54,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c = TestIntStateComponent()
+    let c = TestIntStateComponent { nil }
     
     let _ = Scope(listener: nil,
                   component: c,
@@ -66,8 +66,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeWithPreviousScope_keepsIdentifiersForComponent() {
-    final class TestIntStateComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestIntStateComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -76,7 +76,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c1 = TestIntStateComponent()
+    let c1 = TestIntStateComponent { nil }
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -84,7 +84,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestIntStateComponent()
+    let c2 = TestIntStateComponent { nil }
     
     let scope2 = Scope(listener: nil,
                        component: c2,
@@ -96,8 +96,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeWithPreviousScope_doesNotCallInitialState() {
-    final class TestInitialStateCallComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestInitialStateCallComponent: Component, TypedComponent {
+      
       typealias PropType = () -> ()
       typealias StateType = Int
       
@@ -136,8 +136,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeWithStateUpdateMap_andNilPreviousScope_doesNotUpdateState() {
-    final class TestStateUpdateComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestStateUpdateComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -146,7 +146,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c1 = TestStateUpdateComponent()
+    let c1 = TestStateUpdateComponent { nil }
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -154,7 +154,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestStateUpdateComponent()
+    let c2 = TestStateUpdateComponent { nil }
     
     let _ = Scope(listener: nil,
                   component: c2,
@@ -166,8 +166,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeWithStateUpdateMap_andPreviousScope_updatesState() {
-    final class TestStateUpdateComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestStateUpdateComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -176,7 +176,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c1 = TestStateUpdateComponent()
+    let c1 = TestStateUpdateComponent { nil }
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -184,7 +184,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestStateUpdateComponent()
+    let c2 = TestStateUpdateComponent { nil }
     
     let _ = Scope(listener: nil,
                   component: c2,
@@ -196,21 +196,21 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeForComponent_withChildren_createsChildComponent() {
-    final class TestChildComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestChildComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
     }
     
-    final class TestParentComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestParentComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       
-      func render() -> [Component] {
-        return [TestChildComponent()]
+      override func render() -> [Component] {
+        return [TestChildComponent { nil }]
       }
     }
     
-    let c = TestParentComponent()
+    let c = TestParentComponent { nil }
     
     let scope = Scope(listener: nil,
                       component: c,
@@ -222,8 +222,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_createsChildComponentWithState() {
-    final class TestChildComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestChildComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -232,16 +232,16 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    final class TestParentComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestParentComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       
-      func render() -> [Component] {
-        return [TestChildComponent()]
+      override func render() -> [Component] {
+        return [TestChildComponent { nil }]
       }
     }
     
-    let c = TestParentComponent()
+    let c = TestParentComponent { nil }
     
     let scope = Scope(listener: nil,
                       component: c,
@@ -253,8 +253,8 @@ class ScopeTests: XCTestCase {
   }
   
   func test_buildingScopeForComponent_withChildrenWhoHaveState_andStateUpdateForChild_createsChildComponentWithUpdatedState() {
-    final class TestChildComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestChildComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       typealias StateType = Int
       
@@ -263,16 +263,16 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    final class TestParentComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestParentComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       
-      func render() -> [Component] {
-        return [TestChildComponent()]
+      override func render() -> [Component] {
+        return [TestChildComponent { nil }]
       }
     }
     
-    let c1 = TestParentComponent()
+    let c1 = TestParentComponent { nil }
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -280,7 +280,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestParentComponent()
+    let c2 = TestParentComponent { nil }
     
     let scope2 = Scope(listener: nil,
                        component: c2,

@@ -9,8 +9,7 @@
 import UIKit
 import Theodolite
 
-final class NetworkImageComponent: TypedComponent {
-  let context = ComponentContext()
+final class NetworkImageComponent: Component, TypedComponent {
   typealias PropType = (
     URL,
     size: CGSize,
@@ -20,7 +19,7 @@ final class NetworkImageComponent: TypedComponent {
   )
   typealias StateType = UIImage
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     // Don't capture self here
     let props = self.props
     let state = self.state

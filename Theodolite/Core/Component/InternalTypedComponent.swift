@@ -9,24 +9,26 @@
 import Foundation
 
 /* Used by infrastructure to allow polymorphism on prop/state types. */
-public protocol UnTypedComponent {
+public protocol UnTypedComponent: AnyObject {
   var context: ComponentContext {get}
 
+  init(doNotCall key: AnyHashable?)
+}
+
+public protocol InternalTypedComponent {
   func initialUntypedState() -> Any?
+  
+  func shouldComponentUpdate(previous: Component) -> Bool
 }
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 public extension TypedComponent {
   public init(key: AnyHashable? = nil,
               _ props: () -> PropType) {
-    self.init()
-    
+    self.init(doNotCall: key)
+
     self.context.props = props()
     self.context.key = key
-  }
-  
-  public func key() -> AnyHashable? {
-    return context.key
   }
   
   public func shouldComponentUpdate(previous: Component) -> Bool {

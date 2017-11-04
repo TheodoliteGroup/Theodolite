@@ -8,11 +8,10 @@
 
 import Theodolite
 
-final class SpinnerComponent: TypedComponent {
-  let context = ComponentContext()
+final class SpinnerComponent: Component, TypedComponent {
   typealias PropType = Void?
 
-  func view() -> ViewConfiguration? {
+  override func view() -> ViewConfiguration? {
     return ViewConfiguration(view: UIActivityIndicatorView.self,
                              attributes: [
                               
@@ -24,7 +23,7 @@ final class SpinnerComponent: TypedComponent {
       ])
   }
 
-  func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     return Layout(component: self,
                   size: constraint.clamp(
                     CGSize(
@@ -33,12 +32,12 @@ final class SpinnerComponent: TypedComponent {
                   children: [])
   }
 
-  func componentDidMount() {
+  override func componentDidMount() {
     let spinner = self.context.mountInfo.currentView as? UIActivityIndicatorView
     spinner?.startAnimating()
   }
 
-  func componentWillUnmount() {
+  override func componentWillUnmount() {
     (self.context.mountInfo.currentView as? UIActivityIndicatorView)?.stopAnimating()
   }
 }

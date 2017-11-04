@@ -36,7 +36,7 @@ public class Scope: ComponentTree {
     // available to the component in render().
     if let prev = previousScope {
       if !findStateUpdatesForChildren(identifier: prev._handle.identifier, stateUpdateMap: stateUpdateMap)
-        && !component.shouldComponentUpdate(previous: prev._component) {
+        && !((component as? InternalTypedComponent)?.shouldComponentUpdate(previous: prev._component) ?? true) {
         // Instead of re-building the component, we can just use the previous tree we built
         _component = prev._component
         _handle = prev._handle
@@ -55,7 +55,7 @@ public class Scope: ComponentTree {
       }
     } else {
       _component = component
-      let typed = component as? UnTypedComponent
+      let typed = component as? InternalTypedComponent
       _handle = ScopeHandle(parentIdentifier: parentIdentifier, state:typed?.initialUntypedState()) {
         [weak listener](identifier: ScopeIdentifier, state: Any?) -> () in
         listener?.receivedStateUpdate(identifier: identifier, update: state)
@@ -122,5 +122,5 @@ internal func findCollidingComponents(siblings: [Scope]) -> Bool {
 
 internal func areComponentsEquivalent(c1: Component, c2: Component) -> Bool {
   return type(of: c1) == type(of: c2)
-    && c1.key() == c2.key()
+    && c1.key == c2.key
 }

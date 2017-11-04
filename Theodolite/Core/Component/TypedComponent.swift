@@ -51,7 +51,8 @@ import Foundation
  
  You may update your state on your component by calling updateState() with a new value.
  */
-public protocol TypedComponent: Component, UnTypedComponent {
+public protocol TypedComponent: UnTypedComponent, InternalTypedComponent {
+  associatedtype ComponentType: Component = Self
   associatedtype PropType
   associatedtype StateType = Void?
   
@@ -61,8 +62,6 @@ public protocol TypedComponent: Component, UnTypedComponent {
   func initialState() -> StateType?
   
   func updateState(state: StateType?)
-  
-  func view() -> ViewConfiguration?
   
   init(key: AnyHashable?,
        _ props: () -> PropType)

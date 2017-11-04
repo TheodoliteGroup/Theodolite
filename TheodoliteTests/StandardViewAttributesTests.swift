@@ -15,20 +15,20 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     recordMode = false
   }
   
-  final class TestViewComponent: TypedComponent {
-    public let context = ComponentContext()
+  final class TestViewComponent: Component, TypedComponent {
+    
     typealias PropType = (
       view: ViewConfiguration,
       size: CGSize
     )
     
-    public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+    public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
       return Layout(component: self,
                     size: self.props.size,
                     children: [])
     }
     
-    public func view() -> ViewConfiguration? {
+    public override func view() -> ViewConfiguration? {
       return self.props.view
     }
   }
@@ -61,17 +61,17 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
   }
   
   func test_clipsToBounds_true() {
-    final class ChildComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class ChildComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
         return Layout(component: self,
                       size: CGSize(width: 100, height: 50),
                       children: [])
       }
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
           attributes:
@@ -80,15 +80,15 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
       }
     }
     
-    final class ParentComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class ParentComponent: Component, TypedComponent {
+      
       typealias PropType = Void?
       
-      func render() -> [Component] {
+      override func render() -> [Component] {
         return [ChildComponent {nil}]
       }
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
         return Layout(component: self,
                       size: CGSize(width: 50, height: 60),
                       children: [
@@ -102,7 +102,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
           ])
       }
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
           attributes:

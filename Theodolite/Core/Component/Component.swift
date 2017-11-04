@@ -8,31 +8,74 @@
 
 import UIKit
 
-public protocol Component: class {
-  init()
-  
-  /** Core methods */
-  func render() -> [Component]
-  func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext
-  func unmount(layout: Layout)
-  func layout(constraint: SizeRange, tree: ComponentTree) -> Layout
-  
-  /**
-   Implement this if you want to control memoization of your component. By default TypedComponents will memoize if
-   their PropType is Equatable. This method will only be called if there are no state updates for this component or
-   any of its descendents.
-  */
-  func shouldComponentUpdate(previous: Component) -> Bool
-  
-  /** Lifecycle methods */
-  
-  /** Mount: attaching to a view */
-  func componentWillMount()
-  func componentDidMount()
+open class Component: UnTypedComponent {
+  public required init(doNotCall key: AnyHashable?) {
+    self.key = key
+  }
 
-  /** Unmount: detaching from a view */
-  func componentWillUnmount()
-  
-  /** Used to identify the component so it can be associated with its prior state. */
-  func key() -> AnyHashable?
+  // MARK: Render
+
+  open func render() -> [Component] {
+    return []
+  }
+
+  // MARK: Layout
+
+  open func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+    return StandardLayout(component: self, constraint: constraint, tree: tree)
+  }
+
+  // MARK: Mount
+
+  /**
+   The core mounting algorithm for Components. If you override these methods in your component, you're responsible for
+   inspecting that you don't break any other functionality.
+
+   In general, you should *never* override these methods. Instead, override the componentWillMount and related methods.
+   */
+  open func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
+    return StandardMountLayout(parentView: parentView,
+                               layout: layout,
+                               position: position,
+                               config: view(),
+                               componentContext: self.context)
+  }
+
+  open func unmount(layout: Layout) {
+    guard let config = self.view() else {
+      return
+    }
+    let context = self.context
+    guard let currentView = context.mountInfo.currentView else {
+      return
+    }
+
+    context.mountInfo.currentView = nil;
+
+    assert(currentView.superview != nil, "You must not remove a Theoodlite-managed view from the hierarchy")
+    let superview = currentView.superview!
+
+    let map = ViewPoolMap.getViewPoolMap(view: superview)
+    map.checkinView(component: layout.component, parent: superview, config: config, view: currentView)
+  }
+
+  open func componentWillMount() {}
+  open func componentDidMount() {
+    if let view = self.context.mountInfo.currentView {
+      // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
+      ViewPoolMap.resetViewPoolMap(view: view)
+    }
+  }
+
+  open func componentWillUnmount() {}
+
+  open func view() -> ViewConfiguration? {
+    return nil
+  }
+
+  // MARK: Framework Details q
+
+  public let context = ComponentContext()
+
+  internal let key: AnyHashable?
 }

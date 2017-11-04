@@ -11,12 +11,11 @@ import Foundation
 import UIKit
 import Theodolite
 
-final class NewsItemFeaturedImageComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemFeaturedImageComponent: Component, TypedComponent {
   typealias PropType = URL
   typealias StateType = UIImage
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     let bounds = UIScreen.main.bounds
     return [
       NetworkImageComponent {

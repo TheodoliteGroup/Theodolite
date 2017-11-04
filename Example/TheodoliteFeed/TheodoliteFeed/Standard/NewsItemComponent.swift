@@ -10,14 +10,13 @@ import Flexbox
 import Theodolite
 import SafariServices
 
-final class NewsItemComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemComponent: Component, TypedComponent {
   typealias PropType = (
     NewsItem,
     navigationCoordinator: NavigationCoordinator
   )
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     let props = self.props
     return [
       InsetComponent {(

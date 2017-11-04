@@ -8,17 +8,14 @@
 
 import UIKit
 
-public final class ImageComponent: TypedComponent {
-  public let context = ComponentContext()
+public final class ImageComponent: Component, TypedComponent {
   public typealias PropType = (
     UIImage,
     size: CGSize,
     options: ViewOptions
   )
 
-  public init() {}
-
-  public func view() -> ViewConfiguration? {
+  public override func view() -> ViewConfiguration? {
     var attributes = self.props.options.viewAttributes()
 
     attributes.append(Attr(self.props.0, identifier: "theodolite-TextKitAttributes")
@@ -31,7 +28,7 @@ public final class ImageComponent: TypedComponent {
     )
   }
 
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     return Layout(component: self,
                   size: constraint.clamp(self.props.size),
                   children: [])

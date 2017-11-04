@@ -8,9 +8,7 @@
 
 import UIKit
 
-public final class LabelComponent: TypedComponent {
-  public let context = ComponentContext()
-
+public final class LabelComponent: Component, TypedComponent {
   public struct Options {
     let view: ViewOptions
     let font: UIFont
@@ -42,8 +40,6 @@ public final class LabelComponent: TypedComponent {
   
   private var cachedView: ViewConfiguration? = nil
   
-  public init() {};
-  
   func attributes(props: PropType) -> Dictionary<NSAttributedStringKey, Any> {
     var attr: Dictionary<NSAttributedStringKey, Any> = [:]
     attr[NSAttributedStringKey.font] = props.options.font
@@ -60,7 +56,7 @@ public final class LabelComponent: TypedComponent {
                                    attributes: self.attributes(props: props))
   }
   
-  public func render() -> [Component] {
+  public override func render() -> [Component] {
     let props = self.props
     return [
       TextComponent {

@@ -27,19 +27,19 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
   }
 
   func test_stateUpdateChangesRendering() {
-    final class TestComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestComponent: Component, TypedComponent {
+      
       typealias PropType = () -> ()
       typealias StateType = Bool
 
-      func render() -> [Component] {
+      override func render() -> [Component] {
         return [LabelComponent {
           ((self.state ?? false) ? "state updated" : "state NOT updated",
            LabelComponent.Options())
           }]
       }
 
-      func componentDidMount() {
+      override func componentDidMount() {
         if self.state == nil {
           self.updateState(state: true)
         } else {

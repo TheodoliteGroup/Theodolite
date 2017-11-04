@@ -102,23 +102,19 @@ public struct FlexChild {
   }
 }
 
-final public class FlexboxComponent: TypedComponent {
-  public let context = ComponentContext()
-
+final public class FlexboxComponent: Component, TypedComponent {
   public typealias PropType = (
     options: FlexOptions,
     children: [FlexChild]
   )
   
-  public init() {}
-  
-  public func render() -> [Component] {
+  public override func render() -> [Component] {
     return self.props.children.map({
       (child: FlexChild) -> Component in child.component
     })
   }
   
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let props = self.props
     
     var childLayoutNodes: [Node] = []

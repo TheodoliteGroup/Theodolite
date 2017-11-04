@@ -63,10 +63,10 @@ public class ScopeHandle {
 
 var kScopeHandleKey: Void?
 
-internal func setScopeHandle(component: Component, handle: ScopeHandle) {
+internal func setScopeHandle(component: AnyObject, handle: ScopeHandle) {
   (component as? UnTypedComponent)?.context.scopeHandle = handle
 }
 
-internal func getScopeHandle(component: Component) -> ScopeHandle? {
+internal func getScopeHandle(component: AnyObject) -> ScopeHandle? {
   return (component as? UnTypedComponent)?.context.scopeHandle
 }

@@ -9,8 +9,7 @@
 import UIKit
 import Theodolite
 
-final class NetworkDataComponent: TypedComponent {
-  let context = ComponentContext()
+final class NetworkDataComponent: Component, TypedComponent {
   enum DataError: Error {
     case error(String)
   }
@@ -27,7 +26,7 @@ final class NetworkDataComponent: TypedComponent {
   )
   typealias StateType = State
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     if self.state == nil {
       self.updateState(state: State.pending)
       DispatchQueue.global().async {

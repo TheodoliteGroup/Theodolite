@@ -9,11 +9,10 @@
 import Flexbox
 import Theodolite
 
-final class NewsItemDescriptionComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemDescriptionComponent: Component, TypedComponent {
   typealias PropType = String
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     return [
       LabelComponent {
         (self.props,

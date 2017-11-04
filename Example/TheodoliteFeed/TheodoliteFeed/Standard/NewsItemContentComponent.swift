@@ -9,14 +9,13 @@
 import Flexbox
 import Theodolite
 
-final class NewsItemContentComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemContentComponent: Component, TypedComponent {
   typealias PropType = (
     imageURL: URL?,
     description: String?
   )
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     var children: [FlexChild] = []
 
     if let imageURL = props.imageURL {

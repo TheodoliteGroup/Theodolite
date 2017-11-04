@@ -8,9 +8,7 @@
 
 import UIKit
 
-public final class TextComponent: TypedComponent {
-  public let context = ComponentContext()
-
+public final class TextComponent: Component, TypedComponent {
   public typealias PropType = (
     TextKitAttributes,
     options: Options
@@ -23,9 +21,7 @@ public final class TextComponent: TypedComponent {
     }
   }
   
-  public init() {}
-  
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let renderer = TextKitRenderer.renderer(attributes: self.props.0,
                                             constrainedSize: reinterpretSize(size: constraint.max))
     return Layout(component: self,
@@ -43,7 +39,7 @@ public final class TextComponent: TypedComponent {
     )
   }
   
-  public func view() -> ViewConfiguration? {
+  public override func view() -> ViewConfiguration? {
     var attributes = self.props.options.view.viewAttributes()
     
     attributes.append(Attr(self.props.0, identifier: "theodolite-TextKitAttributes")

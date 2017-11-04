@@ -11,11 +11,10 @@ import Foundation
 import Flexbox
 import Theodolite
 
-final class NewsItemHeaderComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemHeaderComponent: Component, TypedComponent {
   typealias PropType = String?
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     guard let props = props else {
       return []
     }

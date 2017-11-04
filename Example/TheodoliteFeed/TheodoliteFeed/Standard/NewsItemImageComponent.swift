@@ -9,12 +9,11 @@
 import UIKit
 import Theodolite
 
-final class NewsItemImageComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemImageComponent: Component, TypedComponent {
   typealias PropType = URL
   typealias StateType = UIImage
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     return [
       NetworkImageComponent {
         (props,

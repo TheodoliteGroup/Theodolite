@@ -8,52 +8,6 @@
 
 import Foundation
 
-public extension TypedComponent {
-  func view() -> ViewConfiguration? {
-    return nil
-  }
-  
-  /**
-   The core mounting algorithm for Components. If you override these methods in your component, you're responsible for
-   inspecting that you don't break any other functionality.
-   
-   In general, you should *never* override these methods. Instead, override the componentWillMount and related methods.
-   */
-  func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
-    return StandardMountLayout(parentView: parentView,
-                               layout: layout,
-                               position: position,
-                               config: view(),
-                               componentContext: self.context)
-  }
-  
-  func componentDidMount() {
-    if let view = self.context.mountInfo.currentView {
-      // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
-      ViewPoolMap.resetViewPoolMap(view: view)
-    }
-  }
-  
-  public func unmount(layout: Layout) {
-    guard let config = self.view() else {
-      return
-    }
-    let context = self.context
-    guard let currentView = context.mountInfo.currentView else {
-//      assertionFailure("shouldn't have view config but no view")
-      return
-    }
-    
-    context.mountInfo.currentView = nil;
-    
-    assert(currentView.superview != nil, "You must not remove a Theoodlite-managed view from the hierarchy")
-    let superview = currentView.superview!
-    
-    let map = ViewPoolMap.getViewPoolMap(view: superview)
-    map.checkinView(component: layout.component, parent: superview, config: config, view: currentView)
-  }
-}
-
 public  func StandardMountLayout(parentView: UIView,
                                   layout: Layout,
                                   position: CGPoint,

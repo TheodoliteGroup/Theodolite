@@ -17,15 +17,15 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_basic_rectangle() {
-    final class TestViewComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestViewComponent: Component, TypedComponent {
+
       typealias PropType = ViewConfiguration
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return self.props
       }
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Layout(component: self,
                       size: CGSize(width: 50, height: 50),
                       children: [])
@@ -44,17 +44,17 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_component_withChild() {
-    final class TestParentComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestParentComponent: Component, TypedComponent {
+
       typealias PropType = () -> ()
       
-      func render() -> [Component] {
+      override func render() -> [Component] {
         return [
           TestChildComponent {self.props}
         ]
       }
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
           attributes: [
@@ -62,7 +62,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Theodolite.Layout(
           component: self,
           size: CGSize(width: 50, height: 50),
@@ -79,17 +79,17 @@ class ViewMountTests: FBSnapshotTestCase {
       }
     }
     
-    final class TestChildComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestChildComponent: Component, TypedComponent {
+
       typealias PropType = () -> ()
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Layout(component: self,
                       size: CGSize(width: 25, height: 25),
                       children: [])
       }
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
           attributes: [
@@ -97,7 +97,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func componentDidMount() {
+      override func componentDidMount() {
         self.props()
       }
     }
@@ -111,17 +111,17 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_component_withNonVisibleChild_doesNotMountThatChild() {
-    final class TestParentComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestParentComponent: Component, TypedComponent {
+
       typealias PropType = () -> ()
       
-      func render() -> [Component] {
+      override func render() -> [Component] {
         return [
           TestChildComponent {self.props}
         ]
       }
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
           attributes: [
@@ -129,7 +129,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         let firstChild = tree.children()[0]
         return Theodolite.Layout(component: self, size: CGSize(width: 50, height: 50), children: [
           LayoutChild(layout: firstChild.component().layout(constraint: constraint, tree: firstChild),
@@ -138,17 +138,17 @@ class ViewMountTests: FBSnapshotTestCase {
       }
     }
     
-    final class TestChildComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestChildComponent: Component, TypedComponent {
+
       typealias PropType = () -> ()
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         return Layout(component: self,
                       size: CGSize(width: 25, height: 25),
                       children: [])
       }
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
           attributes: [
@@ -156,7 +156,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func componentDidMount() {
+      override func componentDidMount() {
         self.props()
       }
     }
@@ -169,11 +169,11 @@ class ViewMountTests: FBSnapshotTestCase {
   }
   
   func test_complex_layout() {
-    final class TestLabelComponent: TypedComponent {
-      public let context = ComponentContext()
+    final class TestLabelComponent: Component, TypedComponent {
+
       typealias PropType = String
       
-      func view() -> ViewConfiguration? {
+      override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UILabel.self,
           attributes: [
@@ -185,7 +185,7 @@ class ViewMountTests: FBSnapshotTestCase {
           ])
       }
       
-      func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
+      override func layout(constraint: SizeRange, tree: ComponentTree) -> Theodolite.Layout {
         let str = self.props as NSString
         let size = str.boundingRect(with: constraint.max,
                                     options: NSStringDrawingOptions(),

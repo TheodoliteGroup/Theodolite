@@ -7,19 +7,17 @@
 //
 
 import UIKit
-import Theodolite
 
-final class PullToRefreshComponent: TypedComponent {
-  let context = ComponentContext()
-  typealias PropType = (
+public final class PullToRefreshComponent: Component, TypedComponent {
+  public typealias PropType = (
     action: Action<UIRefreshControl>,
     component: Component
   )
-  typealias StateType = Bool
+  public typealias StateType = Bool
 
   var refreshControl: UIRefreshControl? = nil
 
-  func render() -> [Component] {
+  public override func render() -> [Component] {
     return [props.component]
   }
 
@@ -27,7 +25,7 @@ final class PullToRefreshComponent: TypedComponent {
     return ViewConfiguration(view: UIRefreshControl.self, attributes: [])
   }
 
-  func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
+  public override func mount(parentView: UIView, layout: Layout, position: CGPoint) -> MountContext {
     // Traverse up until we find a scroll view
     var parent: UIView? = parentView
     while parent != nil && !(parent?.isKind(of: UIScrollView.self) ?? false) {
@@ -65,7 +63,7 @@ final class PullToRefreshComponent: TypedComponent {
     return standardMountClosure()
   }
 
-  func componentWillUnmount() {
+  public override func componentWillUnmount() {
     assert(refreshControl != nil)
     guard let refreshControl = self.refreshControl else {
       return

@@ -9,8 +9,7 @@
 import Flexbox
 import Theodolite
 
-final class NewsNetworkSourceComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsNetworkSourceComponent: Component, TypedComponent {
   typealias PropType = (
     NewsNetworkSource,
     navigationCoordinator: NavigationCoordinator
@@ -20,7 +19,7 @@ final class NewsNetworkSourceComponent: TypedComponent {
     didInitiateFetch: Bool
   )
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     guard let state = self.state else {
       return []
     }
@@ -47,7 +46,7 @@ final class NewsNetworkSourceComponent: TypedComponent {
     ]
   }
 
-  func componentDidMount() {
+  override func componentDidMount() {
     if !(self.state?.didInitiateFetch ?? false) {
       self.updateState(state: (newsItems: [], didInitiateFetch: true))
       self.props.0.fetchItems({ (result) in

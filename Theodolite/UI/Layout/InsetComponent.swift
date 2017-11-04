@@ -8,20 +8,17 @@
 
 import Foundation
 
-public final class InsetComponent: TypedComponent {
-  public let context = ComponentContext()
+public final class InsetComponent: Component, TypedComponent {
   public typealias PropType = (
     insets: UIEdgeInsets,
     component: Component
   )
   
-  public init () {}
-  
-  public func render() -> [Component] {
+  public override func render() -> [Component] {
     return [self.props.component]
   }
   
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     let insets = self.props.insets
     let childTree = tree.children()[0]
     let childLayout = childTree

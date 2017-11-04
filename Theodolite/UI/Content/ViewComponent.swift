@@ -8,17 +8,14 @@
 
 import UIKit
 
-public final class ViewComponent: TypedComponent {
-  public let context = ComponentContext()
+public final class ViewComponent: Component, TypedComponent {
   public typealias PropType = ViewConfiguration
 
-  public init() {}
-
-  public func view() -> ViewConfiguration? {
+  public override func view() -> ViewConfiguration? {
     return self.props
   }
 
-  public func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
+  public override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
     return Layout(component: self,
                   size: constraint.max,
                   children: [])

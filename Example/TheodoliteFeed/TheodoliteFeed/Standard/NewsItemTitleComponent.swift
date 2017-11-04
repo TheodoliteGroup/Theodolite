@@ -9,11 +9,10 @@
 import Flexbox
 import Theodolite
 
-final class NewsItemTitleComponent: TypedComponent {
-  let context = ComponentContext()
+final class NewsItemTitleComponent: Component, TypedComponent {
   typealias PropType = String
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     return [
       InsetComponent {(
         insets: UIEdgeInsetsMake(0, 0, 10, 0),
