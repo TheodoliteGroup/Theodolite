@@ -164,32 +164,4 @@ open class TextCache<KeyType, ObjectType> where
 
     os_unfair_lock_unlock(_lock)
   }
-
-  open func removeObject(forKey key: KeyType) {
-    let keyRef = key
-
-    os_unfair_lock_lock(_lock)
-    if let entry = _entries.removeValue(forKey: keyRef) {
-      _totalCost -= entry.cost
-      remove(entry)
-    }
-    os_unfair_lock_unlock(_lock)
-  }
-
-  open func removeAllObjects() {
-    os_unfair_lock_lock(_lock)
-    _entries.removeAll()
-
-    while let currentElement = _head {
-      let nextElement = currentElement.nextByCost
-
-      currentElement.prevByCost = nil
-      currentElement.nextByCost = nil
-
-      _head = nextElement
-    }
-
-    _totalCost = 0
-    os_unfair_lock_unlock(_lock)
-  }
 }
