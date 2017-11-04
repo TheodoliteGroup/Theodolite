@@ -12,6 +12,7 @@ import Theodolite
 final class NewsNetworkSourceComponent: Component, TypedComponent {
   typealias PropType = (
     NewsNetworkSource,
+    loadedAction: Action<Bool>,
     navigationCoordinator: NavigationCoordinator
   )
   typealias StateType = (
@@ -20,6 +21,8 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
   )
 
   override func render() -> [Component] {
+    self.fetchIfNeeded()
+
     guard let state = self.state else {
       return []
     }
@@ -46,10 +49,11 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
     ]
   }
 
-  override func componentDidMount() {
+  func fetchIfNeeded() {
     if !(self.state?.didInitiateFetch ?? false) {
       self.updateState(state: (newsItems: [], didInitiateFetch: true))
       self.props.0.fetchItems({ (result) in
+        self.props.loadedAction.send(true)
         switch result {
         case .error(let string):
           print("error: \(string)")

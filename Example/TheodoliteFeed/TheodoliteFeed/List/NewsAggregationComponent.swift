@@ -14,21 +14,30 @@ final class NewsAggregationComponent: Component, TypedComponent {
     [URL],
     navigationCoordinator: NavigationCoordinator
   )
-  typealias StateType = Int
+  typealias StateType = (
+    currentIndex: Int,
+    sentinel: Int
+  )
+
+  func initialState() -> (currentIndex: Int, sentinel: Int)? {
+    return (currentIndex: 0, sentinel: 0)
+  }
 
   override func render() -> [Component] {
     return [
-      PullToRefreshComponent(key: state) {
+      PullToRefreshComponent(key: state!.sentinel) {
         (action: Handler(self, NewsAggregationComponent.didPullToRefresh),
          component:
           FlexboxComponent {
             (options: FlexOptions(flexDirection: .column),
              children:
-              props.0
+              props.0[0 ... state!.currentIndex]
                 .map {(url: URL) -> FlexChild in
                   return FlexChild(
                     NewsNetworkSourceComponent(key: url) {
-                      (NewsNetworkSource(url: url), navigationCoordinator: props.navigationCoordinator)}
+                      (NewsNetworkSource(url: url),
+                       loadedAction: Handler(self, NewsAggregationComponent.childLoaded),
+                       navigationCoordinator: props.navigationCoordinator)}
                   )
             })
           }
@@ -36,9 +45,16 @@ final class NewsAggregationComponent: Component, TypedComponent {
     ]
   }
 
+  func childLoaded(loaded: Bool) {
+    if (state!.currentIndex + 1 < props.0.count) {
+      self.updateState(state: (currentIndex: state!.currentIndex + 1,
+                               sentinel: state!.sentinel))
+    }
+  }
+
   func didPullToRefresh(refreshControl: UIRefreshControl) {
-    print("pulled to refresh")
-    self.updateState(state: (state ?? 0) + 1)
+    self.updateState(state: (currentIndex: 0,
+                             sentinel:state!.sentinel + 1))
     refreshControl.endRefreshing()
   }
 }

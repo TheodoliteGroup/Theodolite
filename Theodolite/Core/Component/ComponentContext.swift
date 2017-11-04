@@ -9,7 +9,7 @@
 import Foundation
 
 internal func GetContext(_ component: Component) -> ComponentContext? {
-  return (component as? UnTypedComponent)?.context
+  return component.context
 }
 
 public protocol MountInfoProtocol {

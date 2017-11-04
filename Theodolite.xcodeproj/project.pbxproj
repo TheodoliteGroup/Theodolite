@@ -20,6 +20,8 @@
 		B11D600E1FA93EC6002F417B /* TheodoliteAsyncLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B11D60031FA93EC5002F417B /* TheodoliteAsyncLayer.mm */; };
 		B11D600F1FA93EC6002F417B /* TheodoliteAsyncLayerSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = B11D60041FA93EC5002F417B /* TheodoliteAsyncLayerSubclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B11D60111FA93EDD002F417B /* TextKitLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D60101FA93EDD002F417B /* TextKitLayer.swift */; };
+		B11F220F1FADEDCC005CBD23 /* ScopedResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F220E1FADEDCC005CBD23 /* ScopedResponder.swift */; };
+		B11F22171FADF5DB005CBD23 /* ScopedResponderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */; };
 		B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12916031FA2A36D006D269B /* ScrollComponent.swift */; };
 		B12B7DE61FA34F7C004DC3F4 /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
@@ -156,6 +158,8 @@
 		B11D60041FA93EC5002F417B /* TheodoliteAsyncLayerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheodoliteAsyncLayerSubclass.h; sourceTree = "<group>"; };
 		B11D60101FA93EDD002F417B /* TextKitLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextKitLayer.swift; sourceTree = "<group>"; };
 		B11D60121FA93FA3002F417B /* TheodoliteMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheodoliteMacros.h; sourceTree = "<group>"; };
+		B11F220E1FADEDCC005CBD23 /* ScopedResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedResponder.swift; sourceTree = "<group>"; };
+		B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedResponderTests.swift; sourceTree = "<group>"; };
 		B12916031FA2A36D006D269B /* ScrollComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponent.swift; sourceTree = "<group>"; };
 		B136BE481F8D5741001EE264 /* Theodolite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Theodolite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B136BE4B1F8D5741001EE264 /* Theodolite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theodolite.h; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
 				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
+				B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */,
 				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
 				B1FC9C441FA00A83006249FC /* SnapshotHelper.swift */,
 				B1FC9C3C1FA00A55006249FC /* StandardViewAttributesTests.swift */,
@@ -415,6 +420,7 @@
 				B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */,
 				B136BEAD1F8D69C9001EE264 /* Scope.swift */,
 				B136BEC31F8EF989001EE264 /* ScopeHandle.swift */,
+				B11F220E1FADEDCC005CBD23 /* ScopedResponder.swift */,
 				B136BEC11F8EF96B001EE264 /* ScopeRoot.swift */,
 				B136BEC71F8EFCA5001EE264 /* StateUpdateListener.swift */,
 			);
@@ -758,6 +764,7 @@
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
 				B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */,
 				B18750C21FA6B6F300C4DA47 /* TextKitContext.swift in Sources */,
+				B11F220F1FADEDCC005CBD23 /* ScopedResponder.swift in Sources */,
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
 				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
@@ -796,6 +803,7 @@
 				B15967121FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift in Sources */,
 				B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */,
 				B136BEBA1F8D6C8D001EE264 /* ActionTests.swift in Sources */,
+				B11F22171FADF5DB005CBD23 /* ScopedResponderTests.swift in Sources */,
 				B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */,
 				B15967081FA7DCE900FEDC5C /* TextKitTests.swift in Sources */,
 				B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */,

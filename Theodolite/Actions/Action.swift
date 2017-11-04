@@ -58,16 +58,28 @@ public class Action<Arg> {
  }
  */
 public class Handler<Target: AnyObject, Arg>: Action<Arg> {
-  weak var target: Target?
+  let target: () -> Target?
   let handler: (Target) -> (Arg) -> ()
   
   public init(_ target: Target, _ handler: @escaping (Target) -> (Arg) -> ()) {
-    self.target = target
+    if let component = target as? Component {
+      // Components are constantly being re-generated, so we have to search for the "current" version of the component
+      // to send the action to it.
+      let responder = component.context.scopeHandle!.responder
+      self.target = {
+        if let r = responder.responder() {
+          return r as! Target
+        }
+        return nil
+      }
+    } else {
+      self.target = { [weak target] in return target }
+    }
     self.handler = handler
   }
   
   public override func send(_ argument: Arg) {
-    if let t = target {
+    if let t = target() {
       handler(t)(argument)
     }
   }
