@@ -9,8 +9,15 @@
 import Foundation
 
 /**
- Components are constantly being re-generated in response to state updates. This means that if
- an action 
+ Maintains a weak list of all generations of components for a particular scope.
+
+ Components are constantly being re-generated in response to state updates. This means that if an action were to
+ capture a component, and then get dispatched to do some work, when it returns to the main thread, then the action
+ may be pointing at nil now.
+
+ ResponderList keeps a list of all of the new component generations, and if the component it was originally targeting
+ is nil, it just walks forward in the generations until it finds one that's alive still, and invokes the action on
+ that component instead.
  */
 internal class ResponderList {
   private let lock: os_unfair_lock_t = {
@@ -55,7 +62,17 @@ internal class ResponderList {
   }
 }
 
-internal class ScopedResponder {
+/**
+ The ScopedResponder is the actual object that is captured by the scope handle, and is that scope handle's way of
+ accessing the "current" components in the generations of components.
+
+ It holds onto the global responder list for a particular component, and keeps a reference of where to start in this
+ list when it looks for the current component. This captureIndex is important, since without it, if we were to just
+ start from the beginning of the list, we could end up having terrible behavior in the case of a memory leak. The
+ captureIndex allows the scoped responder to only ever reference a newer component generation than the one it was
+ captured in.
+ */
+internal struct ScopedResponder {
   internal let responderList: ResponderList
   private let captureIndex: Int
 
