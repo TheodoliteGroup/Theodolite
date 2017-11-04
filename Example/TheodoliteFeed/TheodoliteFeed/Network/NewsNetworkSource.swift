@@ -39,7 +39,7 @@ struct NewsItem {
 class NewsNetworkSource: NetworkSource {
   typealias ItemType = NewsItem
 
-  private let url: URL
+  let url: URL
 
   init(url: URL) {
     self.url = url
@@ -51,23 +51,27 @@ class NewsNetworkSource: NetworkSource {
     let request = URLRequest(url: url)
 
     let task: URLSessionDataTask = session.dataTask(with: request) { (data, response, error) -> Void in
+      let errorBlock = {
+        DispatchQueue.main.async {
+          received(NetworkSourceResult.error(string: "Couldn't parse JSON"))
+        }
+      }
       if let data = data {
         do {
           if let deserialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-            let articlesJSON = deserialized["articles"] as! [[String: Any]]
+            guard let articlesJSON = deserialized["articles"] as? [[String: Any]] else {
+              errorBlock()
+              return
+            }
             let articles = articlesJSON.map({ NewsItem(json: $0) })
             DispatchQueue.main.async {
               received(NetworkSourceResult.success(articles))
             }
           } else {
-            DispatchQueue.main.async {
-              received(NetworkSourceResult.error(string: "Couldn't parse JSON"))
-            }
+            errorBlock()
           }
         } catch {
-          DispatchQueue.main.async {
-            received(NetworkSourceResult.error(string: "Couldn't parse JSON"))
-          }
+          errorBlock()
         }
       }
     }

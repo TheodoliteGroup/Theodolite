@@ -22,18 +22,48 @@ class ViewController: UIViewController {
     fatalError("init(coder:) has not been implemented")
   }
 
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.isNavigationBarHidden = true
+  }
+
   override func loadView() {
     let hostingView = ComponentHostingView { () -> Component in
       return ScrollComponent {
         (NewsAggregationComponent {
           ([
-            URL(string: "https://newsapi.org/v1/articles?source=techcrunch&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
-            URL(string: "https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
-            URL(string: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
-            URL(string: "https://newsapi.org/v1/articles?source=business-insider&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
-            URL(string: "https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
-            URL(string: "https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
-            URL(string: "https://newsapi.org/v1/articles?source=hacker-news&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+            NewsOutlet(
+              name: "Tech Crunch",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!),
+            NewsOutlet(
+              name: "Ars Technica",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=ars-technica&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=ars-technica&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!),
+            NewsOutlet(
+              name: "BBC News",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!),
+            NewsOutlet(
+              name: "Business Insider",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=business-insider&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=business-insider&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!),
+            NewsOutlet(
+              name: "Buzzfeed",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=buzzfeed&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=buzzfeed&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!),
+            NewsOutlet(
+              name: "CNN",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=cnn&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!),
+            NewsOutlet(
+              name: "Hacker News",
+              topNewsURL: URL(string: "https://newsapi.org/v1/articles?source=hacker-news&sortBy=top&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!,
+              latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!)
             ],
            navigationCoordinator: self.navigationCoordinator)
           },

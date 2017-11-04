@@ -11,7 +11,9 @@ import Theodolite
 
 final class NewsNetworkSourceComponent: Component, TypedComponent {
   typealias PropType = (
-    NewsNetworkSource,
+    name: String,
+    latestNewsSource: NewsNetworkSource,
+    topNewsSource: NewsNetworkSource,
     loadedAction: Action<Bool>,
     navigationCoordinator: NavigationCoordinator
   )
@@ -34,6 +36,20 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
     let props = self.props
 
     var children: [FlexChild] = []
+
+    children.append(FlexChild(
+      LabelComponent {
+        (props.name,
+         options: LabelComponent.Options(font:
+          UIFont(name: "Georgia",
+                 size: 40)!))
+    }, margin: Edges.init(left: 20, right: 20, top: 10, bottom: 0)))
+
+    children.append(FlexChild(NewsNetworkSourceHScrollComponent(key: props.latestNewsSource.url) {
+      (networkSource: props.latestNewsSource,
+       navigationCoordinator: props.navigationCoordinator)
+    }))
+    
     let first = state.newsItems.first!
     children.append(FlexChild(NewsItemFeaturedComponent(key: first.url) { (first, navigationCoordinator: props.navigationCoordinator) }))
     children.append(contentsOf: state.newsItems[1..<state.newsItems.count]
@@ -52,7 +68,7 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
   func fetchIfNeeded() {
     if !(self.state?.didInitiateFetch ?? false) {
       self.updateState(state: (newsItems: [], didInitiateFetch: true))
-      self.props.0.fetchItems({ (result) in
+      self.props.topNewsSource.fetchItems({ (result) in
         self.props.loadedAction.send(true)
         switch result {
         case .error(let string):

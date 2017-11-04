@@ -29,7 +29,7 @@ final class NewsItemComponent: Component, TypedComponent {
               (options: FlexOptions(flexDirection: .column),
                children: [
                 FlexChild(NewsItemHeaderComponent { props.0.author }),
-                FlexChild(NewsItemTitleComponent { props.0.title }),
+                FlexChild(NewsItemTitleComponent { ( props.0.title, maximumNumberOfLines: 0) }),
                 FlexChild(NewsItemContentComponent {(
                   imageURL: props.0.imageURL,
                   description: props.0.description

@@ -20,6 +20,8 @@ final class NetworkDataComponent: Component, TypedComponent {
     case error(Error)
   }
 
+  private var fetched: Bool = false
+
   typealias PropType = (
     URL,
     (State) -> Component?
@@ -27,23 +29,37 @@ final class NetworkDataComponent: Component, TypedComponent {
   typealias StateType = State
 
   override func render() -> [Component] {
-    if self.state == nil {
-      self.updateState(state: State.pending)
-      DispatchQueue.global().async {
-        do {
-          // This is inefficient, but this is a demo app and I don't want to take any deps, so we're just gonna block
-          let data = try Data(contentsOf: self.props.0)
-          self.updateState(state: State.data(data))
-        } catch {
-          self.updateState(state: State.error(DataError.error("Failed to load data")))
-        }
-      }
-    }
-
+    self.fetchDataIfNeeded()
     let state = self.state ?? State.pending
     if let component = props.1(state) {
       return [component]
     }
     return []
+  }
+
+  override func componentWillMount() {
+    super.componentWillMount()
+  }
+
+  static let session = URLSession(configuration: URLSessionConfiguration.default)
+
+  func fetchDataIfNeeded() {
+    if state == nil && !fetched {
+      fetched = true
+      self.updateState(state: State.pending)
+
+      let request = URLRequest(url: self.props.0)
+      let task: URLSessionDataTask = NetworkDataComponent.session.dataTask(with: request)
+      { (data, response, error) -> Void in
+        if let data = data {
+          self.updateState(state: State.data(data))
+        } else if let error = error {
+          self.updateState(state: State.error(error))
+        } else {
+          self.updateState(state: State.error(DataError.error("Could not load data")))
+        }
+      }
+      task.resume()
+    }
   }
 }

@@ -9,9 +9,15 @@
 import Flexbox
 import Theodolite
 
+struct NewsOutlet {
+  let name: String
+  let topNewsURL: URL
+  let latestNewsURL: URL
+}
+
 final class NewsAggregationComponent: Component, TypedComponent {
   typealias PropType = (
-    [URL],
+    [NewsOutlet],
     navigationCoordinator: NavigationCoordinator
   )
   typealias StateType = (
@@ -32,10 +38,12 @@ final class NewsAggregationComponent: Component, TypedComponent {
             (options: FlexOptions(flexDirection: .column),
              children:
               props.0[0 ... state!.currentIndex]
-                .map {(url: URL) -> FlexChild in
+                .map {(outlet: NewsOutlet) -> FlexChild in
                   return FlexChild(
-                    NewsNetworkSourceComponent(key: url) {
-                      (NewsNetworkSource(url: url),
+                    NewsNetworkSourceComponent(key: outlet.topNewsURL) {
+                      (name: outlet.name,
+                       latestNewsSource: NewsNetworkSource(url: outlet.latestNewsURL),
+                       topNewsSource: NewsNetworkSource(url: outlet.topNewsURL),
                        loadedAction: Handler(self, NewsAggregationComponent.childLoaded),
                        navigationCoordinator: props.navigationCoordinator)}
                   )

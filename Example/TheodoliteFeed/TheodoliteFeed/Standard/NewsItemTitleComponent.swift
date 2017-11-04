@@ -10,7 +10,10 @@ import Flexbox
 import Theodolite
 
 final class NewsItemTitleComponent: Component, TypedComponent {
-  typealias PropType = String
+  typealias PropType = (
+    String,
+    maximumNumberOfLines: Int
+  )
 
   override func render() -> [Component] {
     return [
@@ -18,11 +21,11 @@ final class NewsItemTitleComponent: Component, TypedComponent {
         insets: UIEdgeInsetsMake(0, 0, 10, 0),
         component:
         LabelComponent {
-          (self.props,
+          (self.props.0,
            LabelComponent.Options(
             font: UIFont(name: "Georgia", size: 18)!,
             lineBreakMode: NSLineBreakMode.byWordWrapping,
-            maximumNumberOfLines: 0))
+            maximumNumberOfLines: self.props.maximumNumberOfLines))
       })
       }
     ]
