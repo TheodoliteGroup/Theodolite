@@ -14,10 +14,18 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
     direction: UICollectionViewScrollDirection,
     attributes: [Attribute]
   )
+  public class State {
+    var contentOffset = CGPoint.zero
+  }
+  public typealias StateType = State
   
   private var scrollDelegate: InternalScrollDelegate? = nil
   private var mountedArguments: (parentView: UIView, layout: WeakContainer<Layout>, position: CGPoint)? = nil
   private var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
+
+  public func initialState() -> ScrollComponent.State? {
+    return State()
+  }
   
   public override func render() -> [Component] {
     return [self.props.0]
@@ -76,7 +84,14 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
     
     let scrollView = mountContext.view as! UIScrollView
     scrollDelegate = InternalScrollDelegate(layout: layout)
-    scrollView.contentSize = layout.extra as! CGSize
+    let contentSize = layout.extra as! CGSize
+    if scrollView.contentSize != contentSize {
+      scrollView.contentSize = contentSize
+    }
+    let contentOffset = state!.contentOffset
+    if scrollView.contentOffset != contentOffset {
+      scrollView.contentOffset = state!.contentOffset
+    }
     
     // Now we mount our children
     // todo: this is terrible, need to fix it
@@ -94,8 +109,8 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   
   public override func componentWillUnmount() {
     super.componentWillUnmount()
-    let scrollView = context.mountInfo.currentView as! UIScrollView
-    scrollView.delegate = nil
+    let scrollView = context.mountInfo.currentView as? UIScrollView
+    scrollView?.delegate = nil
     
     guard let mountedArguments = mountedArguments else {
       assertionFailure()
@@ -120,6 +135,7 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   // MARK: ScrollListener
   
   public func scrollViewDidScroll(scrollView: UIScrollView) {
+    state!.contentOffset = scrollView.contentOffset
     mountChildren(context)
   }
 }
