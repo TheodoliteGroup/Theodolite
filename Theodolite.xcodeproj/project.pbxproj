@@ -75,6 +75,7 @@
 		B18750C81FA6C14400C4DA47 /* TextKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750C71FA6C14400C4DA47 /* TextKitView.swift */; };
 		B18750CA1FA6C25600C4DA47 /* TextComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750C91FA6C25600C4DA47 /* TextComponent.swift */; };
 		B18750CC1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */; };
+		B1987C081FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1987C071FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
 		B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B511F81FA1793100B854F0 /* MountContext.swift */; };
@@ -216,6 +217,7 @@
 		B18750C71FA6C14400C4DA47 /* TextKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextKitView.swift; sourceTree = "<group>"; };
 		B18750C91FA6C25600C4DA47 /* TextComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextComponent.swift; sourceTree = "<group>"; };
 		B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponentSnapshotTests.swift; sourceTree = "<group>"; };
+		B1987C071FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
 		B1B511F81FA1793100B854F0 /* MountContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountContext.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				B136BE581F8D5741001EE264 /* Info.plist */,
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
 				B15967111FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift */,
+				B1987C071FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift */,
 				B15967131FA7E1A200FEDC5C /* ComponentKeyTests.swift */,
 				B1F16E771FA9EB2D0037CD9B /* ComponentMemoizationTests.swift */,
 				B1F16E751FA9E7630037CD9B /* GestureTestAdditions.swift */,
@@ -789,6 +792,7 @@
 			files = (
 				B136BED21F8EFDAF001EE264 /* ViewPoolMapTests.swift in Sources */,
 				B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */,
+				B1987C081FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift in Sources */,
 				B15967161FA7E85C00FEDC5C /* TapComponentSnapshotTests.swift in Sources */,
 				B18750CC1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift in Sources */,
 				B15967141FA7E1A200FEDC5C /* ComponentKeyTests.swift in Sources */,
