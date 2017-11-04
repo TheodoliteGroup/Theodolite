@@ -162,5 +162,60 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     
     XCTAssertEqual(view.isExclusiveTouch, true)
   }
+
+  func test_cornerRadius() {
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
+      return TestViewComponent {
+        (view: ViewConfiguration(
+          view: UIView.self,
+          attributes:
+          ViewOptions(
+            backgroundColor: UIColor.red,
+            layerOptions:
+            LayerOptions(cornerRadius: 15)
+          )
+          .viewAttributes()),
+         size: CGSize(width: 100, height: 100))
+      }
+    }
+  }
+
+  func test_borderWidth_andColor() {
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
+      return TestViewComponent {
+        (view: ViewConfiguration(
+          view: UIView.self,
+          attributes:
+          ViewOptions(
+            backgroundColor: UIColor.red,
+            layerOptions:
+            LayerOptions(borderWidth: 4,
+                         borderColor: UIColor.blue)
+            )
+            .viewAttributes()),
+         size: CGSize(width: 50, height: 50))
+      }
+    }
+  }
+
+  func test_borderWidth_shadow() {
+    snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
+      return TestViewComponent {
+        (view: ViewConfiguration(
+          view: UIView.self,
+          attributes:
+          ViewOptions(
+            backgroundColor: UIColor.red,
+            layerOptions:
+            LayerOptions(shadowColor: UIColor.blue,
+                         shadowOpacity: 0.8,
+                         shadowOffset: CGSize(width: 2, height: 2),
+                         shadowRadius: 4)
+            )
+            .viewAttributes()),
+         size: CGSize(width: 50, height: 50))
+      }
+    }
+  }
 }
 
