@@ -47,6 +47,8 @@ public class Layout: Hashable, Equatable {
   }
   
   deinit {
+    // Tearing down the layout hierarchy is expensive! We dispatch to a background thread to tear down the tree
+    // below the top layout.
     if Thread.isMainThread {
       var capturedChildren: [LayoutChild] = children
       DispatchQueue.global().async {
@@ -58,6 +60,7 @@ public class Layout: Hashable, Equatable {
 
 public struct LayoutChild {
   public let layout: Layout
+  /** The upper-left origin of the component. Same as frame.origin. */
   public let position: CGPoint
   
   public init(layout: Layout,
