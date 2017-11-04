@@ -107,7 +107,7 @@ internal func findStateUpdatesForChildren(identifier: ScopeIdentifier,
 }
 
 internal func findCollidingComponents(siblings: [Scope]) -> Bool {
-  let identifiers = siblings.map({ $0._handle.identifier })
+  let identifiers = Set(siblings.map({ $0._handle.identifier }))
   if identifiers.count == siblings.count {
     return true
   }
