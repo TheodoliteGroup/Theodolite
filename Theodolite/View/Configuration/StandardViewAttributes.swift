@@ -24,6 +24,8 @@ public struct ViewOptions {
   let alpha: CGFloat?
   
   let contentMode: UIViewContentMode?
+
+  let layerOptions: LayerOptions?
   
   public init(backgroundColor: UIColor? = nil,
               tintColor: UIColor? = nil,
@@ -31,7 +33,8 @@ public struct ViewOptions {
               isExclusiveTouchEnabled: Bool? = nil,
               clipsToBounds: Bool? = nil,
               alpha: CGFloat? = nil,
-              contentMode: UIViewContentMode? = nil) {
+              contentMode: UIViewContentMode? = nil,
+              layerOptions: LayerOptions? = nil) {
     self.backgroundColor = backgroundColor
     self.tintColor = tintColor
     self.isMultipleTouchEnabled = isMultipleTouchEnabled
@@ -39,6 +42,7 @@ public struct ViewOptions {
     self.clipsToBounds = clipsToBounds
     self.alpha = alpha
     self.contentMode = contentMode
+    self.layerOptions = layerOptions
   }
   
   public func viewAttributes() -> [Attribute] {
@@ -63,6 +67,9 @@ public struct ViewOptions {
     }
     if let contentMode = self.contentMode {
       attrs.append(ViewContentMode(contentMode))
+    }
+    if let layerOptions = self.layerOptions {
+      attrs.append(contentsOf: layerOptions.viewAttributes())
     }
     return attrs
   }
@@ -107,5 +114,101 @@ public func ViewAlpha(_ enabled: CGFloat) -> Attribute {
 public func ViewContentMode(_ enabled: UIViewContentMode) -> Attribute {
   return Attr<UIView, UIViewContentMode>(enabled, identifier: "theodolite-setContentMode") {(view: UIView, val: UIViewContentMode) in
     view.contentMode = val;
+  }
+}
+
+public struct LayerOptions {
+  let cornerRadius: CGFloat?
+
+  let borderWidth: CGFloat?
+  let borderColor: UIColor?
+
+  let shadowColor: UIColor?
+  let shadowOpacity: Float?
+  let shadowOffset: CGSize?
+  let shadowRadius: CGFloat?
+
+  public init(cornerRadius: CGFloat? = nil,
+              borderWidth: CGFloat? = nil,
+              borderColor: UIColor? = nil,
+              shadowColor: UIColor? = nil,
+              shadowOpacity: Float? = nil,
+              shadowOffset: CGSize? = nil,
+              shadowRadius: CGFloat? = nil) {
+    self.cornerRadius = cornerRadius
+    self.borderWidth = borderWidth
+    self.borderColor = borderColor
+    self.shadowColor = shadowColor
+    self.shadowOpacity = shadowOpacity
+    self.shadowOffset = shadowOffset
+    self.shadowRadius = shadowRadius
+  }
+
+  public func viewAttributes() -> [Attribute] {
+    var attrs: [Attribute] = []
+    if let cornerRadius = self.cornerRadius {
+      attrs.append(LayerCornerRadius(cornerRadius))
+    }
+    if let borderWidth = self.borderWidth {
+      attrs.append(LayerBorderWidth(borderWidth))
+    }
+    if let borderColor = self.borderColor {
+      attrs.append(LayerBorderColor(borderColor))
+    }
+    if let shadowColor = self.shadowColor {
+      attrs.append(LayerShadowColor(shadowColor))
+    }
+    if let shadowOpacity = self.shadowOpacity {
+      attrs.append(LayerShadowOpacity(shadowOpacity))
+    }
+    if let shadowOffset = self.shadowOffset {
+      attrs.append(LayerShadowOffset(shadowOffset))
+    }
+    if let shadowRadius = self.shadowRadius {
+      attrs.append(LayerShadowRadius(shadowRadius))
+    }
+    return attrs
+  }
+}
+
+public func LayerCornerRadius(_ radius: CGFloat) -> Attribute {
+  return Attr<UIView, CGFloat>(radius, identifier: "theodolite-layer-cornerRadius") {(view: UIView, val: CGFloat) in
+    view.layer.cornerRadius = val
+  }
+}
+
+public func LayerBorderWidth(_ width: CGFloat) -> Attribute {
+  return Attr<UIView, CGFloat>(width, identifier: "theodolite-layer-borderWidth") {(view: UIView, val: CGFloat) in
+    view.layer.borderWidth = val
+  }
+}
+
+public func LayerBorderColor(_ color: UIColor) -> Attribute {
+  return Attr<UIView, UIColor>(color, identifier: "theodolite-layer-borderColor") {(view: UIView, val: UIColor) in
+    view.layer.borderColor = val.cgColor
+  }
+}
+
+public func LayerShadowColor(_ color: UIColor) -> Attribute {
+  return Attr<UIView, UIColor>(color, identifier: "theodolite-layer-shadowColor") {(view: UIView, val: UIColor) in
+    view.layer.shadowColor = val.cgColor
+  }
+}
+
+public func LayerShadowOpacity(_ opacity: Float) -> Attribute {
+  return Attr<UIView, Float>(opacity, identifier: "theodolite-layer-shadowOpacity") {(view: UIView, val: Float) in
+    view.layer.shadowOpacity = val
+  }
+}
+
+public func LayerShadowOffset(_ offset: CGSize) -> Attribute {
+  return Attr<UIView, CGSize>(offset, identifier: "theodolite-layer-shadowOffset") {(view: UIView, val: CGSize) in
+    view.layer.shadowOffset = val
+  }
+}
+
+public func LayerShadowRadius(_ radius: CGFloat) -> Attribute {
+  return Attr<UIView, CGFloat>(radius, identifier: "theodolite-layer-shadowRadius") {(view: UIView, val: CGFloat) in
+    view.layer.shadowRadius = val
   }
 }
