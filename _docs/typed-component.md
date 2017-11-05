@@ -7,13 +7,12 @@ permalink: /docs/typed-component
 
 TypedComponent is the standard protocol that your components should conform to.
 
-It allows you to declare the prop types and state types for your component, and implements most of the core
-methods for you in an extension.
+It allows you to declare the prop types and state types for your component, some of the core methods in extensions.
 
 Here's what a component would look like:
 
 ```swift
-final class MyComponent: TypedComponent {
+final class MyComponent: Component, TypedComponent {
  typealias PropType = String
  // Note that state type is optional
 }
