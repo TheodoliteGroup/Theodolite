@@ -15,6 +15,8 @@
   - id: props
   - id: state
   - id: layout
+  - id: custom-layout
+  - id: view-flattening
   - id: actions-overview
 - title: Compatibility
   items:
@@ -22,11 +24,7 @@
 - title: Testing
   items:
   - id: snapshot-testing
-- title: Advanced Guides
-  items:
-  - id: custom-layout
-  - id: view-flattening
-- title: Architecture
+- title: Advanced
   items:
   - id: asynchronous-layout
   - id: recycling
@@ -34,9 +32,6 @@
   items:
   - id: best-practices
   - id: faq
-- title: Tools
-  items:
-  - id: debugging
 - title: Contributing
   items:
   - id: contributing
