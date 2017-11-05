@@ -15,7 +15,6 @@
   - id: props
   - id: state
   - id: layout
-  - id: view-flattening
 - title: Handling Events
   items:
   - id: actions-overview
@@ -28,6 +27,7 @@
 - title: Advanced Guides
   items:
   - id: custom-layout
+  - id: view-flattening
 - title: Architecture
   items:
   - id: asynchronous-layout
