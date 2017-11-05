@@ -14,10 +14,10 @@ Props are the inputs to a `Component`'s constructor, and are accessible to that 
 Take the following `Component`, for example:
 
 ```swift
-final class MyComponent: TypedComponent {
+final class MyComponent: Component, TypedComponent {
   typealias PropType = String
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     ... do something with self.props()
   }
 }
@@ -30,13 +30,13 @@ final class MyComponent: TypedComponent {
 You may define a tuple as your `PropType` to receive multiple values as inputs to your component:
 
 ```swift
-final class MyComponent: TypedComponent {
+final class MyComponent: Component, TypedComponent {
   typealias PropType = (
     string: String,
     int: Int
   )
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     ... do something with self.props().string or self.props().int
   }
 }
@@ -49,7 +49,7 @@ In this case, the caller must provide both the string and the integer value, and
 You can also use a named value-type for your props:
 
 ```swift
-final class MyComponent: TypedComponent {
+final class MyComponent: Component, TypedComponent {
   public struct Props {
     let string: String,
     let int: Int
@@ -57,7 +57,7 @@ final class MyComponent: TypedComponent {
 
   typealias PropType = Props
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     ... do something with self.props().string or self.props().int
   }
 }
@@ -100,7 +100,7 @@ For sufficiently complex prop types, it's recommended that you put **required pa
 For example, here's a simple `LabelComponent`:
 
 ```swift
-final class LabelComponent: TypedComponent {
+final class LabelComponent: Component, TypedComponent {
   public struct Options {
     let font: UIFont
 
