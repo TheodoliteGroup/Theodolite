@@ -23,7 +23,7 @@ If FooComponent wants to know when the ButtonComponent is tapped, it can pass do
 Note that Action is generic, and provides the capacity for providing data to the callee. Here's an example:
 
 ```swift
-final class ButtonComponent: TypedComponent {
+final class ButtonComponent: Component, TypedComponent {
  typealias PropType = Action<UITouch>
 
  func somethingHappened(touch: UITouch) {
@@ -39,12 +39,12 @@ final class ButtonComponent: TypedComponent {
 Usage:
 
 ```swift
-final class BarComponent: TypedComponent {
+final class BarComponent: Component, TypedComponent {
  typealias PropType = Void?
 
  func actionMethod(touch: UITouch) {} // When ButtonComponent sends its action, this method will be invoked
 
- func render() -> [Component] {
+ override func render() -> [Component] {
    return ButtonComponent { Handler(BarComponent.actionMethod) }
  }
 }
