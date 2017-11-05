@@ -20,15 +20,19 @@ final class FooComponent: Component, TypedComponent {
 }
 ```
 
-## Subclass Component
+## 1. Subclass Component
 
 Component is the superclass that provides the generic Component API. All components must derive from Component.
 
-## Conform to TypedComponent
+## 2. Conform to TypedComponent
 
 TypedComponent on the other hand provides typing for `props` and `state`. It's a protocol with two `associatedTypes`: `PropType` and `StateType`.
 
-## Implement render
+## 3. Define your props
+
+Components need input data to do anything interesting. This input is called `props` in the React vocabulary ([read more here](http://theodolite.org/docs/props)). After you define the `PropType` typealias, the values passed to your component are available in render through the `props` property.
+
+## 4. Implement render
 
 The `render()` function is where most of your work is going to be done. Inside `render`, you can read your props, transform the values you find within, read state, and map to child components to render your content.
 
