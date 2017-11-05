@@ -56,6 +56,7 @@ override func render() -> [Component] {
      component: FooComponent { "Hello World" }
   )}]
 }
+```
 
 ## SizeComponent
 
