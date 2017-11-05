@@ -15,6 +15,7 @@
   - id: props
   - id: state
   - id: layout
+  - id: view-flattening
 - title: Handling Events
   items:
   - id: actions-overview
