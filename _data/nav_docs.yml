@@ -15,8 +15,6 @@
   - id: props
   - id: state
   - id: layout
-- title: Handling Events
-  items:
   - id: actions-overview
 - title: Compatibility
   items:

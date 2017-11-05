@@ -1,6 +1,6 @@
 ---
 docid: actions-overview
-title: Overview
+title: Actions
 layout: docs
 permalink: /docs/actions-overview
 ---
@@ -49,3 +49,5 @@ final class BarComponent: Component, TypedComponent {
  }
 }
 ```
+
+## Scoped Responders
