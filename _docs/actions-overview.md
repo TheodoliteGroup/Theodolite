@@ -50,4 +50,8 @@ final class BarComponent: Component, TypedComponent {
 }
 ```
 
-## Scoped Responders
+## Appendix: Scoped Responders
+
+Components are constantly re-generated. This makes capturing specific components for actions difficult for actions that are the result of an asynchronous task. Network responses are a good example of where an old captured component may no longer be valid when the action is actually fired. A new component generation could have been generated while the network request is processing.
+
+This is why we have a concept of scoped responders in Theodolite. Scoped responders are shared by all generations of a component, and provide a window into the "current" component.
