@@ -28,11 +28,11 @@ Component is the superclass that provides the generic Component API. All compone
 
 TypedComponent on the other hand provides typing for `props` and `state`. It's a protocol with two `associatedTypes`: `PropType` and `StateType`.
 
-## Implement `render`
+## Implement render
 
 The `render()` function is where most of your work is going to be done. Inside `render`, you can read your props, transform the values you find within, read state, and map to child components to render your content.
 
-## Adding `state`
+## Adding state
 
 By default, `StateType` is defined as `Void?`. If you want to add state to your component, you just add another typealias to your component:
 
@@ -51,3 +51,7 @@ final class FooComponent: Component, TypedComponent {
   }
 }
 ```
+
+## Updating state
+
+If you want your state value to **change**, then you simply call `self.updateState(yourNewValue)`. This will rebuild the entire component hierarchy, and will re-flow into your `render()` function again, giving you an opportunity to react to the state type.
