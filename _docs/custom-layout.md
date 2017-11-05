@@ -14,7 +14,7 @@ Theodolite provides you with most of the tools you'll probably need to avoid wri
 Here's a small example using a label component:
 
 ```swift
-  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+  override func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
     let size = self.attributedString().boundingRect(
       with: constraint,
       options: [.usesLineFragmentOrigin, .usesFontLeading],
@@ -39,7 +39,7 @@ The above label example didn't have any chidren components, but if you return an
 Here's an example from `ScrollComponent`:
 
 ```swift
-  public func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
+  override func layout(constraint: CGSize, tree: ComponentTree) -> Layout {
     let direction = self.props().direction
     let children = tree.children().map { (childTree: ComponentTree) -> LayoutChild in
       return LayoutChild(
