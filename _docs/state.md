@@ -18,11 +18,11 @@ You can define State on a Component by using the StateType `typealias` in your `
 Defining state elements is enabled on the lifecycle methods of Layout Specs and Mount Specs.
 
 ```swift
-final class CheckboxComponent: TypedComponent {
+final class CheckboxComponent: Component, TypedComponent {
   typealias PropType = Bool
   typealias StateType = Bool?
 
-  func render() -> [Component] {
+  override func render() -> [Component] {
     // State will initially be nil, unless you implement initialState()
     return [
       InternalCheckboxComponent {
