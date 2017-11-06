@@ -32,15 +32,15 @@
   color: $theodolite-dark;
 }
 
-.display-configuration-gradle .toggler .button-gradle,
-.display-configuration-buck .toggler .button-buck {
+.display-configuration-cocoapods .toggler .button-cocoapods,
+.display-configuration-carthage .toggler .button-carthage {
   background: darken($theodolite-dark, 10%) !important;
   color: #fff !important;
 }
 block {
   display: none;
 }
-.display-configuration-gradle .gradle,
-.display-configuration-buck .buck {
+.display-configuration-cocoapods .cocoapods,
+.display-configuration-carthage .carthage {
   display: block;
 }
