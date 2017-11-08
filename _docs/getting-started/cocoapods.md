@@ -2,7 +2,7 @@
 
 ## Adding Theodolite to your Project with Cocoapods
 
-Add the following to your Podfile:
+For [Cocoapods](https://cocoapods.org), add the following to your Podfile:
 
 ```
 pod 'Theodolite', '~> 0.1.0'
