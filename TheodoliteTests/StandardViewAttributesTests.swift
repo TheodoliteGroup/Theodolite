@@ -150,6 +150,30 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     
     XCTAssertEqual(view.isMultipleTouchEnabled, true)
   }
+
+  func test_accessibilityEnabled_isApplied() {
+    // Too hard to do this in a snapshot, so just build the attr, and apply it
+    let config = ViewConfiguration(
+      view: UIView.self,
+      attributes:
+      ViewOptions(isAccessibilityElement: true).viewAttributes())
+    let view = UIView()
+    config.applyToView(v: view)
+
+    XCTAssertEqual(view.isAccessibilityElement, true)
+  }
+
+  func test_accessibilityLabel_isApplied() {
+    // Too hard to do this in a snapshot, so just build the attr, and apply it
+    let config = ViewConfiguration(
+      view: UIView.self,
+      attributes:
+      ViewOptions(accessibilityLabel: "Hello").viewAttributes())
+    let view = UIView()
+    config.applyToView(v: view)
+
+    XCTAssertEqual(view.accessibilityLabel, "Hello")
+  }
   
   func test_isExclusiveTouchEnabled_isApplied() {
     // Too hard to do this in a snapshot, so just build the attr, and apply it
