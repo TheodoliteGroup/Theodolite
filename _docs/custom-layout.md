@@ -21,8 +21,8 @@ Here's a small example using a label component:
       context: nil)
     return Layout(component: self,
                   size: CGSize(
-                    width: ceil(size.width),
-                    height: ceil(size.height)),
+                  width: ceil(size.width),
+                  height: ceil(size.height)),
                   children: [])
   }
 ```
