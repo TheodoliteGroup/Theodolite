@@ -5,7 +5,7 @@ layout: docs
 permalink: /docs/using-components
 ---
 
-# Rendering a Component in a UIView hierarchy
+## Rendering a Component in a UIView hierarchy
 
 ```swift
 let view = ComponentHostingView { () -> Component in
@@ -20,7 +20,7 @@ view.sizeToFit()
 
 `ComponentHostingView` is a `UIView` that you can treat just like a normal view in your hierarchy, and it will act just as you would expect a view to behave. You can call `sizeThatFits:`, `sizetoFit`, `layoutSubviews`, and change its frame. It will process component updates asynchronously, and will re-size itself in response to these updates.
 
-# Rendering a Component in a View Controller
+## Rendering a Component in a View Controller
 
 ```swift
 let vc = ComponentViewController { () -> Component in
@@ -33,15 +33,15 @@ let vc = ComponentViewController { () -> Component in
 
 You can then treat it just like a normal view controller. If you want to be able to further pop/push view controllers from Components inside this controller, you should pass down a navigation controller (preferably wrapped in an object that weakifies the nav controller reference) to the Components hosted within the view controller.
 
-# Rendering a Component in an IGListKit View Controller
+## Rendering a Component in an IGListKit View Controller
 
 TODO
 
-# Rendering a Component in a UICollectionView directly
+## Rendering a Component in a UICollectionView directly
 
 TODO
 
-# Creating a new Component
+## Creating a new Component
 
 ```swift
 FooComponent(key: "key") {
@@ -49,7 +49,7 @@ FooComponent(key: "key") {
 }
 ```
 
-## TypedComponent provides you with init
+### TypedComponent provides you with init
 
 When you conform with the TypedComponent protocol, you get a default initializer through an extension. This initializer takes two parameters:
 
