@@ -5,5 +5,15 @@ layout: docs
 permalink: /docs/accessibility
 ---
 
-## TODO
+Configuring views as accessibility elements is easy:
 
+```swift
+  public override func view() -> ViewConfiguration? {
+    return ViewConfiguration(
+      view: UIView.self,
+      attributes: ViewOptions(
+        isAccessibilityElement: true,
+        accessibilityLabel: "Some Label"
+      ).viewAttributes())
+  }
+```
