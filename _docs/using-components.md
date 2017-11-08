@@ -5,6 +5,23 @@ layout: docs
 permalink: /docs/using-components
 ---
 
+# Rendering a Component in a UIView hierarchy
+
+```swift
+let view = ComponentHostingView { () -> Component in
+  return LabelComponent {
+    ("hello",
+     LabelComponent.Options())
+  }
+}
+view.frame = self.bounds
+view.sizeToFit()
+```
+
+`ComponentHostingView` is a `UIView` that you can treat just like a normal view in your hierarchy, and it will act just as you would expect a view to behave. You can call `sizeThatFits:`, `sizetoFit`, `layoutSubviews`, and change its frame. It will process component updates asynchronously, and will re-size itself in response to these updates.
+
+# Creating a new Component
+
 ```swift
 FooComponent(key: "key") {
   "Some props"
