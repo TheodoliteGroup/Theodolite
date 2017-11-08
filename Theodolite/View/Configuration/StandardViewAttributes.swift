@@ -25,6 +25,9 @@ public struct ViewOptions {
   
   let contentMode: UIViewContentMode?
 
+  let isAccessibilityElement: Bool?
+  let accessibilityLabel: String?
+
   let layerOptions: LayerOptions?
   
   public init(backgroundColor: UIColor? = nil,
@@ -34,6 +37,8 @@ public struct ViewOptions {
               clipsToBounds: Bool? = nil,
               alpha: CGFloat? = nil,
               contentMode: UIViewContentMode? = nil,
+              isAccessibilityElement: Bool? = nil,
+              accessibilityLabel: String? = nil,
               layerOptions: LayerOptions? = nil) {
     self.backgroundColor = backgroundColor
     self.tintColor = tintColor
@@ -42,6 +47,8 @@ public struct ViewOptions {
     self.clipsToBounds = clipsToBounds
     self.alpha = alpha
     self.contentMode = contentMode
+    self.isAccessibilityElement = isAccessibilityElement
+    self.accessibilityLabel = accessibilityLabel
     self.layerOptions = layerOptions
   }
   
@@ -67,6 +74,12 @@ public struct ViewOptions {
     }
     if let contentMode = self.contentMode {
       attrs.append(ViewContentMode(contentMode))
+    }
+    if let isAccessibilityElement = self.isAccessibilityElement {
+      attrs.append(ViewIsAccessibilityElement(isAccessibilityElement))
+    }
+    if let accessibilityLabel = self.accessibilityLabel {
+      attrs.append(ViewAccessibilityLabel(accessibilityLabel))
     }
     if let layerOptions = self.layerOptions {
       attrs.append(contentsOf: layerOptions.viewAttributes())
@@ -114,6 +127,18 @@ public func ViewAlpha(_ enabled: CGFloat) -> Attribute {
 public func ViewContentMode(_ enabled: UIViewContentMode) -> Attribute {
   return Attr<UIView, UIViewContentMode>(enabled, identifier: "theodolite-setContentMode") {(view: UIView, val: UIViewContentMode) in
     view.contentMode = val;
+  }
+}
+
+public func ViewIsAccessibilityElement(_ enabled: Bool) -> Attribute {
+  return Attr<UIView, Bool>(enabled, identifier: "theodolite-setIsAccessibilityElement") {(view: UIView, val: Bool) in
+    view.isAccessibilityElement = val;
+  }
+}
+
+public func ViewAccessibilityLabel(_ label: String) -> Attribute {
+  return Attr<UIView, String>(label, identifier: "theodolite-setAccessibilityLabel") {(view: UIView, val: String) in
+    view.accessibilityLabel = val;
   }
 }
 
