@@ -5,7 +5,7 @@
 Add the following to your Podfile:
 
 ```
-pod 'Theodolite'
+pod 'Theodolite', '~> 0.1.0'
 ```
 
 Then run this command in the root of your project:
