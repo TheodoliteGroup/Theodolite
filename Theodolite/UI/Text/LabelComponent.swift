@@ -38,8 +38,6 @@ public final class LabelComponent: Component, TypedComponent {
     options: Options
   )
   
-  private var cachedView: ViewConfiguration? = nil
-  
   func attributes(props: PropType) -> Dictionary<NSAttributedStringKey, Any> {
     var attr: Dictionary<NSAttributedStringKey, Any> = [:]
     attr[NSAttributedStringKey.font] = props.options.font
