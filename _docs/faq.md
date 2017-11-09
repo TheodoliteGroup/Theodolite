@@ -34,4 +34,4 @@ I'm not convinced we can't, and I definitely tried to do that from the start. Id
 1. We want to provide an initializer for you. It reduces the boilerplate. Initializers in protocols are insanely awkward, and autocompletion sucks.
 2. The props, state, mounted view, and scope handles must be attached to components. As it turns out the de-facto method of adding these types of data to protocolized objects in Swift extensions is associated objects, and they're really slow compared to property accessors.
 
-So I decided to split the core Component API into a superclass that you subclass, and leave the typed (aka generic) part of the API in the TypedComponent protocol. This is slightly more verbose, but the performance and autocompletion benefits outweigh the problem.
+So I decided to split the core Component API into a superclass that you subclass, and leave the typed (aka generic) part of the API in the TypedComponent protocol. This is slightly more verbose, but the performance and autocompletion benefits outweigh the problems.
