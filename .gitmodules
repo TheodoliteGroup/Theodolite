@@ -1,7 +1,7 @@
 
 [submodule "Carthage/Checkouts/Flexbox"]
 	path = Carthage/Checkouts/Flexbox
-	url = https://github.com/inamiy/Flexbox.git
+	url = https://github.com/TheodoliteGroup/Flexbox.git
 [submodule "Carthage/Checkouts/ios-snapshot-test-case"]
 	path = Carthage/Checkouts/ios-snapshot-test-case
 	url = https://github.com/facebook/ios-snapshot-test-case.git

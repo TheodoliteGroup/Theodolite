@@ -7,9 +7,10 @@ Pod::Spec.new do |spec|
   spec.authors = { "Oliver Rickard" => 'ocrickard@gmail.com' }
   spec.social_media_url = "http://twitter.com/ocrickard"
 
-  spec.platform = :ios, "9.1"
+  spec.platform = :ios, "10.0"
   spec.requires_arc = true
   spec.source = { git: "https://github.com/TheodoliteGroup/Theodolite.git", tag: "v#{spec.version}", submodules: true }
   spec.source_files = "Theodolite/**/*.{h,m,mm,swift}"
 
+  spec.dependency 'Flexbox'
 end
