@@ -5,7 +5,7 @@
 For [Carthage](https://github.com/Carthage/Carthage), add the following to your Cartfile:
 
 ```
-github "ocrickard/Theodolite" ~> 0.1.0
+github "TheodoliteGroup/Theodolite" ~> 0.1.0
 ```
 
 Then run this command in the root of your directory:

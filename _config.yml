@@ -31,8 +31,8 @@ url: "http://theodolite.org"
 # https://github.com/blog/2277-what-s-new-in-github-pages-with-jekyll-3-3
 
 # The GitHub repo for your project
-ghrepo: "ocrickard/Theodolite"
-repository: "ocrickard/Theodolite"
+ghrepo: "TheodoliteGroup/Theodolite"
+repository: "TheodoliteGroup/Theodolite"
 
 # These can be used in documentation with e.g. {{site.theodolite-version}}
 theodolite-version: 0.1.0

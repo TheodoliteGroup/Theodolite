@@ -48,7 +48,7 @@ Add the Theodolite pod as a dependency:
 
 ```
 // TODO @ocrickard tag this to a version once I publish the cocoapod
-pod 'Theodolite', :git => 'https://github.com/ocrickard/Theodolite.git'
+pod 'Theodolite', :git => 'https://github.com/TheodoliteGroup/Theodolite.git'
 ```
 
 Now go back to the terminal, and install the pods:
