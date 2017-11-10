@@ -68,7 +68,7 @@ public class Handler<Target: AnyObject, Arg>: Action<Arg> {
       let responder = component.context.scopeHandle!.responder
       self.target = {
         if let r = responder.responder() {
-          return r as! Target
+          return r as? Target
         }
         return nil
       }

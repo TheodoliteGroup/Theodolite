@@ -87,7 +87,10 @@
 - (void)cancelAsyncDisplay
 {
   TheodoliteAssertMainThread();
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   OSAtomicIncrement32(&_displaySentinel);
+#pragma clang diagnostic pop
 }
 
 + (ck_async_transaction_operation_block_t)asyncDisplayBlockWithBounds:(CGRect)bounds
@@ -175,7 +178,10 @@
     return;
   }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   int32_t displaySentinelValue = OSAtomicIncrement32(&_displaySentinel);
+#pragma clang diagnostic pop
   CALayer *containerLayer = parentTransactionContainer ?: self;
   TheodoliteAsyncTransaction *transaction = containerLayer.ck_asyncTransaction;
   TheodoliteAssertNotNil(transaction, @"Expected async layer transaction to be non-nil");
