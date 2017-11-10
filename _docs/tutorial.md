@@ -44,4 +44,21 @@ target 'TheodoliteTodo' do
 end
 ```
 
+Add the Theodolite pod as a dependency:
+
+```
+// TODO @ocrickard tag this to a version once I publish the cocoapod
+pod 'Theodolite', :git => 'https://github.com/ocrickard/Theodolite.git'
+```
+
+Now go back to the terminal, and install the pods:
+
+```
+$ pod install
+```
+
+![Cocoapods install](http://theodolite.org/static/images/tutorial/pod-install.png)
+
+Cocoapods created an Xcworkspace file for us in the same directory as our Xcodeproj. Close the Xcodeproj in Xcode, and open the new workspace.
+
 
