@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
   spec.name = "Theodolite"
   spec.version = "0.1.0"
   spec.summary = "A React-Inspired view framework in Swift."
-  spec.homepage = "https://github.com/TheodoliteGroup/Theodolite"
+  spec.homepage = "http://theodolite.org"
   spec.license = { type: 'MIT', file: 'LICENSE' }
   spec.authors = { "Oliver Rickard" => 'ocrickard@gmail.com' }
   spec.social_media_url = "http://twitter.com/ocrickard"
