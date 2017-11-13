@@ -32,9 +32,6 @@ $ pod init
 This will create a Podfile for you, which is where you specify your dependencies:
 
 ```
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
-
 target 'TheodoliteTodo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
@@ -44,11 +41,10 @@ target 'TheodoliteTodo' do
 end
 ```
 
-Add the Theodolite pod as a dependency:
+Add the Theodolite pod as a dependency right below where the template says `Pods for TheodoliteTodo`.
 
 ```
-// TODO @ocrickard tag this to a version once I publish the cocoapod
-pod 'Theodolite', :git => 'https://github.com/TheodoliteGroup/Theodolite.git'
+pod 'Theodolite'
 ```
 
 Now go back to the terminal, and install the pods:
@@ -61,4 +57,52 @@ $ pod install
 
 Cocoapods created an Xcworkspace file for us in the same directory as our Xcodeproj. Close the Xcodeproj in Xcode, and open the new workspace.
 
+### Render a Component
 
+Opening the newly-created workspace, we can see that Cocoapods has added some new dependencies:
+
+![Cocoapods workspace](http://theodolite.org/static/images/tutorial/generated-project.png)
+
+Now, let's import Theodolite, and add the `ComponentHostingView` as a subview of the ViewController that Xcode created for us. `ComponentHostingView` is a `UIView` that can display a Theodoolite Component hierarchy.
+
+First, we have to add the import statement for Theodolite:
+
+```swift
+import Theodolite
+```
+
+Also, add a hosting view as a property of the view controller:
+
+```swift
+class ViewController: UIViewController {
+  private var hostingView: ComponentHostingView?
+```
+
+Next, let's add the following code to `viewDidLoad`:
+
+```swift
+hostingView = ComponentHostingView { () -> Component in
+  return LabelComponent {
+    ("Hello World",
+     LabelComponent.Options())
+  }
+}
+self.view.addSubview(hostingView!)
+```
+
+And finally, we need to configure the layout of the hosting view:
+
+```swift
+override func viewDidLayoutSubviews() {
+  super.viewDidLayoutSubviews()
+  hostingView?.frame = UIEdgeInsetsInsetRect(self.view.bounds, self.view.layoutMargins)
+}
+```
+
+Now your view controller should look like this:
+
+![View controller that renders Hello World](http://theodolite.org/static/images/tutorial/hello-world.png)
+
+Hit Cmd+R to run the project in the simulator, and you should see your hello world!
+
+![Simulator rendering Hello World](http://theodolite.org/static/images/tutorial/sim-hello-world.png)
