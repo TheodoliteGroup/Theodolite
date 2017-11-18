@@ -50,6 +50,8 @@
 		B137B9E71FA16D5C009BE1E3 /* TypedComponentMounting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */; };
 		B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */; };
 		B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */; };
+		B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DC1FC07FE500DB4655 /* Trigger.swift */; };
+		B143E5DF1FC080D800DB4655 /* TriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DE1FC080D800DB4655 /* TriggerTests.swift */; };
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
 		B1574DDA1FA681E000E91D09 /* ComponentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DD91FA681E000E91D09 /* ComponentLayout.swift */; };
 		B1574DE21FA6852600E91D09 /* ComponentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DE11FA6852600E91D09 /* ComponentContext.swift */; };
@@ -191,6 +193,8 @@
 		B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentMounting.swift; sourceTree = "<group>"; };
 		B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentState.swift; sourceTree = "<group>"; };
 		B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentProps.swift; sourceTree = "<group>"; };
+		B143E5DC1FC07FE500DB4655 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
+		B143E5DE1FC080D800DB4655 /* TriggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerTests.swift; sourceTree = "<group>"; };
 		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 		B1574DD91FA681E000E91D09 /* ComponentLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentLayout.swift; sourceTree = "<group>"; };
 		B1574DE11FA6852600E91D09 /* ComponentContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContext.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 			children = (
 				B136BE581F8D5741001EE264 /* Info.plist */,
 				B136BEB91F8D6C8D001EE264 /* ActionTests.swift */,
+				B143E5DE1FC080D800DB4655 /* TriggerTests.swift */,
 				B15967111FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift */,
 				B1987C071FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift */,
 				B15967131FA7E1A200FEDC5C /* ComponentKeyTests.swift */,
@@ -398,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				B136BEBB1F8D6DD2001EE264 /* Action.swift */,
+				B143E5DC1FC07FE500DB4655 /* Trigger.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */,
 				B18750C01FA6B44300C4DA47 /* TextKitAttributes.swift in Sources */,
 				B11D60111FA93EDD002F417B /* TextKitLayer.swift in Sources */,
+				B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
 				B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */,
@@ -803,6 +810,7 @@
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
 				B15966D41FA7C01900FEDC5C /* TextComponentSnapshotTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
+				B143E5DF1FC080D800DB4655 /* TriggerTests.swift in Sources */,
 				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,
 				B15967121FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift in Sources */,
 				B136BECE1F8EFD98001EE264 /* ViewConfigurationTests.swift in Sources */,
