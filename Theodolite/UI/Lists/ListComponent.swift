@@ -13,17 +13,30 @@ public struct ListBatch<ItemType> {
   let before: AnyHashable
   let after: AnyHashable
   let items: [ItemType]
+
+  public init(before: AnyHashable, after: AnyHashable, items: [ItemType]) {
+    self.before = before
+    self.after = after
+    self.items = items
+  }
 }
 
-enum ListFetchStatus<ItemType> {
-  case ok(batch: ListBatch<ItemType>)
+public struct ListFetchError: Error {
+  let string: String
+  public init(string: String) {
+    self.string = string
+  }
+}
+
+public enum ListFetchStatus<ItemType> {
+  case success(batch: ListBatch<ItemType>)
   case error(e: Error)
 }
 
-typealias ListItemSource<ItemType> = (
+public typealias ListItemSource<ItemType> = (
   _ before: AnyHashable?,
   _ after: AnyHashable?,
-  _ handler: (ListFetchStatus<ItemType>) -> ()
+  _ handler: @escaping (ListFetchStatus<ItemType>) -> ()
 ) -> ()
 
 public final class ListComponent<ItemType>: Component, TypedComponent {
@@ -34,6 +47,20 @@ public final class ListComponent<ItemType>: Component, TypedComponent {
     let factory: (ItemType) -> Component
     let loadHead: Trigger<Void?>
     let loadTail: Trigger<Void?>
+
+    public init(flexOptions: FlexOptions,
+                childMargin: Edges,
+                source: @escaping ListItemSource<ItemType>,
+                factory: @escaping (ItemType) -> Component,
+                loadHead: Trigger<Void?>,
+                loadTail: Trigger<Void?>) {
+      self.flexOptions = flexOptions
+      self.childMargin = childMargin
+      self.source = source
+      self.factory = factory
+      self.loadHead = loadHead
+      self.loadTail = loadTail
+    }
   }
   public typealias PropType = Options
   public typealias StateType = [ListBatch<ItemType>]
@@ -76,8 +103,8 @@ public final class ListComponent<ItemType>: Component, TypedComponent {
     self.initiatedFetch = true
     props.source(nil, nil, { (status) in
       switch status {
-      case .ok(let batch):
-        updateState(state: [batch])
+      case .success(let batch):
+        self.updateState(state: [batch])
         break
       case .error(let e):
         print("Error loading initial list data:\(e)")
@@ -94,10 +121,10 @@ public final class ListComponent<ItemType>: Component, TypedComponent {
     self.initiatedFetch = true
     props.source(nil, state?.last?.after, { (status) in
       switch status {
-      case .ok(let batch):
-        var newState = state ?? []
+      case .success(let batch):
+        var newState = self.state ?? []
         newState.append(batch)
-        updateState(state: newState)
+        self.updateState(state: newState)
         break
       case .error(let e):
         print("Error loading initial list data:\(e)")
