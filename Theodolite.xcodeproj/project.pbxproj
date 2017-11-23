@@ -53,6 +53,8 @@
 		B143E5DB1FC073A500DB4655 /* ListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DA1FC073A500DB4655 /* ListComponent.swift */; };
 		B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DC1FC07FE500DB4655 /* Trigger.swift */; };
 		B143E5DF1FC080D800DB4655 /* TriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DE1FC080D800DB4655 /* TriggerTests.swift */; };
+		B143E5F41FC1EBAA00DB4655 /* InfiniteLoadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5F31FC1EBAA00DB4655 /* InfiniteLoadComponent.swift */; };
+		B143E5FC1FC1EE9700DB4655 /* ActivityIndicatorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5FB1FC1EE9700DB4655 /* ActivityIndicatorComponent.swift */; };
 		B15612951F904F4F00AA21ED /* UtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15612941F904F4F00AA21ED /* UtilitiesTests.swift */; };
 		B1574DDA1FA681E000E91D09 /* ComponentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DD91FA681E000E91D09 /* ComponentLayout.swift */; };
 		B1574DE21FA6852600E91D09 /* ComponentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1574DE11FA6852600E91D09 /* ComponentContext.swift */; };
@@ -197,6 +199,8 @@
 		B143E5DA1FC073A500DB4655 /* ListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListComponent.swift; sourceTree = "<group>"; };
 		B143E5DC1FC07FE500DB4655 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		B143E5DE1FC080D800DB4655 /* TriggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerTests.swift; sourceTree = "<group>"; };
+		B143E5F31FC1EBAA00DB4655 /* InfiniteLoadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteLoadComponent.swift; sourceTree = "<group>"; };
+		B143E5FB1FC1EE9700DB4655 /* ActivityIndicatorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorComponent.swift; sourceTree = "<group>"; };
 		B15612941F904F4F00AA21ED /* UtilitiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesTests.swift; sourceTree = "<group>"; };
 		B1574DD91FA681E000E91D09 /* ComponentLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentLayout.swift; sourceTree = "<group>"; };
 		B1574DE11FA6852600E91D09 /* ComponentContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContext.swift; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 			isa = PBXGroup;
 			children = (
 				B1E6C61E1FAD21570018CE8A /* PullToRefreshComponent.swift */,
+				B143E5F31FC1EBAA00DB4655 /* InfiniteLoadComponent.swift */,
+				B143E5FB1FC1EE9700DB4655 /* ActivityIndicatorComponent.swift */,
 				B143E5DA1FC073A500DB4655 /* ListComponent.swift */,
 			);
 			path = Lists;
@@ -765,6 +771,7 @@
 				B11D600C1FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.m in Sources */,
 				B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */,
 				B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */,
+				B143E5F41FC1EBAA00DB4655 /* InfiniteLoadComponent.swift in Sources */,
 				B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */,
 				B11D60091FA93EC6002F417B /* TheodoliteAsyncTransaction.m in Sources */,
 				B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */,
@@ -779,6 +786,7 @@
 				B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */,
 				B18750C21FA6B6F300C4DA47 /* TextKitContext.swift in Sources */,
 				B11F220F1FADEDCC005CBD23 /* ScopedResponder.swift in Sources */,
+				B143E5FC1FC1EE9700DB4655 /* ActivityIndicatorComponent.swift in Sources */,
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
 				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
