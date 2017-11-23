@@ -18,7 +18,7 @@ final class NewsItemFeaturedComponent: Component, TypedComponent {
 
   override func render() -> [Component] {
     let props = self.props
-    if props.0.imageURL == nil || props.0.description == nil {
+    if props.0.media == .none || props.0.description == nil {
       return [
         NewsItemComponent { props }
       ]
@@ -34,11 +34,11 @@ final class NewsItemFeaturedComponent: Component, TypedComponent {
             FlexboxComponent {
               (options: FlexOptions(flexDirection: .column),
                children: [
-                FlexChild(NewsItemHeaderComponent { props.0.author },
+                FlexChild(NewsItemHeaderComponent { props.0.author.name },
                           margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
                 FlexChild(NewsItemFeaturedTitleComponent { props.0.title },
                           margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
-                FlexChild(NewsItemFeaturedImageComponent { props.0.imageURL! }),
+                FlexChild(NewsItemFeaturedImageComponent { props.0.media.imageURL! }),
                 FlexChild(NewsItemDescriptionComponent { props.0.description! },
                           margin: Edges(left: 20, right: 20, top: 10, bottom: 0))
                 ])

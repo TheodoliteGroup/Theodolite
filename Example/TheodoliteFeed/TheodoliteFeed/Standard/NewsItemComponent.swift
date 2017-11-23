@@ -28,10 +28,10 @@ final class NewsItemComponent: Component, TypedComponent {
             FlexboxComponent {
               (options: FlexOptions(flexDirection: .column),
                children: [
-                FlexChild(NewsItemHeaderComponent { props.0.author }),
+                FlexChild(NewsItemHeaderComponent { props.0.author.name }),
                 FlexChild(NewsItemTitleComponent { ( props.0.title, maximumNumberOfLines: 0) }),
                 FlexChild(NewsItemContentComponent {(
-                  imageURL: props.0.imageURL,
+                  imageURL: props.0.media.imageURL,
                   description: props.0.description
                   )})
                 ])

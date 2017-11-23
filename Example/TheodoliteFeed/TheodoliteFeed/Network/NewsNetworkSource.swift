@@ -8,32 +8,26 @@
 
 import Foundation
 
-struct NewsItem {
-  let title: String
-  let description: String?
-  let url: URL
-  let imageURL: URL?
-  let timestamp: Date?
-  let author: String?
-
-  init(json: [String:Any]) {
-    self.title = json["title"] as! String
-    self.description = json["description"] as? String
-    self.url = URL(string: json["url"] as! String)!
-    self.imageURL = {
-      if let urlToImage = json["urlToImage"] as? String {
-        return URL(string: urlToImage)
-      }
-      return nil
-    }()
-    self.timestamp = {
+func NewsItemFromJSON(json: [String: Any]) -> NewsItem {
+  return NewsItem(
+    title: json["title"] as! String,
+    description: json["description"] as? String,
+    url: URL(string: json["url"] as! String)!,
+    timestamp: {
       if let publishedAt = json["publishedAt"] as? String {
         return ISO8601DateFormatter().date(from: publishedAt)
       }
       return nil
-    }()
-    self.author = json["author"] as? String
-  }
+  }(),
+    author: NewsItemAuthor(name: json["author"] as? String),
+    media:{
+      if let urlToImageString = json["urlToImage"] as? String {
+        if let urlToImage = URL(string: urlToImageString) {
+          return NewsItemMedia(imageURL: urlToImage)
+        }
+      }
+      return NewsItemMedia(imageURL: nil)
+  }())
 }
 
 class NewsNetworkSource: NetworkSource {
@@ -63,7 +57,7 @@ class NewsNetworkSource: NetworkSource {
               errorBlock()
               return
             }
-            let articles = articlesJSON.map({ NewsItem(json: $0) })
+            let articles = articlesJSON.map({ NewsItemFromJSON(json: $0) })
             DispatchQueue.main.async {
               received(NetworkSourceResult.success(articles))
             }

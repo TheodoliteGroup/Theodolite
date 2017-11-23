@@ -23,7 +23,9 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
   )
 
   override func render() -> [Component] {
+
     self.fetchIfNeeded()
+    
 
     guard let state = self.state else {
       return []
@@ -32,8 +34,6 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
     if state.newsItems.count == 0 {
       return []
     }
-
-    let props = self.props
 
     var children: [FlexChild] = []
 

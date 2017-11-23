@@ -20,8 +20,8 @@ final class NewsItemCardComponent: Component, TypedComponent {
     let props = self.props
 
     let topComponent: Component
-    if props.0.imageURL != nil {
-      topComponent = NewsItemFeaturedImageComponent { props.0.imageURL! }
+    if let imageURL = props.0.media.imageURL {
+      topComponent = NewsItemFeaturedImageComponent { imageURL }
     } else {
       topComponent = ViewComponent { ViewConfiguration(view: UIView.self, attributes: []) }
     }

@@ -1,0 +1,5 @@
+sources:  
+    - Models
+templates:  
+    - Templates
+output: Models/Generated.swift
