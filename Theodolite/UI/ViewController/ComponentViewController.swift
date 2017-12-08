@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class ComponentViewController: UIViewController {
+public final class ComponentViewController: UIViewController, ComponentHostingViewDelegate {
   private let factory: () -> Component
 
   public init(factory: @escaping () -> Component) {
@@ -23,11 +23,20 @@ public final class ComponentViewController: UIViewController {
   override public func loadView() {
     let hostingView = ComponentHostingView(factory: factory)
     hostingView.backgroundColor = .white
+    hostingView.delegate = self
 
     self.view = hostingView
   }
 
   override public func viewDidLoad() {
     super.viewDidLoad()
+
+
+  }
+
+  public func hostingViewDidUpdate(hostingView: ComponentHostingView) {
+    if let entryPointComponent = hostingView.root as? EntryPointComponent {
+      self.title = entryPointComponent.title
+    }
   }
 }
