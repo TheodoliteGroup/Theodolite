@@ -50,6 +50,7 @@
 		B137B9E71FA16D5C009BE1E3 /* TypedComponentMounting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */; };
 		B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */; };
 		B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */; };
+		B139CB621FDAC1D6000876E1 /* EntryPointComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139CB611FDAC1D6000876E1 /* EntryPointComponent.swift */; };
 		B143E5DB1FC073A500DB4655 /* ListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DA1FC073A500DB4655 /* ListComponent.swift */; };
 		B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DC1FC07FE500DB4655 /* Trigger.swift */; };
 		B143E5DF1FC080D800DB4655 /* TriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DE1FC080D800DB4655 /* TriggerTests.swift */; };
@@ -196,6 +197,7 @@
 		B137B9E61FA16D5C009BE1E3 /* TypedComponentMounting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentMounting.swift; sourceTree = "<group>"; };
 		B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentState.swift; sourceTree = "<group>"; };
 		B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentProps.swift; sourceTree = "<group>"; };
+		B139CB611FDAC1D6000876E1 /* EntryPointComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointComponent.swift; sourceTree = "<group>"; };
 		B143E5DA1FC073A500DB4655 /* ListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListComponent.swift; sourceTree = "<group>"; };
 		B143E5DC1FC07FE500DB4655 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		B143E5DE1FC080D800DB4655 /* TriggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerTests.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				B15967011FA7D93000FEDC5C /* ComponentViewController.swift */,
+				B139CB611FDAC1D6000876E1 /* EntryPointComponent.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				B11D600C1FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.m in Sources */,
 				B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */,
 				B136BEC41F8EF989001EE264 /* ScopeHandle.swift in Sources */,
+				B139CB621FDAC1D6000876E1 /* EntryPointComponent.swift in Sources */,
 				B143E5F41FC1EBAA00DB4655 /* InfiniteLoadComponent.swift in Sources */,
 				B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */,
 				B11D60091FA93EC6002F417B /* TheodoliteAsyncTransaction.m in Sources */,

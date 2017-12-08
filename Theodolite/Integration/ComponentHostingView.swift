@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol ComponentHostingViewDelegate {
+public protocol ComponentHostingViewDelegate: class {
   func hostingViewDidUpdate(hostingView: ComponentHostingView)
 }
 
@@ -97,7 +97,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
                     position: CGPoint(x: 0, y: 0),
                     incrementalContext: incrementalMountContext)
 
-    self.delegate?.hostingViewDidUpdate(self)
+    self.delegate?.hostingViewDidUpdate(hostingView: self)
   }
   
   func markNeedsReset() {
