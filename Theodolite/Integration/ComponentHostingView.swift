@@ -8,6 +8,10 @@
 
 import UIKit
 
+public protocol ComponentHostingViewDelegate {
+  func hostingViewDidUpdate(hostingView: ComponentHostingView)
+}
+
 /**
  A UIView that can host a Theodolite Component hierarchy. This is intended to be a bridge view into UIKit-land. There
  should really only be one of these at the root of the view hierarchy, directly owned by the view controller.
@@ -34,14 +38,17 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
       self.setNeedsLayout()
     }
   }
+
+
+  var root: ScopeRoot?
+  weak var delegate: ComponentHostingViewDelegate?
   
   // MARK: Private properties
-  var root: ScopeRoot?
-  var lastLayout: CachedLayout?
-  var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
-  var mountedLayout: Layout?
-  var stateUpdateMap: [ScopeIdentifier:Any?] = [:]
-  var dispatched: Bool = false
+  private var lastLayout: CachedLayout?
+  private var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
+  private var mountedLayout: Layout?
+  private var stateUpdateMap: [ScopeIdentifier:Any?] = [:]
+  private var dispatched: Bool = false
   
   public init(factory: @escaping () -> Component) {
     self.factory = factory
@@ -89,6 +96,8 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
                     layout: layout,
                     position: CGPoint(x: 0, y: 0),
                     incrementalContext: incrementalMountContext)
+
+    self.delegate?.hostingViewDidUpdate(self)
   }
   
   func markNeedsReset() {
