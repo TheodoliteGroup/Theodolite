@@ -20,7 +20,7 @@ class ComponentMemoizationTests: XCTestCase {
       }
     }
 
-    let c1 = TestComponent {"hello"}
+    let c1 = TestComponent("hello")
 
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -29,7 +29,7 @@ class ComponentMemoizationTests: XCTestCase {
                        stateUpdateMap: [:])
 
     // Force other props here so the default method would cause it to update
-    let c2 = TestComponent {"argh"}
+    let c2 = TestComponent("argh")
 
     let scope2 = Scope(listener: nil,
                        component: c2,
@@ -47,7 +47,7 @@ class ComponentMemoizationTests: XCTestCase {
       typealias PropType = String
     }
 
-    let c1 = TestComponent {"hello"}
+    let c1 = TestComponent("hello")
 
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -55,7 +55,7 @@ class ComponentMemoizationTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
 
-    let c2 = TestComponent {"hello"}
+    let c2 = TestComponent("hello")
 
     let scope2 = Scope(listener: nil,
                        component: c2,
@@ -73,7 +73,7 @@ class ComponentMemoizationTests: XCTestCase {
       typealias PropType = String
     }
 
-    let c1 = TestComponent {"hello"}
+    let c1 = TestComponent("hello")
 
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -81,7 +81,7 @@ class ComponentMemoizationTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
 
-    let c2 = TestComponent {"argh"}
+    let c2 = TestComponent("argh")
 
     let scope2 = Scope(listener: nil,
                        component: c2,

@@ -64,5 +64,5 @@ public protocol TypedComponent: UnTypedComponent, InternalTypedComponent {
   func updateState(state: StateType?)
   
   init(key: AnyHashable?,
-       _ props: () -> PropType)
+       _ props: PropType)
 }

@@ -21,13 +21,13 @@ final class NewsItemContentComponent: Component, TypedComponent {
     if let imageURL = props.imageURL {
       children.append(
         FlexChild(
-          NewsItemImageComponent { imageURL }))
+          NewsItemImageComponent( imageURL )))
     }
 
     if let description = props.description {
       children.append(
         FlexChild(
-          NewsItemDescriptionComponent { description },
+          NewsItemDescriptionComponent( description ),
           flexShrink: 1))
     }
 
@@ -36,11 +36,11 @@ final class NewsItemContentComponent: Component, TypedComponent {
     }
 
     return [
-      FlexboxComponent {
+      FlexboxComponent(
         (options: FlexOptions(flexDirection: .row,
                               alignItems: .center),
          children: children)
-      }
+      )
     ]
   }
 }

@@ -34,7 +34,7 @@ class ScopeTests: XCTestCase {
   /** Scope tests */
   
   func test_buildingScopeWithNoPreviousScope_buildsScopeWithComponent() {
-    let c = TestScopeComponent<Bool, Void?> { true }
+    let c = TestScopeComponent<Bool, Void?>( true )
     let scope = Scope(listener: nil,
                       component: c,
                       previousScope: nil,
@@ -54,7 +54,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c = TestIntStateComponent { nil }
+    let c = TestIntStateComponent( nil )
     
     let _ = Scope(listener: nil,
                   component: c,
@@ -76,7 +76,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c1 = TestIntStateComponent { nil }
+    let c1 = TestIntStateComponent( nil )
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -84,7 +84,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestIntStateComponent { nil }
+    let c2 = TestIntStateComponent( nil )
     
     let scope2 = Scope(listener: nil,
                        component: c2,
@@ -113,7 +113,7 @@ class ScopeTests: XCTestCase {
       calledInitialState = true
     }
     
-    let c1 = TestInitialStateCallComponent { initialStateClosure }
+    let c1 = TestInitialStateCallComponent( initialStateClosure )
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -124,7 +124,7 @@ class ScopeTests: XCTestCase {
     XCTAssert(calledInitialState)
     calledInitialState = false
     
-    let c2 = TestInitialStateCallComponent { initialStateClosure }
+    let c2 = TestInitialStateCallComponent( initialStateClosure )
     
     let _ = Scope(listener: nil,
                   component: c2,
@@ -146,7 +146,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c1 = TestStateUpdateComponent { nil }
+    let c1 = TestStateUpdateComponent( nil )
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -154,7 +154,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestStateUpdateComponent { nil }
+    let c2 = TestStateUpdateComponent( nil )
     
     let _ = Scope(listener: nil,
                   component: c2,
@@ -176,7 +176,7 @@ class ScopeTests: XCTestCase {
       }
     }
     
-    let c1 = TestStateUpdateComponent { nil }
+    let c1 = TestStateUpdateComponent( nil )
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -184,7 +184,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestStateUpdateComponent { nil }
+    let c2 = TestStateUpdateComponent( nil )
     
     let _ = Scope(listener: nil,
                   component: c2,
@@ -206,11 +206,11 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       
       override func render() -> [Component] {
-        return [TestChildComponent { nil }]
+        return [TestChildComponent( nil )]
       }
     }
     
-    let c = TestParentComponent { nil }
+    let c = TestParentComponent( nil )
     
     let scope = Scope(listener: nil,
                       component: c,
@@ -237,11 +237,11 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       
       override func render() -> [Component] {
-        return [TestChildComponent { nil }]
+        return [TestChildComponent( nil )]
       }
     }
     
-    let c = TestParentComponent { nil }
+    let c = TestParentComponent( nil )
     
     let scope = Scope(listener: nil,
                       component: c,
@@ -268,11 +268,11 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       
       override func render() -> [Component] {
-        return [TestChildComponent { nil }]
+        return [TestChildComponent( nil )]
       }
     }
     
-    let c1 = TestParentComponent { nil }
+    let c1 = TestParentComponent( nil )
     
     let scope1 = Scope(listener: nil,
                        component: c1,
@@ -280,7 +280,7 @@ class ScopeTests: XCTestCase {
                        parentIdentifier: ScopeIdentifier(path: []),
                        stateUpdateMap: [:])
     
-    let c2 = TestParentComponent { nil }
+    let c2 = TestParentComponent( nil )
     
     let scope2 = Scope(listener: nil,
                        component: c2,
@@ -298,14 +298,14 @@ class ScopeTests: XCTestCase {
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(key: "key1") { nil }
+                            return TestScopeComponent<Void?, Void?>(key: "key1", nil)
     }
     
     let scope2 = ScopeRoot(previousRoot: scope1,
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(key: "key2") { nil }
+                            return TestScopeComponent<Void?, Void?>(key: "key2", nil)
     }
     
     XCTAssertNotEqual(scope1.root._handle.identifier, scope2.root._handle.identifier)
@@ -316,7 +316,7 @@ class ScopeTests: XCTestCase {
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(key: "key1") { nil }
+                            return TestScopeComponent<Void?, Void?>(key: "key1", nil)
     }
 
     var traversed: Component? = nil

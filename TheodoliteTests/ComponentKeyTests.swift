@@ -11,8 +11,10 @@ import XCTest
 
 class ComponentKeyTests: XCTestCase {
   func test_providingComponentWithKey_makesThatKeyAvailable() {
-    let c = ViewComponent(key: "hello")
-    { ViewConfiguration(view: UIView.self, attributes: []) }
+    let c = ViewComponent(
+      key: "hello",
+      ViewConfiguration(view: UIView.self, attributes: [])
+    )
 
     XCTAssertEqual(c.key, "hello")
   }

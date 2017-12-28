@@ -74,21 +74,22 @@ public final class ListComponent<ItemType>: Component, TypedComponent {
       return []
     }
     return [
-      FlexboxComponent {
+      FlexboxComponent(
         (options: props.flexOptions,
          children: batches.map({ (batch) -> FlexChild in
           return FlexChild(
-            FlexboxComponent(key: batch.before) {
+            FlexboxComponent(
+              key: batch.before,
               (options: props.flexOptions,
                children:batch.items.map({ (item) -> FlexChild in
                 return FlexChild(props.factory(item), margin: props.childMargin)
                }))
-          })
+          ))
          })
-        )}
+      ))
     ]
   }
-
+  
   public override func componentDidMount() {
     super.componentDidMount()
     if state == nil && !initiatedFetch {

@@ -17,10 +17,10 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
 
   func test_singleComponentChild() {
     let view = ComponentHostingView { () -> Component in
-      return LabelComponent {
+      return LabelComponent(
         ("hello",
          LabelComponent.Options())
-      }
+      )
     }
     view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
     self.FBSnapshotVerifyView(view)
@@ -33,10 +33,10 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
       typealias StateType = Bool
 
       override func render() -> [Component] {
-        return [LabelComponent {
+        return [LabelComponent(
           ((self.state ?? false) ? "state updated" : "state NOT updated",
            LabelComponent.Options())
-          }]
+          )]
       }
 
       override func componentDidMount() {
@@ -51,11 +51,11 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
     var calledUpdate = false
 
     let view = ComponentHostingView { () -> Component in
-      return TestComponent {
+      return TestComponent(
         {
           calledUpdate = true
         }
-      }
+      )
     }
     view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 

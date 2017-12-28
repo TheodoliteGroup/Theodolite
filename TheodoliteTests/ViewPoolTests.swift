@@ -18,7 +18,7 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
@@ -33,7 +33,7 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     pool.checkinView(component: component, view: retrievedView!)
@@ -53,7 +53,7 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
@@ -70,7 +70,7 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
@@ -87,7 +87,7 @@ class ViewPoolTests: XCTestCase {
     let config = ViewConfiguration(
       view: UILabel.self,
       attributes: [])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     let retrievedView2 = pool.checkoutView(component: component, parent: parent, config: config)
@@ -118,7 +118,7 @@ class ViewPoolTests: XCTestCase {
           view.backgroundColor = val
         }
       ])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrievedView = pool.checkoutView(component: component, parent: parent, config: config)
     
@@ -137,7 +137,7 @@ class ViewPoolTests: XCTestCase {
           view.backgroundColor = val
         }
       ])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let view = pool.checkoutView(component: component, parent: parent, config: config)
     pool.checkinView(component: component, view: view!)
@@ -168,7 +168,7 @@ class ViewPoolTests: XCTestCase {
           view.backgroundColor = val
         }
       ])
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     self.measure {
       for _ in 1...10000 {

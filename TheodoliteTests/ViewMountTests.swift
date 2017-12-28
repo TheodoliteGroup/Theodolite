@@ -33,13 +33,13 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent {
+      return TestViewComponent(
         ViewConfiguration(
           view: UIView.self,
           attributes: [
             Attr(UIColor.red, applicator: {(view, color) in view.backgroundColor = color })
           ])
-      }
+      )
     }
   }
   
@@ -50,7 +50,7 @@ class ViewMountTests: FBSnapshotTestCase {
       
       override func render() -> [Component] {
         return [
-          TestChildComponent {self.props}
+          TestChildComponent(self.props)
         ]
       }
       
@@ -104,7 +104,7 @@ class ViewMountTests: FBSnapshotTestCase {
     
     var didMountChild = false
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestParentComponent {{ didMountChild = true }}
+      return TestParentComponent({ didMountChild = true })
     }
     
     XCTAssert(didMountChild)
@@ -117,7 +117,7 @@ class ViewMountTests: FBSnapshotTestCase {
       
       override func render() -> [Component] {
         return [
-          TestChildComponent {self.props}
+          TestChildComponent(self.props)
         ]
       }
       
@@ -162,9 +162,9 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function, mountVisibleOnly: true) {() -> Component in
-      return TestParentComponent {{
+      return TestParentComponent({
           XCTFail("Should not have mounted child")
-        }}
+        })
     }
   }
   
@@ -198,115 +198,115 @@ class ViewMountTests: FBSnapshotTestCase {
     }
     
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return TestLabelComponent { "Hello World" }
+      return TestLabelComponent( "Hello World" )
     }
   }
   
   func test_flexbox() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {
+      return FlexboxComponent(
         (options:
           FlexOptions(flexDirection: .column),
          children:[
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options()
-              )}),
+              ))),
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options()
-              )})
-          ])}
+              )))
+          ]))
     }
   }
   
   func test_row_flexbox() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
+      return FlexboxComponent((
         options:FlexOptions(flexDirection: .row),
         children:[
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options(
                 view: ViewOptions(backgroundColor: UIColor.red),
                 textColor: UIColor.blue
               )
-              )}),
+              ))),
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options()
-              )})
-        ])}
+              )))
+        ]))
     }
   }
   
   func test_row_flexbox_with_flexGrow() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
+      return FlexboxComponent((
         options:FlexOptions(
           flexDirection: .row
         ),
         children:[
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options(
                 view: ViewOptions(backgroundColor: UIColor.yellow),
                 textColor: UIColor.blue)
-              )},
+              )),
             flexGrow: 1.0),
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options()
-              )})
+              )))
         ]
-        )}
+        ))
     }
   }
   
   func test_flexbox_inside_flexbox() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
+      return FlexboxComponent((
         options:FlexOptions(
           flexDirection: .row
         ),
         children:[
           FlexChild(
-            FlexboxComponent {(
+            FlexboxComponent((
               options:FlexOptions(
                 flexDirection: .column
               ),
               children:[
                 FlexChild(
-                  LabelComponent {(
+                  LabelComponent((
                     "hello world",
                     options: LabelComponent.Options(
                       view: ViewOptions(backgroundColor: UIColor.red),
                       textColor: UIColor.blue
                     )
-                    )}),
+                    ))),
                 FlexChild(
-                  LabelComponent {(
+                  LabelComponent((
                     "hello world",
                     options: LabelComponent.Options()
-                    )})
-              ])},
+                    )))
+              ])),
             flexShrink: 1.0),
           FlexChild(
-            LabelComponent {(
+            LabelComponent((
               "hello world",
               options: LabelComponent.Options(
                 view: ViewOptions(backgroundColor: UIColor.blue),
                 textColor: UIColor.red
               )
-              )})
+              )))
         ]
-        )}
+        ))
     }
   }
   
@@ -314,85 +314,85 @@ class ViewMountTests: FBSnapshotTestCase {
   
   func test_row_5050() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
+      return FlexboxComponent((
         options:FlexOptions(
           flexDirection: .row
         ),
         children:[
           FlexChild(
-            ViewComponent {
+            ViewComponent(
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
                 ViewOptions(backgroundColor: UIColor.yellow)
-                  .viewAttributes())},
+                  .viewAttributes())),
             flex: 0.5),
           FlexChild(
-            ViewComponent {
+            ViewComponent(
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
                 ViewOptions(backgroundColor: UIColor.red)
-                  .viewAttributes())},
+                  .viewAttributes())),
             flex: 0.5)
         ]
-        )}
+        ))
     }
   }
   
   func test_row_3030() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
+      return FlexboxComponent((
         options:FlexOptions(
           flexDirection: .row
         ),
         children:[
           FlexChild(
-            ViewComponent {
+            ViewComponent(
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
                 ViewOptions(backgroundColor: UIColor.yellow)
-                  .viewAttributes())},
+                  .viewAttributes())),
             flex: 0.3),
           FlexChild(
-            ViewComponent {
+            ViewComponent(
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
                 ViewOptions(backgroundColor: UIColor.red)
-                  .viewAttributes())},
+                  .viewAttributes())),
             flex: 0.3)
         ]
-        )}
+      ))
     }
   }
   
   func test_row_3070() {
     snapshotTestComponent(self, CGSize(width: 300, height: 100), #function) {() -> Component in
-      return FlexboxComponent {(
+      return FlexboxComponent((
         options:FlexOptions(
           flexDirection: .row
         ),
         children:[
           FlexChild(
-            ViewComponent {
+            ViewComponent(
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
                 ViewOptions(backgroundColor: UIColor.yellow)
-                  .viewAttributes())},
+                  .viewAttributes())),
             flex: 0.3),
           FlexChild(
-            ViewComponent {
+            ViewComponent(
               ViewConfiguration(
                 view: UIView.self,
                 attributes:
                 ViewOptions(backgroundColor: UIColor.red)
-                  .viewAttributes())},
+                  .viewAttributes())),
             flex: 0.7)
         ]
-        )}
+      ))
     }
   }
 }

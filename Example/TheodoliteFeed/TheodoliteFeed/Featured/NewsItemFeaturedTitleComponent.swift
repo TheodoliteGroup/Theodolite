@@ -14,17 +14,15 @@ final class NewsItemFeaturedTitleComponent: Component, TypedComponent {
 
   override func render() -> [Component] {
     return [
-      InsetComponent {(
+      InsetComponent((
         insets: UIEdgeInsetsMake(0, 0, 10, 0),
         component:
-        LabelComponent {
+        LabelComponent(
           (self.props,
            LabelComponent.Options(
             font: UIFont(name: "Georgia", size: 24)!,
             lineBreakMode: NSLineBreakMode.byWordWrapping,
             maximumNumberOfLines: 0))
-      })
-      }
-    ]
+      )))]
   }
 }

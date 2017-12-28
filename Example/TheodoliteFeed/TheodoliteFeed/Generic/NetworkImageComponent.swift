@@ -24,22 +24,22 @@ final class NetworkImageComponent: Component, TypedComponent {
     let props = self.props
     let state = self.state
     return [
-      NetworkDataComponent {
+      NetworkDataComponent(
         (props.0,
          { [weak self] (networkState: NetworkDataComponent.State) -> Component? in
           var component: Component? = nil
           switch networkState {
           case .pending:
-            component = SizeComponent {
+            component = SizeComponent(
               (size: props.size,
-               component: ViewComponent {
+               component: ViewComponent(
                 ViewConfiguration(
                   view: UIView.self,
                   attributes:
                   ViewOptions(backgroundColor: props.backgroundColor)
                     .viewAttributes())
-              })
-            }
+              ))
+            )
             break
           case .data(let data):
             guard let image = state ?? UIImage(data: data) else {
@@ -48,27 +48,26 @@ final class NetworkImageComponent: Component, TypedComponent {
             if state == nil {
               self?.updateState(state: image)
             }
-            component = ImageComponent {
+            component = ImageComponent(
               (image,
                size: props.size,
                options: ViewOptions(
                 clipsToBounds: true,
                 contentMode: props.contentMode))
-            }
+            )
             break
           case .error:
             break
           }
 
           if let component = component {
-            return InsetComponent {
+            return InsetComponent(
               (insets: props.insets,
-               component:component)
-            }
+               component:component))
           }
           return nil
         })
-      }
+      )
     ]
   }
 }

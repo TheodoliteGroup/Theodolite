@@ -53,7 +53,7 @@ public class Action<Arg> {
    func actionMethod(touch: UITouch) {} // When ButtonComponent sends its action, this method will be invoked
  
    func render() -> [Component] {
-     return ButtonComponent { Handler(BarComponent.actionMethod) }
+     return ButtonComponent( Handler(BarComponent.actionMethod) )
    }
  }
  */

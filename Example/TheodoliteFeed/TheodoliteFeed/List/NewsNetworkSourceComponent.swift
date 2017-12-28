@@ -38,30 +38,31 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
     var children: [FlexChild] = []
 
     children.append(FlexChild(
-      LabelComponent {
+      LabelComponent(
         (props.name,
          options: LabelComponent.Options(font:
           UIFont(name: "Georgia",
                  size: 40)!))
-    }, margin: Edges.init(left: 20, right: 20, top: 10, bottom: 0)))
+    ), margin: Edges.init(left: 20, right: 20, top: 10, bottom: 0)))
 
-    children.append(FlexChild(NewsNetworkSourceHScrollComponent(key: props.latestNewsSource.url) {
+    children.append(FlexChild(NewsNetworkSourceHScrollComponent(
+      key: props.latestNewsSource.url,
       (networkSource: props.latestNewsSource,
        navigationCoordinator: props.navigationCoordinator)
-    }))
+    )))
     
     let first = state.newsItems.first!
-    children.append(FlexChild(NewsItemFeaturedComponent(key: first.url) { (first, navigationCoordinator: props.navigationCoordinator) }))
+    children.append(FlexChild(NewsItemFeaturedComponent(key: first.url, (first, navigationCoordinator: props.navigationCoordinator))))
     children.append(contentsOf: state.newsItems[1..<state.newsItems.count]
       .map {(item: NewsItem) -> FlexChild in
-        return FlexChild(NewsItemComponent(key: item.url) { (item, navigationCoordinator: props.navigationCoordinator) })
+        return FlexChild(NewsItemComponent(key: item.url, (item, navigationCoordinator: props.navigationCoordinator)))
     })
 
     return [
-      FlexboxComponent {
+      FlexboxComponent(
         (options: FlexOptions(flexDirection: .column),
          children: children)
-      }
+      )
     ]
   }
 

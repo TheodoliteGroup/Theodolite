@@ -18,11 +18,11 @@ class TextComponentSnapshotTests: FBSnapshotTestCase {
   
   func test_singleString() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TextComponent {
+      return TextComponent(
         (TextKitAttributes(
           attributedString: NSAttributedString(string: "hello")),
          options: TextComponent.Options())
-      }
+      )
     }
   }
 }

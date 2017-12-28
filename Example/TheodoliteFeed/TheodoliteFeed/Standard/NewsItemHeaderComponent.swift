@@ -19,18 +19,16 @@ final class NewsItemHeaderComponent: Component, TypedComponent {
       return []
     }
     return [
-      InsetComponent {
+      InsetComponent(
         (insets: UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0),
          component:
-          LabelComponent {
+          LabelComponent(
             (props,
              LabelComponent.Options(
               font: UIFont.systemFont(ofSize: 12),
               textColor: UIColor.lightGray,
               lineBreakMode: NSLineBreakMode.byWordWrapping,
               maximumNumberOfLines: 0))
-          }
-        )}
-    ]
+          )))]
   }
 }

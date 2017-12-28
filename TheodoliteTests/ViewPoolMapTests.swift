@@ -25,7 +25,7 @@ class ViewPoolMapTests: XCTestCase {
     let view = UIView()
     let config = ViewConfiguration(view: UILabel.self, attributes: [])
     let map = ViewPoolMap.getViewPoolMap(view: view)
-    let component = ViewComponent {config}
+    let component = ViewComponent(config)
     
     let retrieved = map.checkoutView(component: component, parent: view, config: config)
     
@@ -40,8 +40,8 @@ class ViewPoolMapTests: XCTestCase {
     let labelConfig = ViewConfiguration(view: UILabel.self, attributes: [])
     let buttonConfig = ViewConfiguration(view: UIButton.self, attributes: [])
     let map = ViewPoolMap.getViewPoolMap(view: view)
-    let labelComponent = ViewComponent {labelConfig}
-    let buttonComponent = ViewComponent {buttonConfig}
+    let labelComponent = ViewComponent(labelConfig)
+    let buttonComponent = ViewComponent(buttonConfig)
     
     let retrievedLabel = map.checkoutView(component: labelComponent, parent: view, config: labelConfig)!
     

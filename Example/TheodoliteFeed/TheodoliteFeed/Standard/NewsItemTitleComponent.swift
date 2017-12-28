@@ -14,20 +14,19 @@ final class NewsItemTitleComponent: Component, TypedComponent {
     String,
     maximumNumberOfLines: Int
   )
-
+  
   override func render() -> [Component] {
     return [
-      InsetComponent {(
-        insets: UIEdgeInsetsMake(0, 0, 10, 0),
-        component:
-        LabelComponent {
-          (self.props.0,
-           LabelComponent.Options(
-            font: UIFont(name: "Georgia", size: 18)!,
-            lineBreakMode: NSLineBreakMode.byWordWrapping,
-            maximumNumberOfLines: self.props.maximumNumberOfLines))
-      })
-      }
+      InsetComponent(
+        (insets: UIEdgeInsetsMake(0, 0, 10, 0),
+         component:
+          LabelComponent(
+            (self.props.0,
+             LabelComponent.Options(
+              font: UIFont(name: "Georgia", size: 18)!,
+              lineBreakMode: NSLineBreakMode.byWordWrapping,
+              maximumNumberOfLines: self.props.maximumNumberOfLines))
+        )))
     ]
   }
 }

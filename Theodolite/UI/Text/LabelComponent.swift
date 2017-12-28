@@ -57,7 +57,7 @@ public final class LabelComponent: Component, TypedComponent {
   public override func render() -> [Component] {
     let props = self.props
     return [
-      TextComponent {
+      TextComponent(
         (TextKitAttributes(
           attributedString: self.attributedString(props:props),
           lineBreakMode: props.options.lineBreakMode,
@@ -66,7 +66,7 @@ public final class LabelComponent: Component, TypedComponent {
          options: TextComponent.Options(
           view: props.options.view
         ))
-      }
+      )
     ]
   }
 }

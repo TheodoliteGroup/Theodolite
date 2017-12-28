@@ -35,20 +35,20 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
   
   func test_backgroundColor() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent {
+      return TestViewComponent(
         (view: ViewConfiguration(
           view: UIView.self,
           attributes:
           ViewOptions(backgroundColor: UIColor.red)
             .viewAttributes()),
          size: CGSize(width: 100, height: 100))
-      }
+      )
     }
   }
   
   func test_alpha() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent {
+      return TestViewComponent(
         (view: ViewConfiguration(
           view: UIView.self,
           attributes:
@@ -56,7 +56,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
                       alpha: 0.5)
             .viewAttributes()),
          size: CGSize(width: 100, height: 100))
-      }
+      )
     }
   }
   
@@ -85,7 +85,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
       typealias PropType = Void?
       
       override func render() -> [Component] {
-        return [ChildComponent {nil}]
+        return [ChildComponent(nil)]
       }
       
       override func layout(constraint: SizeRange, tree: ComponentTree) -> Layout {
@@ -113,7 +113,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     }
     
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return ParentComponent {nil}
+      return ParentComponent(nil)
     }
   }
   
@@ -189,7 +189,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
 
   func test_cornerRadius() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent {
+      return TestViewComponent(
         (view: ViewConfiguration(
           view: UIView.self,
           attributes:
@@ -200,13 +200,13 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
           )
           .viewAttributes()),
          size: CGSize(width: 100, height: 100))
-      }
+      )
     }
   }
 
   func test_borderWidth_andColor() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent {
+      return TestViewComponent(
         (view: ViewConfiguration(
           view: UIView.self,
           attributes:
@@ -218,13 +218,13 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
             )
             .viewAttributes()),
          size: CGSize(width: 50, height: 50))
-      }
+      )
     }
   }
 
   func test_borderWidth_shadow() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TestViewComponent {
+      return TestViewComponent(
         (view: ViewConfiguration(
           view: UIView.self,
           attributes:
@@ -238,7 +238,7 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
             )
             .viewAttributes()),
          size: CGSize(width: 50, height: 50))
-      }
+      )
     }
   }
 }

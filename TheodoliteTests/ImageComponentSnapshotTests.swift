@@ -20,11 +20,11 @@ class ImageComponentSnapshotTests: FBSnapshotTestCase {
   func test_normalRenderingWithColor() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
       let image = ImageFrom(color: UIColor.blue, size: CGSize(width: 100, height: 100))
-      return ImageComponent {
+      return ImageComponent(
         (image,
          size: CGSize(width: 100, height: 100),
          options: ViewOptions())
-      }
+      )
     }
   }
 }

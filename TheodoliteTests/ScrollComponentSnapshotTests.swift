@@ -18,33 +18,33 @@ class ScrollComponentSnapshotTests: FBSnapshotTestCase {
   
   func test_basicScrollComponent() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return ScrollComponent {
-        (LabelComponent {
+      return ScrollComponent(
+        (LabelComponent(
           ("Hello World",
            LabelComponent.Options())
-          },
+          ),
          direction: .vertical,
          attributes: [])
-      }
+      )
     }
   }
   
   func test_flexbox_insideScrollComponent() {
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return ScrollComponent {
-        (FlexboxComponent {
+      return ScrollComponent(
+        (FlexboxComponent(
           (options: FlexOptions(),
            children:[
             FlexChild(
-              LabelComponent {
+              LabelComponent(
                 ("Hello World",
                  LabelComponent.Options())
-            })
+            ))
             ])
-          },
+          ),
          direction: .vertical,
          attributes: [])
-      }
+      )
     }
   }
 }

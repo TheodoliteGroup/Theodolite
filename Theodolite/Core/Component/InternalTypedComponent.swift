@@ -24,10 +24,10 @@ public protocol InternalTypedComponent {
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 public extension TypedComponent {
   public init(key: AnyHashable? = nil,
-              _ props: () -> PropType) {
+              _ props: PropType) {
     self.init(doNotCall: key)
-
-    self.context.props = props()
+    
+    self.context.props = props
     self.context.key = key
   }
   

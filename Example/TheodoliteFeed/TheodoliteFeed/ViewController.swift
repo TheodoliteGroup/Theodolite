@@ -33,8 +33,8 @@ class ViewController: UIViewController {
 
   override func loadView() {
     let hostingView = ComponentHostingView { () -> Component in
-      return ScrollComponent {
-        (NewsAggregationComponent {
+      return ScrollComponent(
+        (NewsAggregationComponent(
           ([
             NewsOutlet(
               name: "Tech Crunch",
@@ -66,10 +66,10 @@ class ViewController: UIViewController {
               latestNewsURL: URL(string: "https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest&apiKey=8a3eb75ec47c4054aed11906b84b6b3e")!)
             ],
            navigationCoordinator: self.navigationCoordinator)
-          },
+          ),
          direction: .vertical,
          attributes: [])
-      }
+      )
     }
     hostingView.backgroundColor = .white
     

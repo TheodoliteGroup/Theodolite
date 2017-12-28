@@ -21,13 +21,13 @@ public final class InfiniteLoadComponent: Component, TypedComponent {
 
   public override func render() -> [Component] {
     return [
-      FlexboxComponent {
+      FlexboxComponent(
         (options: props.flexOptions,
          children: [
           FlexChild(props.component),
-          FlexChild(ActivityIndicatorComponent { nil })
+          FlexChild(ActivityIndicatorComponent( nil ))
           ])
-      }
+      )
     ]
   }
 

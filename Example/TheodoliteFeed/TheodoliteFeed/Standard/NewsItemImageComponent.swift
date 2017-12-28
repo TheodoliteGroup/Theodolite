@@ -15,13 +15,13 @@ final class NewsItemImageComponent: Component, TypedComponent {
 
   override func render() -> [Component] {
     return [
-      NetworkImageComponent {
+      NetworkImageComponent(
         (props,
          size: CGSize(width: 60, height: 60),
          insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10),
          backgroundColor: UIColor(white: 0.95, alpha: 1),
          contentMode: .scaleAspectFill)
-      }
+      )
     ]
   }
 }

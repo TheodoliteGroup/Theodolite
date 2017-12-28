@@ -18,13 +18,13 @@ final class NewsItemFeaturedImageComponent: Component, TypedComponent {
   override func render() -> [Component] {
     let bounds = UIScreen.main.bounds
     return [
-      NetworkImageComponent {
+      NetworkImageComponent(
         (props,
          size: CGSize(width: bounds.size.width, height: bounds.size.width * 3.0 / 5.0),
          insets: UIEdgeInsets.zero,
          backgroundColor: UIColor(white: 0.95, alpha: 1),
          contentMode: .scaleAspectFill)
-      }
+      )
     ]
   }
 }

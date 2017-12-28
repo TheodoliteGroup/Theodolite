@@ -14,12 +14,12 @@ final class NewsItemDescriptionComponent: Component, TypedComponent {
 
   override func render() -> [Component] {
     return [
-      LabelComponent {
+      LabelComponent(
         (self.props,
          LabelComponent.Options(textColor: UIColor(white: 0.3, alpha: 1),
           lineBreakMode: NSLineBreakMode.byWordWrapping,
                                 maximumNumberOfLines: 0))
-      }
+      )
     ]
   }
 }

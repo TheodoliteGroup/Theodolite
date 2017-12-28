@@ -33,23 +33,25 @@ final class NewsNetworkSourceHScrollComponent: Component, TypedComponent {
     let props = self.props
 
     return [
-      ScrollComponent {
-        (FlexboxComponent {
+      ScrollComponent(
+        (FlexboxComponent(
           (options: FlexOptions(flexDirection: .row),
            children: state.newsItems
             .map {(item: NewsItem) -> FlexChild in
               return FlexChild(
-                SizeComponent(key: item.url) {
+                SizeComponent(
+                  key: item.url,
                   (size: CGSize(width: UIScreen.main.bounds.size.width, height: CGFloat.nan),
                    component:
-                    NewsItemCardComponent(key: item.url) {
+                    NewsItemCardComponent(
+                      key: item.url,
                       (item, navigationCoordinator: props.navigationCoordinator)
-                  })
-              })
-          })},
+                  ))
+              ))
+          })),
          direction: .horizontal,
          attributes: [])
-      }
+      )
     ]
   }
 

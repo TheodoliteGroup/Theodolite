@@ -31,7 +31,7 @@ import Foundation
 
     override func render() -> [Component] {
       return [
-        ChildComponent { trigger }
+        ChildComponent( trigger )
       ]
     }
 

@@ -97,20 +97,19 @@ class TapComponentSnapshotTests: FBSnapshotTestCase {
     view.gestureRecognizers![0].execute()
     XCTAssert(firedGesture === gesture)
   }
-
+  
   func test_blankRendering() {
     // Tap component shouldn't impact the rendering
     snapshotTestComponent(self, CGSize(width: 100, height: 100), #function) {() -> Component in
-      return TapComponent {
+      return TapComponent(
         (action: Action(),
-         component: ViewComponent {
+         component: ViewComponent(
           ViewConfiguration(
             view: UIView.self,
             attributes: [
               Attr(UIColor.blue, applicator: {(view, color) in view.backgroundColor = color })
             ])
-        })
-      }
+        )))
     }
   }
 }
