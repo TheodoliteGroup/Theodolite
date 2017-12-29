@@ -29,8 +29,6 @@ public class ButtonComponent: Component, TypedComponent {
     let selected: Bool?
     /** Wether the button is enabled. */
     let enabled: Bool?
-    /** Constraint for the size of the button. */
-    let size: CGSize?
     /** Content insets for the label inside the button. */
     let contentEdgeInsets: UIEdgeInsets?
     /** Additional attributes for the underlying UIBUtton. */
@@ -45,7 +43,6 @@ public class ButtonComponent: Component, TypedComponent {
       titleFont: UIFont? = nil,
       selected: Bool? = nil,
       enabled: Bool? = nil,
-      size: CGSize? = nil,
       contentEdgeInsets: UIEdgeInsets? = nil,
       attributes: [Attribute]? = nil
       ) {
@@ -57,7 +54,6 @@ public class ButtonComponent: Component, TypedComponent {
       self.titleFont = titleFont
       self.selected = selected
       self.enabled = enabled
-      self.size = size
       self.contentEdgeInsets = contentEdgeInsets
       self.attributes = attributes
     }

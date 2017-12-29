@@ -71,6 +71,7 @@
 		B1658B5F1F9B6AF4000EC8CC /* FlexboxComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */; };
 		B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B170C5F01FA89A3300B398DC /* ViewComponent.swift */; };
 		B170C5F91FA89BBA00B398DC /* SizeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B170C5F81FA89BBA00B398DC /* SizeComponent.swift */; };
+		B17765761FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17765751FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift */; };
 		B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */; };
 		B18262261FA4D9F400D41A8A /* InsetComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18262251FA4D9F400D41A8A /* InsetComponent.swift */; };
 		B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */; };
@@ -220,6 +221,7 @@
 		B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexboxComponent.swift; sourceTree = "<group>"; };
 		B170C5F01FA89A3300B398DC /* ViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
 		B170C5F81FA89BBA00B398DC /* SizeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeComponent.swift; sourceTree = "<group>"; };
+		B17765751FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B18262251FA4D9F400D41A8A /* InsetComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponent.swift; sourceTree = "<group>"; };
 		B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetComponentSnapshotTests.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				B15967171FA7E95500FEDC5C /* ImageComponentSnapshotTests.swift */,
 				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
 				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
+				B17765751FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 				B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */,
 				B18262111FA356E800D41A8A /* ScrollComponentSnapshotTests.swift */,
@@ -840,6 +843,7 @@
 				B15967081FA7DCE900FEDC5C /* TextKitTests.swift in Sources */,
 				B18262121FA356E800D41A8A /* ScrollComponentSnapshotTests.swift in Sources */,
 				B136BED01F8EFDA3001EE264 /* ViewAttributeTests.swift in Sources */,
+				B17765761FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift in Sources */,
 				B1F16E781FA9EB2D0037CD9B /* ComponentMemoizationTests.swift in Sources */,
 				B1F16E761FA9E7630037CD9B /* GestureTestAdditions.swift in Sources */,
 			);
