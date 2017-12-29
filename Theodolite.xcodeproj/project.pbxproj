@@ -22,6 +22,7 @@
 		B11D60111FA93EDD002F417B /* TextKitLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D60101FA93EDD002F417B /* TextKitLayer.swift */; };
 		B11F220F1FADEDCC005CBD23 /* ScopedResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F220E1FADEDCC005CBD23 /* ScopedResponder.swift */; };
 		B11F22171FADF5DB005CBD23 /* ScopedResponderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */; };
+		B1257D431FF5897400EDA775 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1257D421FF5897400EDA775 /* ButtonComponent.swift */; };
 		B12916041FA2A36D006D269B /* ScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12916031FA2A36D006D269B /* ScrollComponent.swift */; };
 		B12B7DE61FA34F7C004DC3F4 /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1658B5A1F9B6A8C000EC8CC /* Flexbox.framework */; };
 		B136BE521F8D5741001EE264 /* Theodolite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B136BE481F8D5741001EE264 /* Theodolite.framework */; };
@@ -167,6 +168,7 @@
 		B11D60121FA93FA3002F417B /* TheodoliteMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheodoliteMacros.h; sourceTree = "<group>"; };
 		B11F220E1FADEDCC005CBD23 /* ScopedResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedResponder.swift; sourceTree = "<group>"; };
 		B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopedResponderTests.swift; sourceTree = "<group>"; };
+		B1257D421FF5897400EDA775 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		B12916031FA2A36D006D269B /* ScrollComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollComponent.swift; sourceTree = "<group>"; };
 		B136BE481F8D5741001EE264 /* Theodolite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Theodolite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B136BE4B1F8D5741001EE264 /* Theodolite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theodolite.h; sourceTree = "<group>"; };
@@ -467,8 +469,9 @@
 		B182624D1FA55F2200D41A8A /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
+				B1257D421FF5897400EDA775 /* ButtonComponent.swift */,
 				B15966E51FA7C41800FEDC5C /* ImageComponent.swift */,
+				B12916031FA2A36D006D269B /* ScrollComponent.swift */,
 				B170C5F01FA89A3300B398DC /* ViewComponent.swift */,
 			);
 			path = Content;
@@ -760,6 +763,7 @@
 				B18262511FA55F8900D41A8A /* TapAttribute.swift in Sources */,
 				B136BEB21F8D69C9001EE264 /* TypedComponent.swift in Sources */,
 				B1E6C61F1FAD21570018CE8A /* PullToRefreshComponent.swift in Sources */,
+				B1257D431FF5897400EDA775 /* ButtonComponent.swift in Sources */,
 				B1574DDA1FA681E000E91D09 /* ComponentLayout.swift in Sources */,
 				B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */,
 				B136BEAF1F8D69C9001EE264 /* Component.swift in Sources */,
