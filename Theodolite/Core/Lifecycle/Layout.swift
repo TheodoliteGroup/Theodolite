@@ -12,6 +12,8 @@ public class Layout: Hashable, Equatable {
   public let component: Component
   public let size: CGSize
   public let children: [LayoutChild]
+
+  private var intersectionCache: IntersectionCache? = nil
   
   /* 
    Can be used to pass data from layout to mount. Useful if you want to pre-compute something, and then use the
@@ -32,6 +34,10 @@ public class Layout: Hashable, Equatable {
     self.size = size
     self.children = children
     self.extra = extra
+
+    if (children.count > 10) {
+      self.intersectionCache = IntersectionCache(layout: self)
+    }
   }
   
   static func empty(component: Component) -> Layout {
@@ -39,7 +45,7 @@ public class Layout: Hashable, Equatable {
   }
   
   public var hashValue: Int {
-    return unsafeBitCast(self, to: Int.self)
+    return ObjectIdentifier(self).hashValue
   }
   
   static public func ==(lhs: Layout, rhs: Layout) -> Bool {
@@ -50,10 +56,31 @@ public class Layout: Hashable, Equatable {
     // Tearing down the layout hierarchy is expensive! We dispatch to a background thread to tear down the tree
     // below the top layout.
     if Thread.isMainThread {
-      var capturedChildren: [LayoutChild] = children
+      var capturedChildren: [LayoutChild] = self.children
+      var intersectionCache = self.intersectionCache
       DispatchQueue.global().async {
         capturedChildren.removeAll()
+        // silly, I know, but this is to silence a warning of writing but never reading.
+        if intersectionCache != nil {
+          intersectionCache = nil
+        }
       }
+    }
+  }
+
+  public func intersectingChildren(rect: CGRect) -> [LayoutChild] {
+    if let intersectionCache = self.intersectionCache {
+      return intersectionCache.intersectingChildren(rect: rect)
+    } else {
+      var intersecting: [LayoutChild] = []
+      for layoutChild in children {
+        let childFrame = CGRect(origin: layoutChild.position,
+                                size: layoutChild.layout.size)
+        if childFrame.intersects(rect) {
+          intersecting.append(layoutChild)
+        }
+      }
+      return intersecting
     }
   }
 }

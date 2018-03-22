@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0067BC726B3E2DAA188299DA /* Pods_TheodoliteFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 919294A8BA009ABCDA84E0E2 /* Pods_TheodoliteFeed.framework */; };
 		B11F22201FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F221F1FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift */; };
 		B11F22231FAE47FC005CBD23 /* NewsItemCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F22221FAE47FC005CBD23 /* NewsItemCardComponent.swift */; };
 		B11F22291FAE50D4005CBD23 /* ViewCompositeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F22281FAE50D4005CBD23 /* ViewCompositeComponent.swift */; };
@@ -128,7 +127,6 @@
 				B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */,
 				B182628A1FA56A9A00D41A8A /* Flexbox.framework in Frameworks */,
 				B18262891FA56A9600D41A8A /* Theodolite.framework in Frameworks */,
-				0067BC726B3E2DAA188299DA /* Pods_TheodoliteFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
