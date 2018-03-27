@@ -46,16 +46,16 @@ public struct ScopeIdentifier: Equatable, Hashable {
 public class ScopeHandle {
   let identifier: ScopeIdentifier
   let state: Any?
-  let stateUpdater: (ScopeIdentifier, Any?) -> ()
+  let stateUpdater: (ScopeIdentifier, Any?, StateMode) -> ()
   let responder: ScopedResponder
   
-  convenience init(responder: ScopedResponder, parentIdentifier: ScopeIdentifier, state: Any?, stateUpdater: @escaping (ScopeIdentifier, Any?) -> ()) {
+  convenience init(responder: ScopedResponder, parentIdentifier: ScopeIdentifier, state: Any?, stateUpdater: @escaping (ScopeIdentifier, Any?, StateMode) -> ()) {
     self.init(responder: responder, identifier: parentIdentifier.append(__currentIdentifier.update({ (val: Int32) -> Int32 in
       return val + 1
     })), state: state, stateUpdater: stateUpdater)
   }
   
-  init(responder: ScopedResponder, identifier: ScopeIdentifier, state: Any?, stateUpdater: @escaping (ScopeIdentifier, Any?) -> ()) {
+  init(responder: ScopedResponder, identifier: ScopeIdentifier, state: Any?, stateUpdater: @escaping (ScopeIdentifier, Any?, StateMode) -> ()) {
     self.identifier = identifier
     self.state = state
     self.stateUpdater = stateUpdater

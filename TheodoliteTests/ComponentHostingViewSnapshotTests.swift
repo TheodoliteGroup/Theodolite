@@ -27,7 +27,7 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
   }
 
   func test_stateUpdateChangesRendering() {
-    final class TestComponent: Component, TypedComponent {
+    final class AsyncTestComponent: Component, TypedComponent {
       
       typealias PropType = () -> ()
       typealias StateType = Bool
@@ -51,7 +51,7 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
     var calledUpdate = false
 
     let view = ComponentHostingView { () -> Component in
-      return TestComponent(
+      return AsyncTestComponent(
         {
           calledUpdate = true
         }
@@ -64,6 +64,40 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
     waitUntil(timeout: 2) { () -> Bool in
       return calledUpdate
     }
+
+    view.layoutSubviews()
+
+    self.FBSnapshotVerifyView(view)
+  }
+
+  func test_syncStateUpdateChangesRendering() {
+    final class SyncTestComponent: Component, TypedComponent {
+
+      typealias PropType = () -> ()
+      typealias StateType = Bool
+
+      override func render() -> [Component] {
+        return [LabelComponent(
+          ((self.state ?? false) ? "state updated" : "state NOT updated",
+           LabelComponent.Options())
+          )]
+      }
+
+      override func componentDidMount() {
+        if self.state == nil {
+          self.updateState(state: true, mode: .sync)
+        } else {
+          self.props()
+        }
+      }
+    }
+
+    let view = ComponentHostingView { () -> Component in
+      return SyncTestComponent({})
+    }
+    view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+
+    view.layoutSubviews()
 
     view.layoutSubviews()
 

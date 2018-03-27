@@ -20,14 +20,14 @@ class ScopeTests: XCTestCase {
   /** Scope Handle tests */
   
   func test_whenBuildingTwoScopeHandles_eachGetsAUniqueIdentifier() {
-    let scope1 = ScopeHandle(responder: ScopedResponder(), parentIdentifier: ScopeIdentifier(path: []), state: nil) { _,_ in }
-    let scope2 = ScopeHandle(responder: ScopedResponder(), parentIdentifier: ScopeIdentifier(path: []), state: nil) { _,_ in }
+    let scope1 = ScopeHandle(responder: ScopedResponder(), parentIdentifier: ScopeIdentifier(path: []), state: nil) { _,_,_ in }
+    let scope2 = ScopeHandle(responder: ScopedResponder(), parentIdentifier: ScopeIdentifier(path: []), state: nil) { _,_,_ in }
     
     XCTAssertNotEqual(scope1.identifier, scope2.identifier)
   }
   
   func test_whenBuildingScopeHandleWithIdentifier_thatIdentifierIsSetOnScopeHandle() {
-    let scope = ScopeHandle(responder: ScopedResponder(), identifier: ScopeIdentifier(path: [42]), state: nil) { _,_ in }
+    let scope = ScopeHandle(responder: ScopedResponder(), identifier: ScopeIdentifier(path: [42]), state: nil) { _,_,_ in }
     XCTAssertEqual(scope.identifier, ScopeIdentifier(path: [42]))
   }
   

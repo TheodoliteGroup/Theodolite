@@ -49,6 +49,8 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   private var mountedLayout: Layout?
   private var stateUpdateMap: [ScopeIdentifier:Any?] = [:]
   private var dispatched: Bool = false
+  private var sentinel: Int64 = 0
+  private var processingSyncUpdate = false
   
   public init(factory: @escaping () -> Component) {
     self.factory = factory
@@ -112,6 +114,7 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
     let previousRoot = self.root
     let factory = self.factory
     let constraint = self.bounds.size
+    let originalSentinel = self.sentinel
     DispatchQueue.global().async {
       let newRoot = ScopeRoot(previousRoot: previousRoot,
                               listener: self,
@@ -123,6 +126,11 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
       let newLayout = newRoot.root.component().layout(constraint: SizeRange(max: constraint),
                                                       tree: newRoot.root)
       DispatchQueue.main.async(execute: {
+        // If a sync update came through in the meantime, then we have to abort.
+        if originalSentinel != self.sentinel {
+          return
+        }
+        self.sentinel += 1
         self.dispatched = false
         self.root = newRoot
         self.lastLayout = CachedLayout(constraint: constraint, layout: newLayout)
@@ -136,10 +144,33 @@ public final class ComponentHostingView: UIView, StateUpdateListener {
   
   // MARK: StateUpdateListener
   
-  public func receivedStateUpdate(identifier: ScopeIdentifier, update: Any?) {
+  public func receivedStateUpdate(identifier: ScopeIdentifier, update: Any?, mode: StateMode) {
     let block = {
-      self.stateUpdateMap[identifier] = update
-      self.markNeedsReset()
+      if mode == .sync {
+        self.stateUpdateMap[identifier] = update
+        if !self.processingSyncUpdate {
+          self.processingSyncUpdate = true
+          while(!self.stateUpdateMap.isEmpty) {
+            let stateUpdates = self.stateUpdateMap
+            self.stateUpdateMap.removeAll()
+            let newRoot = ScopeRoot(previousRoot: self.root,
+                                    listener: self,
+                                    stateUpdateMap: stateUpdates,
+                                    factory: self.factory)
+            self.sentinel += 1
+            self.root = newRoot
+            self.lastLayout = nil
+            self.setNeedsLayout()
+            if (!self.stateUpdateMap.isEmpty) {
+              print("Received re-entrant state update: \(self.stateUpdateMap)")
+            }
+          }
+          self.processingSyncUpdate = false
+        }
+      } else {
+        self.stateUpdateMap[identifier] = update
+        self.markNeedsReset()
+      }
     }
 
     if !Thread.isMainThread {

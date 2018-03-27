@@ -87,6 +87,7 @@
 		B1987C081FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1987C071FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift */; };
 		B19BBD2A1F9061E700116386 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B19BBD231F9061D100116386 /* FBSnapshotTestCase.framework */; };
 		B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19BBD2B1F90620E00116386 /* ViewMountTests.swift */; };
+		B1A8FD5E2064A1B900443AE4 /* StateMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A8FD5D2064A1B900443AE4 /* StateMode.swift */; };
 		B1B511F91FA1793100B854F0 /* MountContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B511F81FA1793100B854F0 /* MountContext.swift */; };
 		B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */; };
 		B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FD71F995413005A8CBE /* LabelComponent.swift */; };
@@ -239,6 +240,7 @@
 		B1987C071FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		B19BBD1B1F9061D100116386 /* FBSnapshotTestCase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FBSnapshotTestCase.xcodeproj; path = "Carthage/Checkouts/ios-snapshot-test-case/FBSnapshotTestCase.xcodeproj"; sourceTree = "<group>"; };
 		B19BBD2B1F90620E00116386 /* ViewMountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMountTests.swift; sourceTree = "<group>"; };
+		B1A8FD5D2064A1B900443AE4 /* StateMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMode.swift; sourceTree = "<group>"; };
 		B1B511F81FA1793100B854F0 /* MountContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountContext.swift; sourceTree = "<group>"; };
 		B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardViewAttributes.swift; sourceTree = "<group>"; };
 		B1C14FD71F995413005A8CBE /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				B136BEAC1F8D69C9001EE264 /* Layout.swift */,
 				B1B511F81FA1793100B854F0 /* MountContext.swift */,
 				B18623CD2039C9B400D3DF6B /* IntersectionCache.swift */,
+				B1A8FD5D2064A1B900443AE4 /* StateMode.swift */,
 			);
 			path = Lifecycle;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				B18750C01FA6B44300C4DA47 /* TextKitAttributes.swift in Sources */,
 				B11D60111FA93EDD002F417B /* TextKitLayer.swift in Sources */,
 				B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */,
+				B1A8FD5E2064A1B900443AE4 /* StateMode.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
 				B143E5DB1FC073A500DB4655 /* ListComponent.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
