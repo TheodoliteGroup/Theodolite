@@ -11,8 +11,12 @@ import Foundation
 public struct SizeRange: Hashable, Equatable {
   public let min: CGSize
   public let max: CGSize
+
+  public init(_ size: CGSize) {
+    self.init(min: size, max: size)
+  }
   
-  init(min: CGSize = CGSize(width: CGFloat.nan, height: CGFloat.nan),
+  public init(min: CGSize = CGSize(width: CGFloat.nan, height: CGFloat.nan),
        max: CGSize) {
     self.min = min
     self.max = max
