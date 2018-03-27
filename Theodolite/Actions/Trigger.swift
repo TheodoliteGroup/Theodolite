@@ -62,7 +62,6 @@ public class Trigger<Arg>: Equatable, Hashable {
    Gives the trigger something to actually invoke when the parent component calls invoke(...)
    */
   public func resolve(_ action: Action<Arg>) {
-    assert(self.action == nil)
     self.action = action
   }
 
