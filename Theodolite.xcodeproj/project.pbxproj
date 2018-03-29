@@ -94,6 +94,8 @@
 		B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */; };
 		B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FD71F995413005A8CBE /* LabelComponent.swift */; };
 		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
+		B1DE013C206D4D0700BBE93B /* BackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DE013B206D4D0700BBE93B /* BackgroundComponent.swift */; };
+		B1DE013E206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DE013D206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift */; };
 		B1E6C61F1FAD21570018CE8A /* PullToRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6C61E1FAD21570018CE8A /* PullToRefreshComponent.swift */; };
 		B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */; };
 		B1EFED8120633B1F00AD6F41 /* IntersectionCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFED8020633B1F00AD6F41 /* IntersectionCacheTests.swift */; };
@@ -249,6 +251,8 @@
 		B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardViewAttributes.swift; sourceTree = "<group>"; };
 		B1C14FD71F995413005A8CBE /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
+		B1DE013B206D4D0700BBE93B /* BackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundComponent.swift; sourceTree = "<group>"; };
+		B1DE013D206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B1E6C61E1FAD21570018CE8A /* PullToRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshComponent.swift; sourceTree = "<group>"; };
 		B1EC97FA1F90E88F0086A5D7 /* ComponentTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTree.swift; sourceTree = "<group>"; };
 		B1EFED8020633B1F00AD6F41 /* IntersectionCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntersectionCacheTests.swift; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 				B1EFED8020633B1F00AD6F41 /* IntersectionCacheTests.swift */,
 				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
 				B140BD80206D44B0001907A0 /* OverlayComponentSnapshotTests.swift */,
+				B1DE013D206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift */,
 				B17765751FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 				B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */,
@@ -476,10 +481,11 @@
 		B182624C1FA55F0F00D41A8A /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				B1DE013B206D4D0700BBE93B /* BackgroundComponent.swift */,
 				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
 				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
-				B170C5F81FA89BBA00B398DC /* SizeComponent.swift */,
 				B140BD78206C0001001907A0 /* OverlayComponent.swift */,
+				B170C5F81FA89BBA00B398DC /* SizeComponent.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -815,6 +821,7 @@
 				B18750C21FA6B6F300C4DA47 /* TextKitContext.swift in Sources */,
 				B11F220F1FADEDCC005CBD23 /* ScopedResponder.swift in Sources */,
 				B143E5FC1FC1EE9700DB4655 /* ActivityIndicatorComponent.swift in Sources */,
+				B1DE013C206D4D0700BBE93B /* BackgroundComponent.swift in Sources */,
 				B136BECA1F8EFCED001EE264 /* ViewPoolMap.swift in Sources */,
 				B136BECC1F8EFD17001EE264 /* ViewAttribute.swift in Sources */,
 				B136BEC81F8EFCA5001EE264 /* StateUpdateListener.swift in Sources */,
@@ -843,6 +850,7 @@
 				B19BBD2C1F90620E00116386 /* ViewMountTests.swift in Sources */,
 				B1987C081FAE722D007A6DC0 /* ComponentViewControllerSnapshotTests.swift in Sources */,
 				B15967161FA7E85C00FEDC5C /* TapComponentSnapshotTests.swift in Sources */,
+				B1DE013E206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift in Sources */,
 				B18750CC1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift in Sources */,
 				B15967141FA7E1A200FEDC5C /* ComponentKeyTests.swift in Sources */,
 				B18262301FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift in Sources */,
