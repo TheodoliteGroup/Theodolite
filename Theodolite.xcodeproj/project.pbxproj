@@ -52,6 +52,8 @@
 		B137B9E91FA16DAE009BE1E3 /* TypedComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */; };
 		B137B9EB1FA16E09009BE1E3 /* TypedComponentProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */; };
 		B139CB621FDAC1D6000876E1 /* EntryPointComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139CB611FDAC1D6000876E1 /* EntryPointComponent.swift */; };
+		B140BD79206C0001001907A0 /* OverlayComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B140BD78206C0001001907A0 /* OverlayComponent.swift */; };
+		B140BD81206D44B0001907A0 /* OverlayComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B140BD80206D44B0001907A0 /* OverlayComponentSnapshotTests.swift */; };
 		B143E5DB1FC073A500DB4655 /* ListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DA1FC073A500DB4655 /* ListComponent.swift */; };
 		B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DC1FC07FE500DB4655 /* Trigger.swift */; };
 		B143E5DF1FC080D800DB4655 /* TriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B143E5DE1FC080D800DB4655 /* TriggerTests.swift */; };
@@ -204,6 +206,8 @@
 		B137B9E81FA16DAE009BE1E3 /* TypedComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentState.swift; sourceTree = "<group>"; };
 		B137B9EA1FA16E09009BE1E3 /* TypedComponentProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedComponentProps.swift; sourceTree = "<group>"; };
 		B139CB611FDAC1D6000876E1 /* EntryPointComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointComponent.swift; sourceTree = "<group>"; };
+		B140BD78206C0001001907A0 /* OverlayComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayComponent.swift; sourceTree = "<group>"; };
+		B140BD80206D44B0001907A0 /* OverlayComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B143E5DA1FC073A500DB4655 /* ListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListComponent.swift; sourceTree = "<group>"; };
 		B143E5DC1FC07FE500DB4655 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		B143E5DE1FC080D800DB4655 /* TriggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerTests.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 				B182622F1FA4DD6900D41A8A /* InsetComponentSnapshotTests.swift */,
 				B1EFED8020633B1F00AD6F41 /* IntersectionCacheTests.swift */,
 				B18750CB1FA745AB00C4DA47 /* LabelComponentSnapshotTests.swift */,
+				B140BD80206D44B0001907A0 /* OverlayComponentSnapshotTests.swift */,
 				B17765751FF6BBA20017DDE9 /* ButtonComponentSnapshotTests.swift */,
 				B136BEBD1F8D8F39001EE264 /* ScopeTests.swift */,
 				B11F22161FADF5DB005CBD23 /* ScopedResponderTests.swift */,
@@ -474,6 +479,7 @@
 				B1658B5E1F9B6AF4000EC8CC /* FlexboxComponent.swift */,
 				B18262251FA4D9F400D41A8A /* InsetComponent.swift */,
 				B170C5F81FA89BBA00B398DC /* SizeComponent.swift */,
+				B140BD78206C0001001907A0 /* OverlayComponent.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -802,6 +808,7 @@
 				B143E5DD1FC07FE500DB4655 /* Trigger.swift in Sources */,
 				B1A8FD5E2064A1B900443AE4 /* StateMode.swift in Sources */,
 				B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */,
+				B140BD79206C0001001907A0 /* OverlayComponent.swift in Sources */,
 				B143E5DB1FC073A500DB4655 /* ListComponent.swift in Sources */,
 				B136BEB41F8D69DC001EE264 /* Utilities.swift in Sources */,
 				B170C5F11FA89A3300B398DC /* ViewComponent.swift in Sources */,
@@ -845,6 +852,7 @@
 				B136BEBE1F8D8F39001EE264 /* ScopeTests.swift in Sources */,
 				B15966D41FA7C01900FEDC5C /* TextComponentSnapshotTests.swift in Sources */,
 				B136BE571F8D5741001EE264 /* TheodoliteTests.swift in Sources */,
+				B140BD81206D44B0001907A0 /* OverlayComponentSnapshotTests.swift in Sources */,
 				B143E5DF1FC080D800DB4655 /* TriggerTests.swift in Sources */,
 				B136BEC61F8EFA04001EE264 /* ViewPoolTests.swift in Sources */,
 				B15967121FA7DDE200FEDC5C /* ComponentHostingViewSnapshotTests.swift in Sources */,
