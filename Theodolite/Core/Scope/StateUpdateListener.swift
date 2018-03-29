@@ -15,5 +15,5 @@ import Foundation
  implemented by any hosting infrastructure that renders and re-renders components in response to state updates.
  */
 public protocol StateUpdateListener: class {
-  func receivedStateUpdate(identifier: ScopeIdentifier, update: Any?, mode: StateMode)
+  func receivedStateUpdate(identifier: ScopeIdentifier, update: Any?)
 }

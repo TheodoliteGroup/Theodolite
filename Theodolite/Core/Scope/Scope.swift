@@ -49,10 +49,9 @@ public class Scope: ComponentTree {
           identifier: prev._handle.identifier,
           state: stateUpdateMap[prev._handle.identifier]
             ?? prev._handle.state) {
-              [weak listener] (identifier: ScopeIdentifier, value: Any?, mode: StateMode) in
+              [weak listener] (identifier: ScopeIdentifier, value: Any?) in
               listener?.receivedStateUpdate(identifier: identifier,
-                                            update: value,
-                                            mode: mode)
+                                            update: value)
         }
       }
     } else {
@@ -62,8 +61,8 @@ public class Scope: ComponentTree {
         responder: ScopedResponder(list: ResponderList(), responder: component),
         parentIdentifier: parentIdentifier,
         state:typed?.initialUntypedState()) {
-          [weak listener](identifier: ScopeIdentifier, state: Any?, mode: StateMode) -> () in
-          listener?.receivedStateUpdate(identifier: identifier, update: state, mode: mode)
+          [weak listener](identifier: ScopeIdentifier, state: Any?) -> () in
+          listener?.receivedStateUpdate(identifier: identifier, update: state)
       }
     }
     setScopeHandle(component: component, handle: _handle)

@@ -23,9 +23,9 @@ public extension TypedComponent {
     return nil
   }
   
-  func updateState(state: StateType?, mode: StateMode = .async) {
+  func updateState(state: StateType?) {
     if let handle = getScopeHandle(component: self) {
-      handle.stateUpdater(handle.identifier, state, mode)
+      handle.stateUpdater(handle.identifier, state)
     } else {
       assert(false, "Updating state before handle set on component. This state update will no-op")
     }
