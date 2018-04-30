@@ -34,7 +34,7 @@ public class ButtonComponent: Component, TypedComponent {
     /** Additional attributes for the underlying UIBUtton. */
     let attributes: [Attribute]?
     
-    init(
+    public init(
       actions: [UIControlEvents:[Action<UIButton>]]? = nil,
       titles: StateMap<String>? = nil,
       titleColors: StateMap<UIColor>? = nil,
