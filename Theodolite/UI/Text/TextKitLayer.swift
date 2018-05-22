@@ -54,6 +54,10 @@ public final class TextKitLayer: TheodoliteAsyncLayer {
     fatalError("init(coder:) has not been implemented")
   }
 
+  public override init(layer: Any) {
+    super.init(layer: layer)
+  }
+
   public override class func defaultValue(forKey key: String) -> Any? {
     switch key {
     case "contentsScale":
