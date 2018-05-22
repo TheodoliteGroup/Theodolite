@@ -13,7 +13,7 @@ class ActionTests: XCTestCase {
   class TestObject {
     let action: () -> ()
 
-    func actionMethod() {
+    func actionMethod(_: Void) {
       self.action()
     }
 
@@ -45,7 +45,7 @@ class ActionTests: XCTestCase {
       calledFunction = true
     })
     let handler = Handler(testObj, TestObject.actionMethod)
-    handler.send()
+    handler.send(Void())
     XCTAssert(calledFunction)
   }
   

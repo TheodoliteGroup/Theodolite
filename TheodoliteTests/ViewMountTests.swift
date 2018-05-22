@@ -189,7 +189,7 @@ class ViewMountTests: FBSnapshotTestCase {
         let str = self.props as NSString
         let size = str.boundingRect(with: constraint.max,
                                     options: NSStringDrawingOptions(),
-                                    attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: 12)],
+                                    attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 12)],
                                     context: nil).size
         return Layout(component: self,
                       size: CGSize(width: ceil(size.width), height: ceil(size.height)),

@@ -13,7 +13,7 @@ class TriggerTests: XCTestCase {
   class TestObject {
     let action: () -> ()
 
-    func actionMethod() {
+    func actionMethod(_: Void) {
       self.action()
     }
 
@@ -47,7 +47,7 @@ class TriggerTests: XCTestCase {
     let trigger = Trigger<Void>()
     let handler = Handler(testObj, TestObject.actionMethod)
     trigger.resolve(handler)
-    trigger.invoke()
+    trigger.invoke(Void())
     XCTAssert(calledFunction)
   }
 
