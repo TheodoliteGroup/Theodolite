@@ -20,7 +20,7 @@ jobs:
           command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 5s
-            SCAN_SCHEME: WebTests
+            SCAN_SCHEME: theodolite
 
       # Collect XML test results data to show in the UI,
       # and save the same XML files under test-results folder
