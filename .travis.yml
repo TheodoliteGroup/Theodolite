@@ -1,5 +1,2 @@
 language: swift
-env:
-  - SWIFT_VERSION=4.0
-
-script: xcodebuild -scheme theodolite build test -destination "platform=iOS Simulator,name=iPhone 5s"
+script: carthage bootstrap && xcodebuild -scheme theodolite build test -destination "platform=iOS Simulator,name=iPhone 5s"
