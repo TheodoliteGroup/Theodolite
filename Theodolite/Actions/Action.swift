@@ -37,6 +37,8 @@ public class Action<Arg> {
   public init() {}
   public func send(_ argument: Arg) {
     // No-op
+    // Intentionall broken code to test CI:
+    bla()
   }
 }
 
