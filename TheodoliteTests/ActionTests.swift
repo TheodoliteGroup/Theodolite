@@ -34,6 +34,10 @@ class ActionTests: XCTestCase {
     }
   }
 
+  func test_broken() {
+    XCTFail()
+  }
+
   func test_thatDefaultActions_doNotCrash() {
     let action: Action<Int32> = Action<Int32>()
     action.send(0)
