@@ -41,7 +41,7 @@ final class NewsNetworkSourceHScrollComponent: Component, TypedComponent {
               return FlexChild(
                 SizeComponent(
                   key: item.url,
-                  (size: CGSize(width: UIScreen.main.bounds.size.width, height: CGFloat.nan),
+                  (size: SizeRange(CGSize(width: UIScreen.main.bounds.size.width, height: CGFloat.nan)),
                    component:
                     NewsItemCardComponent(
                       key: item.url,

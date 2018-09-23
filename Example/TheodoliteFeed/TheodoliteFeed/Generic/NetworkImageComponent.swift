@@ -31,7 +31,7 @@ final class NetworkImageComponent: Component, TypedComponent {
           switch networkState {
           case .pending:
             component = SizeComponent(
-              (size: props.size,
+              (size: SizeRange(props.size),
                component: ViewComponent(
                 ViewConfiguration(
                   view: UIView.self,
