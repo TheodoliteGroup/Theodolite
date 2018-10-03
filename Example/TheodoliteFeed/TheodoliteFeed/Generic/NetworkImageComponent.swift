@@ -19,6 +19,22 @@ final class NetworkImageComponent: Component, TypedComponent {
   )
   typealias StateType = UIImage
 
+  func scaledImage(image:UIImage, size: CGSize) -> UIImage {
+    UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+    defer { UIGraphicsEndImageContext() }
+    image.draw(in: CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height))
+    return UIGraphicsGetImageFromCurrentImageContext()!
+  }
+
+  func resizedImage(image:UIImage, size:CGSize) -> UIImage {
+    let aspect = image.size.width / image.size.height
+    if size.width / aspect <= size.height {
+      return scaledImage(image:image, size:CGSize(width: size.width, height: size.width / aspect))
+    } else {
+      return scaledImage(image:image, size:CGSize(width: size.height * aspect, height: size.height))
+    }
+  }
+
   override func render() -> [Component] {
     // Don't capture self here
     let props = self.props
@@ -45,11 +61,12 @@ final class NetworkImageComponent: Component, TypedComponent {
             guard let image = state ?? UIImage(data: data) else {
               break
             }
+            let resized = self!.resizedImage(image:image, size:props.size)
             if state == nil {
-              self?.updateState(state: image)
+              self!.updateState(state: resized)
             }
             component = ImageComponent(
-              (image,
+              ({ resized },
                size: props.size,
                options: ViewOptions(
                 clipsToBounds: true,
