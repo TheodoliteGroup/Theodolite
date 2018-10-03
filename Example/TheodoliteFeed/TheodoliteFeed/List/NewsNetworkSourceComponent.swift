@@ -44,12 +44,6 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
           UIFont(name: "Georgia",
                  size: 40)!))
     ), margin: Edges.init(left: 20, right: 20, top: 10, bottom: 0)))
-
-    children.append(FlexChild(NewsNetworkSourceHScrollComponent(
-      key: props.latestNewsSource.url,
-      (networkSource: props.latestNewsSource,
-       navigationCoordinator: props.navigationCoordinator)
-    )))
     
     let first = state.newsItems.first!
     children.append(FlexChild(NewsItemFeaturedComponent(key: first.url, (first, navigationCoordinator: props.navigationCoordinator))))

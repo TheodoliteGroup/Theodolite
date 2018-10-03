@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B11F22201FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F221F1FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift */; };
 		B11F22231FAE47FC005CBD23 /* NewsItemCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F22221FAE47FC005CBD23 /* NewsItemCardComponent.swift */; };
 		B11F22291FAE50D4005CBD23 /* ViewCompositeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11F22281FAE50D4005CBD23 /* ViewCompositeComponent.swift */; };
 		B12471FE1FA9FB8700F9434E /* NewsItemFeaturedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12471FD1FA9FB8700F9434E /* NewsItemFeaturedComponent.swift */; };
@@ -84,7 +83,6 @@
 /* Begin PBXFileReference section */
 		919294A8BA009ABCDA84E0E2 /* Pods_TheodoliteFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheodoliteFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF3EEA20B0D27E2F32EC219 /* Pods-TheodoliteFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheodoliteFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheodoliteFeed/Pods-TheodoliteFeed.release.xcconfig"; sourceTree = "<group>"; };
-		B11F221F1FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsNetworkSourceHScrollComponent.swift; sourceTree = "<group>"; };
 		B11F22221FAE47FC005CBD23 /* NewsItemCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCardComponent.swift; sourceTree = "<group>"; };
 		B11F22281FAE50D4005CBD23 /* ViewCompositeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompositeComponent.swift; sourceTree = "<group>"; };
 		B12471FD1FA9FB8700F9434E /* NewsItemFeaturedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemFeaturedComponent.swift; sourceTree = "<group>"; };
@@ -140,14 +138,6 @@
 				9DF3EEA20B0D27E2F32EC219 /* Pods-TheodoliteFeed.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		B11F221D1FAE0810005CBD23 /* HScroll */ = {
-			isa = PBXGroup;
-			children = (
-				B11F221F1FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift */,
-			);
-			path = HScroll;
 			sourceTree = "<group>";
 		};
 		B11F22211FAE47E7005CBD23 /* Cards */ = {
@@ -234,7 +224,6 @@
 			children = (
 				B18C853A1FC3CA62008B27F9 /* Models */,
 				B11F22211FAE47E7005CBD23 /* Cards */,
-				B11F221D1FAE0810005CBD23 /* HScroll */,
 				B1E6C60D1FAD16D30018CE8A /* Navigation */,
 				B12472081FA9FF8600F9434E /* Generic */,
 				B18262691FA5685300D41A8A /* LaunchScreen.storyboard */,
@@ -439,7 +428,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B11F22201FAE0868005CBD23 /* NewsNetworkSourceHScrollComponent.swift in Sources */,
 				B1F16E801FA9F79D0037CD9B /* NetworkImageComponent.swift in Sources */,
 				B1483B3C1FA806E100796C58 /* NewsItemDescriptionComponent.swift in Sources */,
 				B1483B441FA8951100796C58 /* NewsItemImageComponent.swift in Sources */,
