@@ -10,7 +10,7 @@ import UIKit
 
 public final class ImageComponent: Component, TypedComponent {
   public typealias PropType = (
-    UIImage,
+    () -> UIImage,
     size: CGSize,
     options: ViewOptions
   )
@@ -18,7 +18,7 @@ public final class ImageComponent: Component, TypedComponent {
   public override func view() -> ViewConfiguration? {
     var attributes = self.props.options.viewAttributes()
 
-    attributes.append(Attr(self.props.0, identifier: "theodolite-TextKitAttributes")
+    attributes.append(Attr(self.props.0(), identifier: "theodolite-TextKitAttributes")
     {(view: UIImageView, image: UIImage) in
       view.image = image})
 
