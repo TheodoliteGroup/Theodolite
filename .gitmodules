@@ -4,4 +4,4 @@
 	url = https://github.com/TheodoliteGroup/Flexbox.git
 [submodule "Carthage/Checkouts/ios-snapshot-test-case"]
 	path = Carthage/Checkouts/ios-snapshot-test-case
-	url = https://github.com/facebook/ios-snapshot-test-case.git
+	url = https://github.com/uber/ios-snapshot-test-case.git
