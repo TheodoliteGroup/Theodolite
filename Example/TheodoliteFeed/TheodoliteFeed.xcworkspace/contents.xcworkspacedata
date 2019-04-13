@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:TheodoliteFeed.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:TheodoliteFeed.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

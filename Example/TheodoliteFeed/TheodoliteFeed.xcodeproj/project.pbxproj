@@ -37,7 +37,6 @@
 		B1E6C60F1FAD16F00018CE8A /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */; };
 		B1F16E7D1FA9F0A40037CD9B /* NetworkDataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */; };
 		B1F16E801FA9F79D0037CD9B /* NetworkImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7F1FA9F79D0037CD9B /* NetworkImageComponent.swift */; };
-		E8AA87F7B58640047F7E0AB1 /* Pods_TheodoliteFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 919294A8BA009ABCDA84E0E2 /* Pods_TheodoliteFeed.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +79,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		919294A8BA009ABCDA84E0E2 /* Pods_TheodoliteFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheodoliteFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9DF3EEA20B0D27E2F32EC219 /* Pods-TheodoliteFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheodoliteFeed.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheodoliteFeed/Pods-TheodoliteFeed.release.xcconfig"; sourceTree = "<group>"; };
 		B11F22221FAE47FC005CBD23 /* NewsItemCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCardComponent.swift; sourceTree = "<group>"; };
 		B11F22281FAE50D4005CBD23 /* ViewCompositeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompositeComponent.swift; sourceTree = "<group>"; };
 		B12471FD1FA9FB8700F9434E /* NewsItemFeaturedComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemFeaturedComponent.swift; sourceTree = "<group>"; };
@@ -110,7 +107,6 @@
 		B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataComponent.swift; sourceTree = "<group>"; };
 		B1F16E7F1FA9F79D0037CD9B /* NetworkImageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageComponent.swift; sourceTree = "<group>"; };
-		D7B57B1E03AD572D0C38F441 /* Pods-TheodoliteFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheodoliteFeed.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheodoliteFeed/Pods-TheodoliteFeed.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,22 +118,12 @@
 				B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */,
 				B182628A1FA56A9A00D41A8A /* Flexbox.framework in Frameworks */,
 				B18262891FA56A9600D41A8A /* Theodolite.framework in Frameworks */,
-				E8AA87F7B58640047F7E0AB1 /* Pods_TheodoliteFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E8C774869F25B95299C0905 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D7B57B1E03AD572D0C38F441 /* Pods-TheodoliteFeed.debug.xcconfig */,
-				9DF3EEA20B0D27E2F32EC219 /* Pods-TheodoliteFeed.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		B11F22211FAE47E7005CBD23 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,7 +191,6 @@
 				B182625E1FA5685300D41A8A /* Products */,
 				B182627D1FA56A8B00D41A8A /* Theodolite.xcodeproj */,
 				B18262881FA56A9600D41A8A /* Frameworks */,
-				0E8C774869F25B95299C0905 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				B182628B1FA56A9A00D41A8A /* Flexbox.framework */,
-				919294A8BA009ABCDA84E0E2 /* Pods_TheodoliteFeed.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,7 +262,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B182626F1FA5685300D41A8A /* Build configuration list for PBXNativeTarget "TheodoliteFeed" */;
 			buildPhases = (
-				32E51136E1FC294226AF7877 /* [CP] Check Pods Manifest.lock */,
 				B18262591FA5685300D41A8A /* Sources */,
 				B182625A1FA5685300D41A8A /* Frameworks */,
 				B182625B1FA5685300D41A8A /* Resources */,
@@ -363,27 +346,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		32E51136E1FC294226AF7877 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TheodoliteFeed-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B18262591FA5685300D41A8A /* Sources */ = {
@@ -546,7 +508,6 @@
 		};
 		B18262701FA5685300D41A8A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7B57B1E03AD572D0C38F441 /* Pods-TheodoliteFeed.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -563,7 +524,6 @@
 		};
 		B18262711FA5685300D41A8A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DF3EEA20B0D27E2F32EC219 /* Pods-TheodoliteFeed.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
