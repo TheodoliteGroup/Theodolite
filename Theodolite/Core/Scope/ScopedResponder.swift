@@ -22,14 +22,14 @@ import Foundation
 internal class ResponderList {
   private let lock: os_unfair_lock_t = {
     let lock = os_unfair_lock_t.allocate(capacity: 1)
-    lock.initialize(to: os_unfair_lock_s(), count: 1)
+    lock.initialize(repeating: os_unfair_lock_s(), count: 1)
     return lock
   }()
   private var responders: NSPointerArray = NSPointerArray.weakObjects()
 
   deinit {
     lock.deinitialize(count: 1)
-    lock.deallocate(capacity: 1)
+    lock.deallocate()
   }
 
   internal func append(_ object: AnyObject) -> Int {

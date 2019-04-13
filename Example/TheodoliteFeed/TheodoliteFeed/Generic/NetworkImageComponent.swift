@@ -15,7 +15,7 @@ final class NetworkImageComponent: Component, TypedComponent {
     size: CGSize,
     insets: UIEdgeInsets,
     backgroundColor: UIColor,
-    contentMode: UIViewContentMode
+    contentMode: UIView.ContentMode
   )
   typealias StateType = UIImage
 

@@ -100,7 +100,7 @@ public class ViewPoolMap {
       }
       
       if vendedViewIndex != nextVendedViewIt.offset {
-        guard let swapIndex = subviews.index(of: nextVendedViewIt.current!) else {
+        guard let swapIndex = subviews.firstIndex(of: nextVendedViewIt.current!) else {
           assertionFailure("Expected to find subview \(subview) in \(view)")
           continue
         }

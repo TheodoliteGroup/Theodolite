@@ -50,7 +50,7 @@ public final class PullToRefreshComponent: Component, TypedComponent {
     let view = map
       .checkoutView(component: self, parent: scrollView,
                     config: refreshControlConfig()) as! UIRefreshControl
-    view.addTarget(self, action: #selector(didPullToRefresh), for: UIControlEvents.valueChanged)
+    view.addTarget(self, action: #selector(didPullToRefresh), for: UIControl.Event.valueChanged)
 
     if view.isRefreshing && state != nil {
       view.endRefreshing()
@@ -69,7 +69,7 @@ public final class PullToRefreshComponent: Component, TypedComponent {
     guard let refreshControl = self.refreshControl else {
       return
     }
-    refreshControl.removeTarget(self, action: #selector(didPullToRefresh), for: UIControlEvents.valueChanged)
+    refreshControl.removeTarget(self, action: #selector(didPullToRefresh), for: UIControl.Event.valueChanged)
     refreshControl.isHidden = true
     let scrollView = refreshControl.superview!
     let map = ViewPoolMap.getViewPoolMap(view: scrollView)

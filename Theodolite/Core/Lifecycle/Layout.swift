@@ -44,8 +44,8 @@ public class Layout: Hashable, Equatable {
     return Layout(component: component, size: CGSize(width:0, height:0), children: [])
   }
   
-  public var hashValue: Int {
-    return ObjectIdentifier(self).hashValue
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(ObjectIdentifier(self))
   }
   
   static public func ==(lhs: Layout, rhs: Layout) -> Bool {

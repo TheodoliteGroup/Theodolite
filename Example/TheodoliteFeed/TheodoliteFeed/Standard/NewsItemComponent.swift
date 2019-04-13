@@ -20,7 +20,7 @@ final class NewsItemComponent: Component, TypedComponent {
     let props = self.props
     return [
       InsetComponent(
-        (insets: UIEdgeInsetsMake(10, 20, 40, 20),
+        (insets: UIEdgeInsets.init(top: 10, left: 20, bottom: 40, right: 20),
          component:
           TapComponent(
             (action: Handler(self, NewsItemComponent.tappedItem),

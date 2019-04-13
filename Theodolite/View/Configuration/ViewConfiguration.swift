@@ -19,10 +19,10 @@ public struct ViewConfiguration: Equatable, Hashable {
            "Duplicate attributes. You must provide identifiers for: \(findDuplicates(attributes: attributes))")
   }
   
-  public var hashValue: Int {
-    return self.attributes.reduce(self.view.hash()) {
-      (value: Int, attr: Attribute) -> Int in
-      return value ^ attr.hashValue
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self.view.hash())
+    for attr in self.attributes {
+      hasher.combine(attr)
     }
   }
   
@@ -74,31 +74,6 @@ public struct ViewConfiguration: Equatable, Hashable {
   
   public struct AttributeShape: Equatable, Hashable {
     let config: ViewConfiguration
-    
-    public var hashValue: Int {
-      return config.hashValue
-    }
-    
-    public static func ==(lhs: AttributeShape, rhs: AttributeShape) -> Bool {
-      if lhs.config.view != rhs.config.view {
-        return false
-      }
-      
-      let lhsAttributes = lhs.config.attributes
-      let rhsAttributes = rhs.config.attributes
-      
-      if (lhsAttributes.count != rhsAttributes.count) {
-        return false
-      }
-      
-      for (i, attr) in lhsAttributes.enumerated() {
-        if (!attr.isEquivalent(other: rhsAttributes[i])) {
-          return false
-        }
-      }
-      
-      return true
-    }
   }
 }
 

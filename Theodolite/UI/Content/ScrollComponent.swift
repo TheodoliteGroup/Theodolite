@@ -11,7 +11,7 @@ import UIKit
 public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   public typealias PropType = (
     Component,
-    direction: UICollectionViewScrollDirection,
+    direction: UICollectionView.ScrollDirection,
     attributes: [Attribute]
   )
   public class State {
@@ -44,10 +44,10 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
           .component()
           .layout(constraint:
             SizeRange(max:
-              direction == UICollectionViewScrollDirection.vertical
+              direction == UICollectionView.ScrollDirection.vertical
                 ? CGSize(width: constraint.max.width,
-                         height: nan("unconstrained"))
-                : CGSize(width: nan("unconstrained"),
+                         height: CGFloat.signalingNaN)
+                : CGSize(width: CGFloat.signalingNaN,
                          height: constraint.max.height)),
                   tree: childTree),
         position: CGPoint(x: 0, y: 0))
@@ -62,7 +62,7 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
     
     return Layout(
       component: self,
-      size: direction == UICollectionViewScrollDirection.vertical
+      size: direction == UICollectionView.ScrollDirection.vertical
         ? CGSize(width: contentRect.size.width, height: constraint.max.height)
         : CGSize(width: constraint.max.width, height: contentRect.size.height),
       children: children,

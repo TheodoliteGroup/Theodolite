@@ -62,8 +62,8 @@ public class Attribute: Equatable, Hashable {
   internal var value: AttributeValue?
   internal var applicator: ((UIView) -> (Any?) -> ())?
   
-  public var hashValue: Int {
-    return self.identifier.hashValue
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self.identifier)
   }
   
   public init() {

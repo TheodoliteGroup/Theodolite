@@ -34,13 +34,11 @@ public struct SizeRange: Hashable, Equatable {
       && SizesEqual(lhs.max, rhs.max)
   }
   
-  public var hashValue: Int {
-    return HashArray([
-        min.width,
-        min.height,
-        max.width,
-        max.height
-      ])
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(min.width)
+    hasher.combine(min.height)
+    hasher.combine(max.width)
+    hasher.combine(max.height)
   }
 }
 

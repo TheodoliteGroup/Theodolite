@@ -75,8 +75,8 @@ public class Trigger<Arg>: Equatable, Hashable {
   public static func ==<T>(lhs: Trigger<T>, rhs: Trigger<T>) -> Bool {
     return lhs === rhs
   }
-
-  public var hashValue: Int {
-    return ObjectIdentifier(self).hashValue
+  
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(ObjectIdentifier(self))
   }
 }

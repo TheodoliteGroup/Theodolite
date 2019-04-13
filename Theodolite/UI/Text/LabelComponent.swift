@@ -38,14 +38,14 @@ public final class LabelComponent: Component, TypedComponent {
     options: Options
   )
   
-  func attributes(props: PropType) -> Dictionary<NSAttributedStringKey, Any> {
-    var attr: Dictionary<NSAttributedStringKey, Any> = [:]
-    attr[NSAttributedStringKey.font] = props.options.font
+  func attributes(props: PropType) -> Dictionary<NSAttributedString.Key, Any> {
+    var attr: Dictionary<NSAttributedString.Key, Any> = [:]
+    attr[NSAttributedString.Key.font] = props.options.font
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineBreakMode = props.options.lineBreakMode
     paragraphStyle.alignment = props.options.textAlignment
-    attr[NSAttributedStringKey.paragraphStyle] = paragraphStyle
-    attr[NSAttributedStringKey.foregroundColor] = props.options.textColor
+    attr[NSAttributedString.Key.paragraphStyle] = paragraphStyle
+    attr[NSAttributedString.Key.foregroundColor] = props.options.textColor
     return attr
   }
   

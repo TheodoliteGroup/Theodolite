@@ -15,7 +15,7 @@ final class NewsItemFeaturedTitleComponent: Component, TypedComponent {
   override func render() -> [Component] {
     return [
       InsetComponent((
-        insets: UIEdgeInsetsMake(0, 0, 10, 0),
+        insets: UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0),
         component:
         LabelComponent(
           (self.props,

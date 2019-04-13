@@ -15,10 +15,10 @@ final class SpinnerComponent: Component, TypedComponent {
     return ViewConfiguration(view: UIActivityIndicatorView.self,
                              attributes: [
                               
-                              Attr(UIActivityIndicatorViewStyle.gray,
+                              Attr(UIActivityIndicatorView.Style.gray,
                                    identifier: "theodolite-activityIndicatorStyle")
-                              { (view: UIActivityIndicatorView, value: UIActivityIndicatorViewStyle) -> () in
-                                    view.activityIndicatorViewStyle = value
+                              { (view: UIActivityIndicatorView, value: UIActivityIndicatorView.Style) -> () in
+                                    view.style = value
                               }
       ])
   }

@@ -31,7 +31,7 @@ open class TextCache<KeyType, ObjectType> where
   private var _entries: [KeyType: TextCacheEntry<KeyType, ObjectType>] = [:]
   private let _lock: os_unfair_lock_t = {
     let lock = os_unfair_lock_t.allocate(capacity: 1)
-    lock.initialize(to: os_unfair_lock_s(), count: 1)
+    lock.initialize(repeating: os_unfair_lock_s(), count: 1)
     return lock
   }()
   private var _totalCost = 0
@@ -44,7 +44,7 @@ open class TextCache<KeyType, ObjectType> where
 
   deinit {
     _lock.deinitialize(count: 1)
-    _lock.deallocate(capacity: 1)
+    _lock.deallocate()
   }
 
   open func object(forKey key: KeyType) -> ObjectType? {

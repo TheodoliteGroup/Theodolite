@@ -23,7 +23,7 @@ public struct ViewOptions {
   
   let alpha: CGFloat?
   
-  let contentMode: UIViewContentMode?
+  let contentMode: UIView.ContentMode?
 
   let isAccessibilityElement: Bool?
   let accessibilityLabel: String?
@@ -36,7 +36,7 @@ public struct ViewOptions {
               isExclusiveTouchEnabled: Bool? = nil,
               clipsToBounds: Bool? = nil,
               alpha: CGFloat? = nil,
-              contentMode: UIViewContentMode? = nil,
+              contentMode: UIView.ContentMode? = nil,
               isAccessibilityElement: Bool? = nil,
               accessibilityLabel: String? = nil,
               layerOptions: LayerOptions? = nil) {
@@ -124,8 +124,8 @@ public func ViewAlpha(_ enabled: CGFloat) -> Attribute {
   }
 }
 
-public func ViewContentMode(_ enabled: UIViewContentMode) -> Attribute {
-  return Attr<UIView, UIViewContentMode>(enabled, identifier: "theodolite-setContentMode") {(view: UIView, val: UIViewContentMode) in
+public func ViewContentMode(_ enabled: UIView.ContentMode) -> Attribute {
+  return Attr<UIView, UIView.ContentMode>(enabled, identifier: "theodolite-setContentMode") {(view: UIView, val: UIView.ContentMode) in
     view.contentMode = val;
   }
 }

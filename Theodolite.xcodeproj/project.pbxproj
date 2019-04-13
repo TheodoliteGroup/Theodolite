@@ -672,7 +672,7 @@
 					B136BE471F8D5741001EE264 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = SXXM3YCVSK;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					B136BE501F8D5741001EE264 = {
@@ -687,6 +687,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B136BE3E1F8D5741001EE264;
@@ -1017,8 +1018,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1039,8 +1039,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.Theodolite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

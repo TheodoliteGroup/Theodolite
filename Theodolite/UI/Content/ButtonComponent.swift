@@ -10,11 +10,11 @@ import UIKit
 
 public class ButtonComponent: Component, TypedComponent {
   
-  public typealias StateMap<V> = [UIControlState: V]
+  public typealias StateMap<V> = [UIControl.State: V]
   
   public struct Options {
     /** The actions for the button when it transitions to a state. */
-    let actions: [UIControlEvents:[Action<UIButton>]]?
+    let actions: [UIControl.Event:[Action<UIButton>]]?
     /** The title of the button for different states. */
     let titles: StateMap<String>?
     /** The title colors of the button for different states. */
@@ -35,7 +35,7 @@ public class ButtonComponent: Component, TypedComponent {
     let attributes: [Attribute]?
     
     public init(
-      actions: [UIControlEvents:[Action<UIButton>]]? = nil,
+      actions: [UIControl.Event:[Action<UIButton>]]? = nil,
       titles: StateMap<String>? = nil,
       titleColors: StateMap<UIColor>? = nil,
       images: StateMap<UIImage>? = nil,
@@ -175,17 +175,17 @@ public class ButtonComponent: Component, TypedComponent {
    It excludes any states with both UIControlStateHighlighted and UIControlStateDisabled set as that is an invalid value.
    (UIButton will, surprisingly enough, throw away one of the bits if they are set together instead of ignoring it.)
    */
-  private func enumerateAllStates(block: (UIControlState) -> ()) {
+  private func enumerateAllStates(block: (UIControl.State) -> ()) {
     for highlighted in 0 ..< 2 {
       for disabled in 0 ..< 2 {
         for selected in 0 ..< 2 {
           let state =
-            UIControlState(rawValue:
-              (highlighted == 1 ? UIControlState.highlighted.rawValue : UInt(0))
-                | (disabled == 1 ? UIControlState.disabled.rawValue : UInt(0))
-                | (selected == 1 ? UIControlState.selected.rawValue : UInt(0)))
-          if ((state.rawValue & UIControlState.highlighted.rawValue != 0)
-            && (state.rawValue & UIControlState.disabled.rawValue != 0)) {
+            UIControl.State(rawValue:
+              (highlighted == 1 ? UIControl.State.highlighted.rawValue : UInt(0))
+                | (disabled == 1 ? UIControl.State.disabled.rawValue : UInt(0))
+                | (selected == 1 ? UIControl.State.selected.rawValue : UInt(0)))
+          if ((state.rawValue & UIControl.State.highlighted.rawValue != 0)
+            && (state.rawValue & UIControl.State.disabled.rawValue != 0)) {
             continue;
           }
           block(state)
@@ -195,10 +195,10 @@ public class ButtonComponent: Component, TypedComponent {
   }
   
   class ActionController {
-    let containers: [UIControlEvents: ActionContainer]
+    let containers: [UIControl.Event: ActionContainer]
     
-    init(actions: [UIControlEvents: [Action<UIButton>]]) {
-      var c: [UIControlEvents: ActionContainer] = [:]
+    init(actions: [UIControl.Event: [Action<UIButton>]]) {
+      var c: [UIControl.Event: ActionContainer] = [:]
       for (event, actionArray) in actions {
         c[event] = ActionContainer(actionArray)
       }
@@ -234,11 +234,11 @@ public class ButtonComponent: Component, TypedComponent {
       self.actions = actions
     }
     
-    func attach(button: UIButton, controlEvent: UIControlEvents) {
+    func attach(button: UIButton, controlEvent: UIControl.Event) {
       button.addTarget(self, action: #selector(ActionContainer.send), for: controlEvent)
     }
     
-    func detach(button: UIButton, controlEvent: UIControlEvents) {
+    func detach(button: UIButton, controlEvent: UIControl.Event) {
       button.removeTarget(self, action: #selector(ActionContainer.send), for: controlEvent)
     }
     
@@ -253,14 +253,14 @@ public class ButtonComponent: Component, TypedComponent {
 var kActionControllerKey: Void?
 
 /** Required for the UIControlState:value mapping. */
-extension UIControlState: Hashable {
+extension UIControl.State: Hashable {
   public var hashValue: Int {
     get { return Int(self.rawValue) }
   }
 }
 
 /** Required for the UIControlState:value mapping. */
-extension UIControlEvents: Hashable {
+extension UIControl.Event: Hashable {
   public var hashValue: Int {
     get { return Int(self.rawValue) }
   }

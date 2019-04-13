@@ -98,7 +98,7 @@ internal class TextKitRendererKey: Equatable, Hashable {
       && SizesEqual(lhs.constrainedSize, rhs.constrainedSize)
   }
   
-  public var hashValue: Int {
-    return hash
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(hash)
   }
 }

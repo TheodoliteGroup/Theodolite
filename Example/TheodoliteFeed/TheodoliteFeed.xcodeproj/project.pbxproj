@@ -33,12 +33,11 @@
 		B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; };
 		B182629F1FA57D7D00D41A8A /* Flexbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B182628B1FA56A9A00D41A8A /* Flexbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B18C853D1FC3CA76008B27F9 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18C853C1FC3CA76008B27F9 /* NewsItem.swift */; };
-		B18C853F1FC3CAD2008B27F9 /* Sourcery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18C853E1FC3CAD2008B27F9 /* Sourcery.swift */; };
-		B18C85411FC3CBA8008B27F9 /* Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18C85401FC3CBA8008B27F9 /* Generated.swift */; };
 		B1BC1B0D1FA9278F00F01A1A /* NewsItemContentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */; };
 		B1E6C60F1FAD16F00018CE8A /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */; };
 		B1F16E7D1FA9F0A40037CD9B /* NetworkDataComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */; };
 		B1F16E801FA9F79D0037CD9B /* NetworkImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F16E7F1FA9F79D0037CD9B /* NetworkImageComponent.swift */; };
+		E8AA87F7B58640047F7E0AB1 /* Pods_TheodoliteFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 919294A8BA009ABCDA84E0E2 /* Pods_TheodoliteFeed.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +106,6 @@
 		B182627D1FA56A8B00D41A8A /* Theodolite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Theodolite.xcodeproj; path = ../../Theodolite.xcodeproj; sourceTree = "<group>"; };
 		B182628B1FA56A9A00D41A8A /* Flexbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flexbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B18C853C1FC3CA76008B27F9 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
-		B18C853E1FC3CAD2008B27F9 /* Sourcery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
-		B18C85401FC3CBA8008B27F9 /* Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generated.swift; sourceTree = "<group>"; };
 		B1BC1B0C1FA9278F00F01A1A /* NewsItemContentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemContentComponent.swift; sourceTree = "<group>"; };
 		B1E6C60E1FAD16F00018CE8A /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		B1F16E7C1FA9F0A40037CD9B /* NetworkDataComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataComponent.swift; sourceTree = "<group>"; };
@@ -125,6 +122,7 @@
 				B182629E1FA57D7D00D41A8A /* Flexbox.framework in Frameworks */,
 				B182628A1FA56A9A00D41A8A /* Flexbox.framework in Frameworks */,
 				B18262891FA56A9600D41A8A /* Theodolite.framework in Frameworks */,
+				E8AA87F7B58640047F7E0AB1 /* Pods_TheodoliteFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,9 +258,7 @@
 		B18C853A1FC3CA62008B27F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B18C85401FC3CBA8008B27F9 /* Generated.swift */,
 				B18C853C1FC3CA76008B27F9 /* NewsItem.swift */,
-				B18C853E1FC3CAD2008B27F9 /* Sourcery.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,8 +283,6 @@
 				B182625A1FA5685300D41A8A /* Frameworks */,
 				B182625B1FA5685300D41A8A /* Resources */,
 				B182629D1FA57D7300D41A8A /* Embed Frameworks */,
-				0AC6E20FEE26ED5092A2E62F /* [CP] Embed Pods Frameworks */,
-				BFA68BD6F997C01806926231 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -312,6 +306,7 @@
 				TargetAttributes = {
 					B182625C1FA5685300D41A8A = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -370,24 +365,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AC6E20FEE26ED5092A2E62F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TheodoliteFeed/Pods-TheodoliteFeed-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheodoliteFeed/Pods-TheodoliteFeed-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		32E51136E1FC294226AF7877 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,21 +381,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BFA68BD6F997C01806926231 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheodoliteFeed/Pods-TheodoliteFeed-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -440,8 +402,6 @@
 				B12472011FA9FBA200F9434E /* NewsItemFeaturedImageComponent.swift in Sources */,
 				B1483B381FA8068A00796C58 /* NewsNetworkSource.swift in Sources */,
 				B12471FE1FA9FB8700F9434E /* NewsItemFeaturedComponent.swift in Sources */,
-				B18C85411FC3CBA8008B27F9 /* Generated.swift in Sources */,
-				B18C853F1FC3CAD2008B27F9 /* Sourcery.swift in Sources */,
 				B1F16E7D1FA9F0A40037CD9B /* NetworkDataComponent.swift in Sources */,
 				B18C853D1FC3CA76008B27F9 /* NewsItem.swift in Sources */,
 				B1483B3E1FA8070600796C58 /* NewsItemTitleComponent.swift in Sources */,
@@ -596,7 +556,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.TheodoliteFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -613,7 +573,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ocrickard.TheodoliteFeed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

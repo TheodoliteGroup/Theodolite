@@ -33,19 +33,4 @@ public struct TextKitAttributes: Equatable, Hashable {
     self.lineBreakMode = lineBreakMode
     self.maximumNumberOfLines = maximumNumberOfLines
   }
-  
-  public static func ==(lhs: TextKitAttributes, rhs: TextKitAttributes) -> Bool {
-    return lhs.lineBreakMode == rhs.lineBreakMode
-      && lhs.maximumNumberOfLines == rhs.maximumNumberOfLines
-      && lhs.attributedString == rhs.attributedString
-  }
-  
-  public var hashValue: Int {
-    let hash = HashArray([
-        attributedString,
-        lineBreakMode,
-        maximumNumberOfLines,
-      ])
-    return hash
-  }
 };

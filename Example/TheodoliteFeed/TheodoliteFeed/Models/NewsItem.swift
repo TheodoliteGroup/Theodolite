@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NewsItem: AutoModel {
+struct NewsItem: Hashable, Equatable {
   let title: String
   let description: String?
   let url: URL
@@ -17,10 +17,10 @@ struct NewsItem: AutoModel {
   let media: NewsItemMedia
 }
 
-struct NewsItemAuthor: AutoModel {
+struct NewsItemAuthor: Hashable, Equatable {
   let name: String?
 }
 
-struct NewsItemMedia: AutoModel {
+struct NewsItemMedia: Hashable, Equatable {
   let imageURL: URL?
 }

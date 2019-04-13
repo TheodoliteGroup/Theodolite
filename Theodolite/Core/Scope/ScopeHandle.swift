@@ -27,16 +27,6 @@ public struct ScopeIdentifier: Equatable, Hashable {
     copiedPath.append(val)
     return ScopeIdentifier(path: copiedPath)
   }
-  
-  public var hashValue: Int {
-    return path.reduce(0, { (combined, next) -> Int in
-      return HashCombine(combined, next)
-    })
-  }
-  
-  static public func ==(lhs: ScopeIdentifier, rhs: ScopeIdentifier) -> Bool {
-    return lhs.path == rhs.path
-  }
 }
 
 /**

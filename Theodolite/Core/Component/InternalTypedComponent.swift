@@ -23,7 +23,7 @@ public protocol InternalTypedComponent {
 
 /* Default implementations of the core methods. You shouldn't override any of these methods. */
 public extension TypedComponent {
-  public init(key: AnyHashable? = nil,
+  init(key: AnyHashable? = nil,
               _ props: PropType) {
     self.init(doNotCall: key)
     
@@ -31,7 +31,7 @@ public extension TypedComponent {
     self.context.key = key
   }
   
-  public func shouldComponentUpdate(previous: Component) -> Bool {
+  func shouldComponentUpdate(previous: Component) -> Bool {
     // Note that we don't use self.props here, since that force-unwraps props
     if let props = self.context.props as? AnyHashable {
       if let previousProps = (previous as? Self)?.context.props as? AnyHashable {

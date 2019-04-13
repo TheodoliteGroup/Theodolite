@@ -31,12 +31,12 @@ public class Atomic<T> {
   init(_ val: T) {
     self.val = val
     self.lock = os_unfair_lock_t.allocate(capacity: 1)
-    self.lock.initialize(to: os_unfair_lock_s(), count: 1)
+    self.lock.initialize(repeating: os_unfair_lock_s(), count: 1)
   }
   
   deinit {
     lock.deinitialize(count: 1)
-    lock.deallocate(capacity: 1)
+    lock.deallocate()
   }
   
   func get() -> T {
