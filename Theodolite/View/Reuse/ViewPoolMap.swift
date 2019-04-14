@@ -65,6 +65,7 @@ public class ViewPoolMap {
     assert(Thread.isMainThread)
     let pool = getViewPool(view: parent, config: config)
     pool.checkinView(component: component, view: view)
+    PendingViewPoolResetList.getResetList().add(pool)
   }
   
   func getViewPool(view: UIView, config: ViewConfiguration) -> ViewPool {

@@ -13,7 +13,7 @@ import UIKit
  of which views are vended out of its list, and is responsible for hiding any views that haven't been vended in
  any particular mount cycle.
  */
-public class ViewPool {
+public class ViewPool: Hashable, Equatable {
   private struct View {
     let view: UIView
     var identifier: ScopeIdentifier
@@ -58,7 +58,7 @@ public class ViewPool {
     parent.addSubview(newView)
     return newView
   }
-  
+
   func checkinView(component: Component, view: UIView) {
     views.append(View(view: view, identifier: getIdentifier(component: component)))
     if views.count > 100 {
@@ -68,5 +68,13 @@ public class ViewPool {
 
   func getIdentifier(component: Component) -> ScopeIdentifier {
     return getScopeHandle(component: component)?.identifier ?? ScopeIdentifier(path:[])
+  }
+  
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(ObjectIdentifier(self))
+  }
+  
+  static public func ==(lhs: ViewPool, rhs: ViewPool) -> Bool {
+    return lhs === rhs
   }
 }

@@ -111,12 +111,7 @@ open class Component: UnTypedComponent {
   /** Called directly before mounting. */
   open func componentWillMount() {}
   /** Called after mounting the component itself, and its children. */
-  open func componentDidMount() {
-    if let view = self.context.mountInfo.currentView {
-      // Hide any views that weren't vended from our view (not our parent's, that's their responsibility).
-      ViewPoolMap.resetViewPoolMap(view: view)
-    }
-  }
+  open func componentDidMount() {}
 
   /** Called before unmounting the component or its children. */
   open func componentWillUnmount() {}

@@ -103,6 +103,9 @@ public func MountRootLayout(view: UIView,
   for unmountingLayout in toBeUnmounted {
     UnmountLayout(layout: unmountingLayout, incrementalContext: incrementalContext)
   }
+
+  // Hide any views that remain after we complete the top-level mount operation
+  PendingViewPoolResetList.reset()
 }
 
 internal func MountLayout(view: UIView,

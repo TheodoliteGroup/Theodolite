@@ -93,6 +93,7 @@
 		B1BEB8841F928A09002A049A /* StandardViewAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */; };
 		B1C14FD81F995414005A8CBE /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FD71F995413005A8CBE /* LabelComponent.swift */; };
 		B1C14FDB1F995438005A8CBE /* ComponentHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */; };
+		B1C6F5372262E26C00FB46AF /* PendingViewPoolResetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C6F5362262E26C00FB46AF /* PendingViewPoolResetList.swift */; };
 		B1DE013C206D4D0700BBE93B /* BackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DE013B206D4D0700BBE93B /* BackgroundComponent.swift */; };
 		B1DE013E206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DE013D206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift */; };
 		B1E6C61F1FAD21570018CE8A /* PullToRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6C61E1FAD21570018CE8A /* PullToRefreshComponent.swift */; };
@@ -249,6 +250,7 @@
 		B1BEB8831F928A09002A049A /* StandardViewAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardViewAttributes.swift; sourceTree = "<group>"; };
 		B1C14FD71F995413005A8CBE /* LabelComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		B1C14FDA1F995438005A8CBE /* ComponentHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentHostingView.swift; sourceTree = "<group>"; };
+		B1C6F5362262E26C00FB46AF /* PendingViewPoolResetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingViewPoolResetList.swift; sourceTree = "<group>"; };
 		B1DE013B206D4D0700BBE93B /* BackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundComponent.swift; sourceTree = "<group>"; };
 		B1DE013D206D4E3400BBE93B /* BackgroundComponentSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundComponentSnapshotTests.swift; sourceTree = "<group>"; };
 		B1E6C61E1FAD21570018CE8A /* PullToRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshComponent.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 			children = (
 				B136BEB61F8D69E8001EE264 /* ViewPool.swift */,
 				B136BEC91F8EFCED001EE264 /* ViewPoolMap.swift */,
+				B1C6F5362262E26C00FB46AF /* PendingViewPoolResetList.swift */,
 			);
 			path = Reuse;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				B136BEC01F8EF7CC001EE264 /* InternalTypedComponent.swift in Sources */,
 				B15966E61FA7C41800FEDC5C /* ImageComponent.swift in Sources */,
 				B136BEB11F8D69C9001EE264 /* Scope.swift in Sources */,
+				B1C6F5372262E26C00FB46AF /* PendingViewPoolResetList.swift in Sources */,
 				B136BEBC1F8D6DD2001EE264 /* Action.swift in Sources */,
 				B11D600C1FA93EC6002F417B /* TheodoliteAsyncTransactionGroup.m in Sources */,
 				B1EC97FB1F90E88F0086A5D7 /* ComponentTree.swift in Sources */,
