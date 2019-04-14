@@ -46,8 +46,8 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
             SizeRange(max:
               direction == UICollectionView.ScrollDirection.vertical
                 ? CGSize(width: constraint.max.width,
-                         height: CGFloat.signalingNaN)
-                : CGSize(width: CGFloat.signalingNaN,
+                         height: CGFloat.nan)
+                : CGSize(width: CGFloat.nan,
                          height: constraint.max.height)),
                   tree: childTree),
         position: CGPoint(x: 0, y: 0))
