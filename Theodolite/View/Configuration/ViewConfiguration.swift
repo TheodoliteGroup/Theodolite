@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ViewConfiguration: Equatable, Hashable {
+public class ViewConfiguration: Equatable, Hashable {
   let view: UIView.Type
   let attributes: [Attribute]
   private let hash: Int
@@ -57,10 +57,6 @@ public struct ViewConfiguration: Equatable, Hashable {
     let v = self.view.init()
     self.applyToView(v: v)
     return v
-  }
-  
-  public struct AttributeShape: Equatable, Hashable {
-    let config: ViewConfiguration
   }
 }
 
