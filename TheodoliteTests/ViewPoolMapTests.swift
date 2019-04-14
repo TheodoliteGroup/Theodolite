@@ -48,7 +48,7 @@ class ViewPoolMapTests: XCTestCase {
     let retrievedButton = map.checkoutView(component: buttonComponent, parent: view, config: buttonConfig)!
     
     // OK, so now we should have the 2 views, and retrieved2 should be above retrieved
-    XCTAssert(view.subviews.index(of: retrievedLabel)! < view.subviews.index(of: retrievedButton)!)
+    XCTAssert(view.subviews.firstIndex(of: retrievedLabel)! < view.subviews.firstIndex(of: retrievedButton)!)
     
     map.checkinView(component: labelComponent, parent: view, config: labelConfig, view: retrievedLabel)
     map.checkinView(component: buttonComponent, parent: view, config: buttonConfig, view: retrievedButton)
@@ -64,6 +64,6 @@ class ViewPoolMapTests: XCTestCase {
     map.reset(view: view)
     
     // The views should now be swapped in their order so that retrieved should be above retrieved2
-    XCTAssert(view.subviews.index(of: buttonAgain)! < view.subviews.index(of: labelAgain)!)
+    XCTAssert(view.subviews.firstIndex(of: buttonAgain)! < view.subviews.firstIndex(of: labelAgain)!)
   }
 }

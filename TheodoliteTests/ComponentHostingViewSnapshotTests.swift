@@ -137,7 +137,7 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
 func waitUntil(timeout: TimeInterval, _ block: () -> Bool) {
   let target = CFAbsoluteTimeGetCurrent() + timeout
   while(!block()) {
-    RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 0.02))
+    RunLoop.current.run(mode: RunLoop.Mode.default, before: Date(timeIntervalSinceNow: 0.02))
     if CFAbsoluteTimeGetCurrent() > target {
       break
     }

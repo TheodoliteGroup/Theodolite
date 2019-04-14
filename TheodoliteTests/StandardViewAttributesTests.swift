@@ -121,11 +121,11 @@ class StandardViewAttributesTests: FBSnapshotTestCase {
     let config = ViewConfiguration(
       view: UIView.self,
       attributes:
-      ViewOptions(contentMode: UIViewContentMode.scaleAspectFit).viewAttributes())
+      ViewOptions(contentMode: UIView.ContentMode.scaleAspectFit).viewAttributes())
     let view = UIView()
     config.applyToView(v: view)
     
-    XCTAssertEqual(view.contentMode, UIViewContentMode.scaleAspectFit)
+    XCTAssertEqual(view.contentMode, UIView.ContentMode.scaleAspectFit)
   }
   
   func test_tintColor_isApplied() {
