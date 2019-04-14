@@ -11,19 +11,24 @@ import UIKit
 public struct ViewConfiguration: Equatable, Hashable {
   let view: UIView.Type
   let attributes: [Attribute]
+  private let hash: Int
   
   public init(view: UIView.Type, attributes: [Attribute]) {
     self.view = view
     self.attributes = attributes
     assert(findDuplicates(attributes: attributes).count == 0,
            "Duplicate attributes. You must provide identifiers for: \(findDuplicates(attributes: attributes))")
+    // Pre-compute hash since it gets called constantly
+    var hasher = Hasher()
+    hasher.combine(view.hash())
+    for attr in attributes {
+      hasher.combine(attr)
+    }
+    self.hash = hasher.finalize()
   }
   
   public func hash(into hasher: inout Hasher) {
-    hasher.combine(self.view.hash())
-    for attr in self.attributes {
-      hasher.combine(attr)
-    }
+    hasher.combine(self.hash)
   }
   
   func applyToView(v: UIView) {

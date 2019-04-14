@@ -79,10 +79,6 @@ public class Attribute: Equatable, Hashable {
   }
   
   func unapply(view: UIView) { /** Do nothing, for subclasses. */}
-  
-  func isEquivalent(other: Attribute) -> Bool {
-    return identifier == other.identifier
-  }
 }
 
 public func ==(lhs: Attribute, rhs: Attribute) -> Bool {
