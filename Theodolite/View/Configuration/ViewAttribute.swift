@@ -91,7 +91,7 @@ public func ==(lhs: Attribute, rhs: Attribute) -> Bool {
 }
 
 /** Implementation detail, generic container for an equatable value. */
-public struct AttributeValue: Equatable {
+public class AttributeValue: Equatable {
   internal let value: Any
   internal let equals: (Any) -> Bool
   
