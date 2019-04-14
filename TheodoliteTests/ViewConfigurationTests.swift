@@ -69,26 +69,6 @@ class ViewConfigurationTests: XCTestCase {
     
     XCTAssertEqual(config, config2)
   }
-
-  func test_twoViewConfigurations_withIdenticalProperties_areEquivalent() {
-    let config = ViewConfiguration(
-      view: UILabel.self,
-      attributes: [
-        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val
-        }
-      ])
-
-    let config2 = ViewConfiguration(
-      view: UILabel.self,
-      attributes: [
-        Attr<UILabel, UIColor>(UIColor.red) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val
-        }
-      ])
-
-    XCTAssert(config.isEquivalent(other: config2))
-  }
   
   func test_twoViewConfigurations_withIdenticalProperties_haveIdenticalHashes() {
     let config = ViewConfiguration(
@@ -128,25 +108,5 @@ class ViewConfigurationTests: XCTestCase {
       ])
     
     XCTAssertNotEqual(config, config2)
-  }
-
-  func test_twoViewConfigurations_withDifferentAttributes_areNotEquivalent() {
-    let config = ViewConfiguration(
-      view: UILabel.self,
-      attributes: [
-        Attr<UILabel, Bool>(true) {(view: UILabel, val: Bool) in
-          view.isUserInteractionEnabled = val
-        }
-      ])
-
-    let config2 = ViewConfiguration(
-      view: UILabel.self,
-      attributes: [
-        Attr<UILabel, UIColor>(UIColor.blue) {(view: UILabel, val: UIColor) in
-          view.backgroundColor = val
-        }
-      ])
-
-    XCTAssert(!config.isEquivalent(other: config2))
   }
 }

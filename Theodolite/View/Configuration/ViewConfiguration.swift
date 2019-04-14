@@ -59,24 +59,6 @@ public struct ViewConfiguration: Equatable, Hashable {
     return v
   }
   
-  func isEquivalent(other: ViewConfiguration) -> Bool {
-    if view != other.view {
-      return false
-    }
-    
-    if (attributes.count != other.attributes.count) {
-      return false
-    }
-    
-    for (i, attr) in attributes.enumerated() {
-      if (!attr.isEquivalent(other: other.attributes[i])) {
-        return false
-      }
-    }
-    
-    return true
-  }
-  
   public struct AttributeShape: Equatable, Hashable {
     let config: ViewConfiguration
   }
