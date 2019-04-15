@@ -52,7 +52,7 @@
 
 - (NSString *)name
 {
-  return [super name] ?: [NSString stringWithFormat:@"%@ (%p)", NSStringFromClass([self class]), self];
+  return [super name] ?: NSStringFromClass([self class]);
 }
 
 @dynamic displayMode;
