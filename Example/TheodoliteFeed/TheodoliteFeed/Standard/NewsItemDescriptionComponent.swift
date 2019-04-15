@@ -10,12 +10,15 @@ import Flexbox
 import Theodolite
 
 final class NewsItemDescriptionComponent: Component, TypedComponent {
-  typealias PropType = String
+  typealias PropType = String?
 
   override func render() -> [Component] {
+    guard let description = props else {
+      return []
+    }
     return [
       LabelComponent(
-        (self.props,
+        (description,
          LabelComponent.Options(textColor: UIColor(white: 0.3, alpha: 1),
           lineBreakMode: NSLineBreakMode.byWordWrapping,
                                 maximumNumberOfLines: 0))

@@ -38,8 +38,8 @@ final class NewsItemFeaturedComponent: Component, TypedComponent {
                           margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
                 FlexChild(NewsItemFeaturedTitleComponent( props.0.title ),
                           margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
-                FlexChild(NewsItemFeaturedImageComponent( props.0.media.imageURL! )),
-                FlexChild(NewsItemDescriptionComponent( props.0.description! ),
+                FlexChild(NewsItemFeaturedImageComponent( props.0.media.imageURL )),
+                FlexChild(NewsItemDescriptionComponent( props.0.description ),
                           margin: Edges(left: 20, right: 20, top: 10, bottom: 0))
                 ]))))))]
   }
