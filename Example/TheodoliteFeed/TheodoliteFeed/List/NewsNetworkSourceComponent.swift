@@ -21,15 +21,14 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
     newsItems: [NewsItem],
     didInitiateFetch: Bool
   )
+  
+  func initialState() -> (newsItems: [NewsItem], didInitiateFetch: Bool) {
+    return (newsItems:[], didInitiateFetch: false)
+  }
 
   override func render() -> [Component] {
 
     self.fetchIfNeeded()
-    
-
-    guard let state = self.state else {
-      return []
-    }
 
     if state.newsItems.count == 0 {
       return []
@@ -45,11 +44,8 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
                  size: 40)!))
     ), margin: Edges.init(left: 20, right: 20, top: 10, bottom: 0)))
     
-    let first = state.newsItems.first!
-    children.append(FlexChild(NewsItemFeaturedComponent(key: first.url, (first, navigationCoordinator: props.navigationCoordinator))))
-    children.append(contentsOf: state.newsItems[1..<state.newsItems.count]
-      .map {(item: NewsItem) -> FlexChild in
-        return FlexChild(NewsItemComponent(key: item.url, (item, navigationCoordinator: props.navigationCoordinator)))
+    children.append(contentsOf: state.newsItems.map {(item: NewsItem) -> FlexChild in
+        return FlexChild(NewsItemFeaturedComponent(key: item.url, (item, navigationCoordinator: props.navigationCoordinator)))
     })
 
     return [
@@ -61,7 +57,7 @@ final class NewsNetworkSourceComponent: Component, TypedComponent {
   }
 
   func fetchIfNeeded() {
-    if !(self.state?.didInitiateFetch ?? false) {
+    if !(self.state.didInitiateFetch) {
       self.updateState(state: (newsItems: [], didInitiateFetch: true))
       self.props.topNewsSource.fetchItems({ (result) in
         self.props.loadedAction.send(true)

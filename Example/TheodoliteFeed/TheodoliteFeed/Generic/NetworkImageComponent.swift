@@ -17,7 +17,11 @@ final class NetworkImageComponent: Component, TypedComponent {
     backgroundColor: UIColor,
     contentMode: UIView.ContentMode
   )
-  typealias StateType = UIImage
+  typealias StateType = UIImage?
+  
+  func initialState() -> UIImage? {
+    return nil
+  }
 
   func scaledImage(image:UIImage, size: CGSize) -> UIImage {
     UIGraphicsBeginImageContextWithOptions(size, false, 0.0)

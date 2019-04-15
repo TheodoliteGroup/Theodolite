@@ -67,8 +67,12 @@ class ViewController: UIViewController {
             ],
            navigationCoordinator: self.navigationCoordinator)
           ),
-         direction: .vertical,
-         attributes: [])
+         direction: .horizontal,
+         attributes: [
+          Attr(true, identifier: "theodolite-pagingEnabled")
+          { (view: UIScrollView, value: Bool) -> () in
+            view.isPagingEnabled = value
+          }])
       )
     }
     hostingView.backgroundColor = .white

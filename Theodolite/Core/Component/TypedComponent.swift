@@ -54,14 +54,14 @@ import Foundation
 public protocol TypedComponent: UnTypedComponent, InternalTypedComponent {
   associatedtype ComponentType: Component = Self
   associatedtype PropType
-  associatedtype StateType = Void?
+  associatedtype StateType = NoState?
   
   var props: PropType {get}
-  var state: StateType? {get}
+  var state: StateType {get}
   
-  func initialState() -> StateType?
+  func initialState() -> StateType
   
-  func updateState(state: StateType?)
+  func updateState(state: StateType)
   
   init(key: AnyHashable?,
        _ props: PropType)

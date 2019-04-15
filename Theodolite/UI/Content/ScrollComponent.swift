@@ -23,7 +23,7 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   private var mountedArguments: (parentView: UIView, layout: WeakContainer<Layout>, position: CGPoint)? = nil
   private var incrementalMountContext: IncrementalMountContext = IncrementalMountContext()
 
-  public func initialState() -> ScrollComponent.State? {
+  public func initialState() -> ScrollComponent.State {
     return State()
   }
   
@@ -88,9 +88,9 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
     if scrollView.contentSize != contentSize {
       scrollView.contentSize = contentSize
     }
-    let contentOffset = state!.contentOffset
+    let contentOffset = state.contentOffset
     if scrollView.contentOffset != contentOffset {
-      scrollView.contentOffset = state!.contentOffset
+      scrollView.contentOffset = contentOffset
     }
     
     // Now we mount our children
@@ -135,7 +135,7 @@ public final class ScrollComponent: Component, TypedComponent, ScrollListener {
   // MARK: ScrollListener
   
   public func scrollViewDidScroll(scrollView: UIScrollView) {
-    state!.contentOffset = scrollView.contentOffset
+    state.contentOffset = scrollView.contentOffset
     mountChildren(context)
   }
 }

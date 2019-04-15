@@ -13,7 +13,6 @@ import Theodolite
 
 final class NewsItemFeaturedImageComponent: Component, TypedComponent {
   typealias PropType = URL?
-  typealias StateType = UIImage
 
   override func render() -> [Component] {
     let bounds = UIScreen.main.bounds

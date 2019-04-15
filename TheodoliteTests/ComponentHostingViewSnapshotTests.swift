@@ -31,16 +31,20 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
       
       typealias PropType = () -> ()
       typealias StateType = Bool
+      
+      func initialState() -> Bool {
+        return false
+      }
 
       override func render() -> [Component] {
         return [LabelComponent(
-          ((self.state ?? false) ? "state updated" : "state NOT updated",
+          ((self.state) ? "state updated" : "state NOT updated",
            LabelComponent.Options())
           )]
       }
 
       override func componentDidMount() {
-        if self.state == nil {
+        if self.state == false {
           self.updateState(state: true)
         } else {
           self.props()
@@ -76,10 +80,14 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
       typealias PropType = () -> ()
       typealias StateType = Bool
       
+      func initialState() -> Bool {
+        return false
+      }
+      
       override func view() -> ViewConfiguration? {
         return ViewConfiguration(
           view: UIView.self,
-          attributes: ViewOptions(backgroundColor: (self.state ?? false)
+          attributes: ViewOptions(backgroundColor: self.state
             ? UIColor.red.withAlphaComponent(0.2)
             : UIColor.blue.withAlphaComponent(0.2)).viewAttributes())
       }
@@ -89,21 +97,21 @@ class ComponentHostingViewSnapshotTests: FBSnapshotTestCase {
           BackgroundComponent(
             (component:
               LabelComponent(
-                (((self.state ?? false) ? "state updated" : "state NOT updated"),
+                ((self.state ? "state updated" : "state NOT updated"),
                  LabelComponent.Options())),
              background:
               ViewComponent(
                 ViewConfiguration(
                   view: UIView.self,
                   attributes: ViewOptions(backgroundColor:
-                    ((self.state ?? false)
+                    (self.state
                       ? UIColor.blue.withAlphaComponent(0.5)
                       : UIColor.red.withAlphaComponent(0.5))).viewAttributes()))))
         ]
       }
       
       override func componentDidMount() {
-        if self.state == nil {
+        if self.state == false {
           self.updateState(state: true)
         } else {
           self.props()

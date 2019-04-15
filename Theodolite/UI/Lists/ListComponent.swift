@@ -63,7 +63,7 @@ public final class ListComponent<ItemType>: Component, TypedComponent {
     }
   }
   public typealias PropType = Options
-  public typealias StateType = [ListBatch<ItemType>]
+  public typealias StateType = [ListBatch<ItemType>]?
 
   private var initiatedFetch: Bool = false
 
@@ -95,6 +95,10 @@ public final class ListComponent<ItemType>: Component, TypedComponent {
     if state == nil && !initiatedFetch {
       self.loadHead(nil)
     }
+  }
+  
+  public func initialState() -> [ListBatch<ItemType>]? {
+    return nil
   }
 
   func loadHead(_: Void?) {

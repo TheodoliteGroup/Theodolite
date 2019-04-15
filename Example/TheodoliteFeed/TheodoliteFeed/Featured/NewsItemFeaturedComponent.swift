@@ -25,23 +25,27 @@ final class NewsItemFeaturedComponent: Component, TypedComponent {
     }
     
     return [
-      InsetComponent((
-        insets: UIEdgeInsets(top: 10, left: 0, bottom: 40, right: 0),
+      SizeComponent((
+        size: SizeRange(UIScreen.main.bounds.size),
         component:
-        TapComponent(
-          (action: Handler(self, NewsItemFeaturedComponent.tappedItem),
-           component:
-            FlexboxComponent(
-              (options: FlexOptions(flexDirection: .column),
-               children: [
-                FlexChild(NewsItemHeaderComponent( props.0.author.name ),
-                          margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
-                FlexChild(NewsItemFeaturedTitleComponent( props.0.title ),
-                          margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
-                FlexChild(NewsItemFeaturedImageComponent( props.0.media.imageURL )),
-                FlexChild(NewsItemDescriptionComponent( props.0.description ),
-                          margin: Edges(left: 20, right: 20, top: 10, bottom: 0))
-                ]))))))]
+        InsetComponent((
+          insets: UIEdgeInsets(top: 10, left: 0, bottom: 40, right: 0),
+          component:
+          TapComponent(
+            (action: Handler(self, NewsItemFeaturedComponent.tappedItem),
+             component:
+              FlexboxComponent(
+                (options: FlexOptions(flexDirection: .column),
+                 children: [
+                  FlexChild(NewsItemHeaderComponent( props.0.author.name ),
+                            margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
+                  FlexChild(NewsItemFeaturedTitleComponent( props.0.title ),
+                            margin: Edges(left: 20, right: 20, top: 0, bottom: 0)),
+                  FlexChild(NewsItemFeaturedImageComponent( props.0.media.imageURL )),
+                  FlexChild(NewsItemDescriptionComponent( props.0.description ),
+                            margin: Edges(left: 20, right: 20, top: 10, bottom: 0))
+                  ]))))))))
+    ]
   }
 
   func tappedItem(gesture: UITapGestureRecognizer) {

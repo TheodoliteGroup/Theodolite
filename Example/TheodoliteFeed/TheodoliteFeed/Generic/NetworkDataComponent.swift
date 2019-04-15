@@ -26,7 +26,11 @@ final class NetworkDataComponent: Component, TypedComponent {
     URL,
     (State) -> Component?
   )
-  typealias StateType = State
+  typealias StateType = State?
+  
+  func initialState() -> NetworkDataComponent.State? {
+    return nil
+  }
 
   override func render() -> [Component] {
     self.fetchDataIfNeeded()

@@ -8,6 +8,11 @@
 
 import Foundation
 
+/* Empty protocol to serve as the default state type */
+public class NoState {
+  static let shared = NoState()
+}
+
 /* Used by infrastructure to allow polymorphism on prop/state types. */
 public protocol UnTypedComponent: AnyObject {
   var context: ComponentContext {get}
@@ -44,5 +49,11 @@ public extension TypedComponent {
   /* Implementation detail, ignore this. TODO: Remove? */
   func initialUntypedState() -> Any? {
     return initialState()
+  }
+}
+
+extension TypedComponent where StateType: NoState {
+  public func initialState() -> NoState {
+    return NoState.shared
   }
 }

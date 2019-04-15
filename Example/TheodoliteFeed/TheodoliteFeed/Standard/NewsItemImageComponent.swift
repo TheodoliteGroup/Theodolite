@@ -11,7 +11,6 @@ import Theodolite
 
 final class NewsItemImageComponent: Component, TypedComponent {
   typealias PropType = URL
-  typealias StateType = UIImage
 
   override func render() -> [Component] {
     return [

@@ -9,12 +9,6 @@
 import XCTest
 @testable import Theodolite
 
-final class TestScopeComponent<T, S>: Component, TypedComponent {
-  
-  typealias PropType = T
-  typealias StateType = S
-}
-
 class ScopeTests: XCTestCase {
   
   /** Scope Handle tests */
@@ -34,7 +28,11 @@ class ScopeTests: XCTestCase {
   /** Scope tests */
   
   func test_buildingScopeWithNoPreviousScope_buildsScopeWithComponent() {
-    let c = TestScopeComponent<Bool, Void?>( true )
+    final class TestComponent: Component, TypedComponent {
+      typealias PropType = Bool
+    }
+    
+    let c = TestComponent( true )
     let scope = Scope(listener: nil,
                       component: c,
                       previousScope: nil,
@@ -49,7 +47,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         return 42
       }
     }
@@ -71,7 +69,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         return 42
       }
     }
@@ -101,7 +99,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = () -> ()
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         self.props()
         return 42
       }
@@ -141,7 +139,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         return 42
       }
     }
@@ -171,7 +169,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         return 42
       }
     }
@@ -227,7 +225,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         return 42
       }
     }
@@ -258,7 +256,7 @@ class ScopeTests: XCTestCase {
       typealias PropType = Void?
       typealias StateType = Int
       
-      func initialState() -> Int? {
+      func initialState() -> Int {
         return 42
       }
     }
@@ -294,29 +292,35 @@ class ScopeTests: XCTestCase {
   /** Scope root tests */
   
   func test_buildingScopeRootForComponent_withUniqueKeys_haveUniqueIdentifiers() {
+    final class TestComponent: Component, TypedComponent {
+      typealias PropType = Bool
+    }
     let scope1 = ScopeRoot(previousRoot: nil,
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(key: "key1", nil)
+                            return TestComponent(key: "key1", false)
     }
     
     let scope2 = ScopeRoot(previousRoot: scope1,
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(key: "key2", nil)
+                            return TestComponent(key: "key2", false)
     }
     
     XCTAssertNotEqual(scope1.root._handle.identifier, scope2.root._handle.identifier)
   }
 
   func test_buildingScopeRootForComponent_traversesThatHierarchy_whenTraverseCalled() {
+    final class TestComponent: Component, TypedComponent {
+      typealias PropType = Bool
+    }
     let scope1 = ScopeRoot(previousRoot: nil,
                            listener: nil,
                            stateUpdateMap: [:]) {
                             () -> Component in
-                            return TestScopeComponent<Void?, Void?>(key: "key1", nil)
+                            return TestComponent(key: "key1", false)
     }
 
     var traversed: Component? = nil

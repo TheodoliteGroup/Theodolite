@@ -52,7 +52,7 @@ public final class PullToRefreshComponent: Component, TypedComponent {
                     config: refreshControlConfig()) as! UIRefreshControl
     view.addTarget(self, action: #selector(didPullToRefresh), for: UIControl.Event.valueChanged)
 
-    if view.isRefreshing && state != nil {
+    if view.isRefreshing && state {
       view.endRefreshing()
       view.isHidden = true
     }
@@ -61,6 +61,10 @@ public final class PullToRefreshComponent: Component, TypedComponent {
     refreshControl = view
 
     return standardMountClosure()
+  }
+  
+  public func initialState() -> Bool {
+    return false
   }
 
   public override func componentWillUnmount() {
